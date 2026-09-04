@@ -10,70 +10,63 @@ export default function WhatWeBelieve() {
 
   const STORIES = [
     {
-      id: "managing-emissions",
+      id: "sil4-architecture",
       title: t.whatWeBelieve.story1,
-      image:
-        "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
-      fallbackImage: "/images/aramco_results_refinery.jpg",
-      link: "#emissions",
+      image: "/images/earth_leakage_detector_hero.jpg",
+      fallbackImage: "/images/power_distribution_eld.jpg",
+      link: "#sil4-architecture",
       aspect: "tall",
     },
     {
-      id: "manifa-story",
+      id: "leakage-analysis",
       title: t.whatWeBelieve.story2,
-      image: "/images/aramco_wetlands.jpg",
-      fallbackImage:
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
-      link: "#manifa",
+      image: "/images/eld_engineering_lab.jpg",
+      fallbackImage: "/images/earth_leakage_detector_original.png",
+      link: "#leakage-analysis",
       aspect: "wide",
     },
     {
-      id: "serving-society",
+      id: "anti-ram-barriers",
       title: t.whatWeBelieve.story3,
-      image:
-        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80",
-      fallbackImage:
-        "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
-      link: "#society",
+      image: "/images/crash_barrier_perimeter.jpg",
+      fallbackImage: "/images/boom_barrier_hero.jpg",
+      link: "#anti-ram",
       aspect: "tall",
     },
     {
-      id: "aston-martin-f1",
+      id: "weatherproof-durability",
       title: t.whatWeBelieve.story4,
-      image:
-        "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1000&q=80",
-      fallbackImage: "/images/aramco_materials_worker.jpg",
-      link: "#f1",
+      image: "/images/boom_barrier_original.png",
+      fallbackImage: "/images/boom_barrier_hero.jpg",
+      link: "#durability",
       aspect: "wide",
     },
     {
-      id: "investing-technology",
+      id: "microsecond-fault",
       title: t.whatWeBelieve.story5,
-      image: "/images/aramco_core_labs.jpg",
-      fallbackImage:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-      link: "#technology",
+      image: "/images/power_distribution_eld.jpg",
+      fallbackImage: "/images/earth_leakage_detector_hero.jpg",
+      link: "#fault-isolation",
       aspect: "tall",
     },
     {
-      id: "marine-biodiversity",
+      id: "rail-interlocking",
       title: t.whatWeBelieve.story6,
-      image:
-        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80",
-      fallbackImage: "/images/aramco_wetlands.jpg",
-      link: "#biodiversity",
+      image: "/images/boom_barrier_railway.jpg",
+      fallbackImage: "/images/crash_barrier_perimeter.jpg",
+      link: "#rail-interlocking",
       aspect: "wide",
     },
     {
-      id: "stem-education",
+      id: "hv-protection",
       title: t.whatWeBelieve.story7,
-      image:
-        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
-      fallbackImage: "/images/aramco_refinery_engineers_laptop.jpg",
-      link: "#education",
+      image: "/images/eld_engineering_lab.jpg",
+      fallbackImage: "/images/power_distribution_eld.jpg",
+      link: "#hv-protection",
       aspect: "tall",
     },
   ];
+
 
   // Auto-scroll loop that pauses on mouse hover
   useEffect(() => {

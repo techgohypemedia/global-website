@@ -43,91 +43,98 @@ export default function AboutUsBanner() {
     {
       title:
         lang === "hi"
-          ? "वैश्विक सामग्री संक्रमण और उन्नत अनुसंधान"
-          : "Advancing Global Materials Transition",
+          ? "हैवी-ड्यूटी क्रैश-रेटेड स्वचालित बूम बैरियर"
+          : "Heavy-Duty Crash-Rated Automated Boom Barrier",
       description:
         lang === "hi"
-          ? "कम कार्बन समाधान और अगली पीढ़ी के पॉलिमर नवाचारों का नेतृत्व।"
-          : "Pioneering lower-carbon energy solutions and next-generation polymer technologies.",
-      year: "2026 • Innovation",
-      link: "#materials",
-      image: "/images/aramco_refinery_engineers_laptop.jpg",
+          ? "उच्च-सुरक्षा परिधि, टोल प्लाजा और औद्योगिक द्वारों के लिए टिकाऊ स्वचालित बैरियर।"
+          : "Engineered with reinforced steel chassis, fast-acting motor drives, and intelligent access control integration.",
+      year: "2026 • Flagship Product",
+      link: "#boom-barrier",
+      image: "/images/boom_barrier_original.png",
     },
     {
       title:
         lang === "hi"
-          ? "कोर लैबोरेटरीज और सटीक भूगर्भीय अन्वेषण"
-          : "Precision Subsurface Exploration & Core Labs",
+          ? "16-चैनल अर्थ लीकेज डिटेक्टर एवं इन्सुलेशन मॉनिटर"
+          : "Multi-Channel Earth Leakage Detector (ELD)",
       description:
         lang === "hi"
-          ? "अत्याधुनिक तकनीक से भूगर्भीय मॉडलिंग और संसाधन विश्लेषण।"
-          : "AI-assisted subsurface mapping delivering unprecedented geological precision.",
-      year: "2026 • Technology",
-      link: "#exploration",
-      image: "/images/aramco_core_labs.jpg",
+          ? "रेलवे सिग्नलिंग एवं पावर ग्रिड के लिए वास्तविक समय इन्सुलेशन प्रतिरोध निगरानी और फॉल्ट एनालिसिस।"
+          : "Precision online electrical insulation resistance monitoring, analog meters, and digital fault totalizers.",
+      year: "2026 • Railway Signaling",
+      link: "#earth-leakage-detector",
+      image: "/images/earth_leakage_detector_original.png",
     },
     {
       title:
         lang === "hi"
-          ? "सफ़ानिया: अपतटीय ऊर्जा उत्पादन में अग्रणी"
-          : "Safaniyah Offshore Energy Operations",
+          ? "स्वचालित रेलवे लेवल क्रॉसिंग सुरक्षा गेट्स"
+          : "Automated Railway Level Crossing Gates",
       description:
         lang === "hi"
-          ? "विश्व के सबसे बड़े अपतटीय समुद्री ऊर्जा नेटवर्क का संचालन।"
-          : "Engineering the world's premier offshore marine energy and production network.",
-      year: "2025 • Offshore",
-      link: "#safaniyah",
-      image: "/images/safaniyah_offshore.jpg",
+          ? "ऑडियो-विजुअल एलईडी सिग्नलिंग, त्वरित प्रतिक्रिया और ट्रैक इंटरलॉकिंग से लैस सुरक्षित रेलवे गेट।"
+          : "SIL-compliant fail-safe barrier mechanisms with integrated flashing LED signals and acoustic warnings.",
+      year: "2025 • Rail Infrastructure",
+      link: "#railway-crossing",
+      image: "/images/boom_barrier_railway.jpg",
     },
     {
       title:
         lang === "hi"
-          ? "मैंग्रोव संरक्षण और जैव विविधता बहाली"
-          : "Mangrove Conservation & Biodiversity Restoration",
+          ? "इलेक्ट्रॉनिक्स आरएंडडी एवं उच्च-वोल्टेज परीक्षण लैब"
+          : "Electronics R&D & High-Voltage Calibration Lab",
       description:
         lang === "hi"
-          ? "तटीय पारिस्थितिकी तंत्र की रक्षा के लिए लाखों मैंग्रोव का रोपण।"
-          : "Restoring natural coastal habitats and protecting millions of native species.",
-      year: "2025 • Sustainability",
-      link: "#biodiversity",
-      image: "/images/aramco_wetlands.jpg",
+          ? "कठोर पर्यावरणीय और विद्युत परीक्षणों से प्रमाणित विश्वसनीय सुरक्षा उपकरण।"
+          : "Rigorous environmental stress screening and precision calibration ensuring zero false alarms.",
+      year: "2025 • Quality & Testing",
+      link: "#testing-lab",
+      image: "/images/eld_engineering_lab.jpg",
     },
     {
       title:
         lang === "hi"
-          ? "मोटरस्पोर्ट इंजीनियरिंग और खेल उत्कृष्टता"
-          : "Fuelling High-Performance Motorsport Engineering",
+          ? "पावर सबस्टेशन इन्सुलेशन एवं ग्रिड सुरक्षा"
+          : "Substation Insulation & Power Grid Protection",
       description:
         lang === "hi"
-          ? "फॉर्मूला 1 और वैश्विक एथलीटों के साथ सतत ईंधन का विकास।"
-          : "Partnering in Formula 1® to develop sustainable next-generation fuels.",
-      year: "2024 • Motorsport",
-      link: "#motorsport",
-      image: "/images/sporting_excellence.jpg",
+          ? "निरंतर ऑनलाइन इन्सुलेशन प्रतिरोध मापन जो शून्य डाउनटाइम और निर्बाध विद्युत प्रवाह सुनिश्चित करता है।"
+          : "Continuous multi-point DC/AC insulation diagnostics preventing critical circuit failures and ensuring 24/7 uptime.",
+      year: "2024 • Substation Power",
+      link: "#substation-power",
+      image: "/images/power_distribution_eld.jpg",
     },
   ];
 
+
   useEffect(() => {
+    if (!isVisible) return;
+
+    let animId: number;
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor;
     };
 
     const animate = () => {
-      setSmoothPosition((prev) => ({
-        x: lerp(prev.x, mousePosition.x, 0.15),
-        y: lerp(prev.y, mousePosition.y, 0.15),
-      }));
-      animationRef.current = requestAnimationFrame(animate);
+      setSmoothPosition((prev) => {
+        const dx = Math.abs(prev.x - mousePosition.x);
+        const dy = Math.abs(prev.y - mousePosition.y);
+        if (dx < 0.1 && dy < 0.1) return prev;
+        return {
+          x: lerp(prev.x, mousePosition.x, 0.18),
+          y: lerp(prev.y, mousePosition.y, 0.18),
+        };
+      });
+      animId = requestAnimationFrame(animate);
     };
 
-    animationRef.current = requestAnimationFrame(animate);
+    animId = requestAnimationFrame(animate);
 
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      cancelAnimationFrame(animId);
     };
-  }, [mousePosition]);
+  }, [isVisible, mousePosition]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (containerRef.current) {
@@ -143,6 +150,7 @@ export default function AboutUsBanner() {
     setHoveredIndex(index);
     setIsVisible(true);
   };
+
 
   const handleMouseLeave = () => {
     setHoveredIndex(null);

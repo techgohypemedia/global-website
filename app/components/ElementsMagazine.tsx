@@ -7,35 +7,36 @@ export default function ElementsMagazine() {
   const { t } = useLanguage();
 
   const FEATURED_ARTICLE = {
-    id: "drilling-crew",
+    id: "boom-barrier-system",
     tag: t.elementsMagazine.article1Tag,
     title: t.elementsMagazine.article1,
     desc: t.elementsMagazine.article1Desc,
-    image: "/images/elements_drilling_crew.jpg",
-    fallbackImage: "/images/aramco_materials_worker.jpg",
-    link: "#drilling-crew",
+    image: "/images/boom_barrier_hero.jpg",
+    fallbackImage: "/images/crash_barrier_perimeter.jpg",
+    link: "#boom-barrier-system",
   };
 
   const SIDE_ARTICLES = [
     {
-      id: "safaniyah-offshore",
+      id: "earth-leakage-detector",
       tag: t.elementsMagazine.article2Tag,
       title: t.elementsMagazine.article2,
       desc: t.elementsMagazine.article2Desc,
-      image: "/images/safaniyah_offshore.jpg",
-      fallbackImage: "/images/aramco_petroleum_surveyors.jpg",
-      link: "#safaniyah",
+      image: "/images/earth_leakage_detector_hero.jpg",
+      fallbackImage: "/images/power_distribution_eld.jpg",
+      link: "#earth-leakage-detector",
     },
     {
-      id: "sporting-excellence",
+      id: "railway-level-crossing",
       tag: t.elementsMagazine.article3Tag,
       title: t.elementsMagazine.article3,
       desc: t.elementsMagazine.article3Desc,
-      image: "/images/sporting_excellence.jpg",
-      fallbackImage: "/images/aramco_core_labs.jpg",
-      link: "#sports",
+      image: "/images/boom_barrier_railway.jpg",
+      fallbackImage: "/images/eld_engineering_lab.jpg",
+      link: "#railway-level-crossing",
     },
   ];
+
 
   return (
     <section className="w-full bg-[#f8f9fa] text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">

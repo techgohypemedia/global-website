@@ -16,12 +16,11 @@ export default function CaseStudyMaterials() {
             <div className="w-full h-[320px] sm:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100 shadow-lg transition-all duration-300 group-hover:shadow-2xl relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80"
+                src="/images/boom_barrier_railway.jpg"
                 alt={t.caseStudy.title}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  target.src =
-                    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80";
+                  target.src = "/images/eld_engineering_lab.jpg";
                 }}
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />

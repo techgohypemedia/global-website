@@ -11,76 +11,80 @@ export default function HeroSection() {
 
   const SLIDES = [
     {
-      id: "elements-magazine",
-      tag: lang === "hi" ? "एलिमेंट्स पत्रिका" : "ELEMENTS MAGAZINE",
+      id: "boom-barriers",
+      tag: lang === "hi" ? "बूम बैरियर सिस्टम" : "AUTOMATED BARRIER SYSTEMS",
       title:
         lang === "hi"
-          ? "भूगर्भीय अन्वेषण: हमारे कोर लैबोरेटरीज केंद्र के भीतर"
-          : "Understanding the subsurface: inside our Core Laboratories Center",
+          ? "हैवी-ड्यूटी क्रैश-रेटेड स्वचालित बूम बैरियर"
+          : "Heavy-Duty Crash-Rated Automated Boom Barriers",
       subtitle:
         lang === "hi"
-          ? "गहन ऊर्जा आसूचना और उन्नत भूगर्भीय अनुसंधान का नेतृत्व करने वाली अत्याधुनिक तकनीकें।"
-          : "Exploring advanced geological research and proprietary techniques to pioneer deep energy intelligence.",
-      ctaText: lang === "hi" ? "और पढ़ें" : "Read more",
-      ctaLink: "#elements-magazine",
-      tabLabel: lang === "hi" ? "एलिमेंट्स पत्रिका" : "ELEMENTS MAGAZINE",
+          ? "महत्वपूर्ण बुनियादी ढांचे, रक्षा परिसरों और टोल प्लाजा के लिए उच्च-प्रदर्शन स्वचालित सुरक्षा बैरियर।"
+          : "High-performance electro-mechanical & hydraulic barrier gates engineered for critical infrastructure, tollways, and perimeter security.",
+      ctaText: lang === "hi" ? "बूम बैरियर देखें" : "Explore barriers",
+      ctaLink: "#boom-barriers",
+      tabLabel: lang === "hi" ? "बूम बैरियर" : "BOOM BARRIERS",
       bgType: "image",
-      bgImage: "/images/aramco_core_labs.jpg",
+      bgImage: "/images/boom_barrier_hero.jpg",
       buttonType: "arrow",
     },
     {
-      id: "powered-by-how",
-      tag: lang === "hi" ? "विचारों से प्रेरित" : "POWERED BY HOW",
+      id: "earth-leakage-detector",
+      tag: lang === "hi" ? "अर्थ लीकेज डिटेक्टर" : "EARTH LEAKAGE DETECTOR",
       title:
         lang === "hi"
-          ? "हम वैश्विक सामग्री संक्रमण को आगे बढ़ाने में कैसे मदद कर सकते हैं?"
-          : "How can we help advance the global materials transition?",
+          ? "मल्टी-चैनल अर्थ लीकेज डिटेक्टर (ELD) सिस्टम"
+          : "Multi-Channel Earth Leakage Detector (ELD) Systems",
       subtitle:
         lang === "hi"
-          ? "गैर-धात्विक समाधानों और कंपोजिट पॉलिमर के नवाचार से एक सतत औद्योगिक क्रांति को गति देना।"
-          : "Innovating non-metallic solutions and composite polymers to power a sustainable industrial revolution.",
-      ctaText: lang === "hi" ? "जानिए कैसे" : "Discover how",
-      ctaLink: "#materials-transition",
-      tabLabel: lang === "hi" ? "विचारों से प्रेरित" : "POWERED BY HOW",
+          ? "रेलवे सिग्नलिंग और पावर सबस्टेशन के लिए वास्तविक समय विद्युत इन्सुलेशन निगरानी और फॉल्ट एनालिसिस।"
+          : "Precision online electrical insulation resistance monitoring and real-time multi-channel fault totalization for railway signaling networks.",
+      ctaText: lang === "hi" ? "ईएलडी विवरण देखें" : "View ELD specs",
+      ctaLink: "#earth-leakage-detector",
+      tabLabel: lang === "hi" ? "अर्थ लीकेज डिटेक्टर" : "LEAKAGE DETECTOR",
       bgType: "image",
-      bgImage: "/images/aramco_materials_worker.jpg",
+      bgImage: "/images/earth_leakage_detector_hero.jpg",
       buttonType: "arrow",
     },
     {
-      id: "sustainability",
-      tag: lang === "hi" ? "सतत विकास" : "SUSTAINABILITY",
-      title: lang === "hi" ? "आर्द्रभूमि संरक्षण एवं संवर्धन" : "Wetlands Conservation",
+      id: "railway-signaling",
+      tag: lang === "hi" ? "रेलवे सिग्नलिंग" : "RAILWAY SIGNALING SAFETY",
+      title:
+        lang === "hi"
+          ? "स्वचालित रेलवे लेवल क्रॉसिंग सुरक्षा गेट्स"
+          : "Automated Railway Level Crossing Barrier Systems",
       subtitle:
         lang === "hi"
-          ? "समृद्ध जैव विविधता का संरक्षण, तटीय मैंग्रोव आवासों की बहाली और स्वच्छ पारिस्थितिक भविष्य।"
-          : "Preserving rich biodiversity, restoring coastal mangrove habitats, and securing clean ecological futures.",
-      ctaText: lang === "hi" ? "अधिक जानें" : "Learn more",
-      ctaLink: "#sustainability",
-      tabLabel: lang === "hi" ? "सतत विकास" : "SUSTAINABILITY",
+          ? "ऑडियो-विजुअल एलईडी सिग्नलिंग, त्वरित प्रतिक्रिया और ट्रैक इंटरलॉकिंग से लैस सुरक्षित रेलवे गेट।"
+          : "SIL-compliant fail-safe railway crossing barrier mechanisms with integrated flashing LED signals, acoustic alarms, and remote interlocking.",
+      ctaText: lang === "hi" ? "रेल सुरक्षा प्रणाली" : "Railway systems",
+      ctaLink: "#railway-signaling",
+      tabLabel: lang === "hi" ? "रेलवे सिग्नलिंग" : "RAILWAY SAFETY",
       bgType: "image",
-      bgImage: "/images/aramco_wetlands.jpg",
+      bgImage: "/images/boom_barrier_railway.jpg",
       buttonType: "arrow",
     },
     {
-      id: "results-announcement",
-      tag: lang === "hi" ? "वित्तीय परिणाम" : "RESULTS ANNOUNCEMENT",
+      id: "power-substation",
+      tag: lang === "hi" ? "पावर ग्रिड सुरक्षा" : "SUBSTATION PROTECTION",
       title:
         lang === "hi"
-          ? "ग्लोबल ने 4 अगस्त 2026 को अपने अर्ध-वार्षिक 2026 वित्तीय परिणाम प्रकाशित किए।"
-          : "Global published its half-year 2026 results on August 4, 2026.",
+          ? "सबस्टेशन विद्युत इन्सुलेशन एवं पावर ग्रिड सुरक्षा"
+          : "Substation Power Insulation & Grid Protection",
       subtitle:
         lang === "hi"
-          ? "मजबूत वित्तीय प्रदर्शन और लचीला परिचालन नकदी प्रवाह जो दीर्घकालिक मूल्य का सृजन करता है।"
-          : "Robust financial performance and resilient operational cash flows driving long-term global value.",
-      cta1Text: lang === "hi" ? "Q2 अंतरिम रिपोर्ट" : "Q2 Interim report",
-      cta2Text: lang === "hi" ? "प्रेस विज्ञप्ति" : "Press release",
-      ctaLink: "#financial-reports",
-      tabLabel: lang === "hi" ? "वित्तीय परिणाम" : "RESULTS ANNOUNCEMENT",
+          ? "निरंतर ऑनलाइन इन्सुलेशन प्रतिरोध मापन जो शून्य डाउनटाइम और निर्बाध विद्युत प्रवाह सुनिश्चित करता है।"
+          : "Continuous multi-point DC/AC insulation resistance diagnostics preventing catastrophic circuit failures and ensuring 24/7 uptime.",
+      cta1Text: lang === "hi" ? "उत्पाद कैटलॉग (PDF)" : "Product catalog (PDF)",
+      cta2Text: lang === "hi" ? "तकनीकी डेटाशीट" : "Technical datasheet",
+      ctaLink: "#specifications",
+      tabLabel: lang === "hi" ? "तकनीकी विवरण" : "SPECIFICATIONS",
       bgType: "image",
-      bgImage: "/images/aramco_results_refinery.jpg",
+      bgImage: "/images/power_distribution_eld.jpg",
       buttonType: "dual-download",
     },
   ];
+
 
   const SLIDE_DURATION_MS = 4500;
 

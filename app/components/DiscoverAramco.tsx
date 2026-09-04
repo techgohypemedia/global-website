@@ -8,41 +8,39 @@ export default function DiscoverAramco() {
 
   const CARDS = [
     {
-      id: "sustainability",
+      id: "boom-barriers",
       category: t.discover.card1Cat,
       title: t.discover.card1Title,
-      image: "/images/sustainability_solar.jpg",
-      fallbackImage: "/images/aramco_wetlands.jpg",
-      link: "#sustainability",
+      image: "/images/boom_barrier_original.png",
+      fallbackImage: "/images/boom_barrier_hero.jpg",
+      link: "#boom-barriers",
     },
     {
-      id: "what-we-do",
+      id: "earth-leakage-detector",
       category: t.discover.card2Cat,
       title: t.discover.card2Title,
-      image:
-        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80",
-      fallbackImage: "/images/aramco_core_labs.jpg",
-      link: "#what-we-do",
+      image: "/images/earth_leakage_detector_original.png",
+      fallbackImage: "/images/earth_leakage_detector_hero.jpg",
+      link: "#earth-leakage-detector",
     },
     {
-      id: "careers",
+      id: "railway-automation",
       category: t.discover.card3Cat,
       title: t.discover.card3Title,
-      image:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
-      fallbackImage: "/images/aramco_refinery_engineers_laptop.jpg",
-      link: "#careers",
+      image: "/images/boom_barrier_railway.jpg",
+      fallbackImage: "/images/crash_barrier_perimeter.jpg",
+      link: "#railway-automation",
     },
     {
-      id: "investors",
+      id: "power-substation",
       category: t.discover.card4Cat,
       title: t.discover.card4Title,
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80",
-      fallbackImage: "/images/aramco_results_refinery.jpg",
-      link: "#investors",
+      image: "/images/power_distribution_eld.jpg",
+      fallbackImage: "/images/eld_engineering_lab.jpg",
+      link: "#power-substation",
     },
   ];
+
 
   return (
     <section className="w-full bg-[#f8f9fa] text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
