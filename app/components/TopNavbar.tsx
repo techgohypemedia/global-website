@@ -52,10 +52,10 @@ export default function TopNavbar() {
               aria-expanded={isRegionOpen}
             >
               <span className="text-xs sm:text-sm hidden md:inline-block font-normal">
-                You are in Aramco Global
+                You are in GLOBAL.
               </span>
               <span className="text-xs sm:text-sm md:hidden font-normal">
-                Global
+                GLOBAL.
               </span>
 
               {/* Globe Icon */}
@@ -94,25 +94,25 @@ export default function TopNavbar() {
                   href="#global"
                   className="block px-4 py-2 text-sm text-red-400 bg-white/5 font-medium hover:bg-white/10"
                 >
-                  Aramco Global (Current)
+                  GLOBAL. (Current)
                 </a>
                 <a
                   href="#americas"
                   className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5"
                 >
-                  Aramco Americas
+                  GLOBAL. Americas
                 </a>
                 <a
                   href="#asia"
                   className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5"
                 >
-                  Aramco Asia
+                  GLOBAL. Asia
                 </a>
                 <a
                   href="#europe"
                   className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5"
                 >
-                  Aramco Europe
+                  GLOBAL. Europe
                 </a>
               </div>
             )}

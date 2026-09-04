@@ -27,51 +27,51 @@ function AboutUsContent() {
 
   const STATS = [
     {
-      value: "90+",
-      label: lang === "hi" ? "वर्षों की उत्कृष्टता और नेतृत्व" : "Years of Excellence",
-      sub: lang === "hi" ? "1933 से" : "Since 1933",
+      value: "2",
+      label: lang === "hi" ? "प्रमुख उत्पाद श्रृंखलाएं" : "Core Product Lines",
+      sub: lang === "hi" ? "रेलवे बैरियर एवं अर्थ लीकेज" : "Barrier & Earth Leakage",
     },
     {
-      value: "70,000+",
-      label: lang === "hi" ? "वैश्विक कार्यबल" : "Global Workforce",
-      sub: lang === "hi" ? "कुशल पेशेवर" : "Skilled Professionals",
+      value: "24/7",
+      label: lang === "hi" ? "सतत सक्रिय निगरानी" : "Continuous Monitoring",
+      sub: lang === "hi" ? "रीयल-टाइम विद्युत सुरक्षा" : "Real-Time Protection",
     },
     {
-      value: "2,000+",
-      label: lang === "hi" ? "वैश्विक पेटेंट और नवाचार" : "Global Patents",
-      sub: lang === "hi" ? "उन्नत ऊर्जा प्रौद्योगिकी" : "Proprietary Tech",
+      value: "100%",
+      label: lang === "hi" ? "फेल-सेफ इंजीनियरिंग सिद्धांत" : "Fail-Safe Architecture",
+      sub: lang === "hi" ? "कठिन फील्ड परिस्थितियों हेतु" : "Demanding Environments",
     },
     {
-      value: "50+",
-      label: lang === "hi" ? "देशों में वैश्विक उपस्थिति" : "Countries Served",
-      sub: lang === "hi" ? "विश्वसनीय आपूर्ति श्रृंखला" : "Worldwide Reach",
+      value: "DIRECT",
+      label: lang === "hi" ? "प्रत्यक्ष इंजीनियरिंग सहायता" : "Engineering Support",
+      sub: lang === "hi" ? "अनुप्रयोग एवं फील्ड मार्गदर्शन" : "Direct Technical Guidance",
     },
   ];
 
   const LEADERS = [
     {
-      id: "amin-nasser",
-      name: lang === "hi" ? "अमीन एच. नासिर" : "Amin H. Nasser",
-      title: lang === "hi" ? "अध्यक्ष एवं मुख्य कार्यकारी अधिकारी (CEO)" : "President & CEO",
+      id: "systems-engineering",
+      name: lang === "hi" ? "सिस्टम डिजाइन एवं नियंत्रण" : "Systems & Control Design",
+      title: lang === "hi" ? "फेल-सेफ रेलवे एवं बैरियर ऑटोमेशन इंजीनियरिंग" : "Fail-Safe Automation & Barrier Engineering",
+      image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      id: "power-electronics",
+      name: lang === "hi" ? "पावर इलेक्ट्रॉनिक्स एवं सेंसिंग" : "Power Electronics & Sensing",
+      title: lang === "hi" ? "डिजिटल अर्थ लीकेज एवं इंसुलेशन डायग्नोस्टिक्स" : "Earth Leakage & Insulation Diagnostics",
+      image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      id: "field-applications",
+      name: lang === "hi" ? "फील्ड अनुप्रयोग एवं एकीकरण" : "Field Applications & Integration",
+      title: lang === "hi" ? "कमीशनिंग, रेट्रोफिटिंग एवं ऑन-साइट सपोर्ट" : "Commissioning & On-Site Engineering Support",
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      id: "quality-assurance",
+      name: lang === "hi" ? "गुणवत्ता एवं फील्ड सत्यापन" : "Quality & Environmental Testing",
+      title: lang === "hi" ? "कठोर परीक्षण, थर्मल सत्यापन एवं विश्वसनीयता" : "Stress Testing, Thermal & Reliability Compliance",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-      id: "ziad-murshed",
-      name: lang === "hi" ? "ज़ियाद टी. अल-मुर्शेद" : "Ziad T. Al-Murshed",
-      title: lang === "hi" ? "कार्यकारी उपाध्यक्ष एवं मुख्य वित्तीय अधिकारी (CFO)" : "EVP & Chief Financial Officer",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-      id: "nasir-naimi",
-      name: lang === "hi" ? "नासिर के. अल-नईमी" : "Nasir K. Al-Naimi",
-      title: lang === "hi" ? "अध्यक्ष, अपस्ट्रीम" : "President, Upstream",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-      id: "noura-qahtani",
-      name: lang === "hi" ? "डॉ. नूरा अल-क़हतानी" : "Dr. Noura Al-Qahtani",
-      title: lang === "hi" ? "उपाध्यक्ष, ऊर्जा दक्षता एवं स्थिरता" : "VP, Energy & Sustainability",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
     },
   ];
 
@@ -85,7 +85,7 @@ function AboutUsContent() {
         HERO SECTION: Rich Crimson-Maroon & Obsidian Gradient with White Accents
         =======================================================================
       */}
-      <section className="relative w-full pt-36 sm:pt-44 pb-20 sm:pb-28 bg-gradient-to-b from-[#1a0407] via-[#2a060d] to-[#1a0407] text-white overflow-hidden">
+      <section className="relative w-full pt-28 sm:pt-44 pb-14 sm:pb-28 bg-gradient-to-b from-[#1a0407] via-[#2a060d] to-[#1a0407] text-white overflow-hidden">
         
         {/* Visible Ambient Crimson Glows & Starlight Pattern */}
         <div className="absolute top-10 left-1/4 w-[36rem] h-[26rem] bg-red-600/25 rounded-full blur-[130px] pointer-events-none" />
@@ -93,12 +93,12 @@ function AboutUsContent() {
         <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:28px_28px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
             
             {/* Left Content */}
             <div className="lg:col-span-7">
               {/* Breadcrumb with White & Red Shade */}
-              <div className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-wider mb-6">
+              <div className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-wider mb-4 sm:mb-6">
                 <a href="/" className="text-gray-300 hover:text-white transition-colors">
                   {lang === "hi" ? "मुख्य पृष्ठ" : "Home"}
                 </a>
@@ -110,44 +110,44 @@ function AboutUsContent() {
               </div>
 
               {/* Title with White & Crimson Red Gradient */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.15] text-white mb-6 font-sans">
+              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.18] sm:leading-[1.15] text-white mb-4 sm:mb-6 font-sans">
                 {lang === "hi" ? (
                   <>
-                    प्रगति को गति देना और <br />
+                    विश्वसनीय इंजीनियरिंग एवं <br />
                     <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-red-200 to-red-400">
-                      ऊर्जा उत्कृष्टता
+                      अवसंरचना सुरक्षा
                     </span>
                   </>
                 ) : (
                   <>
-                    Powering Progress & <br />
+                    Engineering Safety & <br />
                     <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-200 to-red-400">
-                      Energy Excellence
+                      Operational Reliability
                     </span>
                   </>
                 )}
               </h1>
 
               {/* Description */}
-              <p className="text-base sm:text-lg text-gray-200 leading-relaxed max-w-2xl mb-8 font-light">
+              <p className="text-xs sm:text-lg text-gray-200 leading-relaxed max-w-2xl mb-6 sm:mb-8 font-light">
                 {lang === "hi"
-                  ? "अरामको में, हम मानव प्रगति को गति देने और समुदायों के उत्थान के लिए ऊर्जा की परिवर्तनकारी शक्ति में विश्वास करते हैं। हमारे विश्व स्तरीय कार्यबल और इंजीनियरिंग उत्कृष्टता के प्रति अटूट प्रतिबद्धता के साथ, हम विश्वसनीय और कम कार्बन ऊर्जा समाधान प्रदान करते हैं।"
-                  : "At Aramco, we believe in the transformative power of energy to uplift communities and drive human progress worldwide. With our world-class workforce and unwavering commitment to engineering excellence, we deliver reliable, lower-carbon energy solutions that stand the test of time."}
+                  ? "GLOBAL में, हम महत्वपूर्ण अवसंरचना और औद्योगिक नेटवर्क के लिए समर्पित सुरक्षा समाधान विकसित करते हैं। हमारी इंजीनियरिंग रेलवे बैरियर सिस्टम और डिजिटल अर्थ लीकेज डिटेक्टरों के निर्माण पर केंद्रित है, जो कठिन परिस्थितियों में निरंतर और भरोसेमंद संचालन सुनिश्चित करते हैं।"
+                  : "At GLOBAL, we develop specialised safety systems for critical transportation and industrial infrastructure. Our engineering is focused on Railway Barrier Systems and Digital Earth Leakage Detectors — built with fail-safe principles to ensure dependable, uninterrupted operation in demanding field environments."}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3.5 sm:gap-4">
                 <a
-                  href="#mission"
-                  className="px-6 py-3.5 rounded-full bg-gradient-to-r from-red-600 via-red-700 to-rose-800 text-white font-medium text-sm sm:text-base hover:brightness-110 transition-all shadow-xl shadow-red-950/60 border border-red-400/40 cursor-pointer"
+                  href="/#elements"
+                  className="px-6 py-3 sm:py-3.5 rounded-full bg-gradient-to-r from-red-600 via-red-700 to-rose-800 text-white font-medium text-center text-xs sm:text-base hover:brightness-110 transition-all shadow-xl shadow-red-950/60 border border-red-400/40 cursor-pointer"
                 >
-                  {lang === "hi" ? "हमारा मिशन और विजन देखें" : "Discover Our Mission"}
+                  {lang === "hi" ? "हमारे उत्पाद देखें" : "Explore Our Products"}
                 </a>
                 <a
-                  href="#history"
-                  className="px-6 py-3.5 rounded-full bg-white/10 border border-white/30 text-white font-medium text-sm sm:text-base hover:bg-white/20 transition-all shadow-md backdrop-blur-sm cursor-pointer"
+                  href="/#banner"
+                  className="px-6 py-3 sm:py-3.5 rounded-full bg-white/10 border border-white/30 text-white font-medium text-center text-xs sm:text-base hover:bg-white/20 transition-all shadow-md backdrop-blur-sm cursor-pointer"
                 >
-                  {lang === "hi" ? "हमारी विरासत" : "Our Heritage"}
+                  {lang === "hi" ? "इंजीनियरिंग टीम से संपर्क करें" : "Talk to Engineering"}
                 </a>
               </div>
             </div>
@@ -157,20 +157,20 @@ function AboutUsContent() {
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
                 {/* Main Large Image */}
-                <div className="w-full h-[380px] sm:h-[460px] rounded-3xl overflow-hidden shadow-2xl border-2 border-red-500/40 relative group bg-[#1a0407]">
+                <div className="w-full h-[260px] sm:h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-red-500/40 relative group bg-[#1a0407]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80"
-                    alt="Aramco Refinery Operations"
+                    alt="GLOBAL Industrial Safety Systems"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a0407]/90 via-transparent to-black/20" />
                 </div>
 
                 {/* Rotating Circular Seal / Badge with Vibrant Red & White Ring */}
-                <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#1a0407] text-white shadow-2xl p-1.5 flex items-center justify-center border-2 border-red-500/70 z-20">
-                  <div className="relative w-full h-full rounded-full bg-gradient-to-tr from-red-600 via-rose-700 to-red-400 flex items-center justify-center text-white text-center p-2 shadow-inner">
-                    <svg viewBox="0 0 24 24" className="w-8 h-8 text-white drop-shadow-md animate-pulse" fill="currentColor">
+                <div className="absolute -bottom-4 -left-4 sm:-bottom-8 sm:-left-8 w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-[#1a0407] text-white shadow-2xl p-1.5 flex items-center justify-center border-2 border-red-500/70 z-20">
+                  <div className="relative w-full h-full rounded-full bg-gradient-to-tr from-red-600 via-rose-700 to-red-400 flex items-center justify-center text-white text-center p-1.5 sm:p-2 shadow-inner">
+                    <svg viewBox="0 0 24 24" className="w-6 h-6 sm:w-8 sm:h-8 text-white drop-shadow-md animate-pulse" fill="currentColor">
                       <path d="M12 2L14.2 8.5L20.8 6.8L16.2 12L20.8 17.2L14.2 15.5L12 22L9.8 15.5L3.2 17.2L7.8 12L3.2 6.8L9.8 8.5L12 2Z" />
                     </svg>
                   </div>
@@ -188,37 +188,37 @@ function AboutUsContent() {
         SECTION 2: Big Mission Statement Banner + 4 Stats Grid (Rich Crimson Red)
         =======================================================================
       */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-[#1a0407] via-[#24060b] to-[#180305] border-y border-red-900/40 relative">
+      <section className="py-12 sm:py-20 bg-gradient-to-b from-[#1a0407] via-[#24060b] to-[#180305] border-y border-red-900/40 relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           
-          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 leading-relaxed font-light mb-16">
+          <p className="text-base sm:text-2xl lg:text-3xl text-gray-100 leading-relaxed font-light mb-10 sm:mb-16">
             {lang === "hi" ? (
               <>
-                <span className="font-semibold text-white">अरामको</span> में, हम नवाचार, स्थिरता और विश्वसनीयता के साथ दुनिया को ऊर्जा प्रदान करने के लिए प्रतिबद्ध हैं। वैश्विक ऊर्जा आपूर्ति में एक सिद्ध ट्रैक रिकॉर्ड के साथ, हम{" "}
-                <span className="font-semibold text-white border-b-2 border-red-500">अत्याधुनिक तकनीक</span>, कुशल इंजीनियरिंग विशेषज्ञता और ग्राहक-केंद्रित दृष्टिकोण का संयोजन करते हैं।
+                <span className="font-semibold text-white">GLOBAL</span> में, हम महत्वपूर्ण परिवहन और विद्युत बुनियादी ढांचे के लिए उच्च-विश्वसनीयता सुरक्षा प्रणाली प्रदान करने के लिए प्रतिबद्ध हैं। हम{" "}
+                <span className="font-semibold text-white border-b-2 border-red-500">फेल-सेफ इंजीनियरिंग</span>, मजबूत फील्ड निर्माण और स्पष्ट डायग्नोस्टिक्स का संयोजन करते हैं।
               </>
             ) : (
               <>
-                At <span className="font-semibold text-white">Aramco</span>, we are committed to energizing the world with innovative, sustainable, and reliable energy solutions. With a proven track record in global energy supply, we combine{" "}
-                <span className="font-semibold text-white border-b-2 border-red-500">state-of-the-art technology</span>, skilled engineering expertise, and customer-centric approaches to bring visions to life.
+                At <span className="font-semibold text-white">GLOBAL</span>, we are committed to delivering high-reliability safety systems for critical transportation and electrical infrastructure. We combine{" "}
+                <span className="font-semibold text-white border-b-2 border-red-500">fail-safe engineering</span>, robust field construction, and clear diagnostics to ensure dependable operation.
               </>
             )}
           </p>
 
           {/* 4 Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 pt-10 border-t border-red-800/30">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-8 pt-6 sm:pt-10 border-t border-red-800/30">
             {STATS.map((stat, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center p-5 rounded-2xl bg-gradient-to-b from-[#2b080f]/80 to-[#180306]/90 border border-red-500/30 hover:border-red-400/50 transition-all shadow-xl backdrop-blur-sm"
+                className="flex flex-col items-center p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#2b080f]/80 to-[#180306]/90 border border-red-500/30 hover:border-red-400/50 transition-all shadow-xl backdrop-blur-sm"
               >
-                <div className="text-4xl sm:text-5xl font-light tracking-tight mb-2 font-sans text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-red-400">
+                <div className="text-2xl xs:text-3xl sm:text-5xl font-light tracking-tight mb-1 sm:mb-2 font-sans text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-red-400">
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm font-semibold text-white text-center mb-1">
+                <div className="text-[11px] sm:text-sm font-semibold text-white text-center mb-0.5 sm:mb-1">
                   {stat.label}
                 </div>
-                <div className="text-[11px] text-gray-300 text-center">
+                <div className="text-[10px] sm:text-[11px] text-gray-300 text-center">
                   {stat.sub}
                 </div>
               </div>
@@ -245,7 +245,7 @@ function AboutUsContent() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80"
-                    alt="Energy Engineering Blueprint"
+                    alt="Infrastructure Safety Engineering"
                     className="w-full h-full object-cover opacity-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#160306]/80 via-transparent to-red-950/20" />
@@ -256,7 +256,7 @@ function AboutUsContent() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80"
-                    alt="Aramco Offshore Engineers"
+                    alt="Railway & Electrical Field Engineers"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
@@ -275,17 +275,17 @@ function AboutUsContent() {
 
               <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8 font-light">
                 {lang === "hi"
-                  ? "निरंतर नवाचार और गुणवत्ता के माध्यम से ग्राहकों की अपेक्षाओं से बढ़कर विश्वसनीय, किफायती और टिकाऊ ऊर्जा और रासायनिक समाधान प्रदान करना। हम स्थायी साझेदारी बनाने और समुदायों के विकास में योगदान देने का प्रयास करते हैं।"
-                  : "To provide reliable, affordable, and sustainable energy and chemical solutions that exceed client expectations through continuous innovation and quality. We aim to build lasting relationships that inspire and improve the lives of our global partners and communities."}
+                  ? "कठिन फील्ड परिस्थितियों में काम करने वाले ऑपरेटरों, इंजीनियरों और बुनियादी ढांचा प्रबंधकों के लिए अत्यधिक भरोसेमंद, रखरखाव-अनुकूल और सुरक्षा-महत्वपूर्ण उत्पाद प्रदान करना। हम गुणवत्ता और व्यावहारिक फील्ड इंजीनियरिंग के साथ सुरक्षा मानकों को सशक्त बनाते हैं।"
+                  : "To engineer dependable, maintenance-friendly, and safety-critical systems for infrastructure operators and engineers. We protect human life, reduce equipment failure, and eliminate preventable downtime through rigorous design and direct engineering support."}
               </p>
 
               {/* Checklist Items */}
               <div className="space-y-4">
                 {[
-                  lang === "hi" ? "सतत विकास और कम कार्बन ऊर्जा को बढ़ावा देना" : "Fostering Sustainable Growth and Lower-Carbon Energy",
-                  lang === "hi" ? "एक टिकाऊ और लचीले भविष्य के लिए निरंतर नवाचार" : "Innovating for a Sustainable & Resilient Future",
-                  lang === "hi" ? "ग्राहक-केंद्रित आपूर्ति और वैश्विक साझेदारियां" : "Customer-Centric Supply & Global Partnerships",
-                  lang === "hi" ? "समुदायों और औद्योगिक आपूर्ति श्रृंखलाओं का सशक्तिकरण" : "Empowering Communities & Industrial Supply Chains",
+                  lang === "hi" ? "रेलवे लेवल क्रॉसिंग पर सुरक्षित और स्वचालित बूम नियंत्रण" : "Fail-Safe Boom Control for Railway Level Crossings",
+                  lang === "hi" ? "विद्युत पैनलों में निरंतर इन्सुलेशन और लीकेज निगरानी" : "Continuous Insulation & Earth Leakage Diagnostics",
+                  lang === "hi" ? "कठिन पर्यावरणीय परिस्थितियों के लिए मजबूत वेदरप्रूफ निर्माण" : "Rugged Industrial Housings for Harsh Field Environments",
+                  lang === "hi" ? "अनुप्रयोग इंजीनियरिंग और फील्ड एकीकरण में सीधा मार्गदर्शन" : "Direct Application Engineering & Integration Support",
                 ].map((item, i) => (
                   <div key={i} className="flex items-center space-x-3 p-3 rounded-xl bg-[#28070d]/60 border border-red-500/25 hover:border-red-400/40 transition-all">
                     <span className="w-5 h-5 rounded-full bg-red-600/30 text-red-400 border border-red-500/50 flex items-center justify-center text-xs font-bold flex-shrink-0">
@@ -316,24 +316,24 @@ function AboutUsContent() {
             {/* Left Text */}
             <div className="lg:col-span-6">
               <span className="text-xs font-bold tracking-widest text-red-400 uppercase mb-3 block">
-                {lang === "hi" ? "वैश्विक दृष्टि" : "GLOBAL VISION"}
+                {lang === "hi" ? "दीर्घकालिक दृष्टि" : "LONG-TERM VISION"}
               </span>
               <h2 className="text-3xl sm:text-4xl font-normal text-white leading-tight mb-6 font-sans">
-                {lang === "hi" ? "हमारा विजन: एकीकृत ऊर्जा में अग्रणी" : "Our Vision"}
+                {lang === "hi" ? "हमारा विजन: अवसंरचना सुरक्षा में विश्वसनीयता" : "Our Vision: Dependable Infrastructure Protection"}
               </h2>
 
               <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8 font-light">
                 {lang === "hi"
-                  ? "हमारा दृष्टिकोण दुनिया का सबसे प्रमुख एकीकृत ऊर्जा और रसायन उद्यम बनना है, जो वैश्विक सामग्री संक्रमण का नेतृत्व करे और आने वाली पीढ़ियों के लिए सतत समृद्धि और मूल्य प्रदान करे।"
-                  : "Our vision is to be the world's pre-eminent integrated energy and chemicals enterprise, leading the global materials transition and delivering sustainable prosperity for generations to come."}
+                  ? "हमारा विजन ऐसे सुरक्षा उपकरण विकसित करना है जिन पर फील्ड इंजीनियर बिना किसी संदेह के भरोसा कर सकें — जहां हर तंत्र डिफ़ॉल्ट रूप से सुरक्षित स्थिति में काम करे और हर विफलता का समय पर पता लगाया जा सके।"
+                  : "Our vision is to build safety systems that field engineers rely upon with total confidence — where every mechanism defaults to safety upon fault, and electrical degradation is detected long before hazards arise."}
               </p>
 
               {/* Checklist Items */}
               <div className="space-y-4">
                 {[
-                  lang === "hi" ? "उन्नत ऊर्जा अवसंरचना और इंजीनियरिंग में अग्रणी" : "Pioneering Advanced Energy Infrastructure",
-                  lang === "hi" ? "गैर-धातु सामग्री और समग्र समाधानों का नेतृत्व" : "Advancing Non-Metallic Materials & Composite Solutions",
-                  lang === "hi" ? "सटीक पेट्रोलियम भूवैज्ञानिक सर्वेक्षण और स्मार्ट अन्वेषण" : "Precision Petroleum Geological Surveying & Smart Exploration",
+                  lang === "hi" ? "डिफ़ॉल्ट-टू-सेफ आर्किटेक्चर और मजबूत हार्डवेयर इंटरफेस" : "Default-to-Safe Control Architecture & Rugged Interfaces",
+                  lang === "hi" ? "सटीक ट्रू RMS लीकेज डिटेक्शन और स्पष्ट अलर्टिंग" : "Precision True RMS Leakage Sensing & Clear Alerting",
+                  lang === "hi" ? "जटिलता रहित, दीर्घकालिक विश्वसनीयता और आसान फील्ड मेंटेनेंस" : "Low Maintenance Overhead & High Long-Term Field Durability",
                 ].map((item, i) => (
                   <div key={i} className="flex items-center space-x-3 p-3 rounded-xl bg-[#28070d]/60 border border-red-500/25 hover:border-red-400/40 transition-all">
                     <span className="w-5 h-5 rounded-full bg-red-600/30 text-red-400 border border-red-500/50 flex items-center justify-center text-xs font-bold flex-shrink-0">
@@ -347,27 +347,27 @@ function AboutUsContent() {
               </div>
             </div>
 
-            {/* Right Photo Composition: Dual Layered Aramco Petroleum Geologists & Field Surveyors */}
+            {/* Right Photo Composition: Dual Layered Visual */}
             <div className="lg:col-span-6 relative">
               <div className="relative">
                 
-                {/* Main Card: Aramco Petroleum Geologists & Field Surveyors with Theodolite */}
+                {/* Main Card */}
                 <div className="w-[90%] h-[340px] sm:h-[400px] rounded-3xl overflow-hidden shadow-2xl border-2 border-red-500/50 relative group bg-[#1a0407]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/aramco_petroleum_surveyors.jpg"
-                    alt="Aramco Petroleum Geologists & Field Surveyors"
+                    alt="Field Inspection and Infrastructure Verification"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-red-950/20" />
 
-                  {/* Animated High-Tech Radar Scan Overlay */}
+                  {/* High-Tech Scan Ring */}
                   <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-red-500/80 flex items-center justify-center animate-ping pointer-events-none" />
                   
                   {/* Floating Badge */}
                   <div className="absolute bottom-4 left-4 bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-red-500/50 text-xs text-white flex items-center space-x-2 shadow-lg">
                     <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
-                    <span>{lang === "hi" ? "सक्रिय भूवैज्ञानिक क्षेत्र सर्वेक्षण" : "Active Geological Field Survey"}</span>
+                    <span>{lang === "hi" ? "फील्ड-सत्यापित इंजीनियरिंग" : "Field-Verified Engineering"}</span>
                   </div>
                 </div>
 
@@ -376,7 +376,7 @@ function AboutUsContent() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/aramco_refinery_engineers_laptop.jpg"
-                    alt="Aramco Refinery Engineers Reviewing Data"
+                    alt="Engineers Testing Control & Diagnostic Logic"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -391,7 +391,7 @@ function AboutUsContent() {
 
       {/* 
         =======================================================================
-        SECTION 5: Our History (Left Historic Crew + Right History Timeline)
+        SECTION 5: Engineering Journey (Left Historic Crew + Right History Timeline)
         =======================================================================
       */}
       <section id="history" className="py-20 sm:py-28 bg-gradient-to-b from-[#140305] via-[#1e0509] to-[#120204] border-t border-red-900/40 overflow-hidden">
@@ -405,7 +405,7 @@ function AboutUsContent() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80"
-                    alt="Aramco History and Drilling Legacy"
+                    alt="Industrial Equipment and Electrical Control R&D"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-red-950/20" />
@@ -416,25 +416,25 @@ function AboutUsContent() {
             {/* Right Text */}
             <div className="lg:col-span-6">
               <span className="text-xs font-bold tracking-widest text-red-400 uppercase mb-3 block">
-                {lang === "hi" ? "हमारी विरासत" : "OUR HERITAGE"}
+                {lang === "hi" ? "हमारा दृष्टिकोण" : "OUR APPROACH"}
               </span>
               <h2 className="text-3xl sm:text-4xl font-normal text-white leading-tight mb-6 font-sans">
-                {lang === "hi" ? "हमारा इतिहास: दशकों की उपलब्धि और नेतृत्व" : "Our History"}
+                {lang === "hi" ? "हमारा ध्यान: दो मुख्य सुरक्षा उत्पाद" : "Our Focus: Two Core Safety Lines"}
               </h2>
 
               <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8 font-light">
                 {lang === "hi"
-                  ? "गुणवत्ता और नवाचार के प्रति प्रतिबद्धता पर स्थापित, अरामको की यात्रा 1933 में एक साहसिक दृष्टिकोण और 1938 में दम्माम वेल नंबर 7 की ऐतिहासिक खोज के साथ शुरू हुई। दशकों में, हम दुनिया के अग्रणी ऊर्जा उत्पादक बन गए हैं।"
-                  : "Founded on a commitment to quality and innovation, Aramco began with a bold vision in 1933 and the discovery of prosperity at Dammam Well No. 7 in 1938. Over the decades, we have grown into the world's leading energy producer, delivering exceptional value and powering human progress worldwide."}
+                  ? "व्यापक और सामान्य कैटलॉग बनाने के बजाय, हमने अपनी संपूर्ण इंजीनियरिंग विशेषज्ञता को दो महत्वपूर्ण उत्पादों पर केंद्रित किया है: रेलवे बैरियर सिस्टम और डिजिटल अर्थ लीकेज डिटेक्टर। इस गहन फोकस के माध्यम से हम प्रत्येक प्रणाली में असाधारण विश्वसनीयता सुनिश्चित करते हैं।"
+                  : "Rather than spreading across generic product catalogues, we concentrate our engineering capabilities strictly on two vital domains: Railway Barrier Systems and Digital Earth Leakage Detectors. This specialization ensures deep technical refinement, reliable component selection, and uncompromising durability."}
               </p>
 
               {/* Checklist */}
               <div className="space-y-4">
                 {[
-                  lang === "hi" ? "विनम्र शुरुआत और 1938 में दम्माम वेल नंबर 7 की खोज" : "Humble Beginnings & Dammam Well No. 7",
-                  lang === "hi" ? "ऐतिहासिक मील के पत्थर और वैश्विक रासायनिक विस्तार" : "Milestones & Global Chemicals Expansions",
-                  lang === "hi" ? "विश्वास और विश्वसनीयता की वैश्विक विरासत का निर्माण" : "Building a Worldwide Legacy of Trust",
-                  lang === "hi" ? "विरासत की जड़ों के साथ ऊर्जा के भविष्य को आकार देना" : "Shaping the Energy Future, Rooted in Heritage",
+                  lang === "hi" ? "व्यावहारिक फील्ड आवश्यकताओं के अनुरूप उद्देश्य-निर्मित हार्डवेयर" : "Purpose-Built Hardware for Real Field Requirements",
+                  lang === "hi" ? "बिना अनावश्यक जटिलता के स्पष्ट इंटरफेस और वायरिंग" : "Clear Wiring & Diagnostics Without Unnecessary Complexity",
+                  lang === "hi" ? "फील्ड फीडबैक और परिचालन अनुभवों पर आधारित निरंतर सुधार" : "Continuous Refinement Based on Real Operating Feedback",
+                  lang === "hi" ? "प्रत्यक्ष तकनीकी सहायता और प्रोजेक्ट-विशिष्ट विनिर्देश" : "Direct Technical Guidance for Project Specifications",
                 ].map((item, i) => (
                   <div key={i} className="flex items-center space-x-3 p-3 rounded-xl bg-[#28070d]/60 border border-red-500/25 hover:border-red-400/40 transition-all">
                     <span className="w-5 h-5 rounded-full bg-red-600/30 text-red-400 border border-red-500/50 flex items-center justify-center text-xs font-bold flex-shrink-0">
@@ -455,22 +455,22 @@ function AboutUsContent() {
 
       {/* 
         =======================================================================
-        SECTION 6: How We Work (Video Banner with Crimson Backdrop)
+        SECTION 6: Operational Model (Video Banner with Crimson Backdrop)
         =======================================================================
       */}
       <section className="py-20 sm:py-28 bg-gradient-to-b from-[#120204] via-[#20050a] to-[#100305] border-t border-red-900/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
           <span className="text-xs font-bold tracking-widest text-red-400 uppercase mb-3 block">
-            {lang === "hi" ? "परिचालन उत्कृष्टता" : "OPERATIONAL EXCELLENCE"}
+            {lang === "hi" ? "परिचालन मॉडल" : "OPERATIONAL PROCESS"}
           </span>
           <h2 className="text-3xl sm:text-4xl font-normal text-white leading-tight mb-4 font-sans">
-            {lang === "hi" ? "अरामको में हमारा कार्य मॉडल" : "How We Do Work"}
+            {lang === "hi" ? "हमारा कार्य मॉडल" : "How We Deliver Solutions"}
           </h2>
           <p className="text-sm sm:text-base text-gray-200 max-w-2xl mx-auto leading-relaxed mb-12 font-light">
             {lang === "hi"
-              ? "हम सुरक्षित, पारदर्शी और सहयोगी प्रक्रियाओं का पालन करते हैं, जो भंडार की खोज से लेकर वैश्विक वितरण तक हर चरण में गुणवत्ता और सटीकता सुनिश्चित करती हैं।"
-              : "We follow a collaborative, safe, and transparent process, ensuring clear execution at every stage from reservoir exploration to global delivery."}
+              ? "हम प्रारंभिक तकनीकी परामर्श से लेकर हार्डवेयर निर्माण, गुणवत्ता परीक्षण और फील्ड कमीशनिंग तक एक सहयोगी और पारदर्शी प्रक्रिया का पालन करते हैं।"
+              : "We follow a disciplined engineering process — from project requirement review and robust component assembly to comprehensive bench testing and commissioning support."}
           </p>
 
           {/* Featured Video / Photo Container */}
@@ -481,7 +481,7 @@ function AboutUsContent() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1400&q=80"
-              alt="How We Work Video Thumbnail"
+              alt="Engineering & Field Testing"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-red-950/30 group-hover:bg-black/40 transition-colors" />
@@ -501,7 +501,7 @@ function AboutUsContent() {
 
       {/* 
         =======================================================================
-        SECTION 7: Leadership Team (Crafting Excellence as a Team)
+        SECTION 7: Engineering Capabilities (Specialised Engineering Team)
         =======================================================================
       */}
       <section className="py-20 sm:py-28 bg-gradient-to-b from-[#100305] via-[#1a0408] to-[#0c0204] border-t border-red-900/40">
@@ -510,27 +510,27 @@ function AboutUsContent() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14">
             <div>
               <span className="text-xs font-bold tracking-widest text-red-400 uppercase mb-2 block">
-                {lang === "hi" ? "नेतृत्व" : "LEADERSHIP"}
+                {lang === "hi" ? "इंजीनियरिंग विशेषज्ञता" : "ENGINEERING CAPABILITIES"}
               </span>
               <h2 className="text-3xl sm:text-4xl font-normal text-white leading-tight font-sans">
-                {lang === "hi" ? "एक टीम के रूप में उत्कृष्टता का निर्माण" : "Crafting Excellence as a Team"}
+                {lang === "hi" ? "विशेषज्ञ इंजीनियरिंग एवं तकनीकी क्षमताएं" : "Specialised Engineering Capabilities"}
               </h2>
               <p className="text-sm text-gray-300 mt-2 max-w-xl font-light">
                 {lang === "hi"
-                  ? "हमारी सफलता हमारे कार्यकारी नेतृत्व के समर्पण और विशेषज्ञता पर आधारित है जो वैश्विक ऊर्जा पहलों का मार्गदर्शन करते हैं।"
-                  : "Our success is built on the dedication and expertise of our executive leaders who steer global energy initiatives."}
+                  ? "हमारी ताकत रेलवे सिग्नलिंग, पावर इलेक्ट्रॉनिक्स और फील्ड ऑटोमेशन में प्रत्यक्ष व्यावहारिक अनुभव रखने वाली समर्पित इंजीनियरिंग टीम है।"
+                  : "Our systems are engineered and supported by specialists with hands-on experience in railway signalling, power electronics, and industrial protection."}
               </p>
             </div>
 
             <a
-              href="#leadership-all"
+              href="/#banner"
               className="mt-6 sm:mt-0 inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-red-600 to-rose-700 text-white text-xs sm:text-sm font-semibold hover:brightness-110 transition-all shadow-lg border border-red-400/40 self-start sm:self-auto cursor-pointer"
             >
-              {lang === "hi" ? "सभी नेतृत्व देखें" : "Explore All Leadership"}
+              {lang === "hi" ? "इंजीनियरिंग से संपर्क करें" : "Talk to Our Team"}
             </a>
           </div>
 
-          {/* 4 Leaders Cards Grid */}
+          {/* 4 Capability Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {LEADERS.map((leader) => (
               <div
@@ -579,7 +579,7 @@ function AboutUsContent() {
               <iframe
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
-                title="Aramco Video"
+                title="GLOBAL Engineering Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />

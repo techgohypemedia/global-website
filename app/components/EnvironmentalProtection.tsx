@@ -8,60 +8,72 @@ export default function EnvironmentalProtection() {
 
   const PILLARS = [
     {
-      id: "climate-energy",
-      title: t.environmental.pillar1Title,
-      description: t.environmental.pillar1Desc,
-      image:
-        "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80",
-      fallbackImage:
-        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      link: "#climate-energy",
+      id: "fail-safe-thinking",
+      title: lang === "hi" ? "फेल-सेफ सोच" : "Fail-Safe Thinking",
+      subtitle: lang === "hi" ? "पूर्वानुमेय संचालन" : "Predictable Operation",
+      description:
+        lang === "hi"
+          ? "असामान्य परिस्थितियों और आपातकाल के दौरान पूर्वानुमेय संचालन के लिए डिज़ाइन की गई प्रणालियां।"
+          : "Systems designed around predictable operation during abnormal conditions and emergency situations.",
+      image: "/images/boom_barrier_railway.jpg",
+      fallbackImage: "/images/crash_barrier_perimeter.jpg",
+      link: "#fail-safe",
     },
     {
-      id: "people-safety",
-      title: t.environmental.pillar2Title,
-      description: t.environmental.pillar2Desc,
-      image:
-        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80",
-      fallbackImage:
-        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-      link: "#people-safety",
+      id: "robust-construction",
+      title: lang === "hi" ? "मजबूत निर्माण" : "Robust Construction",
+      subtitle: lang === "hi" ? "कठिन पर्यावरण अनुकूल" : "Demanding Environments",
+      description:
+        lang === "hi"
+          ? "कठिन बाहरी रेलवे और बुनियादी ढांचे के वातावरण के लिए इंजीनियर किए गए टिकाऊ उत्पाद।"
+          : "Products engineered for demanding outdoor railway and infrastructure environments.",
+      image: "/images/boom_barrier_hero.jpg",
+      fallbackImage: "/images/boom_barrier_original.png",
+      link: "#robust-construction",
     },
     {
-      id: "biodiversity-initiatives",
-      title: t.environmental.pillar3Title,
-      description: t.environmental.pillar3Desc,
-      image:
-        "https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=800&q=80",
-      fallbackImage:
-        "https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=800&q=80",
-      link: "#biodiversity",
+      id: "clear-diagnostics",
+      title: lang === "hi" ? "स्पष्ट डायग्नोस्टिक्स एवं एकीकरण" : "Clear Diagnostics & Integration",
+      subtitle: lang === "hi" ? "अनुकूल रखरखाव" : "Maintainable by Design",
+      description:
+        lang === "hi"
+          ? "समझने में आसान डिजिटल डिस्प्ले और संगत नियंत्रण वास्तुकला जो समस्या निवारण और नियमित रखरखाव को सरल बनाती है।"
+          : "Easy-to-understand indications and compatible railway, electrical and control architecture designed to support faster troubleshooting.",
+      image: "/images/earth_leakage_detector_hero.jpg",
+      fallbackImage: "/images/eld_engineering_lab.jpg",
+      link: "#clear-diagnostics",
     },
   ];
 
   return (
-    <section className="w-full bg-white text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
+    <section className="w-full bg-white text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-100" id="engineering">
       <div className="max-w-7xl mx-auto">
         
         {/* Top Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 sm:mb-16 gap-6">
-          <div className="max-w-2xl">
-            <span className="block text-xs sm:text-sm font-semibold tracking-widest text-gray-500 uppercase mb-3">
-              {t.environmental.badge}
+          <div className="max-w-3xl">
+            <span className="block text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-3">
+              {lang === "hi" ? "फ़ील्ड के लिए इंजीनियरिंग" : "ENGINEERING FOR THE FIELD"}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#1e293b] leading-tight mb-4 font-sans">
-              {t.environmental.title}
+              {lang === "hi"
+                ? "ड्राइंग बोर्ड से परे प्रदर्शन के लिए डिज़ाइन।"
+                : "Designed to perform beyond the drawing board."}
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-xl">
-              {t.environmental.desc}
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+              {lang === "hi"
+                ? "महत्वपूर्ण बुनियादी ढांचे के उपकरणों को नियंत्रित प्रयोगशाला स्थितियों से बाहर विश्वसनीय रूप से काम करना चाहिए। ग्लोबल उत्पाद पर्यावरणीय जोखिम, बार-बार यांत्रिक संचालन, विद्युत भिन्नता, रखरखाव पहुंच और सिस्टम एकीकरण की वास्तविक आवश्यकताओं के आधार पर विकसित किए जाते हैं।"
+                : "Critical infrastructure equipment must operate reliably outside controlled laboratory conditions. GLOBAL products are developed around real operating requirements including environmental exposure, repeated mechanical operation, electrical variation, maintenance accessibility and system integration."}
             </p>
           </div>
 
           <a
-            href="#sustainability-hub"
+            href="#contact-engineering"
             className="inline-flex items-center space-x-3 text-red-600 hover:text-red-700 font-medium text-sm sm:text-base group cursor-pointer self-start lg:self-end"
           >
-            <span className="group-hover:underline font-semibold">{t.environmental.cta}</span>
+            <span className="group-hover:underline font-semibold">
+              {lang === "hi" ? "इंजीनियरिंग टीम से संपर्क करें" : "Contact Engineering"}
+            </span>
             <span className="w-10 h-10 rounded-full border-2 border-red-600 text-red-600 flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-all duration-300 shadow-sm">
               <svg
                 className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"

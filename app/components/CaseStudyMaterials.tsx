@@ -28,27 +28,61 @@ export default function CaseStudyMaterials() {
             </div>
           </div>
 
-          {/* Right Side: Case Study Content & CTA Link */}
+          {/* Right Side: Why GLOBAL Content & Points */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1e293b] leading-snug mb-6 font-sans">
-              <span className="font-semibold uppercase tracking-wide">{t.caseStudy.badge}</span>{" "}
-              {t.caseStudy.title}
+            <span className="text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-3 block">
+              {lang === "hi" ? "ग्लोबल क्यों" : "WHY GLOBAL"}
+            </span>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1e293b] leading-snug mb-5 font-sans">
+              {lang === "hi"
+                ? "सुरक्षा तकनीक को तब काम करना चाहिए जब इसकी सबसे ज्यादा जरूरत हो।"
+                : "Safety technology should work when it is needed most."}
             </h2>
 
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-5">
-              {t.caseStudy.p1}
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+              {lang === "hi"
+                ? "हमारा मानना है कि महत्वपूर्ण बुनियादी ढांचा उत्पादों को अनावश्यक जटिलता के बजाय वास्तविक परिचालन आवश्यकताओं के आधार पर इंजीनियर किया जाना चाहिए।"
+                : "We believe critical infrastructure products should be engineered around real operational requirements instead of unnecessary complexity."}
             </p>
 
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
-              {t.caseStudy.p2}
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
+              {lang === "hi"
+                ? "हमारा दृष्टिकोण व्यावहारिक डिज़ाइन, केंद्रित इंजीनियरिंग और अनुप्रयोग-विशिष्ट कॉन्फ़िगरेशन को जोड़ता है।"
+                : "Our approach combines practical design, focused engineering and application-specific configuration."}
             </p>
+
+            {/* 5 Why GLOBAL Points */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              {[
+                { en: "Focused Product Expertise", hi: "केंद्रित उत्पाद विशेषज्ञता" },
+                { en: "Application-Oriented Engineering", hi: "अनुप्रयोग-उन्मुख इंजीनियरिंग" },
+                { en: "Practical Maintenance", hi: "व्यावहारिक रखरखाव" },
+                { en: "Infrastructure Mindset", hi: "बुनियादी ढांचा मानसिकता" },
+                { en: "Engineering Support", hi: "प्रत्यक्ष इंजीनियरिंग सहायता" },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center space-x-2.5 p-2.5 rounded-xl bg-gray-50 border border-gray-200"
+                >
+                  <span className="w-5 h-5 rounded-full bg-red-100 text-[#ff3131] flex items-center justify-center text-xs font-bold flex-shrink-0">
+                    ✓
+                  </span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-800">
+                    {lang === "hi" ? item.hi : item.en}
+                  </span>
+                </div>
+              ))}
+            </div>
 
             <div>
               <a
-                href="#case-study"
+                href="#contact-engineering"
                 className="inline-flex items-center space-x-3 text-red-600 hover:text-red-700 font-medium text-sm sm:text-base group cursor-pointer"
               >
-                <span className="group-hover:underline font-semibold">{t.caseStudy.cta}</span>
+                <span className="group-hover:underline font-semibold">
+                  {lang === "hi" ? "इंजीनियरिंग टीम से बात करें" : "Talk to Our Engineering Team"}
+                </span>
                 <span className="w-10 h-10 rounded-full border-2 border-red-600 text-red-600 flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-all duration-300 shadow-sm">
                   <svg
                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"

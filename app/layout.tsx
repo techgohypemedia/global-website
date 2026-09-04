@@ -26,8 +26,8 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: "GLOBAL. | Where Energy Meets Potential",
-  description: "GLOBAL. - Leading global energy and chemicals enterprise.",
+  title: "GLOBAL. | Railway & Electrical Safety Systems",
+  description: "Specialised infrastructure safety solutions: Railway Barrier Systems and Digital Earth Leakage Detectors.",
 };
 
 export default function RootLayout({

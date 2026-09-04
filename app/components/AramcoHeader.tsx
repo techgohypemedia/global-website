@@ -68,340 +68,126 @@ interface DrawerCategory {
 
 const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
   "what-we-do": {
-    title: "What we do",
+    title: "Our Products",
     items: [
       {
-        id: "energy-innovation",
-        name: "Energy innovation",
-        href: "#innovation",
+        id: "railway-barrier",
+        name: "Railway Barrier System",
+        href: "#elements",
         hasSubmenu: true,
         submenuItems: [
-          { name: "Advancing energy solutions", href: "#advancing-solutions", hasSubmenu: true },
-          { name: "Transportation", href: "#transportation", hasSubmenu: true },
-          { name: "Nonmetallic solutions", href: "#nonmetallic", hasSubmenu: true },
-          { name: "Digitalization", href: "#digitalization", hasSubmenu: true },
-          { name: "Global research centers", href: "#research-centers", hasSubmenu: false },
-          { name: "Innovation ecosystem", href: "#innovation-ecosystem", hasSubmenu: true },
+          { name: "Fail-Safe Boom Mechanism", href: "#elements", hasSubmenu: false },
+          { name: "Obstacle Detection Integration", href: "#elements", hasSubmenu: false },
+          { name: "Power Backup & Manual Override", href: "#elements", hasSubmenu: false },
+          { name: "Weatherproof Enclosure", href: "#elements", hasSubmenu: false },
         ],
       },
       {
-        id: "energy-products",
-        name: "Energy products",
-        href: "#products",
+        id: "earth-leakage",
+        name: "Digital Earth Leakage Detector",
+        href: "#elements",
         hasSubmenu: true,
         submenuItems: [
-          { name: "Oil production", href: "#oil-production", hasSubmenu: false },
-          { name: "Gas production", href: "#gas-production", hasSubmenu: false },
-          { name: "Chemicals", href: "#chemicals", hasSubmenu: false },
-          { name: "Refined products", href: "#refined-products", hasSubmenu: true },
-          { name: "Retail fuels", href: "#retail-fuels", hasSubmenu: true },
-        ],
-      },
-      {
-        id: "operations",
-        name: "Operations",
-        href: "#operations",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "Exploration", href: "#exploration", hasSubmenu: true },
-          { name: "Unconventional resources", href: "#unconventional-resources", hasSubmenu: false },
-          { name: "Global Power Company", href: "#sapco", hasSubmenu: false },
-          { name: "Ports and Terminals", href: "#ports-terminals", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "mega-projects",
-        name: "Mega projects",
-        href: "#mega-projects",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "Shaybah oil field and recovery plant", href: "#shaybah", hasSubmenu: false },
-          { name: "Manifa offshore oil field", href: "#manifa", hasSubmenu: false },
-          { name: "Sadara petrochemicals facility", href: "#sadara", hasSubmenu: false },
-          { name: "Fadhili Gas Plant", href: "#fadhili", hasSubmenu: false },
-          { name: "Wasit Gas Plant", href: "#wasit", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "technology-licensing",
-        name: "Technology licensing",
-        href: "#licensing",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "About Global Tech Centers", href: "#about-satc-sautc", hasSubmenu: false },
-          { name: "Digital technologies", href: "#digital-technologies", hasSubmenu: false },
-          { name: "Upstream technologies", href: "#upstream-technologies", hasSubmenu: false },
-          { name: "Downstream technologies", href: "#downstream-technologies", hasSubmenu: false },
-          { name: "Sustainability technologies", href: "#sustainability-technologies", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "commercial-ecosystems",
-        name: "Commercial ecosystems",
-        href: "#commercial",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "iktva", href: "#iktva", hasSubmenu: false },
-          { name: "Wa’ed Ventures", href: "#waed-ventures", hasSubmenu: false },
-          { name: "Taleed", href: "#taleed", hasSubmenu: false },
-          { name: "Namaat", href: "#namaat", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "customers",
-        name: "Customers",
-        href: "#customers",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "Becoming a customer", href: "#becoming-a-customer", hasSubmenu: false },
-          { name: "Products and facilities", href: "#products-facilities", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "suppliers",
-        name: "Suppliers",
-        href: "#suppliers",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "Become a supplier", href: "#become-a-supplier", hasSubmenu: true },
-          { name: "Existing suppliers", href: "#existing-suppliers", hasSubmenu: true },
-          { name: "Supplier resources", href: "#supplier-resources", hasSubmenu: true },
-          { name: "Contracting opportunities", href: "#contracting-opportunities", hasSubmenu: true },
-          { name: "General Auditor Hotline", href: "#general-auditor-hotline", hasSubmenu: false },
+          { name: "Continuous Insulation Monitoring", href: "#elements", hasSubmenu: false },
+          { name: "True RMS Current Measurement", href: "#elements", hasSubmenu: false },
+          { name: "Real-Time Digital Display", href: "#elements", hasSubmenu: false },
+          { name: "Adjustable Trip Thresholds", href: "#elements", hasSubmenu: false },
         ],
       },
     ],
   },
   sustainability: {
-    title: "Sustainability",
+    title: "Engineering & Safety",
     items: [
-      {
-        id: "sustainability-report-2025",
-        name: "Our 2025 Sustainability Report",
-        href: "#sustainability-report-2025",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "Climate change and the energy transition", href: "#climate-change", hasSubmenu: false },
-          { name: "Safe operations and people development", href: "#safe-operations", hasSubmenu: false },
-          { name: "Minimizing environmental impact", href: "#minimizing-impact", hasSubmenu: false },
-          { name: "Growing societal value", href: "#societal-value", hasSubmenu: false },
-          { name: "Governance", href: "#governance", hasSubmenu: false },
-          { name: "Our data and assurance", href: "#data-assurance", hasSubmenu: false },
-          { name: "Downloads", href: "#downloads", hasSubmenu: false },
-        ],
-      },
-      { id: "climate-energy", name: "Climate and energy", href: "#climate-energy", hasSubmenu: true },
-      { id: "people-safety", name: "People and safety", href: "#people-safety", hasSubmenu: true },
-      { id: "environment", name: "Environment", href: "#environment", hasSubmenu: true },
-      { id: "society", name: "Society", href: "#society", hasSubmenu: true },
-      { id: "governance-oversight", name: "Governance and oversight", href: "#governance-oversight", hasSubmenu: false },
+      { id: "fail-safe", name: "Fail-Safe Architecture", href: "#environmental", hasSubmenu: false },
+      { id: "rugged-build", name: "Rugged Industrial Construction", href: "#environmental", hasSubmenu: false },
+      { id: "diagnostics", name: "Diagnostics & System Integration", href: "#environmental", hasSubmenu: false },
     ],
   },
   investors: {
-    title: "Investors",
+    title: "Applications & Sectors",
     items: [
-      { id: "annual-rep", name: "Annual Report 2025", href: "#annual-report-2025", hasSubmenu: true },
-      { id: "reports-pres", name: "Reports & Presentations", href: "#reports-presentations", hasSubmenu: false },
-      { id: "key-fin", name: "Key financials", href: "#key-financials", hasSubmenu: false },
-      { id: "company-fin", name: "Company financial summary", href: "#financial-summary", hasSubmenu: false },
-      { id: "shareholder", name: "Shareholder information", href: "#shareholder-info", hasSubmenu: true },
-      { id: "bond-sukuk", name: "Bond and Sukuk information", href: "#bond-sukuk", hasSubmenu: false },
-      { id: "why-invest", name: "Why invest in Global", href: "#why-invest", hasSubmenu: false },
-      { id: "esg-invest", name: "Environmental, social, and governance", href: "#esg", hasSubmenu: true },
-      { id: "investor-news", name: "Investor news", href: "#investor-news", hasSubmenu: true },
-      { id: "investor-contacts", name: "Investor contacts", href: "#investor-contacts", hasSubmenu: false },
+      { id: "level-crossings", name: "Railway Level Crossings", href: "#believe", hasSubmenu: false },
+      { id: "industrial-panels", name: "Industrial Electrical Panels", href: "#believe", hasSubmenu: false },
+      { id: "signalling-infra", name: "Signalling & Access Control", href: "#believe", hasSubmenu: false },
     ],
   },
   "news-media": {
-    title: "News & Media",
+    title: "Technical Resources",
     items: [
-      { id: "latest-news", name: "Latest news", href: "#latest-news", hasSubmenu: false },
-      { id: "elements-mag", name: "Elements magazine", href: "#elements-magazine", hasSubmenu: false },
-      { id: "speeches", name: "Speeches", href: "#speeches", hasSubmenu: false },
-      { id: "publications", name: "Publications", href: "#publications", hasSubmenu: false },
-      { id: "resources", name: "Resources for journalists", href: "#resources-journalists", hasSubmenu: false },
-      { id: "media-gallery", name: "Media gallery", href: "#media-gallery", hasSubmenu: false },
-      { id: "case-studies", name: "Case studies", href: "#case-studies", hasSubmenu: false },
+      { id: "datasheets", name: "Product Datasheets", href: "#case-study", hasSubmenu: false },
+      { id: "specifications", name: "Technical Specifications", href: "#case-study", hasSubmenu: false },
+      { id: "installation-guides", name: "Installation & Wiring Guides", href: "#case-study", hasSubmenu: false },
     ],
   },
   careers: {
-    title: "Careers",
+    title: "Contact",
     items: [
-      { id: "country-opp", name: "Country specific opportunities", href: "#country-opportunities", hasSubmenu: false },
-      { id: "investing-people", name: "Investing in our people", href: "#investing-in-people", hasSubmenu: false },
-      { id: "equity-inclusion", name: "Equity and inclusion", href: "#equity-inclusion", hasSubmenu: false },
-      { id: "intl-applicants", name: "For International applicants", href: "#international-applicants", hasSubmenu: true },
-      { id: "life-aramco", name: "Life at Global", href: "#life-at-aramco", hasSubmenu: false },
+      { id: "engineering-team", name: "Talk to Engineering", href: "#banner", hasSubmenu: false },
+      { id: "quote-req", name: "Request a Quote", href: "#banner", hasSubmenu: false },
     ],
   },
 };
 
 const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
   "what-we-do": {
-    title: "हम क्या करते हैं",
+    title: "हमारे उत्पाद",
     items: [
       {
-        id: "energy-innovation",
-        name: "ऊर्जा नवाचार",
-        href: "#innovation",
+        id: "railway-barrier",
+        name: "रेलवे बैरियर सिस्टम",
+        href: "#elements",
         hasSubmenu: true,
         submenuItems: [
-          { name: "उन्नत ऊर्जा समाधान", href: "#advancing-solutions", hasSubmenu: true },
-          { name: "परिवहन और मोबिलिटी", href: "#transportation", hasSubmenu: true },
-          { name: "गैर-धातु समाधान", href: "#nonmetallic", hasSubmenu: true },
-          { name: "डिजिटलीकरण और AI", href: "#digitalization", hasSubmenu: true },
-          { name: "वैश्विक अनुसंधान केंद्र", href: "#research-centers", hasSubmenu: false },
-          { name: "नवाचार इकोसिस्टम", href: "#innovation-ecosystem", hasSubmenu: true },
+          { name: "सुरक्षित बूम तंत्र", href: "#elements", hasSubmenu: false },
+          { name: "अवरोध पहचान एकीकरण", href: "#elements", hasSubmenu: false },
+          { name: "पावर बैकअप एवं मैनुअल ओवरराइड", href: "#elements", hasSubmenu: false },
+          { name: "वेदरप्रूफ एनक्लोजर", href: "#elements", hasSubmenu: false },
         ],
       },
       {
-        id: "energy-products",
-        name: "ऊर्जा उत्पाद",
-        href: "#products",
+        id: "earth-leakage",
+        name: "डिजिटल अर्थ लीकेज डिटेक्टर",
+        href: "#elements",
         hasSubmenu: true,
         submenuItems: [
-          { name: "तेल उत्पादन", href: "#oil-production", hasSubmenu: false },
-          { name: "गैस उत्पादन", href: "#gas-production", hasSubmenu: false },
-          { name: "रसायन (Chemicals)", href: "#chemicals", hasSubmenu: false },
-          { name: "परिष्कृत उत्पाद (Refined products)", href: "#refined-products", hasSubmenu: true },
-          { name: "खुदरा ईंधन और सेवा स्टेशन", href: "#retail-fuels", hasSubmenu: true },
-        ],
-      },
-      {
-        id: "operations",
-        name: "संचालन और परिचालन",
-        href: "#operations",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "अन्वेषण (Exploration)", href: "#exploration", hasSubmenu: true },
-          { name: "गैर-पारंपरिक संसाधन", href: "#unconventional-resources", hasSubmenu: false },
-          { name: "पावर कंपनी", href: "#sapco", hasSubmenu: false },
-          { name: "बंदरगाह और टर्मिनल", href: "#ports-terminals", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "mega-projects",
-        name: "मेगा परियोजनाएं",
-        href: "#mega-projects",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "शायबाह तेल क्षेत्र एवं गैस रिकवरी", href: "#shaybah", hasSubmenu: false },
-          { name: "मनीफा अपतटीय तेल क्षेत्र", href: "#manifa", hasSubmenu: false },
-          { name: "सादरा पेट्रोकेमिकल्स कॉम्प्लेक्स", href: "#sadara", hasSubmenu: false },
-          { name: "फाधिली गैस प्लांट", href: "#fadhili", hasSubmenu: false },
-          { name: "वासित गैस प्लांट", href: "#wasit", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "technology-licensing",
-        name: "प्रौद्योगिकी लाइसेंसिंग",
-        href: "#licensing",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "तकनीक केंद्र", href: "#about-satc-sautc", hasSubmenu: false },
-          { name: "डिजिटल प्रौद्योगिकियां", href: "#digital-technologies", hasSubmenu: false },
-          { name: "अपस्ट्रीम प्रौद्योगिकियां", href: "#upstream-technologies", hasSubmenu: false },
-          { name: "डाउनस्ट्रीम प्रौद्योगिकियां", href: "#downstream-technologies", hasSubmenu: false },
-          { name: "सतत ऊर्जा प्रौद्योगिकियां", href: "#sustainability-technologies", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "commercial-ecosystems",
-        name: "वाणिज्यिक इकोसिस्टम",
-        href: "#commercial",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "इक्तवा (iktva)", href: "#iktva", hasSubmenu: false },
-          { name: "वाएद वेंचर्स (Wa’ed Ventures)", href: "#waed-ventures", hasSubmenu: false },
-          { name: "तलीद (Taleed)", href: "#taleed", hasSubmenu: false },
-          { name: "नमात (Namaat)", href: "#namaat", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "customers",
-        name: "ग्राहक एवं भागीदार",
-        href: "#customers",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "ग्राहक कैसे बनें", href: "#becoming-a-customer", hasSubmenu: false },
-          { name: "उत्पाद और सुविधाएं", href: "#products-facilities", hasSubmenu: false },
-        ],
-      },
-      {
-        id: "suppliers",
-        name: "आपूर्तिकर्ता (Suppliers)",
-        href: "#suppliers",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "आपूर्तिकर्ता बनें", href: "#become-a-supplier", hasSubmenu: true },
-          { name: "मौजूदा आपूर्तिकर्ता", href: "#existing-suppliers", hasSubmenu: true },
-          { name: "आपूर्तिकर्ता संसाधन गाइड", href: "#supplier-resources", hasSubmenu: true },
-          { name: "अनुबंध एवं निविदा अवसर", href: "#contracting-opportunities", hasSubmenu: true },
-          { name: "ऑडिटर हेल्पलाइन", href: "#general-auditor-hotline", hasSubmenu: false },
+          { name: "निरंतर इंसुलेशन निगरानी", href: "#elements", hasSubmenu: false },
+          { name: "ट्रू RMS करंट मापन", href: "#elements", hasSubmenu: false },
+          { name: "रीयल-टाइम डिजिटल डिस्प्ले", href: "#elements", hasSubmenu: false },
+          { name: "एडजस्टेबल ट्रिप थ्रेसहोल्ड", href: "#elements", hasSubmenu: false },
         ],
       },
     ],
   },
   sustainability: {
-    title: "सतत विकास",
+    title: "इंजीनियरिंग एवं सुरक्षा",
     items: [
-      {
-        id: "sustainability-report-2025",
-        name: "हमारी 2025 सतत विकास रिपोर्ट",
-        href: "#sustainability-report-2025",
-        hasSubmenu: true,
-        submenuItems: [
-          { name: "जलवायु परिवर्तन और ऊर्जा संक्रमण", href: "#climate-change", hasSubmenu: false },
-          { name: "सुरक्षित संचालन और मानव विकास", href: "#safe-operations", hasSubmenu: false },
-          { name: "पर्यावरणीय प्रभाव को कम करना", href: "#minimizing-impact", hasSubmenu: false },
-          { name: "सामाजिक मूल्य का निर्माण", href: "#societal-value", hasSubmenu: false },
-          { name: "कॉर्पोरेट गवर्नेंस", href: "#governance", hasSubmenu: false },
-          { name: "डेटा और प्रमाणन", href: "#data-assurance", hasSubmenu: false },
-          { name: "रिपोर्ट डाउनलोड", href: "#downloads", hasSubmenu: false },
-        ],
-      },
-      { id: "climate-energy", name: "जलवायु और ऊर्जा", href: "#climate-energy", hasSubmenu: true },
-      { id: "people-safety", name: "सुरक्षा और मानव कल्याण", href: "#people-safety", hasSubmenu: true },
-      { id: "environment", name: "प्राकृतिक पर्यावरण", href: "#environment", hasSubmenu: true },
-      { id: "society", name: "समाज और विकास", href: "#society", hasSubmenu: true },
-      { id: "governance-oversight", name: "शासन और निगरानी", href: "#governance-oversight", hasSubmenu: false },
+      { id: "fail-safe", name: "फेल-सेफ आर्किटेक्चर", href: "#environmental", hasSubmenu: false },
+      { id: "rugged-build", name: "मजबूत औद्योगिक निर्माण", href: "#environmental", hasSubmenu: false },
+      { id: "diagnostics", name: "डायग्नोस्टिक्स एवं एकीकरण", href: "#environmental", hasSubmenu: false },
     ],
   },
   investors: {
-    title: "निवेशक",
+    title: "अनुप्रयोग एवं क्षेत्र",
     items: [
-      { id: "annual-rep", name: "वार्षिक रिपोर्ट 2025", href: "#annual-report-2025", hasSubmenu: true },
-      { id: "reports-pres", name: "रिपोर्ट्स एवं प्रस्तुतियां", href: "#reports-presentations", hasSubmenu: false },
-      { id: "key-fin", name: "मुख्य वित्तीय आंकड़े", href: "#key-financials", hasSubmenu: false },
-      { id: "company-fin", name: "वित्तीय सारांश", href: "#financial-summary", hasSubmenu: false },
-      { id: "shareholder", name: "शेयरधारक जानकारी", href: "#shareholder-info", hasSubmenu: true },
-      { id: "bond-sukuk", name: "बॉन्ड एवं सुकुक जानकारी", href: "#bond-sukuk", hasSubmenu: false },
-      { id: "why-invest", name: "ग्लोबल में निवेश क्यों करें", href: "#why-invest", hasSubmenu: false },
-      { id: "esg-invest", name: "पर्यावरण, सामाजिक और कॉर्पोरेट प्रशासन (ESG)", href: "#esg", hasSubmenu: true },
-      { id: "investor-news", name: "निवेशक समाचार", href: "#investor-news", hasSubmenu: true },
-      { id: "investor-contacts", name: "निवेशक संबंध संपर्क", href: "#investor-contacts", hasSubmenu: false },
+      { id: "level-crossings", name: "रेलवे लेवल क्रॉसिंग", href: "#believe", hasSubmenu: false },
+      { id: "industrial-panels", name: "औद्योगिक पावर पैनल", href: "#believe", hasSubmenu: false },
+      { id: "signalling-infra", name: "सिग्नलिंग एवं पहुंच नियंत्रण", href: "#believe", hasSubmenu: false },
     ],
   },
   "news-media": {
-    title: "समाचार एवं मीडिया",
+    title: "तकनीकी संसाधन",
     items: [
-      { id: "latest-news", name: "नवीनतम समाचार", href: "#latest-news", hasSubmenu: false },
-      { id: "elements-mag", name: "एलिमेंट्स पत्रिका", href: "#elements-magazine", hasSubmenu: false },
-      { id: "speeches", name: "भाषण एवं वक्तव्य", href: "#speeches", hasSubmenu: false },
-      { id: "publications", name: "प्रकाशन एवं बुलेटिन", href: "#publications", hasSubmenu: false },
-      { id: "resources", name: "पत्रकारों के लिए संसाधन", href: "#resources-journalists", hasSubmenu: false },
-      { id: "media-gallery", name: "मीडिया गैलरी", href: "#media-gallery", hasSubmenu: false },
-      { id: "case-studies", name: "केस स्टडीज", href: "#case-studies", hasSubmenu: false },
+      { id: "datasheets", name: "उत्पाद डेटाशीट", href: "#case-study", hasSubmenu: false },
+      { id: "specifications", name: "तकनीकी विनिर्देश", href: "#case-study", hasSubmenu: false },
+      { id: "installation-guides", name: "इंस्टॉलेशन एवं वायरिंग गाइड", href: "#case-study", hasSubmenu: false },
     ],
   },
   careers: {
-    title: "करियर",
+    title: "संपर्क",
     items: [
-      { id: "country-opp", name: "देश विशिष्ट अवसर", href: "#country-opportunities", hasSubmenu: false },
-      { id: "investing-people", name: "मानव संसाधन विकास", href: "#investing-in-people", hasSubmenu: false },
-      { id: "equity-inclusion", name: "समानता और समावेशिता", href: "#equity-inclusion", hasSubmenu: false },
-      { id: "intl-applicants", name: "अंतर्राष्ट्रीय आवेदकों के लिए", href: "#international-applicants", hasSubmenu: true },
-      { id: "life-aramco", name: "ग्लोबल में जीवन एवं संस्कृति", href: "#life-at-aramco", hasSubmenu: false },
+      { id: "engineering-team", name: "इंजीनियरिंग टीम से बात करें", href: "#banner", hasSubmenu: false },
+      { id: "quote-req", name: "कोटेशन का अनुरोध करें", href: "#banner", hasSubmenu: false },
     ],
   },
 };
@@ -801,17 +587,50 @@ export default function AramcoHeader() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-white/10 px-6 py-4 space-y-3">
+          <div className="lg:hidden bg-[#141414]/98 backdrop-blur-xl border-t border-white/10 px-5 py-5 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+            {/* Quick Mobile Language Switcher */}
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+              <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">
+                {lang === "hi" ? "भाषा चुनें" : "Language"}
+              </span>
+              <div className="flex items-center space-x-2 text-xs">
+                <button
+                  onClick={() => setLang("hi")}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${
+                    lang === "hi"
+                      ? "bg-[#ff3131] text-white font-bold"
+                      : "bg-white/10 text-white/80"
+                  }`}
+                >
+                  हिन्दी
+                </button>
+                <button
+                  onClick={() => setLang("en")}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${
+                    lang === "en"
+                      ? "bg-[#ff3131] text-white font-bold"
+                      : "bg-white/10 text-white/80"
+                  }`}
+                >
+                  English
+                </button>
+              </div>
+            </div>
+
+            {/* Direct About Link */}
             <a
               href="/about"
-              className="block w-full text-left text-sm font-bold tracking-wider uppercase text-white/90 hover:text-[#ff3131] py-2 border-b border-white/5 flex items-center justify-between"
+              className="block w-full text-left text-sm font-bold tracking-wider uppercase text-white/90 hover:text-[#ff3131] py-2.5 border-b border-white/5 flex items-center justify-between"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <span>{t.nav.about}</span>
-              <span>→</span>
+              <span className="text-red-500 font-bold">→</span>
             </a>
 
+            {/* Accordion Categories */}
             {["what-we-do", "sustainability", "investors", "news-media", "careers"].map((id) => {
+              const category = drawerData[id];
+              const isExpanded = activeDrawerId === id;
               const name =
                 id === "what-we-do"
                   ? t.nav.whatWeDo
@@ -824,16 +643,75 @@ export default function AramcoHeader() {
                   : t.nav.careers;
 
               return (
-                <button
-                  key={id}
-                  onClick={() => toggleDrawer(id)}
-                  className="block w-full text-left text-sm font-bold tracking-wider uppercase text-white/90 hover:text-[#ff3131] py-2 border-b border-white/5 flex items-center justify-between"
-                >
-                  <span>{name}</span>
-                  <span>→</span>
-                </button>
+                <div key={id} className="border-b border-white/5">
+                  <button
+                    onClick={() => setActiveDrawerId((prev) => (prev === id ? null : id))}
+                    className="w-full text-left text-sm font-bold tracking-wider uppercase text-white/90 hover:text-[#ff3131] py-3 flex items-center justify-between cursor-pointer"
+                  >
+                    <span>{name}</span>
+                    <svg
+                      className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                        isExpanded ? "rotate-180 text-[#ff3131]" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Accordion Content */}
+                  {isExpanded && category && (
+                    <div className="pl-3 pb-3 pt-1 space-y-2.5 animate-in fade-in duration-150">
+                      {category.items.map((item) => (
+                        <div key={item.id} className="text-start">
+                          <a
+                            href={item.href}
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setActiveDrawerId(null);
+                            }}
+                            className="block text-xs font-semibold text-gray-200 hover:text-[#ff3131] py-1 transition-colors"
+                          >
+                            • {item.name}
+                          </a>
+                          {item.submenuItems && item.submenuItems.length > 0 && (
+                            <div className="pl-3 mt-1 space-y-1 border-l border-white/10">
+                              {item.submenuItems.map((sub) => (
+                                <a
+                                  key={sub.name}
+                                  href={sub.href}
+                                  onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    setActiveDrawerId(null);
+                                  }}
+                                  className="block text-[11px] text-gray-400 hover:text-white py-0.5"
+                                >
+                                  - {sub.name}
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
+
+            {/* Quick Action CTA in Mobile Drawer */}
+            <div className="pt-4 mt-2">
+              <a
+                href="#contact-engineering"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full py-2.5 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white text-center text-xs font-bold uppercase tracking-wider transition-all shadow-md"
+              >
+                {lang === "hi" ? "इंजीनियरिंग से बात करें" : "Talk to Engineering"}
+              </a>
+            </div>
           </div>
         )}
 
@@ -933,7 +811,7 @@ export default function AramcoHeader() {
 
           {/* Drawer Bottom Branding */}
           <div className="pt-8 mt-6 border-t border-white/10 text-xs text-gray-400">
-            <p>{lang === "hi" ? "ग्लोबल • जहां ऊर्जा एक अवसर है" : "GLOBAL. • Where Energy is Opportunity"}</p>
+            <p>{lang === "hi" ? "ग्लोबल • विश्वसनीय रेलवे एवं विद्युत सुरक्षा समाधान" : "GLOBAL. • Dependable Railway & Electrical Safety Systems"}</p>
           </div>
         </div>
 

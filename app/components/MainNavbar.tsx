@@ -90,7 +90,7 @@ export default function MainNavbar() {
             </svg>
             <input
               type="text"
-              placeholder="Search reports, energy solutions, news..."
+              placeholder="Search products, datasheets, technical specs..."
               className="bg-transparent text-white w-full focus:outline-none text-sm placeholder-gray-400"
               autoFocus
             />

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function OurHistoryVideo() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -119,7 +119,7 @@ export default function OurHistoryVideo() {
       >
         <div
           ref={cardRef}
-          className="relative h-[420px] sm:h-[540px] lg:h-[640px] overflow-hidden group shadow-2xl transition-[width,transform,border-radius] duration-150 ease-out will-change-transform bg-black"
+          className="relative h-[260px] xs:h-[320px] sm:h-[540px] lg:h-[640px] overflow-hidden group shadow-2xl transition-[width,transform,border-radius] duration-150 ease-out will-change-transform bg-black"
           style={{
             width: "82%",
             transform: "scale(0.88)",
@@ -142,30 +142,30 @@ export default function OurHistoryVideo() {
           </video>
 
           {/* Subtle Bottom Gradient for Text Legibility */}
-          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-32 sm:h-44 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
 
           {/* Top Floating Badge */}
-          <div className="absolute top-5 left-5 z-20 pointer-events-none">
-            <div className="inline-flex items-center space-x-2 text-[11px] sm:text-xs font-semibold tracking-wider text-white uppercase bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-md">
-              <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-              <span>R&D & MANUFACTURING DEMO</span>
+          <div className="absolute top-3 left-3 sm:top-5 sm:left-5 z-20 pointer-events-none">
+            <div className="inline-flex items-center space-x-1.5 sm:space-x-2 text-[9px] sm:text-xs font-semibold tracking-wider text-white uppercase bg-black/60 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/20 shadow-md">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ff3131] animate-pulse" />
+              <span>{lang === "hi" ? "इंजीनियरिंग शोकेस" : "ENGINEERING SHOWCASE"}</span>
             </div>
           </div>
 
           {/* Minimal Floating Controls (Top Right) */}
-          <div className="absolute top-5 right-5 z-20 flex items-center space-x-2.5 opacity-90 group-hover:opacity-100 transition-opacity">
+          <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 flex items-center space-x-2 opacity-90 group-hover:opacity-100 transition-opacity">
             {/* Play/Pause Toggle */}
             <button
               onClick={togglePlay}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20 hover:border-[#ff3131] hover:bg-[#ff3131] transition-all flex items-center justify-center cursor-pointer shadow-lg"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20 hover:border-[#ff3131] hover:bg-[#ff3131] transition-all flex items-center justify-center cursor-pointer shadow-lg"
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
               {isPlaying ? (
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" viewBox="0 0 24 24">
                   <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                 </svg>
               ) : (
-                <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               )}
@@ -174,16 +174,16 @@ export default function OurHistoryVideo() {
             {/* Mute/Unmute Toggle */}
             <button
               onClick={toggleMute}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20 hover:border-[#ff3131] hover:bg-[#ff3131] transition-all flex items-center justify-center cursor-pointer shadow-lg"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20 hover:border-[#ff3131] hover:bg-[#ff3131] transition-all flex items-center justify-center cursor-pointer shadow-lg"
               aria-label={isMuted ? "Unmute audio" : "Mute audio"}
             >
               {isMuted ? (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
                 </svg>
               ) : (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                 </svg>
               )}
@@ -191,26 +191,28 @@ export default function OurHistoryVideo() {
           </div>
 
           {/* Elegant Bottom Information Bar */}
-          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8 z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-3 pointer-events-none">
+          <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-8 z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-3 pointer-events-none">
             <div className="max-w-xl">
-              <h3 className="text-lg sm:text-2xl font-semibold text-white leading-snug drop-shadow-md font-sans">
+              <h3 className="text-sm sm:text-2xl font-semibold text-white leading-tight sm:leading-snug drop-shadow-md font-sans">
                 {t.history.legacyHeadline}
               </h3>
-              <p className="mt-1 text-xs sm:text-sm text-gray-200 font-light drop-shadow">
-                Multi-Channel Earth Leakage Detection • Crash-Rated Barrier Automation
+              <p className="mt-0.5 sm:mt-1 text-[10px] sm:text-sm text-gray-200 font-light drop-shadow">
+                {lang === "hi"
+                  ? "रेलवे बैरियर सिस्टम • डिजिटल अर्थ लीकेज डिटेक्शन"
+                  : "Railway Barrier Systems • Digital Earth Leakage Detection"}
               </p>
             </div>
 
             {/* Micro Spec Pills */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2.5 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-mono font-medium text-white/90">
-                SIL-4 RATED
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/20 text-[9px] sm:text-[11px] font-mono font-medium text-white/90">
+                {lang === "hi" ? "फेल-सेफ" : "FAIL-SAFE"}
               </span>
-              <span className="px-2.5 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-mono font-medium text-white/90">
-                16-CHANNELS
+              <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/20 text-[9px] sm:text-[11px] font-mono font-medium text-white/90">
+                {lang === "hi" ? "सतत निगरानी" : "CONTINUOUS"}
               </span>
-              <span className="px-2.5 py-1 rounded-md bg-[#ff3131]/80 backdrop-blur-md text-[10px] sm:text-[11px] font-mono font-semibold text-white">
-                IP67 FAIL-SAFE
+              <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-[#ff3131]/90 backdrop-blur-md text-[9px] sm:text-[11px] font-mono font-semibold text-white">
+                {lang === "hi" ? "फ़ील्ड-रेडी" : "FIELD-READY"}
               </span>
             </div>
           </div>

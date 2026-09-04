@@ -43,70 +43,69 @@ export default function AboutUsBanner() {
     {
       title:
         lang === "hi"
-          ? "हैवी-ड्यूटी क्रैश-रेटेड स्वचालित बूम बैरियर"
-          : "Heavy-Duty Crash-Rated Automated Boom Barrier",
+          ? "केंद्रित उत्पाद विशेषज्ञता"
+          : "Focused Product Expertise",
       description:
         lang === "hi"
-          ? "उच्च-सुरक्षा परिधि, टोल प्लाजा और औद्योगिक द्वारों के लिए टिकाऊ स्वचालित बैरियर।"
-          : "Engineered with reinforced steel chassis, fast-acting motor drives, and intelligent access control integration.",
-      year: "2026 • Flagship Product",
-      link: "#boom-barrier",
-      image: "/images/boom_barrier_original.png",
+          ? "रेलवे बैरियर सिस्टम और डिजिटल अर्थ लीकेज डिटेक्टरों के लिए समर्पित लक्षित इंजीनियरिंग।"
+          : "Focused engineering dedicated exclusively to railway barrier systems and digital earth leakage detectors.",
+      year: lang === "hi" ? "उत्पाद विशेषज्ञता" : "Product Focus",
+      link: "#our-solutions",
+      image: "/images/boom_barrier_hero.jpg",
     },
     {
       title:
         lang === "hi"
-          ? "16-चैनल अर्थ लीकेज डिटेक्टर एवं इन्सुलेशन मॉनिटर"
-          : "Multi-Channel Earth Leakage Detector (ELD)",
+          ? "अनुप्रयोग-उन्मुख इंजीनियरिंग"
+          : "Application-Oriented Engineering",
       description:
         lang === "hi"
-          ? "रेलवे सिग्नलिंग एवं पावर ग्रिड के लिए वास्तविक समय इन्सुलेशन प्रतिरोध निगरानी और फॉल्ट एनालिसिस।"
-          : "Precision online electrical insulation resistance monitoring, analog meters, and digital fault totalizers.",
-      year: "2026 • Railway Signaling",
-      link: "#earth-leakage-detector",
-      image: "/images/earth_leakage_detector_original.png",
+          ? "रेलवे लेवल क्रॉसिंग, सिग्नलिंग नेटवर्क और औद्योगिक विद्युत पैनलों के लिए विशेष रूप से कॉन्फ़िगर समाधान।"
+          : "Solutions designed specifically around real railway level crossings, signalling installations, and industrial panels.",
+      year: lang === "hi" ? "इंजीनियरिंग" : "Engineering",
+      link: "#engineering",
+      image: "/images/earth_leakage_detector_hero.jpg",
     },
     {
       title:
         lang === "hi"
-          ? "स्वचालित रेलवे लेवल क्रॉसिंग सुरक्षा गेट्स"
-          : "Automated Railway Level Crossing Gates",
+          ? "व्यावहारिक रखरखाव एवं स्पष्ट डायग्नोस्टिक्स"
+          : "Practical Maintenance & Clear Diagnostics",
       description:
         lang === "hi"
-          ? "ऑडियो-विजुअल एलईडी सिग्नलिंग, त्वरित प्रतिक्रिया और ट्रैक इंटरलॉकिंग से लैस सुरक्षित रेलवे गेट।"
-          : "SIL-compliant fail-safe barrier mechanisms with integrated flashing LED signals and acoustic warnings.",
-      year: "2025 • Rail Infrastructure",
-      link: "#railway-crossing",
-      image: "/images/boom_barrier_railway.jpg",
-    },
-    {
-      title:
-        lang === "hi"
-          ? "इलेक्ट्रॉनिक्स आरएंडडी एवं उच्च-वोल्टेज परीक्षण लैब"
-          : "Electronics R&D & High-Voltage Calibration Lab",
-      description:
-        lang === "hi"
-          ? "कठोर पर्यावरणीय और विद्युत परीक्षणों से प्रमाणित विश्वसनीय सुरक्षा उपकरण।"
-          : "Rigorous environmental stress screening and precision calibration ensuring zero false alarms.",
-      year: "2025 • Quality & Testing",
-      link: "#testing-lab",
+          ? "व्यावहारिक पहुंच और स्पष्ट डिजिटल डिस्प्ले जो नियमित रखरखाव और त्वरित समस्या निवारण को सरल बनाते हैं।"
+          : "Practical access and clear digital indications designed to simplify routine maintenance and fast inspection.",
+      year: lang === "hi" ? "रखरखाव" : "Maintenance",
+      link: "#engineering",
       image: "/images/eld_engineering_lab.jpg",
     },
     {
       title:
         lang === "hi"
-          ? "पावर सबस्टेशन इन्सुलेशन एवं ग्रिड सुरक्षा"
-          : "Substation Insulation & Power Grid Protection",
+          ? "बुनियादी ढांचा मानसिकता एवं विश्वसनीयता"
+          : "Infrastructure Mindset & Dependability",
       description:
         lang === "hi"
-          ? "निरंतर ऑनलाइन इन्सुलेशन प्रतिरोध मापन जो शून्य डाउनटाइम और निर्बाध विद्युत प्रवाह सुनिश्चित करता है।"
-          : "Continuous multi-point DC/AC insulation diagnostics preventing critical circuit failures and ensuring 24/7 uptime.",
-      year: "2024 • Substation Power",
-      link: "#substation-power",
+          ? "कठिन बाहरी वातावरण, बार-बार संचालन और विद्युत उतार-चढ़ाव को सहन करने के लिए निर्मित।"
+          : "Engineered to withstand demanding outdoor environmental exposure and continuous mechanical operation.",
+      year: lang === "hi" ? "विश्वसनीयता" : "Reliability",
+      link: "#applications",
+      image: "/images/boom_barrier_railway.jpg",
+    },
+    {
+      title:
+        lang === "hi"
+          ? "प्रत्यक्ष इंजीनियरिंग सहायता"
+          : "Direct Engineering Support",
+      description:
+        lang === "hi"
+          ? "सिस्टम एकीकरण, वायरिंग विनिर्देशों और परियोजना-आधारित आवश्यकताओं के लिए तकनीकी सहयोग।"
+          : "Collaborative technical guidance for system integration, wiring specifications, and project-based requirements.",
+      year: lang === "hi" ? "तकनीकी सहायता" : "Engineering Support",
+      link: "#contact-engineering",
       image: "/images/power_distribution_eld.jpg",
     },
   ];
-
 
   useEffect(() => {
     if (!isVisible) return;
@@ -151,7 +150,6 @@ export default function AboutUsBanner() {
     setIsVisible(true);
   };
 
-
   const handleMouseLeave = () => {
     setHoveredIndex(null);
     setIsVisible(false);
@@ -162,22 +160,43 @@ export default function AboutUsBanner() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       className="relative w-full bg-white text-gray-900 py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80 overflow-hidden"
+      id="contact-engineering"
     >
       <div className="max-w-4xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-12">
+        {/* Section Header: Exact Final CTA Copy */}
+        <div className="mb-14">
           <div className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-3">
             <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
             <span>
-              {lang === "hi" ? "हमारे बारे में • मुख्य उपलब्धियां" : "ABOUT US • FEATURED INITIATIVES"}
+              {lang === "hi" ? "आइए सुरक्षित बुनियादी ढांचा बनाएं" : "LET'S BUILD SAFER INFRASTRUCTURE"}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#1e293b] leading-tight font-sans">
-            {lang === "hi" ? "नवाचार और प्रभाव की" : "Discover our legacy of"}{" "}
-            <span className="font-semibold text-gray-900">
-              {lang === "hi" ? "प्रेरक कहानियां" : "innovation & impact"}
-            </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#1e293b] leading-tight font-sans mb-4">
+            {lang === "hi"
+              ? "क्या आपको रेलवे बैरियर या अर्थ लीकेज मॉनिटरिंग समाधान की आवश्यकता है?"
+              : "Need a Railway Barrier or Earth Leakage Monitoring Solution?"}
           </h2>
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light max-w-2xl mb-8">
+            {lang === "hi"
+              ? "अपनी स्थापना, परिचालन स्थितियों, एकीकरण आवश्यकताओं और तकनीकी विनिर्देशों के बारे में हमारी टीम से बात करें।"
+              : "Talk to our team about your installation, operating conditions, integration requirements and technical specifications."}
+          </p>
+
+          {/* Action CTAs */}
+          <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3.5 sm:gap-6">
+            <a
+              href="#quote"
+              className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white font-medium text-center text-sm sm:text-base transition-all shadow-lg hover:shadow-xl cursor-pointer"
+            >
+              {lang === "hi" ? "कोटेशन का अनुरोध करें" : "Request a Quote"}
+            </a>
+            <a
+              href="#contact"
+              className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-full border-2 border-gray-900 hover:border-[#ff3131] text-gray-900 hover:text-[#ff3131] font-medium text-center text-sm sm:text-base transition-all cursor-pointer"
+            >
+              {lang === "hi" ? "इंजीनियरिंग से संपर्क करें" : "Contact Engineering"}
+            </a>
+          </div>
         </div>
 
         {/* Floating Mouse-Following Preview Card */}

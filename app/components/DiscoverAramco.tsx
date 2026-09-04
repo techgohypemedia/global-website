@@ -4,7 +4,7 @@ import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function DiscoverAramco() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   const CARDS = [
     {
@@ -47,23 +47,38 @@ export default function DiscoverAramco() {
       <div className="max-w-7xl mx-auto">
         
         {/* Header Title Section */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
+        <div className="max-w-4xl mb-12 sm:mb-16">
           <div className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-3.5">
             <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-            <span>{t.discover.badge}</span>
+            <span>
+              {lang === "hi" ? "कठिन परिचालन के लिए इंजीनियर" : "ENGINEERED FOR CRITICAL OPERATIONS"}
+            </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-relaxed text-[#1e293b] font-sans">
-            {t.discover.headline}
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
+            {lang === "hi" ? "सुरक्षा वहां, जहां विश्वसनीयता सबसे महत्वपूर्ण है।" : "Protection where reliability matters most."}
           </h2>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+            {lang === "hi"
+              ? "बुनियादी ढांचे की सुरक्षा उन प्रणालियों पर निर्भर करती है जो जरूरत के समय निरंतर काम करें। ग्लोबल व्यावहारिक संचालन के लिए लक्षित रेलवे और विद्युत सुरक्षा समाधान विकसित करता है।"
+              : "Infrastructure safety depends on systems that perform consistently when they are needed. GLOBAL develops focused railway and electrical safety solutions designed for practical operation in demanding environments."}
+          </p>
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
+            {lang === "hi"
+              ? "हमारे रेलवे बैरियर सिस्टम लेवल क्रॉसिंग और प्रतिबंधित रेलवे क्षेत्रों में वाहनों की आवाजाही को नियंत्रित करने में मदद करते हैं, जबकि हमारे डिजिटल अर्थ लीकेज डिटेक्टर बड़े परिचालन जोखिम बनने से पहले विद्युत रिसाव स्थितियों की पहचान करने में मदद करते हैं।"
+              : "Our Railway Barrier Systems help control vehicular movement at railway crossings and restricted railway areas, while our Digital Earth Leakage Detectors help identify electrical leakage conditions before they develop into larger operational risks."}
+          </p>
+          <p className="text-sm sm:text-base font-medium text-[#ff3131]">
+            {lang === "hi" ? "सुरक्षित, अधिक विश्वसनीय बुनियादी ढांचा।" : "Safer, more dependable infrastructure."}
+          </p>
         </div>
 
-        {/* 4 Cards Grid: Image only by default, text reveals on hover */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+        {/* 4 Cards Grid: Always visible on mobile, reveals on hover on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-7">
           {CARDS.map((card) => (
             <a
               key={card.id}
               href={card.link}
-              className="group relative h-[440px] sm:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between p-6 sm:p-7 text-white border border-gray-200 hover:border-[#ff3131]/60 cursor-pointer bg-neutral-900"
+              className="group relative h-[380px] sm:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between p-5 sm:p-7 text-white border border-gray-200 hover:border-[#ff3131]/60 cursor-pointer bg-neutral-900"
             >
               {/* Full Background Image */}
               <div className="absolute inset-0 overflow-hidden">
@@ -81,29 +96,28 @@ export default function DiscoverAramco() {
                 />
               </div>
 
-              {/* Default subtle bottom shadow for depth, dark overlay appears on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 opacity-100 group-hover:opacity-0 transition-opacity duration-400 pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
+              {/* Gradient overlay: Active by default on mobile for legibility, hover on desktop */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent sm:from-black/40 sm:via-transparent sm:to-black/10 sm:group-hover:from-black/90 sm:group-hover:via-black/60 sm:group-hover:to-black/35 transition-all duration-400 pointer-events-none" />
 
-              {/* Text Content: Hidden by default, Slides up & Fades in on Hover */}
-              <div className="relative z-10 opacity-0 -translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 ease-out">
+              {/* Text Content: Visible by default on mobile, Slides up & Fades in on Hover on desktop */}
+              <div className="relative z-10 opacity-100 sm:opacity-0 sm:-translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-400 ease-out">
                 {/* Category Badge */}
-                <div className="inline-flex items-center text-[11px] sm:text-xs font-bold tracking-widest text-white/95 uppercase mb-2 bg-black/50 backdrop-blur-md px-3 py-1 rounded-md border border-white/20 shadow-sm">
+                <div className="inline-flex items-center text-[10px] sm:text-xs font-bold tracking-widest text-white/95 uppercase mb-2 bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/20 shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131] mr-1.5 inline-block" />
                   {card.category}
                 </div>
               </div>
 
-              {/* Bottom Section: Title & Arrow Reveal on Hover */}
-              <div className="relative z-10 mt-auto opacity-0 translate-y-5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 ease-out">
-                <h3 className="text-lg sm:text-xl font-medium leading-snug text-white font-sans mb-4 drop-shadow-md">
+              {/* Bottom Section: Title & Arrow */}
+              <div className="relative z-10 mt-auto opacity-100 sm:opacity-0 sm:translate-y-5 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-400 ease-out">
+                <h3 className="text-base sm:text-xl font-medium leading-snug text-white font-sans mb-3 sm:mb-4 drop-shadow-md">
                   {card.title}
                 </h3>
 
-                <div className="flex justify-end items-center pt-2">
-                  <div className="w-11 h-11 rounded-full border border-white/70 bg-black/40 backdrop-blur-md flex items-center justify-center transition-all duration-300 group-hover:bg-[#ff3131] group-hover:border-[#ff3131] group-hover:text-white shadow-xl">
+                <div className="flex justify-end items-center pt-1">
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/70 bg-black/50 backdrop-blur-md flex items-center justify-center transition-all duration-300 group-hover:bg-[#ff3131] group-hover:border-[#ff3131] group-hover:text-white shadow-xl">
                     <svg
-                      className="w-4 h-4 text-white transition-transform duration-300 group-hover:translate-x-1"
+                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white transition-transform duration-300 group-hover:translate-x-1"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2.5"
