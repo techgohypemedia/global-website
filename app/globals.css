@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ededed;
+  --brand-red: #ff3131;
+  --brand-red-hover: #e02020;
+  --brand-black: #000000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-red: var(--brand-red);
+  --color-brand-black: var(--brand-black);
+  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --font-mokoto: 'Mokoto', var(--font-orbitron), var(--font-rajdhani), 'Eurostile', sans-serif;
+}
+
+@font-face {
+  font-family: 'Mokoto';
+  src: local('Mokoto'), local('Mokoto-Regular'), local('Mokoto Glitch');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-mokoto {
+  font-family: 'Mokoto', var(--font-orbitron), var(--font-rajdhani), 'Eurostile', sans-serif;
+  letter-spacing: 0.06em;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Lenis Smooth Scroll Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+
