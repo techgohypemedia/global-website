@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "../context/LanguageContext";
 import GlobalLogo from "./GlobalLogo";
 
@@ -9,40 +10,55 @@ const REGIONS_LIST = [
     name: "Global",
     languages: [
       { label: "English", code: "en" },
-      { label: "हिन्दी", code: "hi" },
+      { label: "العربية", code: "ar" },
     ],
   },
   {
-    name: "Global India",
-    languages: [
-      { label: "English", code: "en" },
-      { label: "हिन्दी", code: "hi" },
-    ],
-  },
-  {
-    name: "Global Americas",
+    name: "Americas",
     languages: [{ label: "English", code: "en" }],
   },
   {
-    name: "Global China",
+    name: "China",
     languages: [
       { label: "English", code: "en" },
       { label: "中文(中国)", code: "zh" },
     ],
   },
   {
-    name: "Global Europe",
+    name: "Europe",
     languages: [{ label: "English", code: "en" }],
   },
   {
-    name: "Global Japan",
+    name: "Poland",
+    languages: [
+      { label: "English", code: "en" },
+      { label: "polski", code: "pl" },
+    ],
+  },
+  {
+    name: "India",
+    languages: [{ label: "English", code: "en" }],
+  },
+  {
+    name: "Japan",
     languages: [
       { label: "English", code: "en" },
       { label: "日本語", code: "ja" },
     ],
   },
   {
-    name: "Global Singapore",
+    name: "Korea",
+    languages: [
+      { label: "English", code: "en" },
+      { label: "한국어", code: "ko" },
+    ],
+  },
+  {
+    name: "Malaysia",
+    languages: [{ label: "English", code: "en" }],
+  },
+  {
+    name: "Singapore",
     languages: [{ label: "English", code: "en" }],
   },
 ];
@@ -96,7 +112,7 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
       },
     ],
   },
-  sustainability: {
+  capability: {
     title: "Engineering & Safety",
     items: [
       { id: "fail-safe", name: "Fail-Safe Architecture", href: "#environmental", hasSubmenu: false },
@@ -104,7 +120,7 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
       { id: "diagnostics", name: "Diagnostics & System Integration", href: "#environmental", hasSubmenu: false },
     ],
   },
-  investors: {
+  "news-media": {
     title: "Applications & Sectors",
     items: [
       { id: "level-crossings", name: "Railway Level Crossings", href: "#believe", hasSubmenu: false },
@@ -112,19 +128,19 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
       { id: "signalling-infra", name: "Signalling & Access Control", href: "#believe", hasSubmenu: false },
     ],
   },
-  "news-media": {
+  contact: {
+    title: "Contact",
+    items: [
+      { id: "engineering-team", name: "Talk to Engineering", href: "#banner", hasSubmenu: false },
+      { id: "quote-req", name: "Request a Quote", href: "#banner", hasSubmenu: false },
+    ],
+  },
+  support: {
     title: "Technical Resources",
     items: [
       { id: "datasheets", name: "Product Datasheets", href: "#case-study", hasSubmenu: false },
       { id: "specifications", name: "Technical Specifications", href: "#case-study", hasSubmenu: false },
       { id: "installation-guides", name: "Installation & Wiring Guides", href: "#case-study", hasSubmenu: false },
-    ],
-  },
-  careers: {
-    title: "Contact",
-    items: [
-      { id: "engineering-team", name: "Talk to Engineering", href: "#banner", hasSubmenu: false },
-      { id: "quote-req", name: "Request a Quote", href: "#banner", hasSubmenu: false },
     ],
   },
 };
@@ -159,7 +175,7 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
       },
     ],
   },
-  sustainability: {
+  capability: {
     title: "इंजीनियरिंग एवं सुरक्षा",
     items: [
       { id: "fail-safe", name: "फेल-सेफ आर्किटेक्चर", href: "#environmental", hasSubmenu: false },
@@ -167,7 +183,7 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
       { id: "diagnostics", name: "डायग्नोस्टिक्स एवं एकीकरण", href: "#environmental", hasSubmenu: false },
     ],
   },
-  investors: {
+  "news-media": {
     title: "अनुप्रयोग एवं क्षेत्र",
     items: [
       { id: "level-crossings", name: "रेलवे लेवल क्रॉसिंग", href: "#believe", hasSubmenu: false },
@@ -175,7 +191,14 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
       { id: "signalling-infra", name: "सिग्नलिंग एवं पहुंच नियंत्रण", href: "#believe", hasSubmenu: false },
     ],
   },
-  "news-media": {
+  contact: {
+    title: "संपर्क",
+    items: [
+      { id: "engineering-team", name: "इंजीनियरिंग टीम से बात करें", href: "#banner", hasSubmenu: false },
+      { id: "quote-req", name: "कोटेशन का अनुरोध करें", href: "#banner", hasSubmenu: false },
+    ],
+  },
+  support: {
     title: "तकनीकी संसाधन",
     items: [
       { id: "datasheets", name: "उत्पाद डेटाशीट", href: "#case-study", hasSubmenu: false },
@@ -183,16 +206,10 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
       { id: "installation-guides", name: "इंस्टॉलेशन एवं वायरिंग गाइड", href: "#case-study", hasSubmenu: false },
     ],
   },
-  careers: {
-    title: "संपर्क",
-    items: [
-      { id: "engineering-team", name: "इंजीनियरिंग टीम से बात करें", href: "#banner", hasSubmenu: false },
-      { id: "quote-req", name: "कोटेशन का अनुरोध करें", href: "#banner", hasSubmenu: false },
-    ],
-  },
 };
 
 export default function AramcoHeader() {
+  const pathname = usePathname();
   const { lang, setLang, t } = useLanguage();
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -211,7 +228,11 @@ export default function AramcoHeader() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
       setScrollProgress(progress);
-      setIsScrolled(scrollY > 40);
+      const scrolled = scrollY > 40;
+      setIsScrolled(scrolled);
+      if (scrolled) {
+        setIsRegionOpen(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -310,19 +331,21 @@ export default function AramcoHeader() {
       */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 font-sans select-none ${
-          isScrolled || activeDrawerId
-            ? "bg-[#141414] shadow-xl border-b border-white/10 text-white"
-            : "bg-gradient-to-b from-black/95 via-black/80 to-transparent text-white"
+          isScrolled || activeDrawerId || pathname !== "/"
+            ? "bg-[#111113] shadow-2xl text-white border-b border-white/10"
+            : "bg-transparent text-white"
         }`}
       >
         
         {/* 1. TOP UTILITY ROW */}
         <div
-          className={`w-full border-b border-white/10 transition-all duration-300 overflow-visible ${
-            isScrolled ? "max-h-0 opacity-0 border-transparent py-0 pointer-events-none" : "max-h-12 opacity-100"
+          className={`w-full transition-all duration-300 ${
+            isScrolled
+              ? "max-h-0 opacity-0 border-b border-transparent py-0 pointer-events-none overflow-hidden"
+              : "max-h-12 opacity-100 border-b border-white/10 overflow-visible relative z-50"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] relative overflow-visible">
             
             {/* Language Switcher & Global Contacts */}
             <div className="flex items-center space-x-4 sm:space-x-6">
@@ -355,7 +378,7 @@ export default function AramcoHeader() {
             </div>
 
             {/* Region Selector & Accessibility */}
-            <div className="flex items-center space-x-4 sm:space-x-5" ref={regionDropdownRef}>
+            <div className="flex items-center space-x-4 sm:space-x-5 relative" ref={regionDropdownRef}>
               <div className="relative">
                 <button
                   onClick={() => setIsRegionOpen(!isRegionOpen)}
@@ -383,25 +406,30 @@ export default function AramcoHeader() {
                 {/* Exact Region Card */}
                 {isRegionOpen && (
                   <div
-                    className="absolute mt-3 w-80 sm:w-96 bg-white text-gray-900 rounded-2xl shadow-2xl p-5 sm:p-6 border border-gray-100 z-50 animate-in fade-in duration-200 right-0"
+                    className="absolute top-full mt-2 w-[310px] sm:w-[370px] max-w-[calc(100vw-24px)] bg-white text-gray-900 rounded-[22px] shadow-[0_25px_60px_rgba(0,0,0,0.35)] px-6 sm:px-7 py-6 border border-gray-100/90 z-[9999] animate-in fade-in zoom-in-95 duration-150 -right-2 sm:right-0 origin-top-right select-none"
                   >
-                    <div className="divide-y divide-gray-100">
+                    <div className="flex flex-col space-y-3 sm:space-y-3.5">
                       {REGIONS_LIST.map((region) => (
                         <div
                           key={region.name}
-                          className="flex items-center justify-between py-2 sm:py-2.5 first:pt-0 last:pb-0"
+                          className="flex items-center justify-between text-[13.5px] sm:text-[15px]"
                         >
-                          <span className="text-xs sm:text-[14px] text-gray-800 font-normal">
+                          <span className="text-[#374151] font-normal tracking-tight">
                             {region.name}
                           </span>
 
-                          <div className="flex items-center text-xs sm:text-[14px]">
+                          <div className="flex items-center space-x-1 font-normal">
                             {region.languages.map((item, idx) => (
                               <React.Fragment key={item.code + item.label}>
-                                {idx > 0 && <span className="text-gray-400 mx-1.5">|</span>}
+                                {idx > 0 && (
+                                  <span className="text-[#64748b] text-xs font-light mx-1">
+                                    |
+                                  </span>
+                                )}
                                 <button
+                                  type="button"
                                   onClick={() => handleLanguageClick(item.code)}
-                                  className="text-[#ff3131] hover:text-[#d62828] hover:underline transition-colors font-normal cursor-pointer"
+                                  className="text-[#0284c7] hover:text-[#0369a1] underline underline-offset-2 transition-colors cursor-pointer"
                                 >
                                   {item.label}
                                 </button>
@@ -478,35 +506,21 @@ export default function AramcoHeader() {
                   </button>
                 </li>
 
-                {/* 3. SUSTAINABILITY */}
+                {/* 3. CAPABILITY */}
                 <li>
                   <button
-                    onClick={() => toggleDrawer("sustainability")}
+                    onClick={() => toggleDrawer("capability")}
                     className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "sustainability"
+                      activeDrawerId === "capability"
                         ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
                         : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
                     }`}
                   >
-                    {t.nav.sustainability}
+                    {t.nav.capability}
                   </button>
                 </li>
 
-                {/* 4. INVESTORS */}
-                <li>
-                  <button
-                    onClick={() => toggleDrawer("investors")}
-                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "investors"
-                        ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
-                        : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
-                    }`}
-                  >
-                    {t.nav.investors}
-                  </button>
-                </li>
-
-                {/* 5. NEWS & MEDIA */}
+                {/* 4. NEWS & MEDIA */}
                 <li>
                   <button
                     onClick={() => toggleDrawer("news-media")}
@@ -520,26 +534,52 @@ export default function AramcoHeader() {
                   </button>
                 </li>
 
-                {/* 6. CAREERS */}
+                {/* 5. CONTACT */}
                 <li>
                   <button
-                    onClick={() => toggleDrawer("careers")}
+                    onClick={() => toggleDrawer("contact")}
                     className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "careers"
+                      activeDrawerId === "contact"
                         ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
                         : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
                     }`}
                   >
-                    {t.nav.careers}
+                    {t.nav.contact}
+                  </button>
+                </li>
+
+                {/* 6. SUPPORT */}
+                <li>
+                  <button
+                    onClick={() => toggleDrawer("support")}
+                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
+                      activeDrawerId === "support"
+                        ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
+                        : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
+                    }`}
+                  >
+                    {t.nav.support}
                   </button>
                 </li>
               </ul>
             </div>
 
-            {/* Right Side: GLOBAL. Logo */}
-            <div className="flex items-center space-x-4">
+            {/* Right Side: GLOBAL. Logo + Employee Login */}
+            <div className="flex items-center space-x-3 sm:space-x-5">
               <a href="/" className="flex items-center group cursor-pointer" aria-label="GLOBAL. Home">
                 <GlobalLogo theme="dark" size="md" />
+              </a>
+
+              {/* Employee Login Button (Pill-shaped style with user icon, slightly larger size) */}
+              <a
+                href="/login"
+                className="inline-flex items-center space-x-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/10 hover:bg-[#ff3131] border border-white/20 hover:border-[#ff3131] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-sm hover:shadow-[0_0_18px_rgba(255,49,49,0.6)] group cursor-pointer"
+                title="Employee Login"
+              >
+                <svg className="w-4 h-4 text-red-400 group-hover:text-white transition-colors flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>{lang === "hi" ? "लॉगिन" : "Login"}</span>
               </a>
 
               {/* Mobile Hamburger Menu */}
@@ -628,19 +668,19 @@ export default function AramcoHeader() {
             </a>
 
             {/* Accordion Categories */}
-            {["what-we-do", "sustainability", "investors", "news-media", "careers"].map((id) => {
+            {["what-we-do", "capability", "news-media", "contact", "support"].map((id) => {
               const category = drawerData[id];
               const isExpanded = activeDrawerId === id;
               const name =
                 id === "what-we-do"
                   ? t.nav.whatWeDo
-                  : id === "sustainability"
-                  ? t.nav.sustainability
-                  : id === "investors"
-                  ? t.nav.investors
+                  : id === "capability"
+                  ? t.nav.capability
                   : id === "news-media"
                   ? t.nav.newsMedia
-                  : t.nav.careers;
+                  : id === "contact"
+                  ? t.nav.contact
+                  : t.nav.support;
 
               return (
                 <div key={id} className="border-b border-white/5">
@@ -703,7 +743,17 @@ export default function AramcoHeader() {
             })}
 
             {/* Quick Action CTA in Mobile Drawer */}
-            <div className="pt-4 mt-2">
+            <div className="pt-4 mt-2 space-y-2">
+              <a
+                href="/login"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-center text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2"
+              >
+                <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>{lang === "hi" ? "कर्मचारी लॉगिन (Login)" : "Employee Login"}</span>
+              </a>
               <a
                 href="#contact-engineering"
                 onClick={() => setIsMobileMenuOpen(false)}

@@ -122,10 +122,6 @@ export default function WhatWeBelieve() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-              <span>{t.whatWeBelieve.badge}</span>
-            </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-relaxed text-[#1e293b] font-sans">
               {t.whatWeBelieve.headline}
             </h2>

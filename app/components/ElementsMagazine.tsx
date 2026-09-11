@@ -111,10 +111,6 @@ export default function ElementsMagazine() {
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-              <span>{lang === "hi" ? "हमारे समाधान" : "OUR SOLUTIONS"}</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#1e293b] leading-[1.2] font-sans mb-3">
               {lang === "hi" ? "दो विशेष प्रणालियां।" : "Two specialised systems."} <br />
               <span className="font-semibold text-gray-900">
@@ -169,9 +165,6 @@ export default function ElementsMagazine() {
                   }}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-black/70 backdrop-blur-md px-2.5 sm:px-3.5 py-1 rounded-full text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase border border-white/20">
-                  {PRODUCT_1.tag}
-                </div>
               </div>
 
               {/* Text Below Image */}
@@ -230,9 +223,6 @@ export default function ElementsMagazine() {
                     }}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-3 py-0.5 rounded-full text-white text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase border border-white/20">
-                    {prod.tag}
-                  </div>
                 </div>
 
                 {/* Text Below Image */}

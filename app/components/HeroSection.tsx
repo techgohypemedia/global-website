@@ -204,10 +204,9 @@ export default function HeroSection() {
               transition: "opacity 1000ms ease-in-out, transform 5000ms cubic-bezier(0.25, 1, 0.5, 1)",
             }}
           >
-            {/* Cinematic Multilayer Vignettes */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/45 to-black/90" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-black/20 sm:to-transparent" />
-            <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/70 pointer-events-none" />
+            {/* Clean, Bright & Crisp Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/25 to-transparent" />
           </div>
         );
       })}
@@ -223,21 +222,7 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-40 lg:pt-44 pb-3 sm:pb-0 flex-grow flex flex-col justify-center w-full">
         <div className="max-w-3xl text-start">
           
-          {/* Tag Category Pill with Red Glowing Live Dot */}
-          <div className="overflow-hidden mb-3 sm:mb-4">
-            <div
-              key={`tag-${activeSlide.id}-${lang}`}
-              className="inline-flex items-center space-x-2 rtl:space-x-reverse px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-red-500/40 text-white shadow-xl animate-fadeIn"
-            >
-              <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-red-500 shadow-[0_0_8px_#ef4444]" />
-              </span>
-              <span className="text-[10px] sm:text-xs font-bold tracking-widest text-gray-200 uppercase font-sans truncate max-w-[280px] sm:max-w-none">
-                {activeSlide.tag}
-              </span>
-            </div>
-          </div>
+
 
           {/* Main Headline */}
           <h1

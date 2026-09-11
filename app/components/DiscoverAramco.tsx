@@ -48,12 +48,7 @@ export default function DiscoverAramco() {
         
         {/* Header Title Section */}
         <div className="max-w-4xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-3.5">
-            <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-            <span>
-              {lang === "hi" ? "कठिन परिचालन के लिए इंजीनियर" : "ENGINEERED FOR CRITICAL OPERATIONS"}
-            </span>
-          </div>
+
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
             {lang === "hi" ? "सुरक्षा वहां, जहां विश्वसनीयता सबसे महत्वपूर्ण है।" : "Protection where reliability matters most."}
           </h2>
@@ -98,15 +93,6 @@ export default function DiscoverAramco() {
 
               {/* Gradient overlay: Active by default on mobile for legibility, hover on desktop */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent sm:from-black/40 sm:via-transparent sm:to-black/10 sm:group-hover:from-black/90 sm:group-hover:via-black/60 sm:group-hover:to-black/35 transition-all duration-400 pointer-events-none" />
-
-              {/* Text Content: Visible by default on mobile, Slides up & Fades in on Hover on desktop */}
-              <div className="relative z-10 opacity-100 sm:opacity-0 sm:-translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-400 ease-out">
-                {/* Category Badge */}
-                <div className="inline-flex items-center text-[10px] sm:text-xs font-bold tracking-widest text-white/95 uppercase mb-2 bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/20 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131] mr-1.5 inline-block" />
-                  {card.category}
-                </div>
-              </div>
 
               {/* Bottom Section: Title & Arrow */}
               <div className="relative z-10 mt-auto opacity-100 sm:opacity-0 sm:translate-y-5 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-400 ease-out">

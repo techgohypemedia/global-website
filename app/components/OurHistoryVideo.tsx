@@ -82,10 +82,6 @@ export default function OurHistoryVideo() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-              <span>{t.history.badge}</span>
-            </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#1e293b] leading-tight font-sans">
               {t.history.titleLine1} <br className="hidden sm:inline" />
               {t.history.titleLine2}
@@ -143,14 +139,6 @@ export default function OurHistoryVideo() {
 
           {/* Subtle Bottom Gradient for Text Legibility */}
           <div className="absolute inset-x-0 bottom-0 h-32 sm:h-44 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
-
-          {/* Top Floating Badge */}
-          <div className="absolute top-3 left-3 sm:top-5 sm:left-5 z-20 pointer-events-none">
-            <div className="inline-flex items-center space-x-1.5 sm:space-x-2 text-[9px] sm:text-xs font-semibold tracking-wider text-white uppercase bg-black/60 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/20 shadow-md">
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ff3131] animate-pulse" />
-              <span>{lang === "hi" ? "इंजीनियरिंग शोकेस" : "ENGINEERING SHOWCASE"}</span>
-            </div>
-          </div>
 
           {/* Minimal Floating Controls (Top Right) */}
           <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 flex items-center space-x-2 opacity-90 group-hover:opacity-100 transition-opacity">

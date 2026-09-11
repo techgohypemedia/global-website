@@ -19,10 +19,10 @@ export interface TranslationSchema {
   nav: {
     about: string;
     whatWeDo: string;
-    sustainability: string;
-    investors: string;
+    capability: string;
     newsMedia: string;
-    careers: string;
+    contact: string;
+    support: string;
   };
   hero: {
     tag: string;
@@ -174,12 +174,12 @@ export const translations: Record<Language, TranslationSchema> = {
     selectRegion: "Select Region",
     searchPlaceholder: "Search railway barriers, earth leakage detectors, technical specifications...",
     nav: {
-      about: "ABOUT",
-      whatWeDo: "PRODUCTS",
-      sustainability: "ENGINEERING",
-      investors: "APPLICATIONS",
-      newsMedia: "RESOURCES",
-      careers: "CONTACT",
+      about: "ABOUT US",
+      whatWeDo: "WHAT WE DO",
+      capability: "CAPABILITY",
+      newsMedia: "NEWS & MEDIA",
+      contact: "CONTACT",
+      support: "SUPPORT",
     },
     hero: {
       tag: "RAILWAY & ELECTRICAL SAFETY SYSTEMS",
@@ -340,11 +340,11 @@ export const translations: Record<Language, TranslationSchema> = {
     searchPlaceholder: "रेलवे बैरियर, अर्थ लीकेज डिटेक्टर, तकनीकी विवरण खोजें...",
     nav: {
       about: "परिचय",
-      whatWeDo: "उत्पाद",
-      sustainability: "इंजीनियरिंग",
-      investors: "उपयोग",
-      newsMedia: "संसाधन",
-      careers: "संपर्क",
+      whatWeDo: "हम क्या करते हैं",
+      capability: "क्षमताएं",
+      newsMedia: "समाचार एवं मीडिया",
+      contact: "संपर्क",
+      support: "सहायता",
     },
     hero: {
       tag: "रेलवे एवं विद्युत सुरक्षा प्रणालियां",
