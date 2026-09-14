@@ -5,16 +5,17 @@ import { useLanguage } from "../context/LanguageContext";
 import GlobalLogo from "./GlobalLogo";
 
 const PRODUCTS_LINKS_EN = [
-  { name: "Railway Barrier System", href: "#railway-barrier-system" },
-  { name: "Digital Earth Leakage Detector", href: "#earth-leakage-detector" },
-  { name: "Fail-Safe Signaling Mechanism", href: "#signaling" },
-  { name: "Industrial Electrical Panels", href: "#industrial-panels" },
+  { name: "Railway Barrier System", href: "/products/railway-barrier-system" },
+  { name: "Digital Earth Leakage Detector", href: "/products/earth-leakage-detector" },
+  { name: "Fail-Safe Architecture", href: "/capability/fail-safe-architecture" },
+  { name: "Rugged Industrial Construction", href: "/capability/rugged-industrial-construction" },
+  { name: "Diagnostics & System Integration", href: "/capability/diagnostics-system-integration" },
 ];
 
 const COMPANY_LINKS_EN = [
   { name: "About Us", href: "/about" },
-  { name: "Careers", href: "#careers" },
-  { name: "Contact Us", href: "#contact-engineering" },
+  { name: "Capabilities Overview", href: "/capability" },
+  { name: "Contact Engineering", href: "#contact-engineering" },
   { name: "Request a Quote", href: "#contact-engineering" },
 ];
 
@@ -26,15 +27,16 @@ const LEGAL_SUPPORT_LINKS_EN = [
 ];
 
 const PRODUCTS_LINKS_HI = [
-  { name: "रेलवे बैरियर सिस्टम", href: "#railway-barrier-system" },
-  { name: "डिजिटल अर्थ लीकेज डिटेक्टर", href: "#earth-leakage-detector" },
-  { name: "सिग्नलिंग इंटरफेस", href: "#signaling" },
-  { name: "औद्योगिक विद्युत पैनल", href: "#industrial-panels" },
+  { name: "रेलवे बैरियर सिस्टम", href: "/products/railway-barrier-system" },
+  { name: "डिजिटल अर्थ लीकेज डिटेक्टर", href: "/products/earth-leakage-detector" },
+  { name: "फेल-सेफ आर्किटेक्चर", href: "/capability/fail-safe-architecture" },
+  { name: "मजबूत औद्योगिक निर्माण", href: "/capability/rugged-industrial-construction" },
+  { name: "डायग्नोस्टिक्स एवं एकीकरण", href: "/capability/diagnostics-system-integration" },
 ];
 
 const COMPANY_LINKS_HI = [
   { name: "हमारे बारे में", href: "/about" },
-  { name: "करियर", href: "#careers" },
+  { name: "क्षमताएं अवलोकन", href: "/capability" },
   { name: "संपर्क करें", href: "#contact-engineering" },
   { name: "कोटेशन प्राप्त करें", href: "#contact-engineering" },
 ];

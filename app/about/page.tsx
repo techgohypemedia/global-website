@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import AramcoHeader from "../components/AramcoHeader";
 import NewsletterSection from "../components/NewsletterSection";
 import Footer from "../components/Footer";
@@ -123,7 +124,7 @@ function AboutUsContent() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0c] text-white font-sans selection:bg-[#ff3131] selection:text-white pt-[104px] sm:pt-[120px]">
+    <div className="min-h-screen bg-[#0a0a0c] text-white font-sans selection:bg-[#ff3131] selection:text-white relative">
       {/* 1. Header */}
       <AramcoHeader />
 
@@ -133,24 +134,28 @@ function AboutUsContent() {
         =======================================================================
       */}
       <section
-        className="relative w-full h-[calc(100vh-104px)] sm:h-[calc(100vh-120px)] min-h-[480px] sm:min-h-[600px] overflow-hidden bg-black select-none border-b border-white/10"
+        className="relative w-full h-[75vh] sm:h-[88vh] min-h-[520px] sm:min-h-[640px] overflow-hidden bg-black select-none border-b border-white/10"
       >
         {/* Full-bleed Bright & Fresh HD Images with 3s Crossfade */}
         {TOP_BANNER_SLIDES.map((slide, idx) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-              }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+            }`}
           >
             <div
-              className={`w-full h-full bg-cover bg-center transition-transform duration-[5000ms] ease-out ${idx === currentSlide ? "scale-105" : "scale-100"
-                }`}
+              className={`w-full h-full bg-cover bg-center transition-transform duration-[5000ms] ease-out ${
+                idx === currentSlide ? "scale-105" : "scale-100"
+              }`}
               style={{
                 backgroundImage: `url(${slide.image})`,
               }}
             />
           </div>
         ))}
+        {/* Top Vignette Gradient for Navbar Legibility & Depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/50 pointer-events-none z-10" />
       </section>
 
       {/* 
@@ -160,102 +165,162 @@ function AboutUsContent() {
       */}
       <section className="relative w-full py-20 sm:py-28 bg-[#0a0a0c] text-white overflow-hidden border-b border-white/10">
 
-        {/* Ambient Glows */}
-        <div className="absolute top-10 left-1/4 w-[36rem] h-[24rem] bg-[#ff3131]/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-[30rem] h-[20rem] bg-rose-700/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
+        {/* Ambient Subtle Depth (Clean, Deep Industrial Background) */}
+        <div className="absolute top-1/4 left-1/3 w-[32rem] h-[32rem] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute -bottom-10 right-10 w-[24rem] h-[24rem] bg-[#ff3131]/[0.025] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:28px_28px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
             {/* Left Content */}
             <div className="lg:col-span-7">
-              <div className="text-xs sm:text-sm font-semibold tracking-widest text-[#ff3131] uppercase mb-4">
-                {lang === "hi" ? "ग्लोबल अवसंरचना सुरक्षा एवं विद्युत निगरानी" : "GLOBAL INFRASTRUCTURE SAFETY & ELECTRICAL MONITORING"}
+              {/* Refined Eyebrow Pill with Tasteful Red Accent Indicator */}
+              <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-medium text-gray-300 tracking-wider uppercase mb-5 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131] shadow-[0_0_8px_rgba(255,49,49,0.8)]" />
+                <span>
+                  {lang === "hi"
+                    ? "ग्लोबल अवसंरचना सुरक्षा एवं विद्युत निगरानी"
+                    : "GLOBAL Infrastructure Safety & Electrical Monitoring"}
+                </span>
               </div>
 
-              {/* Main Headline */}
-              <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.14] sm:leading-[1.12] text-white mb-5 sm:mb-7 font-sans">
+              {/* Main Headline: Clean, Authoritative White with a Brand Red Period */}
+              <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[52px] font-light tracking-tight leading-[1.14] text-white mb-5 sm:mb-6 font-sans">
                 {lang === "hi" ? (
                   <>
                     विश्वसनीय इंजीनियरिंग। <br />
-                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-[#ff3131]">
-                      सुरक्षित अवसंरचना।
+                    <span className="font-semibold text-white">
+                      सुरक्षित अवसंरचना<span className="text-[#ff3131]">.</span>
                     </span>
                   </>
                 ) : (
                   <>
                     Engineering Safety & <br />
-                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-[#ff3131]">
-                      Operational Reliability.
+                    <span className="font-semibold text-white">
+                      Operational Reliability<span className="text-[#ff3131]">.</span>
                     </span>
                   </>
                 )}
               </h2>
 
               {/* Narrative Summary */}
-              <p className="text-sm sm:text-lg text-gray-300 leading-relaxed max-w-2xl mb-8 sm:mb-10 font-light">
+              <p className="text-sm sm:text-base lg:text-[17px] text-gray-300 leading-relaxed max-w-2xl mb-8 font-light">
                 {lang === "hi"
                   ? "GLOBAL में, हम महत्वपूर्ण परिवहन और औद्योगिक नेटवर्क के लिए समर्पित सुरक्षा समाधान विकसित करते हैं। हमारी विशेषज्ञता दो मुख्य क्षेत्रों पर केंद्रित है: रेलवे बैरियर सिस्टम और डिजिटल अर्थ लीकेज डिटेक्टर — जो कठिन फील्ड परिस्थितियों में शून्य विफलता और निरंतर भरोसेमंद संचालन सुनिश्चित करते हैं।"
                   : "At GLOBAL, we engineer specialised safety systems for mission-critical infrastructure. Rather than generic catalogues, we focus exclusively on Railway Barrier Systems and Digital Earth Leakage Detectors — built with fail-safe principles to protect human life, eliminate electrical hazards, and ensure uninterrupted operations."}
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3.5 sm:gap-5">
-                <a
-                  href="/#elements"
-                  className="px-7 py-3.5 sm:py-4 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white font-medium text-center text-sm sm:text-base transition-all shadow-[0_0_25px_rgba(255,49,49,0.35)] hover:shadow-[0_0_35px_rgba(255,49,49,0.5)] cursor-pointer"
+              {/* Key Highlights Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 max-w-xl">
+                <div className="flex items-start space-x-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                  <div className="w-5 h-5 rounded-md bg-[#ff3131]/10 border border-[#ff3131]/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-[#ff3131]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-xs font-semibold text-white">
+                      {lang === "hi" ? "रेलवे बैरियर ऑटोमेशन" : "Railway Barrier Automation"}
+                    </div>
+                    <div className="text-[11px] text-gray-400 font-light">
+                      {lang === "hi" ? "फेल-सेफ बूम एवं सेंसर एकीकरण" : "Fail-safe boom interlocks & obstacle sensors"}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                  <div className="w-5 h-5 rounded-md bg-[#ff3131]/10 border border-[#ff3131]/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-[#ff3131]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-xs font-semibold text-white">
+                      {lang === "hi" ? "डिजिटल अर्थ लीकेज डिटेक्शन" : "Earth Leakage Detection"}
+                    </div>
+                    <div className="text-[11px] text-gray-400 font-light">
+                      {lang === "hi" ? "ट्रू RMS करंट एवं सतत इंसुलेशन सुरक्षा" : "True RMS continuous insulation diagnostics"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons: Clean, Sophisticated Balance */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+                <Link
+                  href="/products/railway-barrier-system"
+                  className="inline-flex items-center justify-center space-x-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-gray-950 hover:bg-gray-100 font-semibold text-sm sm:text-[15px] transition-all duration-200 shadow-md hover:shadow-lg group cursor-pointer"
                 >
-                  {lang === "hi" ? "हमारे उत्पाद देखें" : "Explore Safety Solutions"}
-                </a>
-                <a
+                  <span>{lang === "hi" ? "हमारे उत्पाद देखें" : "Explore Safety Solutions"}</span>
+                  <span className="w-5 h-5 rounded-full bg-gray-200 group-hover:bg-[#ff3131] group-hover:text-white text-gray-800 flex items-center justify-center transition-all duration-200 text-xs">
+                    →
+                  </span>
+                </Link>
+
+                <Link
                   href="/#contact-engineering"
-                  className="px-7 py-3.5 sm:py-4 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium text-center text-sm sm:text-base transition-all backdrop-blur-md cursor-pointer"
+                  className="inline-flex items-center justify-center space-x-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 hover:border-white/25 text-white font-medium text-sm sm:text-[15px] transition-all backdrop-blur-md cursor-pointer"
                 >
-                  {lang === "hi" ? "इंजीनियरिंग टीम से बात करें" : "Talk to Engineering"}
-                </a>
+                  <span>{lang === "hi" ? "इंजीनियरिंग टीम से बात करें" : "Talk to Engineering"}</span>
+                </Link>
               </div>
             </div>
 
-            {/* Right Media Composition with Technical Frame */}
+            {/* Right Media Composition with Non-Overlapping Architecture */}
             <div className="lg:col-span-5 relative">
               <div className="relative mx-auto max-w-md lg:max-w-none">
 
-                {/* Main Hero Card */}
-                <div className="w-full h-[280px] sm:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/15 relative group bg-[#111115]">
+                {/* Main Hero Card: Railway Barrier System */}
+                <div className="w-full h-[300px] sm:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/15 relative group bg-[#111115]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/boom_barrier_railway.jpg"
                     alt="GLOBAL Railway Barrier System"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c]/90 via-transparent to-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
 
-                  {/* Technical Spec Overlay */}
-                  <div className="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-black/75 backdrop-blur-md border border-white/15">
-                    <div className="text-[11px] font-bold tracking-widest text-[#ff3131] uppercase mb-1">
-                      {lang === "hi" ? "विशेषज्ञ उत्पाद 01" : "ENGINEERED FOCUS 01"}
+                  {/* Top Status Pill */}
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-mono text-emerald-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>{lang === "hi" ? "सक्रिय सिस्टम" : "ACTIVE DEPLOYMENT"}</span>
+                    </span>
+                  </div>
+
+                  {/* Docked Technical Spec Overlay - positioned cleanly on bottom left */}
+                  <div className="absolute bottom-4 left-4 right-4 sm:right-28 p-3.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/15">
+                    <div className="flex items-center space-x-1.5 text-[10px] font-bold tracking-widest text-gray-400 uppercase mb-0.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                      <span>{lang === "hi" ? "विशेषज्ञ उत्पाद 01" : "ENGINEERED DOMAIN 01"}</span>
                     </div>
-                    <div className="text-sm font-semibold text-white">
+                    <div className="text-xs sm:text-sm font-semibold text-white leading-snug">
                       {lang === "hi" ? "रेलवे बैरियर एवं लेवल क्रॉसिंग सिस्टम" : "Railway Barrier & Crossing Automation"}
                     </div>
                   </div>
                 </div>
 
-                {/* Overlapping Diagnostic Mini-Card */}
-                <div className="hidden sm:block absolute -bottom-6 -left-6 w-56 h-36 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#14141a] z-20">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/images/earth_leakage_detector_hero.jpg"
-                    alt="Digital Earth Leakage Detector"
-                    className="w-full h-full object-cover opacity-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-3 flex flex-col justify-end">
-                    <div className="text-[9px] font-bold text-[#ff3131] uppercase">
-                      {lang === "hi" ? "विशेषज्ञ उत्पाद 02" : "ENGINEERED FOCUS 02"}
+                {/* Floating Telemetry Glass Card: Digital Earth Leakage Detector */}
+                <div className="hidden sm:flex absolute -bottom-6 -right-3 lg:-right-6 w-64 p-3 rounded-2xl bg-[#121318]/95 backdrop-blur-xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)] z-20 items-center space-x-3 transition-transform hover:-translate-y-1">
+                  <div className="w-14 h-14 rounded-xl overflow-hidden border border-white/10 flex-shrink-0 relative bg-black">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/images/earth_leakage_detector_hero.jpg"
+                      alt="Digital Earth Leakage Detector"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center space-x-1.5 text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                      <span>{lang === "hi" ? "उत्पाद 02" : "SYSTEM 02"}</span>
                     </div>
                     <div className="text-xs font-semibold text-white truncate">
                       {lang === "hi" ? "डिजिटल अर्थ लीकेज डिटेक्टर" : "Digital Earth Leakage Detector"}
+                    </div>
+                    <div className="text-[10px] text-gray-400 font-mono truncate mt-0.5">
+                      {lang === "hi" ? "ट्रू RMS सतत निगरानी" : "True RMS Diagnostics"}
                     </div>
                   </div>
                 </div>
@@ -517,13 +582,13 @@ function AboutUsContent() {
                 </div>
 
                 <div className="pt-4">
-                  <a
-                    href="/#elements"
+                  <Link
+                    href="/products/railway-barrier-system"
                     className="inline-flex items-center space-x-2 text-sm sm:text-base font-semibold text-[#ff3131] hover:text-white transition-colors cursor-pointer group"
                   >
                     <span>{lang === "hi" ? "रेलवे बैरियर उत्पाद विनिर्देश देखें" : "View Railway Barrier Specifications"}</span>
                     <span className="transition-transform group-hover:translate-x-1">→</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -572,13 +637,13 @@ function AboutUsContent() {
                 </div>
 
                 <div className="pt-4">
-                  <a
-                    href="/#elements"
+                  <Link
+                    href="/products/earth-leakage-detector"
                     className="inline-flex items-center space-x-2 text-sm sm:text-base font-semibold text-[#ff3131] hover:text-white transition-colors cursor-pointer group"
                   >
                     <span>{lang === "hi" ? "अर्थ लीकेज डिटेक्टर विनिर्देश देखें" : "View Earth Leakage Detector Specifications"}</span>
                     <span className="transition-transform group-hover:translate-x-1">→</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
