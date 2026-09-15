@@ -1,0 +1,217 @@
+import { NextRequest } from "next/server";
+import {
+  authenticated,
+  checkOrigin,
+  configured,
+  login,
+  logout,
+} from "@/lib/catalog-auth";
+import {
+  categories,
+  dataDir,
+  deleteCategory,
+  exportCsv,
+  getImport,
+  getImports,
+  getProduct,
+  importCsv,
+  listProducts,
+  saveCategory,
+  saveProduct,
+  setProductActive,
+  stats,
+  template,
+} from "@/lib/catalog";
+import QRCode from "qrcode";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { randomUUID } from "node:crypto";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+type Context = { params: Promise<{ action: string[] }> };
+const json = (data: unknown, status = 200) =>
+  Response.json(data, { status, headers: { "Cache-Control": "no-store" } });
+
+export async function GET(request: NextRequest, { params }: Context) {
+  const [action, id] = (await params).action;
+  if (action === "session")
+    return json({
+      authenticated: await authenticated(),
+      configured: await configured(),
+    });
+  if (action === "images" && id && /^[a-f0-9-]+\.(png|jpg|webp)$/.test(id)) {
+    try {
+      return new Response(await readFile(path.join(dataDir, "images", id)), {
+        headers: {
+          "Content-Type": id.endsWith(".png")
+            ? "image/png"
+            : id.endsWith(".webp")
+              ? "image/webp"
+              : "image/jpeg",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "public, max-age=86400",
+        },
+      });
+    } catch {
+      return json({ error: "Image not found." }, 404);
+    }
+  }
+  if (!(await authenticated())) return json({ error: "Please sign in." }, 401);
+  const q = request.nextUrl.searchParams;
+  const origin = process.env.APP_URL || request.nextUrl.origin;
+  if (action === "data") {
+    const [productData, catList, statList, importList] = await Promise.all([
+      listProducts(
+        q.get("q") || "",
+        q.get("category") || "",
+        q.get("status") || "",
+        Math.max(1, Number(q.get("page")) || 1),
+      ),
+      categories(),
+      stats(),
+      getImports(),
+    ]);
+    return json({
+      ...productData,
+      categories: catList,
+      stats: statList,
+      imports: importList,
+    });
+  }
+  if (action === "import" && id) {
+    const row = await getImport(id);
+    return row
+      ? json(JSON.parse(row.result))
+      : json({ error: "Import not found." }, 404);
+  }
+  if (action === "export" || action === "template")
+    return new Response(
+      action === "export"
+        ? await exportCsv(q.get("kind") || "products", origin)
+        : template(q.get("kind") || "products"),
+      {
+        headers: {
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Disposition": `attachment; filename="${q.get("kind") === "categories" ? "categories" : "products"}-${action}.csv"`,
+          "Cache-Control": "no-store",
+        },
+      },
+    );
+  if (action === "qr" && id) {
+    const product = await getProduct(id);
+    if (!product) return json({ error: "Product not found." }, 404);
+    const url = `${origin.replace(/\/$/, "")}/p/${id}`;
+    const svg = q.get("format") === "svg";
+    const body = svg
+      ? await QRCode.toString(url, {
+          type: "svg",
+          margin: 4,
+          errorCorrectionLevel: "M",
+        })
+      : await QRCode.toBuffer(url, {
+          width: 600,
+          margin: 4,
+          errorCorrectionLevel: "M",
+        });
+    return new Response(
+      typeof body === "string" ? body : new Uint8Array(body),
+      {
+        headers: {
+          "Content-Type": svg ? "image/svg+xml" : "image/png",
+          "Cache-Control": "no-store",
+          ...(q.has("download")
+            ? {
+                "Content-Disposition": `attachment; filename="${product.serial}.${svg ? "svg" : "png"}"`,
+              }
+            : {}),
+        },
+      },
+    );
+  }
+  return json({ error: "Not found." }, 404);
+}
+
+export async function POST(request: NextRequest, { params }: Context) {
+  try {
+    checkOrigin(request);
+    const [action] = (await params).action;
+    if (action === "login") {
+      if (Number(request.headers.get("content-length") || 0) > 4096)
+        throw new Error("Request is too large.");
+      const body = await request.json();
+      if (
+        typeof body.email !== "string" ||
+        typeof body.password !== "string" ||
+        body.password.length > 256
+      )
+        throw new Error("Enter your email and password.");
+      await login(body.email, body.password, body.setupToken);
+      return json({ ok: true });
+    }
+    if (!(await authenticated()))
+      return json({ error: "Please sign in." }, 401);
+    if (action === "logout") {
+      await logout();
+      return json({ ok: true });
+    }
+    if (action === "upload") {
+      if (Number(request.headers.get("content-length") || 0) > 6 * 1024 * 1024)
+        throw new Error("Image must be smaller than 5 MB.");
+      const file = (await request.formData()).get("file");
+      if (!(file instanceof File) || file.size > 5 * 1024 * 1024)
+        throw new Error("Choose a PNG, JPEG, or WebP image smaller than 5 MB.");
+      const bytes = Buffer.from(await file.arrayBuffer());
+      const ext = bytes
+        .subarray(0, 8)
+        .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))
+        ? "png"
+        : bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255
+          ? "jpg"
+          : bytes.toString("ascii", 0, 4) === "RIFF" &&
+              bytes.toString("ascii", 8, 12) === "WEBP"
+            ? "webp"
+            : null;
+      if (!ext)
+        throw new Error("Only PNG, JPEG, and WebP images are supported.");
+      await mkdir(path.join(dataDir, "images"), { recursive: true });
+      const filename = `${randomUUID()}.${ext}`;
+      await writeFile(path.join(dataDir, "images", filename), bytes);
+      return json({ url: `/api/catalog/images/${filename}` });
+    }
+    if (Number(request.headers.get("content-length") || 0) > 3 * 1024 * 1024)
+      throw new Error("Request is too large.");
+    const body = await request.json();
+    if (action === "product")
+      return json({ id: await saveProduct(body, body.id) });
+    if (action === "status") {
+      await setProductActive(body.id, Boolean(body.active));
+      return json({ ok: true });
+    }
+    if (action === "category") {
+      await saveCategory(body.name, body.id);
+      return json({ ok: true });
+    }
+    if (action === "delete-category") {
+      await deleteCategory(body.id);
+      return json({ ok: true });
+    }
+    if (action === "import")
+      return json(
+        await importCsv(
+          String(body.csv || ""),
+          body.kind,
+          body.commit === true,
+        ),
+      );
+    return json({ error: "Not found." }, 404);
+  } catch (e) {
+    return json(
+      {
+        error:
+          e instanceof Error ? e.message : "Unable to complete this request.",
+      },
+      400,
+    );
+  }
+}

@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local product registry and test artifacts
+/data/
+/.catalog-test-*/
+/test-results/
+/playwright-report/
+/.next-catalog-test/

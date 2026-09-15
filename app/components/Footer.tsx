@@ -5,17 +5,17 @@ import { useLanguage } from "../context/LanguageContext";
 import GlobalLogo from "./GlobalLogo";
 
 const PRODUCTS_LINKS_EN = [
-  { name: "Railway Barrier System", href: "/products/railway-barrier" },
-  { name: "Digital Earth Leakage Detector", href: "/products/earth-leakage" },
-  { name: "Fail-Safe Boom Mechanism", href: "/products/railway-barrier/fail-safe-boom" },
-  { name: "Continuous Insulation Monitoring", href: "/products/earth-leakage/continuous-insulation" },
+  { name: "Railway Barrier System", href: "#railway-barrier-system" },
+  { name: "Digital Earth Leakage Detector", href: "#earth-leakage-detector" },
+  { name: "Fail-Safe Signaling Mechanism", href: "#signaling" },
+  { name: "Industrial Electrical Panels", href: "#industrial-panels" },
 ];
 
 const COMPANY_LINKS_EN = [
   { name: "About Us", href: "/about" },
-  { name: "Engineering Capabilities", href: "/capability" },
-  { name: "Industry Sectors", href: "/sectors" },
-  { name: "Request a Quote", href: "/contact/quote-req" },
+  { name: "Careers", href: "#careers" },
+  { name: "Contact Us", href: "#contact-engineering" },
+  { name: "Request a Quote", href: "#contact-engineering" },
 ];
 
 const LEGAL_SUPPORT_LINKS_EN = [
@@ -26,17 +26,17 @@ const LEGAL_SUPPORT_LINKS_EN = [
 ];
 
 const PRODUCTS_LINKS_HI = [
-  { name: "रेलवे बैरियर सिस्टम", href: "/products/railway-barrier" },
-  { name: "डिजिटल अर्थ लीकेज डिटेक्टर", href: "/products/earth-leakage" },
-  { name: "सुरक्षित बूम तंत्र", href: "/products/railway-barrier/fail-safe-boom" },
-  { name: "इंसुलेशन निगरानी", href: "/products/earth-leakage/continuous-insulation" },
+  { name: "रेलवे बैरियर सिस्टम", href: "#railway-barrier-system" },
+  { name: "डिजिटल अर्थ लीकेज डिटेक्टर", href: "#earth-leakage-detector" },
+  { name: "सिग्नलिंग इंटरफेस", href: "#signaling" },
+  { name: "औद्योगिक विद्युत पैनल", href: "#industrial-panels" },
 ];
 
 const COMPANY_LINKS_HI = [
   { name: "हमारे बारे में", href: "/about" },
-  { name: "इंजीनियरिंग क्षमताएं", href: "/capability" },
-  { name: "उद्योग अनुप्रयोग", href: "/sectors" },
-  { name: "कोटेशन प्राप्त करें", href: "/contact/quote-req" },
+  { name: "करियर", href: "#careers" },
+  { name: "संपर्क करें", href: "#contact-engineering" },
+  { name: "कोटेशन प्राप्त करें", href: "#contact-engineering" },
 ];
 
 const LEGAL_SUPPORT_LINKS_HI = [
@@ -63,7 +63,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-white text-gray-900 pt-16 sm:pt-20 pb-12 border-t border-gray-200 font-sans select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Brand Summary Banner */}
         <div className="mb-12 pb-10 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
@@ -98,7 +98,7 @@ export default function Footer() {
 
         {/* Main Columns Grid: 3 Clean Columns */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 pb-12 sm:pb-16">
-          
+
           {/* Column 1: PRODUCTS */}
           <div>
             <h4 className="text-xs font-bold text-gray-900 tracking-wider uppercase mb-4 sm:mb-6">
@@ -160,7 +160,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 sm:pt-10 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 text-center sm:text-left">
-          
+
           <div className="text-xs text-gray-600 order-3 sm:order-1 font-normal">
             {t.footer.copyright}
           </div>

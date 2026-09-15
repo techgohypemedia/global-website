@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 import { useLanguage } from "../context/LanguageContext";
 import GlobalLogo from "./GlobalLogo";
 
@@ -208,8 +207,11 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
   },
 };
 
-export default function AramcoHeader() {
-  const pathname = usePathname();
+interface AramcoHeaderProps {
+  theme?: "dark" | "light";
+}
+
+export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
   const { lang, setLang, t } = useLanguage();
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -331,9 +333,13 @@ export default function AramcoHeader() {
       */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 font-sans select-none ${
-          isScrolled || activeDrawerId || pathname !== "/"
-            ? "bg-[#111113] shadow-2xl text-white border-b border-white/10"
-            : "bg-transparent text-white"
+          theme === "light"
+            ? isScrolled || activeDrawerId
+              ? "bg-white/95 backdrop-blur-md shadow-md text-gray-900 border-b border-gray-200"
+              : "bg-white/95 backdrop-blur-md text-gray-900 border-b border-gray-200/80 shadow-sm"
+            : isScrolled || activeDrawerId
+              ? "bg-[#111113]/90 backdrop-blur-md shadow-2xl text-white border-b border-white/10"
+              : "bg-gradient-to-b from-black/75 via-black/25 to-transparent text-white border-b border-transparent"
         }`}
       >
         
@@ -342,7 +348,9 @@ export default function AramcoHeader() {
           className={`w-full transition-all duration-300 ${
             isScrolled
               ? "max-h-0 opacity-0 border-b border-transparent py-0 pointer-events-none overflow-hidden"
-              : "max-h-12 opacity-100 border-b border-white/10 overflow-visible relative z-50"
+              : theme === "light"
+                ? "max-h-12 opacity-100 border-b border-gray-200/80 overflow-visible relative z-50"
+                : "max-h-12 opacity-100 border-b border-white/10 overflow-visible relative z-50"
           }`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] relative overflow-visible">
@@ -353,16 +361,24 @@ export default function AramcoHeader() {
                 <button
                   onClick={() => setLang("hi")}
                   className={`transition-colors duration-200 hover:text-[#ff3131] font-medium cursor-pointer ${
-                    lang === "hi" ? "text-[#ff3131] font-bold" : "text-white"
+                    lang === "hi"
+                      ? "text-[#ff3131] font-bold"
+                      : theme === "light"
+                      ? "text-gray-700 hover:text-[#ff3131]"
+                      : "text-white"
                   }`}
                 >
                   हिन्दी
                 </button>
-                <span className="text-white/40">|</span>
+                <span className={theme === "light" ? "text-gray-300" : "text-white/40"}>|</span>
                 <button
                   onClick={() => setLang("en")}
                   className={`transition-colors duration-200 hover:text-[#ff3131] font-medium cursor-pointer ${
-                    lang === "en" ? "text-[#ff3131] font-bold" : "text-white"
+                    lang === "en"
+                      ? "text-[#ff3131] font-bold"
+                      : theme === "light"
+                      ? "text-gray-700 hover:text-[#ff3131]"
+                      : "text-white"
                   }`}
                 >
                   English
@@ -371,7 +387,11 @@ export default function AramcoHeader() {
 
               <a
                 href="#global-contacts"
-                className="text-white/90 hover:text-[#ff3131] transition-colors duration-200 text-xs sm:text-[13px] font-normal"
+                className={`transition-colors duration-200 text-xs sm:text-[13px] font-normal ${
+                  theme === "light"
+                    ? "text-gray-600 hover:text-[#ff3131]"
+                    : "text-white/90 hover:text-[#ff3131]"
+                }`}
               >
                 {t.globalContacts}
               </a>
@@ -382,7 +402,9 @@ export default function AramcoHeader() {
               <div className="relative">
                 <button
                   onClick={() => setIsRegionOpen(!isRegionOpen)}
-                  className="flex items-center space-x-1.5 sm:space-x-2 text-white/90 hover:text-white group transition-colors duration-200 cursor-pointer"
+                  className={`flex items-center space-x-1.5 sm:space-x-2 group transition-colors duration-200 cursor-pointer ${
+                    theme === "light" ? "text-gray-700 hover:text-gray-950" : "text-white/90 hover:text-white"
+                  }`}
                   aria-expanded={isRegionOpen}
                 >
                   <span className="text-xs sm:text-[13px] hidden sm:inline-block font-normal">
@@ -391,14 +413,30 @@ export default function AramcoHeader() {
                   <span className="text-xs sm:hidden font-normal">Global</span>
 
                   {/* Globe Icon */}
-                  <svg className="w-4 h-4 text-white/90 group-hover:text-[#ff3131] transition-colors" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                  <svg
+                    className={`w-4 h-4 transition-colors ${
+                      theme === "light" ? "text-gray-600 group-hover:text-[#ff3131]" : "text-white/90 group-hover:text-[#ff3131]"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    viewBox="0 0 24 24"
+                  >
                     <circle cx="12" cy="12" r="10" />
                     <path d="M2 12h20" />
                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                   </svg>
 
                   {/* Dropdown Chevron */}
-                  <svg className={`w-3 h-3 text-white/80 transition-transform duration-200 ${isRegionOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <svg
+                    className={`w-3 h-3 transition-transform duration-200 ${
+                      theme === "light" ? "text-gray-500" : "text-white/80"
+                    } ${isRegionOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -446,7 +484,9 @@ export default function AramcoHeader() {
               {/* Accessibility Icon */}
               <button
                 aria-label="Accessibility settings"
-                className="p-1 rounded text-white/90 hover:text-[#ff3131] transition-colors duration-200 cursor-pointer"
+                className={`p-1 rounded transition-colors duration-200 cursor-pointer ${
+                  theme === "light" ? "text-gray-700 hover:text-[#ff3131]" : "text-white/90 hover:text-[#ff3131]"
+                }`}
                 title="Accessibility"
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
@@ -469,7 +509,11 @@ export default function AramcoHeader() {
               {/* Search Button */}
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 rounded-full text-white/90 hover:text-[#ff3131] hover:bg-white/10 transition-all duration-200 cursor-pointer flex items-center space-x-1"
+                className={`p-2 rounded-full transition-all duration-200 cursor-pointer flex items-center space-x-1 ${
+                  theme === "light"
+                    ? "text-gray-700 hover:text-[#ff3131] hover:bg-gray-100"
+                    : "text-white/90 hover:text-[#ff3131] hover:bg-white/10"
+                }`}
                 aria-label="Search"
                 title="Search"
               >
@@ -486,7 +530,11 @@ export default function AramcoHeader() {
                 <li>
                   <a
                     href="/about"
-                    className="text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 text-white/90 hover:text-[#ff3131] border-b-2 border-transparent hover:border-[#ff3131]"
+                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 border-b-2 border-transparent hover:border-[#ff3131] ${
+                      theme === "light"
+                        ? "text-gray-800 hover:text-[#ff3131]"
+                        : "text-white/90 hover:text-[#ff3131]"
+                    }`}
                   >
                     {t.nav.about}
                   </a>
@@ -499,6 +547,8 @@ export default function AramcoHeader() {
                     className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
                       activeDrawerId === "what-we-do"
                         ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
+                        : theme === "light"
+                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
                         : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
                     }`}
                   >
@@ -513,6 +563,8 @@ export default function AramcoHeader() {
                     className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
                       activeDrawerId === "capability"
                         ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
+                        : theme === "light"
+                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
                         : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
                     }`}
                   >
@@ -527,6 +579,8 @@ export default function AramcoHeader() {
                     className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
                       activeDrawerId === "news-media"
                         ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
+                        : theme === "light"
+                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
                         : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
                     }`}
                   >
@@ -541,6 +595,8 @@ export default function AramcoHeader() {
                     className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
                       activeDrawerId === "contact"
                         ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
+                        : theme === "light"
+                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
                         : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
                     }`}
                   >
@@ -555,6 +611,8 @@ export default function AramcoHeader() {
                     className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
                       activeDrawerId === "support"
                         ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
+                        : theme === "light"
+                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
                         : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
                     }`}
                   >
@@ -567,16 +625,20 @@ export default function AramcoHeader() {
             {/* Right Side: GLOBAL. Logo + Employee Login */}
             <div className="flex items-center space-x-3 sm:space-x-5">
               <a href="/" className="flex items-center group cursor-pointer" aria-label="GLOBAL. Home">
-                <GlobalLogo theme="dark" size="md" />
+                <GlobalLogo theme={theme === "light" ? "light" : "dark"} size="md" />
               </a>
 
               {/* Employee Login Button (Pill-shaped style with user icon, slightly larger size) */}
               <a
                 href="/login"
-                className="inline-flex items-center space-x-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/10 hover:bg-[#ff3131] border border-white/20 hover:border-[#ff3131] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-sm hover:shadow-[0_0_18px_rgba(255,49,49,0.6)] group cursor-pointer"
+                className={`inline-flex items-center space-x-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-sm group cursor-pointer ${
+                  theme === "light"
+                    ? "bg-red-50 hover:bg-[#ff3131] border border-red-200 hover:border-[#ff3131] text-gray-800 hover:text-white hover:shadow-[0_0_18px_rgba(255,49,49,0.4)]"
+                    : "bg-white/10 hover:bg-[#ff3131] border border-white/20 hover:border-[#ff3131] text-white hover:shadow-[0_0_18px_rgba(255,49,49,0.6)]"
+                }`}
                 title="Employee Login"
               >
-                <svg className="w-4 h-4 text-red-400 group-hover:text-white transition-colors flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#ff3131] group-hover:text-white transition-colors flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <span>{lang === "hi" ? "लॉगिन" : "Login"}</span>
@@ -585,7 +647,9 @@ export default function AramcoHeader() {
               {/* Mobile Hamburger Menu */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 text-white hover:text-[#ff3131] focus:outline-none"
+                className={`lg:hidden p-2 hover:text-[#ff3131] focus:outline-none ${
+                  theme === "light" ? "text-gray-900" : "text-white"
+                }`}
                 aria-label="Toggle menu"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -603,8 +667,12 @@ export default function AramcoHeader() {
 
         {/* Search Popup */}
         {isSearchOpen && (
-          <div className="bg-black/90 backdrop-blur-md border-t border-white/10 px-4 sm:px-8 py-3 animate-in fade-in duration-200">
-            <div className="max-w-4xl mx-auto flex items-center bg-white/10 rounded-full px-4 py-2 border border-white/20">
+          <div className={`backdrop-blur-md border-t px-4 sm:px-8 py-3 animate-in fade-in duration-200 ${
+            theme === "light" ? "bg-white/95 border-gray-200 shadow-lg" : "bg-black/90 border-white/10"
+          }`}>
+            <div className={`max-w-4xl mx-auto flex items-center rounded-full px-4 py-2 border ${
+              theme === "light" ? "bg-gray-100 border-gray-300" : "bg-white/10 border-white/20"
+            }`}>
               <svg className="w-5 h-5 text-gray-400 mr-3 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="8" strokeWidth="2" />
                 <path d="M21 21l-4.35-4.35" strokeWidth="2" strokeLinecap="round" />
@@ -612,12 +680,16 @@ export default function AramcoHeader() {
               <input
                 type="text"
                 placeholder={t.searchPlaceholder}
-                className="bg-transparent text-white w-full focus:outline-none text-sm placeholder-gray-400"
+                className={`bg-transparent w-full focus:outline-none text-sm placeholder-gray-400 ${
+                  theme === "light" ? "text-gray-900" : "text-white"
+                }`}
                 autoFocus
               />
               <button
                 onClick={() => setIsSearchOpen(false)}
-                className="text-gray-400 hover:text-white text-xs px-2 cursor-pointer"
+                className={`text-xs px-2 cursor-pointer ${
+                  theme === "light" ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"
+                }`}
               >
                 ✕
               </button>
@@ -627,10 +699,18 @@ export default function AramcoHeader() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-[#141414]/98 backdrop-blur-xl border-t border-white/10 px-5 py-5 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className={`lg:hidden backdrop-blur-xl border-t px-5 py-5 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200 ${
+            theme === "light"
+              ? "bg-white/98 border-gray-200 text-gray-900"
+              : "bg-[#141414]/98 border-white/10 text-white"
+          }`}>
             {/* Quick Mobile Language Switcher */}
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-              <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">
+            <div className={`flex items-center justify-between pb-3 mb-3 border-b ${
+              theme === "light" ? "border-gray-200" : "border-white/10"
+            }`}>
+              <span className={`text-xs font-medium uppercase tracking-wider ${
+                theme === "light" ? "text-gray-500" : "text-gray-400"
+              }`}>
                 {lang === "hi" ? "भाषा चुनें" : "Language"}
               </span>
               <div className="flex items-center space-x-2 text-xs">
@@ -639,6 +719,8 @@ export default function AramcoHeader() {
                   className={`px-2.5 py-1 rounded-md transition-colors ${
                     lang === "hi"
                       ? "bg-[#ff3131] text-white font-bold"
+                      : theme === "light"
+                      ? "bg-gray-100 text-gray-700"
                       : "bg-white/10 text-white/80"
                   }`}
                 >
@@ -649,6 +731,8 @@ export default function AramcoHeader() {
                   className={`px-2.5 py-1 rounded-md transition-colors ${
                     lang === "en"
                       ? "bg-[#ff3131] text-white font-bold"
+                      : theme === "light"
+                      ? "bg-gray-100 text-gray-700"
                       : "bg-white/10 text-white/80"
                   }`}
                 >
@@ -660,7 +744,9 @@ export default function AramcoHeader() {
             {/* Direct About Link */}
             <a
               href="/about"
-              className="block w-full text-left text-sm font-bold tracking-wider uppercase text-white/90 hover:text-[#ff3131] py-2.5 border-b border-white/5 flex items-center justify-between"
+              className={`block w-full text-left text-sm font-bold tracking-wider uppercase py-2.5 border-b flex items-center justify-between hover:text-[#ff3131] ${
+                theme === "light" ? "text-gray-900 border-gray-100" : "text-white/90 border-white/5"
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <span>{t.nav.about}</span>
@@ -683,14 +769,16 @@ export default function AramcoHeader() {
                   : t.nav.support;
 
               return (
-                <div key={id} className="border-b border-white/5">
+                <div key={id} className={`border-b ${theme === "light" ? "border-gray-100" : "border-white/5"}`}>
                   <button
                     onClick={() => setActiveDrawerId((prev) => (prev === id ? null : id))}
-                    className="w-full text-left text-sm font-bold tracking-wider uppercase text-white/90 hover:text-[#ff3131] py-3 flex items-center justify-between cursor-pointer"
+                    className={`w-full text-left text-sm font-bold tracking-wider uppercase hover:text-[#ff3131] py-3 flex items-center justify-between cursor-pointer ${
+                      theme === "light" ? "text-gray-900" : "text-white/90"
+                    }`}
                   >
                     <span>{name}</span>
                     <svg
-                      className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                      className={`w-4 h-4 transition-transform duration-200 text-gray-400 ${
                         isExpanded ? "rotate-180 text-[#ff3131]" : ""
                       }`}
                       fill="none"
@@ -713,12 +801,16 @@ export default function AramcoHeader() {
                               setIsMobileMenuOpen(false);
                               setActiveDrawerId(null);
                             }}
-                            className="block text-xs font-semibold text-gray-200 hover:text-[#ff3131] py-1 transition-colors"
+                            className={`block text-xs font-semibold hover:text-[#ff3131] py-1 transition-colors ${
+                              theme === "light" ? "text-gray-700" : "text-gray-200"
+                            }`}
                           >
                             • {item.name}
                           </a>
                           {item.submenuItems && item.submenuItems.length > 0 && (
-                            <div className="pl-3 mt-1 space-y-1 border-l border-white/10">
+                            <div className={`pl-3 mt-1 space-y-1 border-l ${
+                              theme === "light" ? "border-gray-200" : "border-white/10"
+                            }`}>
                               {item.submenuItems.map((sub) => (
                                 <a
                                   key={sub.name}
@@ -727,7 +819,9 @@ export default function AramcoHeader() {
                                     setIsMobileMenuOpen(false);
                                     setActiveDrawerId(null);
                                   }}
-                                  className="block text-[11px] text-gray-400 hover:text-white py-0.5"
+                                  className={`block text-[11px] hover:text-[#ff3131] py-0.5 ${
+                                    theme === "light" ? "text-gray-500" : "text-gray-400 hover:text-white"
+                                  }`}
                                 >
                                   - {sub.name}
                                 </a>
@@ -747,9 +841,13 @@ export default function AramcoHeader() {
               <a
                 href="/login"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-center text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2"
+                className={`block w-full py-2.5 rounded-full text-center text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 border ${
+                  theme === "light"
+                    ? "bg-red-50 hover:bg-red-100 border-red-200 text-gray-900"
+                    : "bg-white/10 hover:bg-white/20 border-white/20 text-white"
+                }`}
               >
-                <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#ff3131]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <span>{lang === "hi" ? "कर्मचारी लॉगिन (Login)" : "Employee Login"}</span>
@@ -786,20 +884,31 @@ export default function AramcoHeader() {
 
       {/* Slide-over Multi-Panel Drawer starting below Navbar */}
       <aside
-        className={`fixed bottom-0 z-40 flex shadow-2xl border-white/10 transition-all duration-300 ease-out font-sans ${
+        className={`fixed bottom-0 z-40 flex shadow-2xl transition-all duration-300 ease-out font-sans ${
+          theme === "light" ? "border-gray-200" : "border-white/10"
+        } ${
           isScrolled ? "top-16 sm:top-20" : "top-[104px] sm:top-[120px]"
         } left-0 border-r ${currentDrawer ? "translate-x-0" : "-translate-x-full"}`}
         aria-label="Multi-level navigation drawer"
       >
         {/* COLUMN 1: Main Category List */}
-        <div className="w-[300px] sm:w-[350px] bg-[#1a1a1a] text-white pt-8 sm:pt-10 p-7 sm:p-9 flex flex-col justify-between overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden border-r border-white/10">
+        <div className={`w-[300px] sm:w-[350px] pt-6 sm:pt-7 p-7 sm:p-9 flex flex-col justify-between overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden border-r ${
+          theme === "light" ? "bg-white text-gray-900 border-gray-200" : "bg-[#1a1a1a] text-white border-white/10"
+        }`}>
           <div>
-            {/* Top Row: Red Close 'X' Button on Right (Shown when only Column 1 is open) */}
-            {!hasSecondColumn && (
-              <div className="flex justify-end mb-4">
+            {/* Heading row with close button on right when Column 2 is not open */}
+            <div className="flex items-center justify-between mb-8">
+              <h3 className={`text-xl sm:text-2xl font-medium tracking-tight font-sans ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}>
+                {currentDrawer?.title}
+              </h3>
+              {!hasSecondColumn && (
                 <button
                   onClick={closeDrawer}
-                  className="text-[#ff3131] hover:text-[#f87171] p-1.5 rounded-full hover:bg-white/5 transition-all cursor-pointer group"
+                  className={`p-1.5 rounded-full transition-all cursor-pointer group flex-shrink-0 ${
+                    theme === "light" ? "text-gray-600 hover:text-[#ff3131] hover:bg-gray-100" : "text-[#ff3131] hover:text-[#f87171] hover:bg-white/5"
+                  }`}
                   aria-label="Close menu"
                   title="Close"
                 >
@@ -813,13 +922,8 @@ export default function AramcoHeader() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
-              </div>
-            )}
-
-            {/* Section Heading */}
-            <h3 className="text-xl sm:text-2xl font-medium text-white mb-8 tracking-tight font-sans">
-              {currentDrawer?.title}
-            </h3>
+              )}
+            </div>
 
             {/* Menu Items List */}
             <ul className="space-y-6">
@@ -833,6 +937,8 @@ export default function AramcoHeader() {
                         className={`w-full flex items-center justify-between text-sm sm:text-[15px] group transition-all duration-200 cursor-pointer text-start ${
                           isSelected
                             ? "text-[#ff3131] font-medium"
+                            : theme === "light"
+                            ? "text-gray-700 hover:text-[#ff3131]"
                             : "text-gray-300 hover:text-[#ff3131]"
                         }`}
                       >
@@ -856,7 +962,9 @@ export default function AramcoHeader() {
                       <a
                         href={item.href}
                         onClick={closeDrawer}
-                        className="w-full flex items-center justify-between text-sm sm:text-[15px] group transition-all duration-200 cursor-pointer text-start text-gray-300 hover:text-[#ff3131]"
+                        className={`w-full flex items-center justify-between text-sm sm:text-[15px] group transition-all duration-200 cursor-pointer text-start ${
+                          theme === "light" ? "text-gray-700 hover:text-[#ff3131]" : "text-gray-300 hover:text-[#ff3131]"
+                        }`}
                       >
                         <span className="transition-transform group-hover:translate-x-1">
                           {item.name}
@@ -871,20 +979,45 @@ export default function AramcoHeader() {
           </div>
 
           {/* Drawer Bottom Branding */}
-          <div className="pt-8 mt-6 border-t border-white/10 text-xs text-gray-400">
+          <div className={`pt-8 mt-6 pb-6 border-t text-xs ${
+            theme === "light" ? "border-gray-200 text-gray-500" : "border-white/10 text-gray-400"
+          }`}>
             <p>{lang === "hi" ? "ग्लोबल • विश्वसनीय रेलवे एवं विद्युत सुरक्षा समाधान" : "GLOBAL. • Dependable Railway & Electrical Safety Systems"}</p>
           </div>
         </div>
 
-        {/* COLUMN 2: Submenu Panel (Opens when clicking any subcategory, e.g. Suppliers) */}
+        {/* COLUMN 2: Submenu Panel (Opens when clicking any subcategory) */}
         {hasSecondColumn && (
-          <div className="w-[300px] sm:w-[350px] bg-[#222222] text-white pt-8 sm:pt-10 p-7 sm:p-9 flex flex-col justify-between overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden border-r border-white/10 animate-in fade-in slide-in-from-left duration-200">
+          <div className={`w-[300px] sm:w-[350px] pt-6 sm:pt-7 p-7 sm:p-9 flex flex-col justify-between overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden border-r animate-in fade-in slide-in-from-left duration-200 ${
+            theme === "light" ? "bg-[#f8f9fa] text-gray-900 border-gray-200" : "bg-[#222222] text-white border-white/10"
+          }`}>
             <div>
-              {/* Top Row: Red Close 'X' Button on Right of Column 2 */}
-              <div className="flex justify-end mb-4">
+              {/* Heading row with close button on right, perfectly aligned with Column 1 */}
+              <div className="flex items-center justify-between mb-8">
+                <a
+                  href={activeMenuItem?.href}
+                  onClick={closeDrawer}
+                  className={`text-xl sm:text-2xl font-medium hover:text-[#ff3131] tracking-tight font-sans transition-colors group inline-flex items-center space-x-1.5 ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+                  title={lang === "hi" ? "पूरा उत्पाद पृष्ठ देखें" : "View Full Product Page"}
+                >
+                  <span>{activeMenuItem?.name}</span>
+                  <svg
+                    className="w-4 h-4 text-gray-400 group-hover:text-[#ff3131] group-hover:translate-x-1 transition-all"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
                 <button
                   onClick={closeDrawer}
-                  className="text-[#ff3131] hover:text-[#f87171] p-1.5 rounded-full hover:bg-white/5 transition-all cursor-pointer group"
+                  className={`p-1.5 rounded-full transition-all cursor-pointer group flex-shrink-0 ${
+                    theme === "light" ? "text-gray-600 hover:text-[#ff3131] hover:bg-gray-100" : "text-[#ff3131] hover:text-[#f87171] hover:bg-white/5"
+                  }`}
                   aria-label="Close menu"
                   title="Close"
                 >
@@ -900,13 +1033,6 @@ export default function AramcoHeader() {
                 </button>
               </div>
 
-              {/* Submenu Heading */}
-              <div className="mb-8">
-                <h3 className="text-xl sm:text-2xl font-medium text-white tracking-tight font-sans">
-                  {activeMenuItem?.name}
-                </h3>
-              </div>
-
               {/* Submenu Items */}
               <ul className="space-y-6">
                 {activeMenuItem?.submenuItems?.map((subItem) => (
@@ -914,7 +1040,9 @@ export default function AramcoHeader() {
                     <a
                       href={subItem.href}
                       onClick={closeDrawer}
-                      className="flex items-center justify-between text-sm sm:text-[15px] font-normal leading-snug text-gray-300 hover:text-[#ff3131] group transition-all duration-200 cursor-pointer"
+                      className={`flex items-center justify-between text-sm sm:text-[15px] font-normal leading-snug group transition-all duration-200 cursor-pointer ${
+                        theme === "light" ? "text-gray-700 hover:text-[#ff3131]" : "text-gray-300 hover:text-[#ff3131]"
+                      }`}
                     >
                       <span className="font-normal group-hover:translate-x-1 transition-transform">
                         {subItem.name}
