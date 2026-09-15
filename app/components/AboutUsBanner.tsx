@@ -195,7 +195,7 @@ export default function AboutUsBanner() {
 
         {/* Floating Mouse-Following Preview Card */}
         <div
-          className="pointer-events-none absolute z-40 overflow-hidden rounded-2xl shadow-2xl border border-white/30 hidden md:block"
+          className="pointer-events-none absolute z-40 overflow-hidden rounded-none shadow-2xl border border-white/30 hidden md:block"
           style={{
             left: 0,
             top: 0,
@@ -206,7 +206,7 @@ export default function AboutUsBanner() {
               "opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), scale 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          <div className="relative w-[320px] h-[210px] bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative w-[320px] h-[210px] bg-neutral-900 rounded-none overflow-hidden shadow-2xl border border-white/20">
             {items.map((item, index) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img

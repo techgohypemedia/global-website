@@ -89,25 +89,25 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
       {
         id: "railway-barrier",
         name: "Railway Barrier System",
-        href: "#elements",
+        href: "/products/railway-barrier",
         hasSubmenu: true,
         submenuItems: [
-          { name: "Fail-Safe Boom Mechanism", href: "#elements", hasSubmenu: false },
-          { name: "Obstacle Detection Integration", href: "#elements", hasSubmenu: false },
-          { name: "Power Backup & Manual Override", href: "#elements", hasSubmenu: false },
-          { name: "Weatherproof Enclosure", href: "#elements", hasSubmenu: false },
+          { name: "Fail-Safe Boom Mechanism", href: "/products/railway-barrier/fail-safe-boom", hasSubmenu: false },
+          { name: "Obstacle Detection Integration", href: "/products/railway-barrier/obstacle-detection", hasSubmenu: false },
+          { name: "Power Backup & Manual Override", href: "/products/railway-barrier/power-backup", hasSubmenu: false },
+          { name: "Weatherproof Enclosure", href: "/products/railway-barrier/weatherproof-enclosure", hasSubmenu: false },
         ],
       },
       {
         id: "earth-leakage",
         name: "Digital Earth Leakage Detector",
-        href: "#elements",
+        href: "/products/earth-leakage",
         hasSubmenu: true,
         submenuItems: [
-          { name: "Continuous Insulation Monitoring", href: "#elements", hasSubmenu: false },
-          { name: "True RMS Current Measurement", href: "#elements", hasSubmenu: false },
-          { name: "Real-Time Digital Display", href: "#elements", hasSubmenu: false },
-          { name: "Adjustable Trip Thresholds", href: "#elements", hasSubmenu: false },
+          { name: "Continuous Insulation Monitoring", href: "/products/earth-leakage/continuous-insulation", hasSubmenu: false },
+          { name: "True RMS Current Measurement", href: "/products/earth-leakage/true-rms", hasSubmenu: false },
+          { name: "Real-Time Digital Display", href: "/products/earth-leakage/realtime-display", hasSubmenu: false },
+          { name: "Adjustable Trip Thresholds", href: "/products/earth-leakage/adjustable-thresholds", hasSubmenu: false },
         ],
       },
     ],
@@ -115,32 +115,32 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
   capability: {
     title: "Engineering & Safety",
     items: [
-      { id: "fail-safe", name: "Fail-Safe Architecture", href: "#environmental", hasSubmenu: false },
-      { id: "rugged-build", name: "Rugged Industrial Construction", href: "#environmental", hasSubmenu: false },
-      { id: "diagnostics", name: "Diagnostics & System Integration", href: "#environmental", hasSubmenu: false },
+      { id: "fail-safe", name: "Fail-Safe Architecture", href: "/capability/fail-safe", hasSubmenu: false },
+      { id: "rugged-build", name: "Rugged Industrial Construction", href: "/capability/rugged-build", hasSubmenu: false },
+      { id: "diagnostics", name: "Diagnostics & System Integration", href: "/capability/diagnostics", hasSubmenu: false },
     ],
   },
   "news-media": {
     title: "Applications & Sectors",
     items: [
-      { id: "level-crossings", name: "Railway Level Crossings", href: "#believe", hasSubmenu: false },
-      { id: "industrial-panels", name: "Industrial Electrical Panels", href: "#believe", hasSubmenu: false },
-      { id: "signalling-infra", name: "Signalling & Access Control", href: "#believe", hasSubmenu: false },
+      { id: "level-crossings", name: "Railway Level Crossings", href: "/sectors/level-crossings", hasSubmenu: false },
+      { id: "industrial-panels", name: "Industrial Electrical Panels", href: "/sectors/industrial-panels", hasSubmenu: false },
+      { id: "signalling-infra", name: "Signalling & Access Control", href: "/sectors/signalling-infra", hasSubmenu: false },
     ],
   },
   contact: {
     title: "Contact",
     items: [
-      { id: "engineering-team", name: "Talk to Engineering", href: "#banner", hasSubmenu: false },
-      { id: "quote-req", name: "Request a Quote", href: "#banner", hasSubmenu: false },
+      { id: "engineering-team", name: "Talk to Engineering", href: "/contact/engineering-team", hasSubmenu: false },
+      { id: "quote-req", name: "Request a Quote", href: "/contact/quote-req", hasSubmenu: false },
     ],
   },
   support: {
     title: "Technical Resources",
     items: [
-      { id: "datasheets", name: "Product Datasheets", href: "#case-study", hasSubmenu: false },
-      { id: "specifications", name: "Technical Specifications", href: "#case-study", hasSubmenu: false },
-      { id: "installation-guides", name: "Installation & Wiring Guides", href: "#case-study", hasSubmenu: false },
+      { id: "datasheets", name: "Product Datasheets", href: "/support/datasheets", hasSubmenu: false },
+      { id: "specifications", name: "Technical Specifications", href: "/support/specifications", hasSubmenu: false },
+      { id: "installation-guides", name: "Installation & Wiring Guides", href: "/support/installation-guides", hasSubmenu: false },
     ],
   },
 };
@@ -152,25 +152,25 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
       {
         id: "railway-barrier",
         name: "रेलवे बैरियर सिस्टम",
-        href: "#elements",
+        href: "/products/railway-barrier",
         hasSubmenu: true,
         submenuItems: [
-          { name: "सुरक्षित बूम तंत्र", href: "#elements", hasSubmenu: false },
-          { name: "अवरोध पहचान एकीकरण", href: "#elements", hasSubmenu: false },
-          { name: "पावर बैकअप एवं मैनुअल ओवरराइड", href: "#elements", hasSubmenu: false },
-          { name: "वेदरप्रूफ एनक्लोजर", href: "#elements", hasSubmenu: false },
+          { name: "सुरक्षित बूम तंत्र", href: "/products/railway-barrier/fail-safe-boom", hasSubmenu: false },
+          { name: "अवरोध पहचान एकीकरण", href: "/products/railway-barrier/obstacle-detection", hasSubmenu: false },
+          { name: "पावर बैकअप एवं मैनुअल ओवरराइड", href: "/products/railway-barrier/power-backup", hasSubmenu: false },
+          { name: "वेदरप्रूफ एनक्लोजर", href: "/products/railway-barrier/weatherproof-enclosure", hasSubmenu: false },
         ],
       },
       {
         id: "earth-leakage",
         name: "डिजिटल अर्थ लीकेज डिटेक्टर",
-        href: "#elements",
+        href: "/products/earth-leakage",
         hasSubmenu: true,
         submenuItems: [
-          { name: "निरंतर इंसुलेशन निगरानी", href: "#elements", hasSubmenu: false },
-          { name: "ट्रू RMS करंट मापन", href: "#elements", hasSubmenu: false },
-          { name: "रीयल-टाइम डिजिटल डिस्प्ले", href: "#elements", hasSubmenu: false },
-          { name: "एडजस्टेबल ट्रिप थ्रेसहोल्ड", href: "#elements", hasSubmenu: false },
+          { name: "निरंतर इंसुलेशन निगरानी", href: "/products/earth-leakage/continuous-insulation", hasSubmenu: false },
+          { name: "ट्रू RMS करंट मापन", href: "/products/earth-leakage/true-rms", hasSubmenu: false },
+          { name: "रीयल-टाइम डिजिटल डिस्प्ले", href: "/products/earth-leakage/realtime-display", hasSubmenu: false },
+          { name: "एडजस्टेबल ट्रिप थ्रेसहोल्ड", href: "/products/earth-leakage/adjustable-thresholds", hasSubmenu: false },
         ],
       },
     ],
@@ -178,32 +178,32 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
   capability: {
     title: "इंजीनियरिंग एवं सुरक्षा",
     items: [
-      { id: "fail-safe", name: "फेल-सेफ आर्किटेक्चर", href: "#environmental", hasSubmenu: false },
-      { id: "rugged-build", name: "मजबूत औद्योगिक निर्माण", href: "#environmental", hasSubmenu: false },
-      { id: "diagnostics", name: "डायग्नोस्टिक्स एवं एकीकरण", href: "#environmental", hasSubmenu: false },
+      { id: "fail-safe", name: "फेल-सेफ आर्किटेक्चर", href: "/capability/fail-safe", hasSubmenu: false },
+      { id: "rugged-build", name: "मजबूत औद्योगिक निर्माण", href: "/capability/rugged-build", hasSubmenu: false },
+      { id: "diagnostics", name: "डायग्नोस्टिक्स एवं एकीकरण", href: "/capability/diagnostics", hasSubmenu: false },
     ],
   },
   "news-media": {
     title: "अनुप्रयोग एवं क्षेत्र",
     items: [
-      { id: "level-crossings", name: "रेलवे लेवल क्रॉसिंग", href: "#believe", hasSubmenu: false },
-      { id: "industrial-panels", name: "औद्योगिक पावर पैनल", href: "#believe", hasSubmenu: false },
-      { id: "signalling-infra", name: "सिग्नलिंग एवं पहुंच नियंत्रण", href: "#believe", hasSubmenu: false },
+      { id: "level-crossings", name: "रेलवे लेवल क्रॉसिंग", href: "/sectors/level-crossings", hasSubmenu: false },
+      { id: "industrial-panels", name: "औद्योगिक पावर पैनल", href: "/sectors/industrial-panels", hasSubmenu: false },
+      { id: "signalling-infra", name: "सिग्नलिंग एवं पहुंच नियंत्रण", href: "/sectors/signalling-infra", hasSubmenu: false },
     ],
   },
   contact: {
     title: "संपर्क",
     items: [
-      { id: "engineering-team", name: "इंजीनियरिंग टीम से बात करें", href: "#banner", hasSubmenu: false },
-      { id: "quote-req", name: "कोटेशन का अनुरोध करें", href: "#banner", hasSubmenu: false },
+      { id: "engineering-team", name: "इंजीनियरिंग टीम से बात करें", href: "/contact/engineering-team", hasSubmenu: false },
+      { id: "quote-req", name: "कोटेशन का अनुरोध करें", href: "/contact/quote-req", hasSubmenu: false },
     ],
   },
   support: {
     title: "तकनीकी संसाधन",
     items: [
-      { id: "datasheets", name: "उत्पाद डेटाशीट", href: "#case-study", hasSubmenu: false },
-      { id: "specifications", name: "तकनीकी विनिर्देश", href: "#case-study", hasSubmenu: false },
-      { id: "installation-guides", name: "इंस्टॉलेशन एवं वायरिंग गाइड", href: "#case-study", hasSubmenu: false },
+      { id: "datasheets", name: "उत्पाद डेटाशीट", href: "/support/datasheets", hasSubmenu: false },
+      { id: "specifications", name: "तकनीकी विनिर्देश", href: "/support/specifications", hasSubmenu: false },
+      { id: "installation-guides", name: "इंस्टॉलेशन एवं वायरिंग गाइड", href: "/support/installation-guides", hasSubmenu: false },
     ],
   },
 };
@@ -827,19 +827,19 @@ export default function AramcoHeader() {
                 const isSelected = activeSubmenuId === item.id;
                 return (
                   <li key={item.id}>
-                    <button
-                      onClick={() => handleSubmenuToggle(item)}
-                      className={`w-full flex items-center justify-between text-sm sm:text-[15px] group transition-all duration-200 cursor-pointer text-start ${
-                        isSelected
-                          ? "text-[#ff3131] font-medium"
-                          : "text-gray-300 hover:text-[#ff3131]"
-                      }`}
-                    >
-                      <span className="transition-transform group-hover:translate-x-1">
-                        {item.name}
-                      </span>
+                    {item.hasSubmenu ? (
+                      <button
+                        onClick={() => handleSubmenuToggle(item)}
+                        className={`w-full flex items-center justify-between text-sm sm:text-[15px] group transition-all duration-200 cursor-pointer text-start ${
+                          isSelected
+                            ? "text-[#ff3131] font-medium"
+                            : "text-gray-300 hover:text-[#ff3131]"
+                        }`}
+                      >
+                        <span className="transition-transform group-hover:translate-x-1">
+                          {item.name}
+                        </span>
 
-                      {item.hasSubmenu && (
                         <svg
                           className={`w-4 h-4 flex-shrink-0 transition-colors ${
                             isSelected ? "text-[#ff3131]" : "text-gray-400 group-hover:text-[#ff3131]"
@@ -851,8 +851,19 @@ export default function AramcoHeader() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                         </svg>
-                      )}
-                    </button>
+                      </button>
+                    ) : (
+                      <a
+                        href={item.href}
+                        onClick={closeDrawer}
+                        className="w-full flex items-center justify-between text-sm sm:text-[15px] group transition-all duration-200 cursor-pointer text-start text-gray-300 hover:text-[#ff3131]"
+                      >
+                        <span className="transition-transform group-hover:translate-x-1">
+                          {item.name}
+                        </span>
+                        <span className="text-gray-500 group-hover:text-[#ff3131] text-xs transition-colors">→</span>
+                      </a>
+                    )}
                   </li>
                 );
               })}

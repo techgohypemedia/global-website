@@ -174,7 +174,7 @@ export default function WhatWeBelieve() {
               }`}
             >
               <div
-                className={`w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-neutral-900 shadow-md transition-all duration-300 group-hover:shadow-2xl border border-gray-200 group-hover:border-[#ff3131]/50 relative ${
+                className={`w-full overflow-hidden rounded-none bg-neutral-900 shadow-md transition-all duration-300 group-hover:shadow-2xl border border-gray-200 group-hover:border-[#ff3131]/50 relative ${
                   story.aspect === "wide"
                     ? "h-[190px] sm:h-[260px]"
                     : "h-[240px] sm:h-[330px]"

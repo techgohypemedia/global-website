@@ -94,7 +94,7 @@ export default function EnvironmentalProtection() {
             <div key={pillar.id} className="flex flex-col justify-between group cursor-pointer">
               
               <div>
-                <div className="w-full h-[220px] sm:h-[250px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100 shadow-md transition-all duration-300 group-hover:shadow-xl relative mb-5">
+                <div className="w-full h-[220px] sm:h-[250px] rounded-none overflow-hidden bg-gray-100 shadow-md transition-all duration-300 group-hover:shadow-xl relative mb-5 border border-gray-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={pillar.image}

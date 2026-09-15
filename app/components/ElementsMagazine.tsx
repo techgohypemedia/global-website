@@ -150,9 +150,9 @@ export default function ElementsMagazine() {
           
           {/* Left Column: Featured Article (Product 1) */}
           <div className="lg:col-span-7">
-            <div className="group flex flex-col bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-gray-200/80 shadow-sm hover:shadow-xl transition-all duration-500">
+            <div className="group flex flex-col bg-white rounded-none p-4 sm:p-8 border border-gray-200/80 shadow-sm hover:shadow-xl transition-all duration-500">
               {/* Image Container */}
-              <div className="relative w-full h-[220px] sm:h-[380px] rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-100 shadow-sm group-hover:shadow-md transition-all duration-500">
+              <div className="relative w-full h-[220px] sm:h-[380px] rounded-none overflow-hidden bg-neutral-100 shadow-sm group-hover:shadow-md transition-all duration-500 border border-gray-200">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={PRODUCT_1.image}
@@ -186,7 +186,7 @@ export default function ElementsMagazine() {
                       key={point}
                       className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-gray-100 text-gray-700 text-[10px] sm:text-xs font-medium border border-gray-200"
                     >
-                      ✓ {point}
+                      {point}
                     </span>
                   ))}
                 </div>
@@ -207,10 +207,10 @@ export default function ElementsMagazine() {
             {SIDE_PRODUCTS.map((prod) => (
               <div
                 key={prod.id}
-                className="group flex flex-col bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-gray-200/80 shadow-sm hover:shadow-xl transition-all duration-500"
+                className="group flex flex-col bg-white rounded-none p-4 sm:p-6 border border-gray-200/80 shadow-sm hover:shadow-xl transition-all duration-500"
               >
                 {/* Image Container */}
-                <div className="relative w-full h-[160px] sm:h-[200px] rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-100 shadow-sm transition-all duration-500">
+                <div className="relative w-full h-[160px] sm:h-[200px] rounded-none overflow-hidden bg-neutral-100 shadow-sm transition-all duration-500 border border-gray-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={prod.image}
@@ -244,7 +244,7 @@ export default function ElementsMagazine() {
                         key={point}
                         className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[10px] sm:text-[11px] font-medium border border-gray-200"
                       >
-                        ✓ {point}
+                        {point}
                       </span>
                     ))}
                   </div>

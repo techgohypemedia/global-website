@@ -73,7 +73,7 @@ export default function DiscoverAramco() {
             <a
               key={card.id}
               href={card.link}
-              className="group relative h-[380px] sm:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between p-5 sm:p-7 text-white border border-gray-200 hover:border-[#ff3131]/60 cursor-pointer bg-neutral-900"
+              className="group relative h-[380px] sm:h-[480px] rounded-none overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between p-5 sm:p-7 text-white border border-gray-200 hover:border-[#ff3131]/60 cursor-pointer bg-neutral-900"
             >
               {/* Full Background Image */}
               <div className="absolute inset-0 overflow-hidden">

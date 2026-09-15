@@ -5,45 +5,45 @@ import { useLanguage } from "../context/LanguageContext";
 import GlobalLogo from "./GlobalLogo";
 
 const PRODUCTS_LINKS_EN = [
-  { name: "Railway Barrier System", href: "#railway-barrier-system" },
-  { name: "Digital Earth Leakage Detector", href: "#earth-leakage-detector" },
-  { name: "Fail-Safe Signaling Mechanism", href: "#signaling" },
-  { name: "Industrial Electrical Panels", href: "#industrial-panels" },
+  { name: "Railway Barrier System", href: "/products/railway-barrier" },
+  { name: "Digital Earth Leakage Detector", href: "/products/earth-leakage" },
+  { name: "Fail-Safe Boom Mechanism", href: "/products/railway-barrier/fail-safe-boom" },
+  { name: "Continuous Insulation Monitoring", href: "/products/earth-leakage/continuous-insulation" },
 ];
 
 const COMPANY_LINKS_EN = [
   { name: "About Us", href: "/about" },
-  { name: "Careers", href: "#careers" },
-  { name: "Contact Us", href: "#contact-engineering" },
-  { name: "Request a Quote", href: "#contact-engineering" },
+  { name: "Engineering Capabilities", href: "/capability" },
+  { name: "Industry Sectors", href: "/sectors" },
+  { name: "Request a Quote", href: "/contact/quote-req" },
 ];
 
 const LEGAL_SUPPORT_LINKS_EN = [
-  { name: "Technical Support", href: "#contact-engineering" },
-  { name: "Legal", href: "#legal" },
-  { name: "Privacy Policy", href: "#privacy-policy" },
-  { name: "Terms of Use", href: "#terms-of-use" },
+  { name: "Technical Resources", href: "/support" },
+  { name: "Product Datasheets", href: "/support/datasheets" },
+  { name: "Installation Guides", href: "/support/installation-guides" },
+  { name: "Talk to Engineering", href: "/contact/engineering-team" },
 ];
 
 const PRODUCTS_LINKS_HI = [
-  { name: "रेलवे बैरियर सिस्टम", href: "#railway-barrier-system" },
-  { name: "डिजिटल अर्थ लीकेज डिटेक्टर", href: "#earth-leakage-detector" },
-  { name: "सिग्नलिंग इंटरफेस", href: "#signaling" },
-  { name: "औद्योगिक विद्युत पैनल", href: "#industrial-panels" },
+  { name: "रेलवे बैरियर सिस्टम", href: "/products/railway-barrier" },
+  { name: "डिजिटल अर्थ लीकेज डिटेक्टर", href: "/products/earth-leakage" },
+  { name: "सुरक्षित बूम तंत्र", href: "/products/railway-barrier/fail-safe-boom" },
+  { name: "इंसुलेशन निगरानी", href: "/products/earth-leakage/continuous-insulation" },
 ];
 
 const COMPANY_LINKS_HI = [
   { name: "हमारे बारे में", href: "/about" },
-  { name: "करियर", href: "#careers" },
-  { name: "संपर्क करें", href: "#contact-engineering" },
-  { name: "कोटेशन प्राप्त करें", href: "#contact-engineering" },
+  { name: "इंजीनियरिंग क्षमताएं", href: "/capability" },
+  { name: "उद्योग अनुप्रयोग", href: "/sectors" },
+  { name: "कोटेशन प्राप्त करें", href: "/contact/quote-req" },
 ];
 
 const LEGAL_SUPPORT_LINKS_HI = [
-  { name: "तकनीकी सहायता", href: "#contact-engineering" },
-  { name: "कानूनी सूचना", href: "#legal" },
-  { name: "गोपनीयता नीति", href: "#privacy-policy" },
-  { name: "उपयोग की शर्तें", href: "#terms-of-use" },
+  { name: "तकनीकी संसाधन", href: "/support" },
+  { name: "उत्पाद डेटाशीट", href: "/support/datasheets" },
+  { name: "स्थापना गाइड", href: "/support/installation-guides" },
+  { name: "इंजीनियरिंग से बात करें", href: "/contact/engineering-team" },
 ];
 
 export default function Footer() {

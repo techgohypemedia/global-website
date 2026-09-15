@@ -222,42 +222,23 @@ function AboutUsContent() {
               <div className="relative mx-auto max-w-md lg:max-w-none">
 
                 {/* Main Hero Card */}
-                <div className="w-full h-[280px] sm:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/15 relative group bg-[#111115]">
+                <div className="w-full h-[280px] sm:h-[440px] rounded-none overflow-hidden shadow-2xl border border-white/15 relative group bg-[#111115]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/boom_barrier_railway.jpg"
                     alt="GLOBAL Railway Barrier System"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c]/90 via-transparent to-black/20" />
-
-                  {/* Technical Spec Overlay */}
-                  <div className="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-black/75 backdrop-blur-md border border-white/15">
-                    <div className="text-[11px] font-bold tracking-widest text-[#ff3131] uppercase mb-1">
-                      {lang === "hi" ? "विशेषज्ञ उत्पाद 01" : "ENGINEERED FOCUS 01"}
-                    </div>
-                    <div className="text-sm font-semibold text-white">
-                      {lang === "hi" ? "रेलवे बैरियर एवं लेवल क्रॉसिंग सिस्टम" : "Railway Barrier & Crossing Automation"}
-                    </div>
-                  </div>
                 </div>
 
                 {/* Overlapping Diagnostic Mini-Card */}
-                <div className="hidden sm:block absolute -bottom-6 -left-6 w-56 h-36 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#14141a] z-20">
+                <div className="hidden sm:block absolute -bottom-6 -left-6 w-56 h-36 rounded-none overflow-hidden shadow-2xl border border-white/20 bg-[#14141a] z-20">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/earth_leakage_detector_hero.jpg"
                     alt="Digital Earth Leakage Detector"
-                    className="w-full h-full object-cover opacity-90"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-3 flex flex-col justify-end">
-                    <div className="text-[9px] font-bold text-[#ff3131] uppercase">
-                      {lang === "hi" ? "विशेषज्ञ उत्पाद 02" : "ENGINEERED FOCUS 02"}
-                    </div>
-                    <div className="text-xs font-semibold text-white truncate">
-                      {lang === "hi" ? "डिजिटल अर्थ लीकेज डिटेक्टर" : "Digital Earth Leakage Detector"}
-                    </div>
-                  </div>
                 </div>
 
               </div>
@@ -315,67 +296,36 @@ function AboutUsContent() {
               <div className="grid grid-cols-12 gap-3.5 sm:gap-4 items-stretch">
                 
                 {/* 1. Tall Left: Railway Barrier & Level Crossing Signaling */}
-                <div className="col-span-6 rounded-2xl overflow-hidden border border-[#ff3131]/25 bg-gradient-to-b from-[#18080a] to-[#0d0d11] shadow-[0_10px_35px_rgba(255,49,49,0.15)] relative group h-[380px] sm:h-[480px] hover:border-[#ff3131]/60 transition-all duration-300">
+                <div className="col-span-6 rounded-none overflow-hidden border border-[#ff3131]/25 bg-gradient-to-b from-[#18080a] to-[#0d0d11] shadow-[0_10px_35px_rgba(255,49,49,0.15)] relative group h-[380px] sm:h-[480px] hover:border-[#ff3131]/60 transition-all duration-300">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/boom_barrier_railway.jpg"
                     alt="GLOBAL Railway Barrier & Signaling Mechanism"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
-                  
-                  {/* Bottom Red Accented Pill */}
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 rounded-xl bg-black/80 backdrop-blur-md border border-[#ff3131]/30">
-                    <div className="text-[9px] sm:text-[10px] font-bold text-[#ff3131] uppercase tracking-widest mb-0.5">
-                      {lang === "hi" ? "रेलवे सुरक्षा प्रणालियां" : "RAILWAY SIGNALING & BARRIERS"}
-                    </div>
-                    <span className="text-xs sm:text-[13px] font-semibold text-white tracking-tight block truncate">
-                      {lang === "hi" ? "ऑटोमैटिक रेलवे बूम बैरियर" : "Fail-Safe Boom Barriers"}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Right Stack: Digital ELD Machine + Lab Validation */}
                 <div className="col-span-6 flex flex-col gap-3.5 sm:gap-4 h-[380px] sm:h-[480px]">
                   
                   {/* 2. Top Right: Digital Earth Leakage Detector Machine */}
-                  <div className="flex-1 rounded-2xl overflow-hidden border border-[#ff3131]/25 bg-gradient-to-b from-[#18080a] to-[#0d0d11] shadow-xl relative group hover:border-[#ff3131]/60 transition-all duration-300">
+                  <div className="flex-1 rounded-none overflow-hidden border border-[#ff3131]/25 bg-gradient-to-b from-[#18080a] to-[#0d0d11] shadow-xl relative group hover:border-[#ff3131]/60 transition-all duration-300">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/images/earth_leakage_detector_hero.jpg"
                       alt="GLOBAL Digital Earth Leakage Detector Machine"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
-                    
-                    <div className="absolute bottom-2.5 left-2.5 right-2.5 p-2 sm:p-2.5 rounded-lg bg-black/80 backdrop-blur-md border border-[#ff3131]/30">
-                      <div className="text-[8px] sm:text-[9px] font-bold text-[#ff3131] uppercase tracking-wider">
-                        {lang === "hi" ? "विद्युत निगरानी" : "ELECTRICAL DIAGNOSTICS"}
-                      </div>
-                      <span className="text-[11px] sm:text-xs font-semibold text-white tracking-tight block truncate">
-                        {lang === "hi" ? "डिजिटल अर्थ लीकेज मशीन" : "Digital ELD Machines"}
-                      </span>
-                    </div>
                   </div>
 
                   {/* 3. Bottom Right: Precision Lab Validation & Stress Testing */}
-                  <div className="flex-1 rounded-2xl overflow-hidden border border-[#ff3131]/25 bg-gradient-to-b from-[#18080a] to-[#0d0d11] shadow-xl relative group hover:border-[#ff3131]/60 transition-all duration-300">
+                  <div className="flex-1 rounded-none overflow-hidden border border-[#ff3131]/25 bg-gradient-to-b from-[#18080a] to-[#0d0d11] shadow-xl relative group hover:border-[#ff3131]/60 transition-all duration-300">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/images/eld_engineering_lab.jpg"
                       alt="GLOBAL 100% Factory Validation Lab"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
-                    
-                    <div className="absolute bottom-2.5 left-2.5 right-2.5 p-2 sm:p-2.5 rounded-lg bg-black/80 backdrop-blur-md border border-[#ff3131]/30">
-                      <div className="text-[8px] sm:text-[9px] font-bold text-[#ff3131] uppercase tracking-wider">
-                        {lang === "hi" ? "100% परीक्षण" : "FACTORY VALIDATION"}
-                      </div>
-                      <span className="text-[11px] sm:text-xs font-semibold text-white tracking-tight block truncate">
-                        {lang === "hi" ? "थर्मल एवं तनाव परीक्षण" : "100% Stress Testing"}
-                      </span>
-                    </div>
                   </div>
 
                 </div>
@@ -528,7 +478,7 @@ function AboutUsContent() {
               </div>
 
               <div className="lg:col-span-6">
-                <div className="w-full h-[320px] sm:h-[440px] rounded-3xl overflow-hidden shadow-2xl border border-white/15 relative bg-[#111115]">
+                <div className="w-full h-[320px] sm:h-[440px] rounded-none overflow-hidden shadow-2xl border border-white/15 relative bg-[#111115]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/boom_barrier_hero.jpg"
@@ -583,7 +533,7 @@ function AboutUsContent() {
               </div>
 
               <div className="lg:col-span-6">
-                <div className="w-full h-[320px] sm:h-[440px] rounded-3xl overflow-hidden shadow-2xl border border-white/15 relative bg-[#111115]">
+                <div className="w-full h-[320px] sm:h-[440px] rounded-none overflow-hidden shadow-2xl border border-white/15 relative bg-[#111115]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/earth_leakage_detector_hero.jpg"
@@ -675,7 +625,7 @@ function AboutUsContent() {
             {DISCIPLINES.map((d) => (
               <div
                 key={d.id}
-                className="bg-white/[0.03] rounded-3xl overflow-hidden border border-white/10 hover:border-[#ff3131]/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group flex flex-col justify-between"
+                className="bg-white/[0.03] rounded-none overflow-hidden border border-white/10 hover:border-[#ff3131]/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group flex flex-col justify-between"
               >
                 <div className="w-full h-52 overflow-hidden relative bg-[#15151a]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
