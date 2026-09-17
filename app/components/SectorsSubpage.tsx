@@ -45,10 +45,8 @@ function SectorsContent({ data }: { data: SectorsSubpageProps }) {
         HERO SECTION: INFRASTRUCTURE OPERATIONS (RED & WHITE THEME)
         =======================================================================
       */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-gradient-to-b from-slate-100 via-[#f8fafc] to-white border-b border-slate-200 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.035] pointer-events-none bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="absolute -top-24 right-10 w-96 h-96 bg-red-100/40 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 -left-20 w-80 h-80 bg-red-50/40 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-slate-50 border-b border-slate-200 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:24px_24px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">

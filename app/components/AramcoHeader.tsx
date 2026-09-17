@@ -214,7 +214,6 @@ interface AramcoHeaderProps {
 export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
   const { lang, setLang, t } = useLanguage();
   const [isRegionOpen, setIsRegionOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDrawerId, setActiveDrawerId] = useState<string | null>(null);
   const [activeSubmenuId, setActiveSubmenuId] = useState<string | null>(null);
@@ -285,7 +284,6 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeDrawer();
-        setIsSearchOpen(false);
         setIsRegionOpen(false);
       }
     };
@@ -505,24 +503,11 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
         <div className="w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
             
-            <div className="flex items-center space-x-6 xl:space-x-8">
-              {/* Search Button */}
-              <button
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className={`p-2 rounded-full transition-all duration-200 cursor-pointer flex items-center space-x-1 ${
-                  theme === "light"
-                    ? "text-gray-700 hover:text-[#ff3131] hover:bg-gray-100"
-                    : "text-white/90 hover:text-[#ff3131] hover:bg-white/10"
-                }`}
-                aria-label="Search"
-                title="Search"
-              >
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="7" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 8a3 3 0 0 0-3 3" />
-                </svg>
-              </button>
+            {/* Left Side: GLOBAL. Logo + Navigation Links */}
+            <div className="flex items-center">
+              <a href="/" className="flex items-center group cursor-pointer flex-shrink-0 mr-8 lg:mr-14 xl:mr-20" aria-label="GLOBAL. Home">
+                <GlobalLogo theme={theme === "light" ? "light" : "dark"} size="md" />
+              </a>
 
               {/* Navigation Links */}
               <ul className="hidden lg:flex items-center space-x-6 xl:space-x-8">
@@ -622,12 +607,8 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
               </ul>
             </div>
 
-            {/* Right Side: GLOBAL. Logo + Employee Login */}
+            {/* Right Side: Employee Login + Mobile Hamburger */}
             <div className="flex items-center space-x-3 sm:space-x-5">
-              <a href="/" className="flex items-center group cursor-pointer" aria-label="GLOBAL. Home">
-                <GlobalLogo theme={theme === "light" ? "light" : "dark"} size="md" />
-              </a>
-
               {/* Employee Login Button (Sharp industrial style with user icon) */}
               <a
                 href="/login"
@@ -665,37 +646,7 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
           </div>
         </div>
 
-        {/* Search Popup */}
-        {isSearchOpen && (
-          <div className={`backdrop-blur-md border-t px-4 sm:px-8 py-3 animate-in fade-in duration-200 ${
-            theme === "light" ? "bg-white/95 border-gray-200 shadow-lg" : "bg-black/90 border-white/10"
-          }`}>
-            <div className={`max-w-4xl mx-auto flex items-center rounded-none px-4 py-2 border ${
-              theme === "light" ? "bg-gray-100 border-gray-300" : "bg-white/10 border-white/20"
-            }`}>
-              <svg className="w-5 h-5 text-gray-400 mr-3 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8" strokeWidth="2" />
-                <path d="M21 21l-4.35-4.35" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-              <input
-                type="text"
-                placeholder={t.searchPlaceholder}
-                className={`bg-transparent w-full focus:outline-none text-sm placeholder-gray-400 ${
-                  theme === "light" ? "text-gray-900" : "text-white"
-                }`}
-                autoFocus
-              />
-              <button
-                onClick={() => setIsSearchOpen(false)}
-                className={`text-xs px-2 cursor-pointer ${
-                  theme === "light" ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"
-                }`}
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-        )}
+
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (

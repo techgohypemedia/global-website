@@ -58,7 +58,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
         HERO SECTION: CLEAN RED & WHITE TECHNICAL INSTRUMENTATION
         =======================================================================
       */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200">
+      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
 

@@ -89,7 +89,7 @@ function RailwayBarrierContent() {
       <AramcoHeader theme="light" />
 
       {/* 2. Hero Section */}
-      <section className="relative w-full overflow-hidden pb-14 sm:pb-20 pt-28 sm:pt-36 bg-gradient-to-b from-[#f8f9fb] via-white to-white border-b border-gray-100">
+      <section className="relative w-full overflow-hidden pb-14 sm:pb-20 pt-28 sm:pt-36 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content Column */}
