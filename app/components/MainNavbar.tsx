@@ -83,7 +83,7 @@ export default function MainNavbar() {
       {/* Search Input Bar (Dropdown when active) */}
       {isSearchOpen && (
         <div className="bg-black/95 border-t border-white/10 px-4 sm:px-8 py-3 animate-in fade-in duration-200">
-          <div className="max-w-4xl mx-auto flex items-center bg-white/10 rounded-full px-4 py-2 border border-white/20">
+          <div className="max-w-4xl mx-auto flex items-center bg-white/10 rounded-none px-4 py-2 border border-white/20">
             <svg className="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8" strokeWidth="2" />
               <path d="M21 21l-4.35-4.35" strokeWidth="2" strokeLinecap="round" />

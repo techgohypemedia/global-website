@@ -72,48 +72,29 @@ export interface SubpageConfig {
 function SubpageInner({ config }: { config: SubpageConfig }) {
   const { lang } = useLanguage();
   const [activeTab, setActiveTab] = useState<"overview" | "specs" | "applications">("overview");
-  const [quoteSubmitted, setQuoteSubmitted] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800 font-sans selection:bg-[#0284c7] selection:text-white">
-      {/* 1. Global Aramco Sticky Navigation */}
+    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800 font-sans selection:bg-[#dc2626] selection:text-white">
+      {/* 1. Global Navigation */}
       <AramcoHeader />
 
       {/* 
         =======================================================================
-        HERO BANNER (Clean Corporate White / Soft Slate & Sapphire Theme)
+        HERO BANNER (Clean Corporate White / Soft Slate & Red Theme)
         =======================================================================
       */}
       <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-24 bg-gradient-to-b from-slate-100 via-[#f8fafc] to-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
         {/* Subtle Geometric Background Elements */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="absolute -top-24 right-10 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 -left-20 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 opacity-[0.035] pointer-events-none bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:24px_24px]" />
+        <div className="absolute -top-24 right-10 w-96 h-96 bg-red-100/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 -left-20 w-80 h-80 bg-red-50/40 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Breadcrumb Navigation */}
-          <nav className="flex items-center space-x-2 text-xs font-medium text-slate-500 mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-sky-600 transition-colors">
-              {lang === "hi" ? "होम" : "Home"}
-            </Link>
-            <span>/</span>
-            <Link href={config.categoryHref} className="hover:text-sky-600 transition-colors">
-              {lang === "hi" ? config.categoryHi : config.categoryEn}
-            </Link>
-            <span>/</span>
-            <span className="text-slate-800 font-semibold truncate max-w-[200px] sm:max-w-none">
-              {lang === "hi" ? config.titleHi : config.titleEn}
-            </span>
-          </nav>
+
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Hero Details */}
             <div className="lg:col-span-7">
-              {/* Category / Domain Header */}
-              <div className="text-xs sm:text-sm font-bold text-sky-700 tracking-wider uppercase font-mono mb-3">
-                {lang === "hi" ? config.heroBadgeHi : config.heroBadgeEn}
-              </div>
-
               {/* Page Title */}
               <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[46px] font-bold text-slate-900 tracking-tight leading-[1.18] mb-5">
                 {lang === "hi" ? config.titleHi : config.titleEn}
@@ -128,7 +109,7 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
               <div className="flex flex-wrap items-center gap-3.5">
                 <a
                   href="#inquiry-form"
-                  className="px-6 py-3.5 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-sky-500/20 hover:shadow-lg hover:shadow-sky-500/30 flex items-center space-x-2 cursor-pointer"
+                  className="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-red-600/20 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>{lang === "hi" ? "तकनीकी कोटेशन प्राप्त करें" : "Request Technical Quote"}</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,22 +118,22 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                 </a>
                 <a
                   href="/contact/engineering-team"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
+                  className="px-6 py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
                   <span>{lang === "hi" ? "इंजीनियरिंग टीम से परामर्श" : "Consult Engineering"}</span>
                 </a>
               </div>
             </div>
 
-            {/* Right Hero Image Card Banner */}
+            {/* Right Hero Image Card (Sharp Rectangular Border, No Curve) */}
             <div className="lg:col-span-5">
-              <div className="relative overflow-hidden bg-white p-2 shadow-lg border border-slate-200">
-                <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden group">
+              <div className="relative overflow-hidden bg-white p-2 shadow-sm border border-slate-200">
+                <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden bg-slate-50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={config.bannerImage}
                     alt={config.titleEn}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
               </div>
@@ -163,11 +144,11 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
           {config.stats && config.stats.length > 0 && (
             <div className="mt-12 pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
               {config.stats.map((st, i) => (
-                <div key={i} className="p-4 sm:p-5 rounded-xl bg-white border border-slate-200/80 shadow-sm">
-                  <div className="text-2xl sm:text-3xl font-bold text-slate-900 font-mono tracking-tight text-sky-600">
+                <div key={i} className="p-4 sm:p-5 bg-white border border-slate-200 shadow-sm hover:border-red-300 transition-all group">
+                  <div className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-red-600 group-hover:scale-105 transition-transform">
                     {st.value}
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-slate-600 mt-1">
+                  <div className="text-xs sm:text-sm font-semibold text-slate-900 mt-1">
                     {lang === "hi" ? st.labelHi : st.labelEn}
                   </div>
                 </div>
@@ -179,18 +160,13 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
 
       {/* 
         =======================================================================
-        BANNER 1 (~80% WIDTH): CATEGORY ARCHITECTURE SPOTLIGHT
+        BANNER 1: CATEGORY ARCHITECTURE SPOTLIGHT (NO OVERLAY BOX, SHARP IMAGES)
         =======================================================================
       */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 my-12 sm:my-16">
-        <div className="bg-gradient-to-r from-sky-50 via-slate-50 to-white border border-slate-200 shadow-sm p-6 sm:p-10">
+        <div className="bg-white border border-slate-200 shadow-sm p-6 sm:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold uppercase tracking-wider font-mono">
-                <span>{lang === "hi" ? "इंजीनियरिंग पोर्टफोलियो" : "ENGINEERING DOMAIN"}</span>
-                <span>•</span>
-                <span>PROVEN HARDWARE RELIABILITY</span>
-              </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
                 {lang === "hi" 
                   ? `${config.titleHi} - मिशन-क्रिटिकल विश्वसनीयता`
@@ -204,14 +180,14 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
               <div className="pt-2 flex flex-wrap gap-4 items-center">
                 <a
                   href="#inquiry-form"
-                  className="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
+                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
                   <span>{lang === "hi" ? "तकनीकी डेटाशीट डाउनलोड करें" : "Download Specifications"}</span>
                   <span>→</span>
                 </a>
                 <a
                   href="/contact/engineering-team"
-                  className="text-xs font-semibold text-slate-700 hover:text-sky-600 transition-colors"
+                  className="text-xs font-semibold text-slate-700 hover:text-red-600 transition-colors"
                 >
                   {lang === "hi" ? "इंजीनियरिंग से परामर्श" : "Consult Systems Engineering"}
                 </a>
@@ -219,13 +195,83 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 shadow-sm bg-slate-50 p-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={config.bannerImage}
                   alt={config.titleEn}
                   className="w-full h-full object-cover"
                 />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        =======================================================================
+        REAL HARDWARE PHOTO GALLERY (SHARP BORDERS)
+        =======================================================================
+      */}
+      <section className="py-12 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-slate-200">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                {lang === "hi" ? "प्रमाणित इंजीनियरिंग घटक" : "Engineered Subassemblies & Field Modules"}
+              </h3>
+            </div>
+            <span className="text-xs text-slate-500 font-mono mt-2 sm:mt-0">
+              INDUSTRIAL GRADE RELIABILITY
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="border border-slate-200 bg-white p-2 shadow-xs">
+              <div className="h-52 w-full overflow-hidden bg-slate-100 border border-slate-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/boom_barrier_railway.jpg"
+                  alt="Railway Barrier Field Assembly"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3">
+                <div className="text-[10px] font-mono font-bold text-red-600 uppercase">FIELD INTEGRITY</div>
+                <div className="text-xs font-bold text-slate-900 mt-0.5">Heavy-Duty Automated Boom</div>
+                <p className="text-[11px] text-slate-500 mt-1">Direct level crossing automated barrier assembly engineered for 24/7 heavy duty operation.</p>
+              </div>
+            </div>
+
+            <div className="border border-slate-200 bg-white p-2 shadow-xs">
+              <div className="h-52 w-full overflow-hidden bg-slate-100 border border-slate-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/eld_engineering_lab.jpg"
+                  alt="ELD Hardware Diagnostics"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3">
+                <div className="text-[10px] font-mono font-bold text-red-600 uppercase">DIAGNOSTICS & CONTROL</div>
+                <div className="text-xs font-bold text-slate-900 mt-0.5">Digital Microcontroller Core</div>
+                <p className="text-[11px] text-slate-500 mt-1">High-speed DSP digital sampling unit with RS-485 Modbus-RTU telemetry interface.</p>
+              </div>
+            </div>
+
+            <div className="border border-slate-200 bg-white p-2 shadow-xs">
+              <div className="h-52 w-full overflow-hidden bg-slate-100 border border-slate-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/weatherproof_enclosure.jpg"
+                  alt="Weatherproof Enclosure Rig"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3">
+                <div className="text-[10px] font-mono font-bold text-red-600 uppercase">INGRESS PROTECTION</div>
+                <div className="text-xs font-bold text-slate-900 mt-0.5">IP66 Heavy Steel Chassis</div>
+                <p className="text-[11px] text-slate-500 mt-1">Weatherproof CRCA steel housing with multi-stage anti-corrosive electrostatic powder coating.</p>
               </div>
             </div>
           </div>
@@ -244,10 +290,10 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
           <div className="flex items-center space-x-2 border-b border-slate-200 pb-4 mb-10 overflow-x-auto no-scrollbar">
             <button
               onClick={() => setActiveTab("overview")}
-              className={`px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+              className={`px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === "overview"
-                  ? "bg-slate-900 text-white shadow-sm"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                  ? "bg-red-600 text-white shadow-sm shadow-red-600/20"
+                  : "text-slate-600 hover:text-red-600 hover:bg-slate-100"
               }`}
             >
               {lang === "hi" ? "सिस्टम अवलोकन (Overview)" : "System Overview"}
@@ -255,10 +301,10 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
             {config.specs && config.specs.length > 0 && (
               <button
                 onClick={() => setActiveTab("specs")}
-                className={`px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   activeTab === "specs"
-                    ? "bg-slate-900 text-white shadow-sm"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                    ? "bg-red-600 text-white shadow-sm shadow-red-600/20"
+                    : "text-slate-600 hover:text-red-600 hover:bg-slate-100"
                 }`}
               >
                 {lang === "hi" ? "तकनीकी विनिर्देश (Specifications)" : "Technical Specifications"}
@@ -267,10 +313,10 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
             {config.applications && config.applications.length > 0 && (
               <button
                 onClick={() => setActiveTab("applications")}
-                className={`px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   activeTab === "applications"
-                    ? "bg-slate-900 text-white shadow-sm"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                    ? "bg-red-600 text-white shadow-sm shadow-red-600/20"
+                    : "text-slate-600 hover:text-red-600 hover:bg-slate-100"
                 }`}
               >
                 {lang === "hi" ? "फ़ील्ड अनुप्रयोग (Applications)" : "Field Applications"}
@@ -290,7 +336,7 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                   </h2>
                   <div className="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                     {(lang === "hi" ? config.overviewTextHi : config.overviewTextEn).map((paragraph, idx) => (
-                      <p key={idx}>{paragraph}</p>
+                      <p key={idx} className="bg-slate-50 p-4 border border-slate-200 border-l-4 border-l-red-600">{paragraph}</p>
                     ))}
                   </div>
 
@@ -304,7 +350,7 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                         {config.complianceStandards.map((std, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-xs font-medium text-slate-700 font-mono"
+                            className="px-3 py-1 bg-red-50 border border-red-200 text-xs font-semibold text-red-800 font-mono"
                           >
                             {std}
                           </span>
@@ -316,8 +362,8 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
 
                 {/* Right Callout Box */}
                 <div className="lg:col-span-5">
-                  <div className="rounded-2xl bg-gradient-to-br from-slate-50 to-sky-50/50 p-6 sm:p-8 border border-slate-200/80 shadow-sm">
-                    <div className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-2">
+                  <div className="bg-slate-50 p-6 sm:p-8 border border-slate-200 shadow-xs">
+                    <div className="text-xs font-bold text-red-700 uppercase tracking-wider mb-2 font-mono">
                       {lang === "hi" ? "इंजीनियरिंग विश्वसनीयता" : "ENGINEERING HIGHLIGHTS"}
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 mb-4">
@@ -331,22 +377,22 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
 
                     <div className="space-y-3 mb-6 text-xs sm:text-sm text-slate-700">
                       <div className="flex items-center space-x-2.5">
-                        <span className="w-2 h-2 rounded-full bg-sky-600" />
+                        <span className="w-1.5 h-1.5 bg-red-600" />
                         <span>{lang === "hi" ? "कठिन तापमान सहिष्णुता (-20°C to +70°C)" : "Extended temperature range (-20°C to +70°C)"}</span>
                       </div>
                       <div className="flex items-center space-x-2.5">
-                        <span className="w-2 h-2 rounded-full bg-sky-600" />
+                        <span className="w-1.5 h-1.5 bg-red-600" />
                         <span>{lang === "hi" ? "IP65/IP66 वेदरप्रूफ संरक्षण" : "IP65 / IP66 Industrial Ingress Protection"}</span>
                       </div>
                       <div className="flex items-center space-x-2.5">
-                        <span className="w-2 h-2 rounded-full bg-sky-600" />
+                        <span className="w-1.5 h-1.5 bg-red-600" />
                         <span>{lang === "hi" ? "डायरेक्ट OEM एवं इंटीग्रेशन सपोर्ट" : "Direct OEM / ODM Customization Available"}</span>
                       </div>
                     </div>
 
                     <a
                       href="/contact/quote-req"
-                      className="w-full py-3 px-4 rounded-xl bg-sky-700 hover:bg-sky-800 text-white text-xs font-semibold tracking-wide text-center block transition-colors shadow-sm"
+                      className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide text-center block transition-colors shadow-sm shadow-red-600/20"
                     >
                       {lang === "hi" ? "विस्तृत डेटाशीट अनुरोध करें" : "Request Full Technical Datasheet"}
                     </a>
@@ -358,7 +404,7 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
               {/* Key Features Grid */}
               <div className="pt-10">
                 <div className="mb-8">
-                  <div className="text-xs font-bold tracking-wider text-sky-600 uppercase mb-2">
+                  <div className="text-xs font-bold tracking-wider text-red-600 uppercase mb-2 font-mono">
                     {lang === "hi" ? "मुख्य क्षमताएं" : "CORE CAPABILITIES"}
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
@@ -370,14 +416,14 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                   {config.features.map((feat, idx) => (
                     <div
                       key={idx}
-                      className="p-6 rounded-2xl bg-[#f8fafc] border border-slate-200/90 hover:border-sky-300 hover:bg-white transition-all shadow-sm group"
+                      className="p-6 bg-slate-50 border border-slate-200 hover:border-red-300 hover:bg-white transition-all shadow-xs group"
                     >
                       {feat.badgeEn && (
-                        <div className="text-[10px] font-bold text-sky-600 uppercase tracking-wider mb-2 font-mono">
+                        <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider mb-2 font-mono">
                           {lang === "hi" ? feat.badgeHi : feat.badgeEn}
                         </div>
                       )}
-                      <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-2.5 group-hover:text-sky-700 transition-colors">
+                      <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-2.5 group-hover:text-red-700 transition-colors">
                         {lang === "hi" ? feat.titleHi : feat.titleEn}
                       </h4>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -404,7 +450,7 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 overflow-hidden shadow-sm bg-white">
+              <div className="border border-slate-200 overflow-hidden shadow-xs bg-white">
                 <table className="w-full text-left text-xs sm:text-sm">
                   <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 uppercase font-bold text-[11px] tracking-wider">
                     <tr>
@@ -418,11 +464,11 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {config.specs.map((item, idx) => (
-                      <tr key={idx} className="hover:bg-slate-50/60 transition-colors">
-                        <td className="py-3.5 px-6 sm:px-8 font-medium text-slate-900">
+                      <tr key={idx} className="hover:bg-red-50/30 transition-colors">
+                        <td className="py-3.5 px-6 sm:px-8 font-semibold text-slate-900">
                           {lang === "hi" ? item.labelHi : item.labelEn}
                         </td>
-                        <td className="py-3.5 px-6 sm:px-8 text-slate-600 font-mono text-xs sm:text-sm">
+                        <td className="py-3.5 px-6 sm:px-8 text-red-700 font-mono text-xs sm:text-sm font-medium">
                           {lang === "hi" ? item.valueHi : item.valueEn}
                         </td>
                       </tr>
@@ -449,8 +495,8 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {config.applications.map((app, idx) => (
-                  <div key={idx} className="p-6 rounded-2xl bg-[#f8fafc] border border-slate-200 shadow-sm">
-                    <span className="inline-block px-2.5 py-1 rounded bg-sky-100 text-sky-800 text-[10px] font-bold uppercase tracking-wider mb-3">
+                  <div key={idx} className="p-6 bg-slate-50 border border-slate-200 shadow-xs hover:border-red-300 transition-all">
+                    <span className="inline-block px-2.5 py-1 bg-red-50 text-red-800 border border-red-200 text-[10px] font-bold uppercase tracking-wider mb-3">
                       {lang === "hi" ? app.tagHi : app.tagEn}
                     </span>
                     <h4 className="text-base font-bold text-slate-900 mb-2">
@@ -484,9 +530,8 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
         </div>
         <div className="bg-white border-t border-slate-200 py-3.5 px-4 sm:px-8">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 font-mono">
-            <div className="flex items-center space-x-2 font-bold text-slate-900">
-              <span className="w-2 h-2 rounded-full bg-sky-600 inline-block" />
-              <span>{lang === "hi" ? `${config.titleHi} - प्रमाणित फील्ड विश्वसनीयता` : `${config.titleEn} • Verified Field Reliability`}</span>
+            <div className="font-bold text-slate-900">
+              {lang === "hi" ? `${config.titleHi} - प्रमाणित फील्ड विश्वसनीयता` : `${config.titleEn} • Verified Field Reliability`}
             </div>
             <div className="flex items-center space-x-4 text-[11px] text-slate-500">
               <span>CENELEC EN 50126</span>
@@ -507,9 +552,6 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
               <div>
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                  {lang === "hi" ? "संबंधित समाधान" : "EXPLORE RELATED SOLUTIONS"}
-                </div>
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900">
                   {lang === "hi" ? "अन्य संबंधित प्रणालियां" : "Associated Products & Architectures"}
                 </h3>
@@ -521,17 +563,17 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                 <Link
                   key={idx}
                   href={rel.href}
-                  className="p-4 rounded-xl bg-white border border-slate-200 hover:border-sky-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                  className="p-4 bg-white border border-slate-200 hover:border-red-400 hover:shadow-sm transition-all group flex flex-col justify-between"
                 >
                   <div>
-                    <div className="text-[10px] font-bold text-sky-600 uppercase tracking-wider mb-1">
+                    <div className="text-[10px] font-bold text-red-700 uppercase tracking-wider mb-1 font-mono">
                       {lang === "hi" ? rel.tagHi : rel.tagEn}
                     </div>
-                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-sky-700 transition-colors">
+                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-700 transition-colors">
                       {lang === "hi" ? rel.titleHi : rel.titleEn}
                     </div>
                   </div>
-                  <div className="pt-3 mt-2 flex items-center justify-end text-xs font-semibold text-slate-400 group-hover:text-sky-600 transition-colors">
+                  <div className="pt-3 mt-2 flex items-center justify-end text-xs font-semibold text-slate-400 group-hover:text-red-600 transition-colors">
                     <span>{lang === "hi" ? "देखें" : "View"}</span>
                     <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
                   </div>
@@ -547,16 +589,13 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
         CATEGORY HUB ACTION PORTAL (Modern, Fast-Track Access)
         =======================================================================
       */}
-      <section id="inquiry-form" className="py-16 sm:py-20 bg-gradient-to-b from-slate-50 to-slate-100 border-t border-slate-200">
+      <section id="inquiry-form" className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 shadow-lg shadow-slate-200/50">
+          <div className="p-8 sm:p-12 bg-white border border-slate-200 shadow-sm">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               <div className="lg:col-span-7">
-                <span className="text-xs font-bold font-mono text-sky-600 uppercase tracking-widest">
-                  {lang === "hi" ? "त्वरित सहायता एवं डाउनलोड" : "FAST-TRACK TECHNICAL ACCESS"}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
                   {lang === "hi" ? `${config.titleHi} तकनीकी दस्तावेज़ एवं सहायता` : `Access ${config.titleEn} Resources & Direct Support`}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
@@ -568,14 +607,14 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
                     href="/support/datasheets"
-                    className="px-5 py-3 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-sky-500/20 flex items-center space-x-2"
+                    className="px-5 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-red-600/20 flex items-center space-x-2"
                   >
                     <span>{lang === "hi" ? "डेटाशीट डाउनलोड करें (PDF)" : "Download Specification PDF"}</span>
                     <span className="font-mono">↓</span>
                   </a>
                   <a
                     href="/contact/engineering-team"
-                    className="px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold tracking-wide transition-all"
+                    className="px-5 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold tracking-wide transition-all border border-slate-200"
                   >
                     {lang === "hi" ? "इंजीनियर से बात करें" : "Talk to Systems Engineer"}
                   </a>
@@ -583,17 +622,17 @@ function SubpageInner({ config }: { config: SubpageConfig }) {
               </div>
 
               {/* Direct Desk Card */}
-              <div className="lg:col-span-5 bg-white p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-sm text-slate-900">
-                <span className="text-[10px] font-bold text-sky-700 uppercase tracking-widest">
+              <div className="lg:col-span-5 bg-slate-50 p-6 sm:p-7 border border-slate-200 shadow-xs text-slate-900">
+                <span className="text-[10px] font-bold text-red-700 uppercase tracking-widest font-mono">
                   CENTRAL ENGINEERING DESK
                 </span>
                 <h4 className="text-lg font-bold text-slate-900 mt-1">
                   {lang === "hi" ? "सीधा तकनीकी संपर्क" : "Direct Systems Hotline"}
                 </h4>
-                <div className="mt-4 divide-y divide-slate-100 text-xs text-slate-700">
+                <div className="mt-4 divide-y divide-slate-200 text-xs text-slate-700">
                   <div className="flex justify-between py-2">
                     <span className="text-slate-500 font-medium">Direct Helpline:</span>
-                    <span className="text-sky-700 font-bold">+91 11 4988 7700</span>
+                    <span className="text-red-700 font-bold font-mono">+91 11 4988 7700</span>
                   </div>
                   <div className="flex justify-between py-2">
                     <span className="text-slate-500 font-medium">Technical Mail:</span>

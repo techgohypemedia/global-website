@@ -467,7 +467,7 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
                                 <button
                                   type="button"
                                   onClick={() => handleLanguageClick(item.code)}
-                                  className="text-[#0284c7] hover:text-[#0369a1] underline underline-offset-2 transition-colors cursor-pointer"
+                                  className="text-[#ff3131] hover:text-[#dc2626] underline underline-offset-2 transition-colors cursor-pointer"
                                 >
                                   {item.label}
                                 </button>
@@ -628,17 +628,17 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
                 <GlobalLogo theme={theme === "light" ? "light" : "dark"} size="md" />
               </a>
 
-              {/* Employee Login Button (Pill-shaped style with user icon, slightly larger size) */}
+              {/* Employee Login Button (Sharp industrial style with user icon) */}
               <a
                 href="/login"
-                className={`inline-flex items-center space-x-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-sm group cursor-pointer ${
+                className={`inline-flex items-center space-x-2 px-4 sm:px-5 py-2 rounded-none text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-sm group cursor-pointer ${
                   theme === "light"
-                    ? "bg-red-50 hover:bg-[#ff3131] border border-red-200 hover:border-[#ff3131] text-gray-800 hover:text-white hover:shadow-[0_0_18px_rgba(255,49,49,0.4)]"
-                    : "bg-white/10 hover:bg-[#ff3131] border border-white/20 hover:border-[#ff3131] text-white hover:shadow-[0_0_18px_rgba(255,49,49,0.6)]"
+                    ? "bg-red-600 hover:bg-[#d62828] text-white border border-red-600 hover:shadow-[0_0_18px_rgba(255,49,49,0.4)]"
+                    : "bg-red-600 hover:bg-[#d62828] text-white border border-red-500 hover:shadow-[0_0_18px_rgba(255,49,49,0.6)]"
                 }`}
                 title="Employee Login"
               >
-                <svg className="w-4 h-4 text-[#ff3131] group-hover:text-white transition-colors flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-white flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <span>{lang === "hi" ? "लॉगिन" : "Login"}</span>
@@ -670,7 +670,7 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
           <div className={`backdrop-blur-md border-t px-4 sm:px-8 py-3 animate-in fade-in duration-200 ${
             theme === "light" ? "bg-white/95 border-gray-200 shadow-lg" : "bg-black/90 border-white/10"
           }`}>
-            <div className={`max-w-4xl mx-auto flex items-center rounded-full px-4 py-2 border ${
+            <div className={`max-w-4xl mx-auto flex items-center rounded-none px-4 py-2 border ${
               theme === "light" ? "bg-gray-100 border-gray-300" : "bg-white/10 border-white/20"
             }`}>
               <svg className="w-5 h-5 text-gray-400 mr-3 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -841,7 +841,7 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
               <a
                 href="/login"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block w-full py-2.5 rounded-full text-center text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 border ${
+                className={`block w-full py-2.5 rounded-none text-center text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 border ${
                   theme === "light"
                     ? "bg-red-50 hover:bg-red-100 border-red-200 text-gray-900"
                     : "bg-white/10 hover:bg-white/20 border-white/20 text-white"
@@ -855,7 +855,7 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
               <a
                 href="#contact-engineering"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full py-2.5 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white text-center text-xs font-bold uppercase tracking-wider transition-all shadow-md"
+                className="block w-full py-2.5 rounded-none bg-[#ff3131] hover:bg-[#d62828] text-white text-center text-xs font-bold uppercase tracking-wider transition-all shadow-md"
               >
                 {lang === "hi" ? "इंजीनियरिंग से बात करें" : "Talk to Engineering"}
               </a>

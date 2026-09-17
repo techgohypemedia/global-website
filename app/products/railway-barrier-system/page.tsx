@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import AramcoHeader from "../../components/AramcoHeader";
 import NewsletterSection from "../../components/NewsletterSection";
@@ -10,100 +10,75 @@ import { LanguageProvider, useLanguage } from "../../context/LanguageContext";
 function RailwayBarrierContent() {
   const { lang } = useLanguage();
   const [activeSpecTab, setActiveSpecTab] = useState<string>("fail-safe-boom");
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
   const SPECS_NAV = [
     {
       id: "fail-safe-boom",
       label: lang === "hi" ? "फेल-सेफ बूम" : "Fail-Safe Boom",
+      code: "SPEC-01",
     },
     {
       id: "obstacle-detection",
       label: lang === "hi" ? "अवरोध पहचान" : "Obstacle Detection",
+      code: "SPEC-02",
     },
     {
       id: "power-backup",
-      label: lang === "hi" ? "पावर बैकअप" : "Power Backup",
+      label: lang === "hi" ? "पावर बैकअप" : "Power Backup & Override",
+      code: "SPEC-03",
     },
     {
       id: "weatherproof-enclosure",
-      label: lang === "hi" ? "वेदरप्रूफ कैबिनेट" : "Weatherproof",
+      label: lang === "hi" ? "वेदरप्रूफ एनक्लोजर" : "Weatherproof Enclosure",
+      code: "SPEC-04",
     },
     {
       id: "technical-specs",
-      label: lang === "hi" ? "तकनीकी तालिका" : "Datasheet Matrix",
+      label: lang === "hi" ? "डेटाशीट मैट्रिक्स" : "Technical Matrix",
+      code: "SPEC-05",
     },
     {
       id: "applications",
-      label: lang === "hi" ? "अनुप्रयोग" : "Applications",
+      label: lang === "hi" ? "अनुप्रयोग" : "Field Applications",
+      code: "SPEC-06",
     },
   ];
 
-  useEffect(() => {
-    const sectionIds = SPECS_NAV.map((s) => s.id);
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 220;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSpecTab(sectionIds[i]);
-          break;
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const SPEC_DATA_TABLE = [
     {
-      param: lang === "hi" ? "बूम की लंबाई" : "Boom Span Length",
-      spec: "Up to 8.0 Meters (Aluminium Octagonal / Telescopic)",
-      note: lang === "hi" ? "साइट आवश्यकतानुसार 3m से 8m तक उपलब्ध" : "Configurable from 3m to 8m for dual or single road tracks",
-    },
-    {
-      param: lang === "hi" ? "खुलने/बंद होने का समय" : "Opening / Closing Speed",
-      spec: "1.5s to 6.0s (Field Adjustable)",
-      note: lang === "hi" ? "सॉफ्ट स्टार्ट और सॉफ्ट स्टॉप डैम्पिंग के साथ" : "Microprocessor-controlled soft-start and deceleration damping",
-    },
-    {
-      param: lang === "hi" ? "मोटर एवं ड्राइव प्रकार" : "Motor Drive Mechanism",
-      spec: "Heavy-Duty Brushless DC (BLDC) / Planetary Gearbox",
+      param: lang === "hi" ? "ड्राइव मोटर प्रकार" : "Drive Motor Architecture",
+      spec: "Brushless DC (BLDC) Planetary Gear Drive",
       note: lang === "hi" ? "शून्य रखरखाव, उच्च टॉर्क एवं 100% ड्यूटी साइकिल" : "High torque, maintenance-free continuous Class S1 duty rating",
     },
     {
       param: lang === "hi" ? "फेल-सेफ आर्किटेक्चर" : "Fail-Safe Operation Mode",
       spec: "Mechanical Counterweight & Gravity Drop / Fail-Secure",
-      note: lang === "hi" ? "बिजली विफलता पर स्वतः सुरक्षित स्थिति में आवागमन" : "Automatic default-to-safe position on power or signal loss",
+      note: lang === "hi" ? "बिजली कटने पर सुरक्षित स्वतः स्थिति निर्धारण" : "Default safe posture engaged via electromagnetic clutch",
     },
     {
-      param: lang === "hi" ? "अवरोध पहचान सेंसर" : "Obstacle Detection Sensors",
-      spec: "Dual-Channel Loop Detectors + Optical Infrared Beams + Radar",
-      note: lang === "hi" ? "<150ms में स्वतः रिवर्सल" : "Immediate auto-reversal in <150ms upon obstacle detection",
+      param: lang === "hi" ? "परिचालन गति (ओपनिंग / क्लोजिंग)" : "Opening / Closing Speed",
+      spec: "1.5s – 6.0s (Digitally Configurable)",
+      note: lang === "hi" ? "सॉफ्ट-स्टार्ट और सॉफ्ट-स्टॉप त्वरण नियंत्रण" : "Electronic S-curve acceleration and deceleration damping",
     },
     {
-      param: lang === "hi" ? "पावर बैकअप प्रणाली" : "Auxiliary Power Backup",
-      spec: "Integrated 24V DC Battery Bank (>200 Complete Cycles)",
-      note: lang === "hi" ? "ग्रिड विफलता पर बिना रुकावट स्वतः संचालन" : "Uninterruptible switchover with solar DC charging option",
+      param: lang === "hi" ? "बूम की अधिकतम लंबाई" : "Maximum Boom Span",
+      spec: "3.0 Metres to 8.0 Metres (Octagonal)",
+      note: lang === "hi" ? "3M रिफ्लेक्टिव स्ट्रिप्स एवं उच्च-चमक एलईडी" : "Extruded aerodynamically stable aluminium alloy arm",
     },
     {
-      param: lang === "hi" ? "सुरक्षा रेटिंग (Ingress)" : "Enclosure Protection Rating",
-      spec: "IP66 / NEMA 4X Certified (Marine-grade coating)",
-      note: lang === "hi" ? "धूल, भारी वर्षा और समुद्री क्षरण से 100% सुरक्षित" : "Corrosion-resistant thermoset powder coated heavy-gauge steel",
+      param: lang === "hi" ? "आवरण सुरक्षा रेटिंग" : "Ingress Protection Rating",
+      spec: "IP66 / NEMA 4X Certified Enclosure",
+      note: lang === "hi" ? "धूल, भारी मानसूनी बारिश और संक्षारण प्रतिरोधी" : "3mm zinc-phosphated steel with electrostatic polyester coat",
     },
     {
-      param: lang === "hi" ? "परिचालन तापमान" : "Operating Temperature Range",
-      spec: "-25°C to +70°C (-13°F to +158°F)",
-      note: lang === "hi" ? "थर्मोस्टेट-नियंत्रित हीटर और वेंटिलेशन युक्त" : "Built-in anti-condensation heating element and ventilation louvers",
-    },
-    {
-      param: lang === "hi" ? "सिग्नलिंग इंटरफेस" : "Signaling Interface & Relays",
-      spec: "Potential-Free Dry Contacts, RS-485 Modbus RTU, Opto-Isolated",
+      param: lang === "hi" ? "इंटरफेस एवं नियंत्रण" : "Signaling & SCADA Interface",
+      spec: "Dry Relay Contacts / RS-485 Modbus-RTU",
       note: lang === "hi" ? "रेलवे इंटरलॉकिंग रिले एवं ईआई से सीधा कनेक्शन" : "Direct interface with railway relay interlocking and telemetry systems",
     },
     {
-      param: lang === "hi" ? "जीवन चक्र (MTBF)" : "Operational Lifespan (MTBF)",
-      spec: "> 5,000,000 Continuous Cycles",
+      param: lang === "hi" ? "ड्यूटी साइकिल रेटिंग" : "Mechanical Lifetime Cycles",
+      spec: "> 5,000,000 Continuous MTBF Cycles",
       note: lang === "hi" ? "रेलवे क्रॉसिंग के 24/7 निरंतर उपयोग हेतु प्रमाणित" : "Bench-tested for heavy round-the-clock railway corridor duty",
     },
   ];
@@ -119,28 +94,6 @@ function RailwayBarrierContent() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-7">
-              {/* Breadcrumb */}
-              <nav className="flex items-center space-x-2 text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
-                <Link href="/" className="hover:text-[#ff3131] transition-colors">
-                  {lang === "hi" ? "होम" : "Home"}
-                </Link>
-                <span>/</span>
-                <span className="text-gray-400">
-                  {lang === "hi" ? "उत्पाद" : "Products"}
-                </span>
-                <span>/</span>
-                <span className="text-[#ff3131] font-semibold">
-                  {lang === "hi" ? "रेलवे बैरियर सिस्टम" : "Railway Barrier System"}
-                </span>
-              </nav>
-
-              {/* Eyebrow Badge */}
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/20 mb-4">
-                <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-                <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#ff3131]">
-                  {lang === "hi" ? "मिशन-क्रिटिकल रेलवे इंफ्रास्ट्रक्चर" : "Mission-Critical Rail Safety"}
-                </span>
-              </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight text-gray-950 font-sans mb-4 sm:mb-6 leading-[1.15]">
                 {lang === "hi" ? (
@@ -169,10 +122,10 @@ function RailwayBarrierContent() {
               {/* Top Quick Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 mb-8">
                 {/* Stat 1 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
                       {lang === "hi" ? "आर्किटेक्चर" : "Architecture"}
                     </span>
@@ -188,10 +141,10 @@ function RailwayBarrierContent() {
                 </div>
 
                 {/* Stat 2 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
                       {lang === "hi" ? "गति" : "Velocity"}
                     </span>
@@ -207,10 +160,10 @@ function RailwayBarrierContent() {
                 </div>
 
                 {/* Stat 3 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
                       {lang === "hi" ? "दायरा" : "Coverage"}
                     </span>
@@ -220,26 +173,26 @@ function RailwayBarrierContent() {
                       Up to 8m
                     </div>
                     <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-1">
-                      {lang === "hi" ? "बूम की लंबाई" : "Boom Arm Span"}
+                      {lang === "hi" ? "बूम की लंबाई" : "Max Span Length"}
                     </div>
                   </div>
                 </div>
 
                 {/* Stat 4 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
-                      {lang === "hi" ? "सुरक्षा" : "Ingress"}
+                      {lang === "hi" ? "स्थायित्व" : "Reliability"}
                     </span>
                   </div>
                   <div>
                     <div className="text-lg sm:text-xl xl:text-2xl font-bold text-gray-950 tracking-tight whitespace-nowrap">
-                      IP66
+                      5M+ MCBF
                     </div>
                     <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-1">
-                      {lang === "hi" ? "मौसम-रोधी एनक्लोजर" : "Weatherproof Enclosure"}
+                      {lang === "hi" ? "चक्र विफलता अंतराल" : "Duty Cycles Rating"}
                     </div>
                   </div>
                 </div>
@@ -249,18 +202,18 @@ function RailwayBarrierContent() {
               <div className="flex flex-wrap items-center gap-3.5 sm:gap-4">
                 <a
                   href="#contact-engineering"
-                  className="group inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white font-semibold text-sm sm:text-base transition-all duration-200 shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/30 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  className="px-6 py-3.5 bg-[#ff3131] hover:bg-[#d62828] text-white font-semibold text-sm transition-all duration-200 shadow-md shadow-red-500/20 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>{lang === "hi" ? "कोटेशन का अनुरोध करें" : "Request Technical Quote"}</span>
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </a>
                 <a
                   href="#technical-specs"
-                  className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full border border-gray-300 hover:border-gray-900 bg-white hover:bg-gray-50 text-gray-800 hover:text-gray-950 font-semibold text-sm sm:text-base transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  className="px-6 py-3.5 border border-gray-300 hover:border-gray-900 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-sm transition-all duration-200 shadow-xs flex items-center space-x-2 cursor-pointer"
                 >
-                  <svg className="w-4 h-4 text-gray-500 group-hover:text-gray-900 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   <span>{lang === "hi" ? "तकनीकी विनिर्देश देखें" : "View Technical Matrix"}</span>
@@ -268,20 +221,21 @@ function RailwayBarrierContent() {
               </div>
             </div>
 
-            {/* Right Media Column */}
+            {/* Right Media Column (Sharp Rectangular Border, No Overlay Box) */}
             <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-[#f8f9fb]">
-                <img
-                  src="/images/boom_barrier_railway.jpg"
-                  alt="Railway Barrier System"
-                  className="w-full h-[360px] sm:h-[460px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-lg">
-                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[460px] overflow-hidden bg-slate-50 border border-slate-200">
+                  <img
+                    src="/images/boom_barrier_railway.jpg"
+                    alt="Railway Barrier System"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "आरडीएसओ एवं एनईएमए मानक" : "Heavy Duty Railway Crossing Barrier"}
                   </span>
-                  <span className="text-sm text-gray-800 font-light">
+                  <span className="text-xs text-gray-600 font-light">
                     {lang === "hi"
                       ? "24/7 निरंतर भारी रेलवे और ट्रांजिट कॉरिडोर परिचालन हेतु प्रमाणित"
                       : "Proven in round-the-clock railway level crossing operations"}
@@ -302,7 +256,6 @@ function RailwayBarrierContent() {
           <div className="flex items-center justify-between h-14 sm:h-16 gap-3 sm:gap-4">
             {/* Left: Product Anchor */}
             <div className="flex items-center space-x-2.5 sm:space-x-3 flex-shrink-0">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#ff3131] animate-pulse" />
               <div className="flex flex-col">
                 <span className="text-xs sm:text-sm font-bold text-gray-950 tracking-tight leading-none whitespace-nowrap">
                   {lang === "hi" ? "रेलवे बैरियर सिस्टम" : "Railway Barrier System"}
@@ -322,23 +275,26 @@ function RailwayBarrierContent() {
                     key={nav.id}
                     href={`#${nav.id}`}
                     onClick={() => setActiveSpecTab(nav.id)}
-                    className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex-shrink-0 cursor-pointer ${
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-medium tracking-wide whitespace-nowrap transition-all duration-150 ${
                       isActive
-                        ? "bg-[#ff3131] text-white shadow-sm shadow-red-500/25"
-                        : "text-gray-600 hover:text-gray-950 hover:bg-gray-100/90"
+                        ? "bg-[#ff3131] text-white shadow-xs font-semibold"
+                        : "text-gray-600 hover:text-gray-950 hover:bg-gray-100"
                     }`}
                   >
-                    {nav.label}
+                    <span className="font-mono text-[10px] opacity-70 mr-1.5 hidden sm:inline">
+                      {nav.code}
+                    </span>
+                    <span>{nav.label}</span>
                   </a>
                 );
               })}
             </div>
 
-            {/* Right: Quick Action Quote CTA */}
-            <div className="flex-shrink-0 hidden lg:flex items-center">
+            {/* Right: Quick Action Button */}
+            <div className="hidden lg:flex items-center">
               <a
                 href="#contact-engineering"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-950 hover:bg-[#ff3131] text-white text-xs font-semibold tracking-wider uppercase transition-all duration-200 shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-950 hover:bg-[#ff3131] text-white text-xs font-semibold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer"
               >
                 <span>{lang === "hi" ? "कोटेशन लें" : "Get Quote"}</span>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -357,11 +313,6 @@ function RailwayBarrierContent() {
         <section id="fail-safe-boom" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/30 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>01</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "यांत्रिक अखंडता" : "Mechanical Integrity"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "फेल-सेफ बूम तंत्र" : "Fail-Safe Boom Mechanism"}
               </h2>
@@ -372,8 +323,8 @@ function RailwayBarrierContent() {
               </p>
 
               <div className="space-y-3 pt-2">
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -388,8 +339,8 @@ function RailwayBarrierContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -404,8 +355,8 @@ function RailwayBarrierContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -422,19 +373,21 @@ function RailwayBarrierContent() {
               </div>
             </div>
 
+            {/* Right Media (Sharp Borders, Clean Below Caption, No Overlay) */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-[#f8f9fb]">
-                <img
-                  src="/images/boom_barrier_hero.jpg"
-                  alt="Fail-Safe Boom Mechanism"
-                  className="w-full h-[360px] sm:h-[440px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md">
-                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200">
+                  <img
+                    src="/images/boom_barrier_hero.jpg"
+                    alt="Fail-Safe Boom Mechanism"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "इंजीनियरिंग परीक्षण" : "Factory Verification"}
                   </span>
-                  <span className="text-sm text-gray-800 font-light">
+                  <span className="text-xs text-gray-600 font-light">
                     {lang === "hi"
                       ? "कठोर थर्मल और कंपन परीक्षणों के तहत प्रमाणित यांत्रिक घटक"
                       : "100% factory endurance validated under simulated crosswind and vibration conditions"}
@@ -448,19 +401,21 @@ function RailwayBarrierContent() {
         {/* SPEC 2: OBSTACLE DETECTION INTEGRATION */}
         <section id="obstacle-detection" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Media (Sharp Borders, Clean Below Caption) */}
             <div className="lg:col-span-6 order-2 lg:order-1 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-[#f8f9fb]">
-                <img
-                  src="/images/crash_barrier_perimeter.jpg"
-                  alt="Obstacle Detection Integration"
-                  className="w-full h-[360px] sm:h-[440px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md">
-                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200">
+                  <img
+                    src="/images/crash_barrier_perimeter.jpg"
+                    alt="Obstacle Detection Integration"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "सेंसर रिडंडेंसी" : "Triple Sensing Protection"}
                   </span>
-                  <span className="text-sm text-gray-800 font-light">
+                  <span className="text-xs text-gray-600 font-light">
                     {lang === "hi"
                       ? "इंडक्टिव लूप, फोटोइलेक्ट्रिक इन्फ्रारेड और रडार का समन्वित एकीकरण"
                       : "Coordinated loop detection, optical through-beams, and 24GHz FMCW radar"}
@@ -470,11 +425,6 @@ function RailwayBarrierContent() {
             </div>
 
             <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/30 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>02</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "सुरक्षा सेंसर एकीकरण" : "Sensory Protection"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "अवरोध पहचान एकीकरण" : "Obstacle Detection Integration"}
               </h2>
@@ -485,7 +435,7 @@ function RailwayBarrierContent() {
               </p>
 
               <div className="space-y-3 pt-2">
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
                   <h4 className="text-gray-900 text-sm font-semibold flex items-center justify-between">
                     <span>{lang === "hi" ? "इंडक्टिव लूप वाहन डिटेक्टर" : "Dual-Channel Inductive Loop Detection"}</span>
                     <span className="text-xs text-[#ff3131] font-mono">&lt; 50ms Response</span>
@@ -497,7 +447,7 @@ function RailwayBarrierContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
                   <h4 className="text-gray-900 text-sm font-semibold flex items-center justify-between">
                     <span>{lang === "hi" ? "इन्फ्रारेड थ्रू-बीम सेफ्टी कर्टन" : "Optical Infrared Through-Beam Curtain"}</span>
                     <span className="text-xs text-[#ff3131] font-mono">15m Optical Range</span>
@@ -509,7 +459,7 @@ function RailwayBarrierContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
                   <h4 className="text-gray-900 text-sm font-semibold flex items-center justify-between">
                     <span>{lang === "hi" ? "24GHz माइक्रोवेव रडार स्कैनर (वैकल्पिक)" : "24GHz FMCW Radar Integration (Optional)"}</span>
                     <span className="text-xs text-[#ff3131] font-mono">No Digging Needed</span>
@@ -529,11 +479,6 @@ function RailwayBarrierContent() {
         <section id="power-backup" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/30 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>03</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "अविराम विद्युत आपूर्ति" : "Uninterruptible Power"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "पावर बैकअप एवं मैनुअल ओवरराइड" : "Power Backup & Manual Override"}
               </h2>
@@ -544,8 +489,8 @@ function RailwayBarrierContent() {
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "बैटरी बैकअप" : "Internal Battery Bank"}
                   </div>
                   <div className="text-xl font-light text-gray-900 font-sans">&gt; 200 Cycles</div>
@@ -556,8 +501,8 @@ function RailwayBarrierContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "स्विचओवर समय" : "Transfer Time"}
                   </div>
                   <div className="text-xl font-light text-gray-900 font-sans">&lt; 10 Milliseconds</div>
@@ -568,8 +513,8 @@ function RailwayBarrierContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "मैनुअल हैंड क्रैंक" : "Manual Hand Crank"}
                   </div>
                   <div className="text-xl font-light text-gray-900 font-sans">Key-Release Clutch</div>
@@ -580,8 +525,8 @@ function RailwayBarrierContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "सोलर हाइब्रिड सपोर्ट" : "Solar DC Ready"}
                   </div>
                   <div className="text-xl font-light text-gray-900 font-sans">12V / 24V Solar Input</div>
@@ -594,19 +539,21 @@ function RailwayBarrierContent() {
               </div>
             </div>
 
+            {/* Right Media (Sharp Borders, Clean Below Caption) */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-[#f8f9fb]">
-                <img
-                  src="/images/road_blocker_barrier.jpg"
-                  alt="Power Backup and Manual Override"
-                  className="w-full h-[360px] sm:h-[440px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md">
-                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200">
+                  <img
+                    src="/images/road_blocker_barrier.jpg"
+                    alt="Power Backup and Manual Override"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "फील्ड-रेडी विश्वसनीयता" : "Uninterrupted Uptime"}
                   </span>
-                  <span className="text-sm text-gray-800 font-light">
+                  <span className="text-xs text-gray-600 font-light">
                     {lang === "hi"
                       ? "लंबे समय तक चलने वाले बिजली संकट में भी लेवल क्रॉसिंग सुरक्षा 100% बरकरार रहती है"
                       : "Autonomous battery failover guarantees barrier function across grid outages and storms"}
@@ -620,18 +567,21 @@ function RailwayBarrierContent() {
         {/* SPEC 4: WEATHERPROOF ENCLOSURE */}
         <section id="weatherproof-enclosure" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Media (Sharp Borders, Clean Below Caption) */}
             <div className="lg:col-span-6 order-2 lg:order-1 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-gradient-to-b from-[#f8f9fa] to-white p-8 flex items-center justify-center">
-                <img
-                  src="/images/boom_barrier_original.png"
-                  alt="Weatherproof Enclosure Construction"
-                  className="max-h-[380px] w-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.15)]"
-                />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md">
-                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200 flex items-center justify-center p-4">
+                  <img
+                    src="/images/weatherproof_enclosure.jpg"
+                    alt="Weatherproof Enclosure Construction"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "कठोर निर्माण" : "Heavy-Duty Construction"}
                   </span>
-                  <span className="text-sm text-gray-800 font-light">
+                  <span className="text-xs text-gray-600 font-light">
                     {lang === "hi"
                       ? "3mm कोल्ड-रोल्ड स्टील / 316 स्टेनलेस स्टील, IP66 प्रमाणित कैबिनेट"
                       : "3mm cold-rolled steel or optional 316 stainless steel with IP66 ingress protection"}
@@ -641,11 +591,6 @@ function RailwayBarrierContent() {
             </div>
 
             <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/30 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>04</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "पर्यावरण स्थायित्व" : "Environmental Durability"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "वेदरप्रूफ एनक्लोजर एवं सुरक्षा" : "Weatherproof Enclosure & Durability"}
               </h2>
@@ -656,8 +601,8 @@ function RailwayBarrierContent() {
               </p>
 
               <div className="space-y-3 pt-2">
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -672,8 +617,8 @@ function RailwayBarrierContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -688,8 +633,8 @@ function RailwayBarrierContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -711,9 +656,6 @@ function RailwayBarrierContent() {
         {/* 5. Comprehensive Technical Specification Matrix Table */}
         <section id="technical-specs" className="scroll-mt-36">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/20 text-[#ff3131] text-xs font-semibold uppercase tracking-wider mb-3">
-              <span>{lang === "hi" ? "इंजीनियरिंग डेटाशीट" : "Engineering Datasheet"}</span>
-            </div>
             <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
               {lang === "hi" ? "विस्तृत तकनीकी विनिर्देश तालिका" : "Technical Specification Matrix"}
             </h2>
@@ -724,7 +666,7 @@ function RailwayBarrierContent() {
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-xl">
+          <div className="overflow-x-auto border border-gray-200 bg-white shadow-xs">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-gray-200 bg-[#f8f9fa]">
@@ -761,17 +703,14 @@ function RailwayBarrierContent() {
         {/* 6. Applications Section */}
         <section id="applications" className="scroll-mt-36">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/30 text-[#ff3131] text-xs font-semibold uppercase tracking-wider mb-3">
-              <span>{lang === "hi" ? "फील्ड परिनियोजन" : "Field Deployments"}</span>
-            </div>
             <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
               {lang === "hi" ? "प्रमुख अनुप्रयोग एवं उद्योग" : "Applications & Deployment Corridors"}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-[#f8f9fa] border border-gray-200 shadow-sm space-y-4 hover:border-gray-300 hover:shadow-md transition-all">
-              <div className="w-12 h-12 rounded-xl bg-[#ff3131]/10 border border-[#ff3131]/20 flex items-center justify-center text-[#ff3131]">
+            <div className="p-6 bg-[#f8f9fa] border border-gray-200 shadow-xs space-y-4 hover:border-gray-300 transition-all">
+              <div className="w-12 h-12 bg-[#ff3131]/10 border border-[#ff3131]/20 flex items-center justify-center text-[#ff3131]">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -786,8 +725,8 @@ function RailwayBarrierContent() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#f8f9fa] border border-gray-200 shadow-sm space-y-4 hover:border-gray-300 hover:shadow-md transition-all">
-              <div className="w-12 h-12 rounded-xl bg-[#ff3131]/10 border border-[#ff3131]/20 flex items-center justify-center text-[#ff3131]">
+            <div className="p-6 bg-[#f8f9fa] border border-gray-200 shadow-xs space-y-4 hover:border-gray-300 transition-all">
+              <div className="w-12 h-12 bg-[#ff3131]/10 border border-[#ff3131]/20 flex items-center justify-center text-[#ff3131]">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
@@ -802,8 +741,8 @@ function RailwayBarrierContent() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#f8f9fa] border border-gray-200 shadow-sm space-y-4 hover:border-gray-300 hover:shadow-md transition-all">
-              <div className="w-12 h-12 rounded-xl bg-[#ff3131]/10 border border-[#ff3131]/20 flex items-center justify-center text-[#ff3131]">
+            <div className="p-6 bg-[#f8f9fa] border border-gray-200 shadow-xs space-y-4 hover:border-gray-300 transition-all">
+              <div className="w-12 h-12 bg-[#ff3131]/10 border border-[#ff3131]/20 flex items-center justify-center text-[#ff3131]">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
@@ -822,12 +761,10 @@ function RailwayBarrierContent() {
 
         {/* 7. Request a Quote / Engineering Consultation Section */}
         <section id="contact-engineering" className="scroll-mt-36">
-          <div className="rounded-3xl bg-gradient-to-b from-[#f8f9fb] to-white border border-gray-200 p-8 sm:p-12 lg:p-16 shadow-xl relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#ff3131]/5 rounded-full blur-3xl pointer-events-none" />
-
+          <div className="bg-white border border-gray-200 p-8 sm:p-12 lg:p-16 shadow-xs relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
               <div className="lg:col-span-6 space-y-4">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#ff3131]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] font-mono">
                   {lang === "hi" ? "प्रत्यक्ष तकनीकी सहयोग" : "Direct Technical Consultation"}
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
@@ -857,8 +794,8 @@ function RailwayBarrierContent() {
 
               <div className="lg:col-span-6">
                 {formSubmitted ? (
-                  <div className="p-8 rounded-2xl bg-white border border-gray-200 text-center space-y-4 shadow-xl animate-in fade-in duration-300">
-                    <div className="w-14 h-14 mx-auto rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] text-2xl font-bold">
+                  <div className="p-8 bg-white border border-gray-200 text-center space-y-4 shadow-sm animate-in fade-in duration-300">
+                    <div className="w-14 h-14 mx-auto bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] text-2xl font-bold">
                       ✓
                     </div>
                     <h3 className="text-xl font-medium text-gray-900">
@@ -871,7 +808,7 @@ function RailwayBarrierContent() {
                     </p>
                     <button
                       onClick={() => setFormSubmitted(false)}
-                      className="px-6 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+                      className="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                     >
                       {lang === "hi" ? "नया अनुरोध सबमिट करें" : "Submit Another Inquiry"}
                     </button>
@@ -882,7 +819,7 @@ function RailwayBarrierContent() {
                       e.preventDefault();
                       setFormSubmitted(true);
                     }}
-                    className="p-6 sm:p-8 rounded-2xl bg-white border border-gray-200 shadow-xl space-y-4"
+                    className="p-6 sm:p-8 bg-slate-50 border border-gray-200 shadow-xs space-y-4"
                   >
                     <div>
                       <label className="block text-xs font-medium uppercase tracking-wider text-gray-700 mb-1.5">
@@ -892,7 +829,7 @@ function RailwayBarrierContent() {
                         type="text"
                         required
                         placeholder={lang === "hi" ? "उदा. राजेश कुमार" : "e.g. John Doe"}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                        className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                       />
                     </div>
 
@@ -905,7 +842,7 @@ function RailwayBarrierContent() {
                           type="text"
                           required
                           placeholder={lang === "hi" ? "कंपनी / रेलवे जोन" : "e.g. Northern Railways / EPC Corp"}
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                         />
                       </div>
                       <div>
@@ -916,7 +853,7 @@ function RailwayBarrierContent() {
                           type="tel"
                           required
                           placeholder="+91 / Country Code"
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                         />
                       </div>
                     </div>
@@ -930,14 +867,14 @@ function RailwayBarrierContent() {
                           type="email"
                           required
                           placeholder="engineering@org.com"
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-medium uppercase tracking-wider text-gray-700 mb-1.5">
                           {lang === "hi" ? "आवश्यक बूम लंबाई" : "Required Boom Span"}
                         </label>
-                        <select className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors">
+                        <select className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 text-sm focus:outline-none focus:border-[#ff3131] transition-colors">
                           <option value="4m">3.0m - 4.0m (Standard Single Track)</option>
                           <option value="6m">4.5m - 6.0m (Standard Dual Track)</option>
                           <option value="8m">6.5m - 8.0m (Wide Crossing Heavy Rail)</option>
@@ -953,13 +890,13 @@ function RailwayBarrierContent() {
                       <textarea
                         rows={3}
                         placeholder={lang === "hi" ? "स्थापना स्थल, वोल्टेज या विशेष सिग्नलिंग आवश्यकताएं..." : "Specify site conditions, interlocking interfaces, or tender timelines..."}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors resize-none"
+                        className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-3 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white font-medium text-sm sm:text-base uppercase tracking-wider transition-all shadow-md shadow-[#ff3131]/20 cursor-pointer"
+                      className="w-full py-3 bg-[#ff3131] hover:bg-[#d62828] text-white font-medium text-sm sm:text-base uppercase tracking-wider transition-all shadow-md shadow-[#ff3131]/20 cursor-pointer"
                     >
                       {lang === "hi" ? "अनुरोध सबमिट करें" : "Submit Technical Specification Request"}
                     </button>

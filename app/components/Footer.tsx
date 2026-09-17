@@ -83,13 +83,13 @@ export default function Footer() {
           <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2.5 sm:gap-3">
             <a
               href="#contact-engineering"
-              className="px-5 py-2.5 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white text-center text-xs sm:text-sm font-medium transition-all shadow-md"
+              className="px-5 py-2.5 rounded-none bg-red-600 hover:bg-[#d62828] text-white text-center text-xs sm:text-sm font-medium transition-all shadow-md"
             >
               {lang === "hi" ? "कोटेशन प्राप्त करें" : "Request a Quote"}
             </a>
             <a
               href="#contact-engineering"
-              className="px-5 py-2.5 rounded-full border border-gray-300 hover:border-gray-900 text-gray-800 text-center text-xs sm:text-sm font-medium transition-all"
+              className="px-5 py-2.5 rounded-none border border-gray-300 hover:border-gray-900 text-gray-800 text-center text-xs sm:text-sm font-medium transition-all"
             >
               {lang === "hi" ? "तकनीकी सहायता" : "Technical Support"}
             </a>

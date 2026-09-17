@@ -33,15 +33,12 @@ export interface RailwaySubpageProps {
 
 function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
   const { lang } = useLanguage();
-  const [activeTab, setActiveTab] = useState<"blueprint" | "calculator" | "casestudies" | "specs">("blueprint");
   
   // Interactive Boom Torque / Sizing Calculator State
   const [boomLength, setBoomLength] = useState<number>(5.0);
   const [windSpeed, setWindSpeed] = useState<number>(70);
   const [selectedProfile, setSelectedProfile] = useState<"octagonal" | "round" | "articulated">("octagonal");
   const [downloadRequested, setDownloadRequested] = useState<string | null>(null);
-  const [quickContactSent, setQuickContactSent] = useState(false);
-  const [quickEmail, setQuickEmail] = useState("");
 
   // Calculated values for interactive simulation
   const cycleTime = (boomLength * 0.55).toFixed(1);
@@ -50,43 +47,20 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
   const motorRating = boomLength <= 4 ? "180W Brushless DC" : boomLength <= 6 ? "250W High-Torque BLDC" : "400W Industrial Geared BLDC";
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800 font-sans selection:bg-[#0284c7] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-white text-slate-800 font-sans selection:bg-[#dc2626] selection:text-white">
       {/* 1. Global Navigation */}
       <AramcoHeader />
 
       {/* 
         =======================================================================
-        HERO SECTION: CAD BLUEPRINT & RAILWAY HARDWARE ACCENT
+        HERO SECTION: CLEAN RED & WHITE TECHNICAL PRESENTATION
         =======================================================================
       */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-gradient-to-b from-slate-100 via-[#f8fafc] to-white border-b border-slate-200 overflow-hidden">
-        {/* Subtle Grid and Glow */}
-        <div className="absolute inset-0 opacity-[0.035] pointer-events-none bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:20px_20px]" />
-        <div className="absolute -top-24 right-10 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl pointer-events-none" />
-
+      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Breadcrumb Navigation */}
-          <nav className="flex items-center space-x-2 text-xs font-medium text-slate-500 mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-sky-600 transition-colors">
-              {lang === "hi" ? "होम" : "Home"}
-            </Link>
-            <span>/</span>
-            <Link href="/products/railway-barrier" className="hover:text-sky-600 transition-colors">
-              {lang === "hi" ? "रेलवे बैरियर सिस्टम" : "Railway Barrier System"}
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-semibold truncate max-w-[220px] sm:max-w-none">
-              {lang === "hi" ? data.subCategoryTitleHi : data.subCategoryTitleEn}
-            </span>
-          </nav>
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7">
-              <div className="text-xs sm:text-sm font-bold text-sky-700 tracking-wider uppercase font-mono mb-3">
-                {lang === "hi" ? data.badgeHi : data.badgeEn}
-              </div>
-
               <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-900 tracking-tight leading-[1.2] mb-5">
                 {lang === "hi" ? data.heroHeadlineHi : data.heroHeadlineEn}
               </h1>
@@ -99,41 +73,41 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href="#engineering-bench"
-                  className="px-6 py-3 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-sky-500/20 hover:shadow-lg flex items-center space-x-2"
+                  className="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
                   <span>{lang === "hi" ? "बूम साइज़िंग कैलकुलेटर चलाएं" : "Launch Boom Sizing Bench"}</span>
                   <span className="text-xs font-mono">→</span>
                 </a>
                 <a
                   href="#spec-drawer"
-                  className="px-5 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
+                  className="px-5 py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 hover:text-red-600 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
-                  <span className="text-[11px] font-mono font-bold text-sky-600">DWG</span>
+                  <span className="text-[11px] font-mono font-bold text-red-600">DWG</span>
                   <span>{lang === "hi" ? "CAD एवं टेंडर स्पेक्स" : "CAD DWG & Tender Specs"}</span>
                 </a>
               </div>
             </div>
 
-            {/* Right Hero Image Card with Technical Overlay */}
+            {/* Right Hero Image (Sharp Rectangular Border, NO Curve) */}
             <div className="lg:col-span-5">
-              <div className="relative overflow-hidden bg-white p-2 shadow-lg border border-slate-200 group">
-                <div className="relative h-72 sm:h-88 md:h-96 w-full overflow-hidden">
+              <div className="relative overflow-hidden bg-white p-2 border border-slate-200 shadow-sm">
+                <div className="relative h-72 sm:h-88 md:h-96 w-full overflow-hidden bg-slate-50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={data.bannerImage}
                     alt={data.subCategoryTitleEn}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 4 Stat Metrics */}
+          {/* 4 Stat Metrics (Sharp Rectangles) */}
           <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {data.stats.map((st, i) => (
-              <div key={i} className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-sky-300 transition-all">
-                <div className="text-2xl sm:text-3xl font-bold text-sky-600 font-mono tracking-tight">
+              <div key={i} className="p-5 bg-white border border-slate-200 shadow-sm hover:border-red-300 transition-all">
+                <div className="text-2xl sm:text-3xl font-bold text-red-600 font-mono tracking-tight">
                   {st.value}
                 </div>
                 <div className="text-xs font-bold text-slate-900 mt-1">
@@ -150,16 +124,13 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        SECTION 2: DEEP DIVE & MECHANICAL HIGHLIGHTS (Blueprint Breakdown)
+        SECTION 2: DEEP DIVE & MECHANICAL HIGHLIGHTS (Sharp Presentation)
         =======================================================================
       */}
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-bold font-mono text-sky-600 uppercase tracking-widest">
-              {lang === "hi" ? "कोर मैकेनिकल आर्किटेक्चर" : "CORE MECHANICAL ARCHITECTURE"}
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mt-2">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
               {lang === "hi" ? data.deepDiveTitleHi : data.deepDiveTitleEn}
             </h2>
           </div>
@@ -168,7 +139,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
             {/* Deep dive text */}
             <div className="lg:col-span-7 space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
               {(lang === "hi" ? data.deepDiveParasHi : data.deepDiveParasEn).map((p, idx) => (
-                <p key={idx} className="bg-slate-50/70 p-4 rounded-xl border border-slate-100">
+                <p key={idx} className="bg-slate-50 p-4 border border-slate-200 border-l-4 border-l-red-600">
                   {p}
                 </p>
               ))}
@@ -176,8 +147,8 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
               {/* Highlights cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
                 {data.highlights.map((h, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm hover:border-sky-300 transition-all">
-                    <span className="inline-block px-2 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-bold font-mono uppercase mb-2">
+                  <div key={i} className="p-4 bg-white border border-slate-200 shadow-sm hover:border-red-300 transition-all">
+                    <span className="inline-block px-2 py-0.5 bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold font-mono uppercase mb-2">
                       {h.badge}
                     </span>
                     <h4 className="text-xs font-bold text-slate-900 mb-1">
@@ -191,15 +162,15 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
               </div>
             </div>
 
-            {/* Right Side Visual Schematic Card */}
+            {/* Right Side Visual Schematic Card (Sharp image, clean light theme) */}
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white p-5 sm:p-6">
+              <div className="border border-slate-200 shadow-sm bg-white p-5 sm:p-6">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <span className="text-xs font-bold text-slate-800 tracking-wide uppercase">Technical Specification</span>
-                  <span className="text-[11px] px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-medium border border-emerald-200">Certified EN 50126</span>
+                  <span className="text-[11px] px-2.5 py-0.5 bg-red-50 text-red-700 font-medium border border-red-200">Certified EN 50126</span>
                 </div>
                 
-                <div className="relative my-4 h-48 overflow-hidden border border-slate-200">
+                <div className="relative my-4 h-48 overflow-hidden border border-slate-200 bg-slate-50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={data.secondaryBannerImage}
@@ -211,7 +182,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                 <div className="divide-y divide-slate-100 text-xs">
                   <div className="flex justify-between py-2.5">
                     <span className="text-slate-500 font-medium">Clutch Release Delay:</span>
-                    <span className="text-emerald-700 font-semibold">&lt; 10 ms (Fail-Safe)</span>
+                    <span className="text-red-700 font-semibold">&lt; 10 ms (Fail-Safe)</span>
                   </div>
                   <div className="flex justify-between py-2.5">
                     <span className="text-slate-500 font-medium">Terminal Cushioning:</span>
@@ -230,16 +201,16 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        BANNER 1 (~80% WIDTH): TECHNICAL ARCHITECTURE SPOTLIGHT
+        BANNER 1: ARCHITECTURE SPOTLIGHT (Clean light background, NO overlay boxes)
         =======================================================================
       */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 my-12 sm:my-16">
-        <div className="bg-gradient-to-r from-sky-50 via-slate-50 to-white border border-slate-200 shadow-sm p-6 sm:p-10">
+        <div className="bg-slate-50 border border-slate-200 p-6 sm:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold uppercase tracking-wider font-mono">
+              <div className="text-xs font-bold text-red-700 uppercase tracking-wider font-mono">
                 <span>{lang === "hi" ? "तकनीकी मानकीकरण" : "TECHNICAL STANDARD"}</span>
-                <span>•</span>
+                <span className="mx-2">•</span>
                 <span>SIL-2 & RDSO READY</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
@@ -255,14 +226,14 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
               <div className="pt-2 flex flex-wrap gap-4 items-center">
                 <a
                   href="#engineering-bench"
-                  className="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
+                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
                   <span>{lang === "hi" ? "सिस्टम कॉन्फ़िगर करें" : "Configure System"}</span>
                   <span>→</span>
                 </a>
                 <a
                   href="#spec-drawer"
-                  className="text-xs font-semibold text-slate-700 hover:text-sky-600 transition-colors"
+                  className="text-xs font-semibold text-slate-700 hover:text-red-600 transition-colors"
                 >
                   {lang === "hi" ? "तकनीकी डेटाशीट डाउनलोड करें" : "Download Full Technical Datasheet"}
                 </a>
@@ -270,7 +241,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 bg-white">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={data.secondaryBannerImage}
@@ -285,16 +256,13 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        SECTION 3: INTERACTIVE BOOM SIZING & WIND LOAD BENCH (NO REPETITION)
+        SECTION 3: INTERACTIVE BOOM SIZING BENCH
         =======================================================================
       */}
       <section id="engineering-bench" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="px-3 py-1 rounded bg-sky-100 text-sky-800 text-xs font-bold font-mono uppercase">
-              {lang === "hi" ? "इंटरएक्टिव इंजीनियरिंग सिमुलेशन" : "INTERACTIVE SIZING SIMULATOR"}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
               {lang === "hi" ? "बूम लंबाई एवं पवन भार कैलकुलेटर" : "Boom Span & Wind Torque Engineering Bench"}
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2">
@@ -306,11 +274,11 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             {/* Left Controls */}
-            <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="lg:col-span-6 bg-white p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-6 flex items-center justify-between">
                   <span>{lang === "hi" ? "पैरामीटर इनपुट" : "Site Parameter Sliders"}</span>
-                  <span className="text-xs font-mono text-sky-600">LIVE FEEDBACK</span>
+                  <span className="text-xs font-mono text-red-600">LIVE FEEDBACK</span>
                 </h3>
 
                 {/* Boom Length Slider */}
@@ -319,7 +287,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                     <label className="text-xs font-semibold text-slate-700">
                       {lang === "hi" ? "बूम आर्म लंबाई (मीटर):" : "Barrier Boom Arm Span:"}
                     </label>
-                    <span className="text-sm font-bold font-mono text-sky-600 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
+                    <span className="text-sm font-bold font-mono text-red-600 bg-red-50 px-2 py-0.5 border border-red-200">
                       {boomLength.toFixed(1)} Meters
                     </span>
                   </div>
@@ -330,7 +298,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                     step={0.5}
                     value={boomLength}
                     onChange={(e) => setBoomLength(parseFloat(e.target.value))}
-                    className="w-full accent-[#0284c7] cursor-pointer"
+                    className="w-full accent-[#dc2626] cursor-pointer"
                   />
                   <div className="flex justify-between text-[10px] text-slate-400 mt-1">
                     <span>3.0m (Standard Single)</span>
@@ -345,7 +313,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                     <label className="text-xs font-semibold text-slate-700">
                       {lang === "hi" ? "पवन गति (Wind Gust):" : "Design Wind Gust Velocity:"}
                     </label>
-                    <span className="text-sm font-bold font-mono text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                    <span className="text-sm font-bold font-mono text-amber-600 bg-amber-50 px-2 py-0.5 border border-amber-200">
                       {windSpeed} km/h
                     </span>
                   </div>
@@ -356,7 +324,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                     step={5}
                     value={windSpeed}
                     onChange={(e) => setWindSpeed(parseInt(e.target.value))}
-                    className="w-full accent-[#0284c7] cursor-pointer"
+                    className="w-full accent-[#dc2626] cursor-pointer"
                   />
                   <div className="flex justify-between text-[10px] text-slate-400 mt-1">
                     <span>20 km/h (Calm)</span>
@@ -379,9 +347,9 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                       <button
                         key={prf.id}
                         onClick={() => setSelectedProfile(prf.id as any)}
-                        className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
+                        className={`p-2.5 text-left border transition-all cursor-pointer ${
                           selectedProfile === prf.id
-                            ? "bg-sky-50 border-sky-500 text-sky-950 font-bold shadow-sm"
+                            ? "bg-red-50 border-red-500 text-red-950 font-bold shadow-sm"
                             : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
                         }`}
                       >
@@ -395,36 +363,36 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
             </div>
 
             {/* Right Simulation Output */}
-            <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="lg:col-span-6 bg-white p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-center pb-4 border-b border-slate-100">
                   <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
                     {lang === "hi" ? "गणना परिणाम" : "Live Sizing Computations"}
                   </h3>
-                  <span className="text-[10px] px-2.5 py-0.5 rounded bg-sky-50 text-sky-700 font-mono font-bold border border-sky-200">
+                  <span className="text-[10px] px-2.5 py-0.5 bg-red-50 text-red-700 font-mono font-bold border border-red-200">
                     EN 50126 READY
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 my-6">
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="p-4 bg-slate-50 border border-slate-200">
                     <span className="text-[11px] text-slate-500 font-medium">Calculated Holding Torque</span>
                     <div className="text-2xl font-bold font-mono text-slate-900 mt-1">{totalTorque} Nm</div>
                     <span className="text-[10px] text-slate-400">Wind gust compensated</span>
                   </div>
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="p-4 bg-slate-50 border border-slate-200">
                     <span className="text-[11px] text-slate-500 font-medium">Estimated Cycle Duration</span>
-                    <div className="text-2xl font-bold font-mono text-sky-600 mt-1">{cycleTime} sec</div>
+                    <div className="text-2xl font-bold font-mono text-red-600 mt-1">{cycleTime} sec</div>
                     <span className="text-[10px] text-slate-400">0° to 90° full stroke</span>
                   </div>
                 </div>
 
                 <div className="space-y-2.5 text-xs text-slate-700">
-                  <div className="flex justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="flex justify-between p-2.5 bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 font-medium">Matched Counterbalance Pack:</span>
                     <span className="font-bold text-slate-900">{counterbalanceSprings}</span>
                   </div>
-                  <div className="flex justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="flex justify-between p-2.5 bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 font-medium">Recommended Motor Unit:</span>
                     <span className="font-bold text-slate-900">{motorRating}</span>
                   </div>
@@ -435,7 +403,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                 <span className="text-[11px] text-slate-500 font-medium">Matched to Indian Railways RDSO Norms</span>
                 <a
                   href="#spec-drawer"
-                  className="px-4 py-2 rounded-lg bg-sky-700 hover:bg-sky-800 text-white text-xs font-semibold tracking-wide transition-all shadow-sm"
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm"
                 >
                   {lang === "hi" ? "ड्राइंग डाउनलोड करें" : "Export Mechanical DWG"}
                 </a>
@@ -447,11 +415,11 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        BANNER 2 (FULL-WIDTH): FIELD INSTALLATION & COMMISSIONING SHOWCASE
+        BANNER 2 (FULL-WIDTH): FIELD INSTALLATION (Clean presentation, NO boxes on image)
         =======================================================================
       */}
-      <section className="relative w-full my-12 sm:my-16 bg-slate-100 border-y border-slate-200 overflow-hidden">
-        <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] w-full overflow-hidden">
+      <section className="relative w-full my-12 sm:my-16 bg-white border-y border-slate-200 overflow-hidden">
+        <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] w-full overflow-hidden bg-slate-100">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={data.fieldBannerImage}
@@ -459,10 +427,10 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
             className="w-full h-full object-cover"
           />
         </div>
+        {/* Caption below the image (NOT on top of it) */}
         <div className="bg-white border-t border-slate-200 py-3.5 px-4 sm:px-8">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 font-mono">
             <div className="flex items-center space-x-2 font-bold text-slate-900">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
               <span>{lang === "hi" ? `${data.subCategoryTitleHi} - सक्रिय फील्ड परिनियोजन` : `${data.subCategoryTitleEn} • Active Field Deployment`}</span>
             </div>
             <div className="flex items-center space-x-4 text-[11px] text-slate-500">
@@ -476,21 +444,71 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
+        SECTION 4: HARDWARE IMAGE GALLERY (More real hardware photos)
+        =======================================================================
+      */}
+      <section className="py-12 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-slate-900">
+              {lang === "hi" ? "विस्तृत निर्माण एवं फील्ड तस्वीरें" : "Assembly Engineering & Field Hardware"}
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="border border-slate-200 bg-white p-2">
+              <div className="h-52 w-full overflow-hidden bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/boom_barrier_railway.jpg"
+                  alt="Barrier Corridor"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3 text-xs font-bold text-slate-900">Railway Level Crossing Corridor</div>
+            </div>
+
+            <div className="border border-slate-200 bg-white p-2">
+              <div className="h-52 w-full overflow-hidden bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/fail_safe_boom.jpg"
+                  alt="Internal Actuator Drive"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3 text-xs font-bold text-slate-900">Internal Torque & BLDC Drive</div>
+            </div>
+
+            <div className="border border-slate-200 bg-white p-2">
+              <div className="h-52 w-full overflow-hidden bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/weatherproof_enclosure.jpg"
+                  alt="IP66 Enclosure Test"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3 text-xs font-bold text-slate-900">IP66 Weatherproof Tested Cabinet</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        =======================================================================
         SECTION 5: SPECIFICATION MATRIX
         =======================================================================
       */}
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold font-mono text-sky-600 uppercase tracking-widest">
-              {lang === "hi" ? "प्रमाणित विनिर्देश" : "VERIFIED PARAMETERS"}
-            </span>
-            <h3 className="text-2xl font-bold text-slate-900 mt-1">
+            <h3 className="text-2xl font-bold text-slate-900">
               {lang === "hi" ? `${data.subCategoryTitleHi} तकनीकी डेटा` : `${data.subCategoryTitleEn} Technical Matrix`}
             </h3>
           </div>
 
-          <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+          <div className="border border-slate-200 shadow-sm bg-white overflow-hidden">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-bold">
                 <tr>
@@ -501,15 +519,15 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
                 {data.specsTable.map((sp, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
+                  <tr key={idx} className="hover:bg-red-50/30 transition-colors">
                     <td className="p-4 sm:p-5 font-semibold text-slate-900">
                       {lang === "hi" ? sp.parameterHi : sp.parameterEn}
                     </td>
-                    <td className="p-4 sm:p-5 font-mono text-sky-700 font-medium">
+                    <td className="p-4 sm:p-5 font-mono text-red-700 font-medium">
                       {lang === "hi" ? sp.valueHi : sp.valueEn}
                     </td>
                     <td className="p-4 sm:p-5">
-                      <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono text-xs">
+                      <span className="px-2.5 py-1 bg-slate-100 text-slate-700 font-mono text-xs">
                         {sp.standard}
                       </span>
                     </td>
@@ -523,17 +541,17 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        SECTION 6: BESPOKE RAILWAY ENGINEERING DRAWER (NO GENERIC 4-FIELD FORM)
+        SECTION 6: DIRECT SPECIFICATION REPOSITORY
         =======================================================================
       */}
-      <section id="spec-drawer" className="py-16 sm:py-20 bg-gradient-to-b from-slate-50 to-slate-100 border-b border-slate-200">
+      <section id="spec-drawer" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 shadow-lg shadow-slate-200/50">
+          <div className="p-8 sm:p-12 bg-white border border-slate-200 shadow-sm">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
-              {/* Left Column: Direct Downloads & Quick Access */}
+              {/* Left Column: Direct Downloads */}
               <div className="lg:col-span-7">
-                <div className="text-xs font-bold font-mono text-sky-700 uppercase tracking-wider mb-2">
+                <div className="text-xs font-bold font-mono text-red-700 uppercase tracking-wider mb-2">
                   {lang === "hi" ? "सीधा इंजीनियरिंग एक्सेस" : "DIRECT SPECIFICATION REPOSITORY"}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
@@ -547,7 +565,7 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                     : "Instant access to anchor bolt civil foundation layouts, 2D DWG cad blueprints, and RDSO compliance statements."}
                 </p>
 
-                {/* 3 Download Action Chips */}
+                {/* Download Action Chips */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
                   {[
                     { id: "pdf", label: "Datasheet (PDF)", size: "3.4 MB", ext: "PDF" },
@@ -560,16 +578,16 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                         setDownloadRequested(doc.id);
                         setTimeout(() => setDownloadRequested(null), 3500);
                       }}
-                      className="p-3 rounded-xl bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 text-left transition-all flex flex-col justify-between cursor-pointer group"
+                      className="p-3 bg-slate-50 hover:bg-red-50/60 border border-slate-200 hover:border-red-300 text-left transition-all flex flex-col justify-between cursor-pointer group"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono font-bold text-sky-700 bg-white px-1.5 py-0.5 rounded border border-slate-200">
+                        <span className="text-[10px] font-mono font-bold text-red-700 bg-white px-1.5 py-0.5 border border-slate-200">
                           {doc.ext}
                         </span>
-                        <span className="text-xs text-slate-400 group-hover:text-sky-600">↓</span>
+                        <span className="text-xs text-slate-400 group-hover:text-red-600">↓</span>
                       </div>
                       <div className="mt-2">
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-sky-700">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-700">
                           {doc.label}
                         </div>
                         <div className="text-[10px] text-slate-400">{doc.size}</div>
@@ -579,16 +597,16 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                 </div>
 
                 {downloadRequested && (
-                  <div className="mt-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium flex items-center space-x-2">
-                    <span className="font-bold text-emerald-700 font-mono">[CONFIRMED]</span>
+                  <div className="mt-4 p-3 bg-red-50 border border-red-200 text-red-800 text-xs font-medium flex items-center space-x-2">
+                    <span className="font-bold text-red-700 font-mono">[CONFIRMED]</span>
                     <span>{lang === "hi" ? "दस्तावेज डाउनलोड प्रारंभ हो गया है।" : "Specification package download initiated."}</span>
                   </div>
                 )}
               </div>
 
               {/* Right Column: Direct Rail Hotline Card */}
-              <div className="lg:col-span-5 bg-white p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-sm text-slate-900">
-                <span className="text-[10px] font-bold text-sky-700 uppercase tracking-widest">
+              <div className="lg:col-span-5 bg-white p-6 sm:p-7 border border-slate-200 shadow-sm text-slate-900">
+                <span className="text-[10px] font-bold text-red-700 uppercase tracking-widest font-mono">
                   {lang === "hi" ? "सीधा तकनीकी सहायता" : "DEDICATED RAILWAYS DESK"}
                 </span>
                 <h4 className="text-lg font-bold text-slate-900 mt-1">
@@ -603,14 +621,14 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                 <div className="mt-5 space-y-2.5">
                   <a
                     href="tel:+911149887700"
-                    className="w-full py-3 px-4 rounded-xl bg-sky-700 hover:bg-sky-800 text-white text-xs font-semibold flex items-center justify-between transition-all shadow-sm"
+                    className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold flex items-center justify-between transition-all shadow-sm"
                   >
                     <span>TEL: +91 11 4988 7700</span>
-                    <span className="text-[10px] bg-sky-800 px-2 py-0.5 rounded font-medium">NEW DELHI HQ</span>
+                    <span className="text-[10px] bg-red-700 px-2 py-0.5 font-medium">NEW DELHI HQ</span>
                   </a>
                   <a
                     href="mailto:rail.engineering@global-safety.com"
-                    className="w-full py-3 px-4 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold flex items-center justify-between transition-all"
+                    className="w-full py-3 px-4 bg-slate-50 hover:bg-red-50/50 border border-slate-200 hover:border-red-200 text-slate-800 text-xs font-semibold flex items-center justify-between transition-all"
                   >
                     <span>EMAIL: rail.engineering@global-safety.com</span>
                     <span className="text-[10px] text-slate-500 font-medium">DIRECT DESK</span>
@@ -635,15 +653,15 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                 <Link
                   key={i}
                   href={sub.href}
-                  className="p-4 rounded-xl bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 transition-all flex items-center justify-between group"
+                  className="p-4 bg-slate-50 hover:bg-red-50/60 border border-slate-200 hover:border-red-300 transition-all flex items-center justify-between group"
                 >
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-sky-700">{sub.tag}</span>
-                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-sky-700">
+                    <span className="text-[10px] font-mono font-bold text-red-700">{sub.tag}</span>
+                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-700">
                       {lang === "hi" ? sub.titleHi : sub.titleEn}
                     </div>
                   </div>
-                  <span className="text-slate-400 group-hover:text-sky-600 transition-transform group-hover:translate-x-1">→</span>
+                  <span className="text-slate-400 group-hover:text-red-600 transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               ))}
             </div>

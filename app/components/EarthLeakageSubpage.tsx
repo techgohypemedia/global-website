@@ -49,42 +49,22 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
   const recommendedDelay = feederCurrent === "125A" ? "Instantaneous (0.02s)" : feederCurrent === "250A" ? "0.10s (Discriminated)" : "0.50s (Main Incomer)";
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800 font-sans selection:bg-[#0284c7] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-white text-slate-800 font-sans selection:bg-[#dc2626] selection:text-white">
       {/* 1. Global Navigation */}
       <AramcoHeader />
 
       {/* 
         =======================================================================
-        HERO SECTION: DIGITAL INSTRUMENTATION & OLED HUD METERS
+        HERO SECTION: CLEAN RED & WHITE TECHNICAL INSTRUMENTATION
         =======================================================================
       */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-gradient-to-b from-slate-100 via-[#f8fafc] to-white border-b border-slate-200 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.035] pointer-events-none bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:20px_20px]" />
-        <div className="absolute top-0 right-1/3 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none" />
-
+      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Breadcrumb Navigation */}
-          <nav className="flex items-center space-x-2 text-xs font-medium text-slate-500 mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-emerald-600 transition-colors">
-              {lang === "hi" ? "होम" : "Home"}
-            </Link>
-            <span>/</span>
-            <Link href="/products/earth-leakage" className="hover:text-emerald-600 transition-colors">
-              {lang === "hi" ? "डिजिटल अर्थ लीकेज रिले" : "Digital Earth Leakage Relay"}
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-semibold truncate max-w-[220px] sm:max-w-none">
-              {lang === "hi" ? data.subCategoryTitleHi : data.subCategoryTitleEn}
-            </span>
-          </nav>
+
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7">
-              <div className="text-xs sm:text-sm font-bold text-emerald-700 tracking-wider uppercase font-mono mb-3">
-                {lang === "hi" ? data.badgeHi : data.badgeEn}
-              </div>
-
               <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-900 tracking-tight leading-[1.2] mb-5">
                 {lang === "hi" ? data.heroHeadlineHi : data.heroHeadlineEn}
               </h1>
@@ -97,41 +77,41 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href="#oscilloscope-lab"
-                  className="px-6 py-3 rounded-xl bg-[#059669] hover:bg-[#047857] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-emerald-600/20 hover:shadow-lg flex items-center space-x-2"
+                  className="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
                   <span>{lang === "hi" ? "हार्मोनिक ऑसिलोस्कोप चलाएं" : "View Harmonic Oscilloscope"}</span>
                   <span className="text-xs font-mono">→</span>
                 </a>
                 <a
                   href="#cbct-matrix"
-                  className="px-5 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
+                  className="px-5 py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 hover:text-red-600 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
-                  <span className="text-[11px] font-mono font-bold text-emerald-600">CBCT</span>
+                  <span className="text-[11px] font-mono font-bold text-red-600">CBCT</span>
                   <span>{lang === "hi" ? "CBCT ट्रांसफॉर्मर टेबल" : "CBCT Transformer Sizing"}</span>
                 </a>
               </div>
             </div>
 
-            {/* Right Hero Image Card */}
+            {/* Right Hero Image Card (Sharp Rectangular Border, NO Curve) */}
             <div className="lg:col-span-5">
-              <div className="relative overflow-hidden bg-white p-2 shadow-lg border border-slate-200">
-                <div className="relative h-72 sm:h-88 md:h-96 w-full overflow-hidden">
+              <div className="relative overflow-hidden bg-white p-2 border border-slate-200 shadow-sm">
+                <div className="relative h-72 sm:h-88 md:h-96 w-full overflow-hidden bg-slate-50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={data.bannerImage}
                     alt={data.subCategoryTitleEn}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 4 Stat Metrics */}
+          {/* 4 Stat Metrics (Sharp Rectangles) */}
           <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {data.stats.map((st, i) => (
-              <div key={i} className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
-                <div className="text-2xl sm:text-3xl font-bold text-emerald-600 font-mono tracking-tight">
+              <div key={i} className="p-5 bg-white border border-slate-200 shadow-sm hover:border-red-300 transition-all">
+                <div className="text-2xl sm:text-3xl font-bold text-red-600 font-mono tracking-tight">
                   {st.value}
                 </div>
                 <div className="text-xs font-bold text-slate-900 mt-1">
@@ -148,16 +128,16 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
 
       {/* 
         =======================================================================
-        BANNER 1 (~80% WIDTH): ELECTRICAL INSULATION SPOTLIGHT
+        BANNER 1: ELECTRICAL INSULATION SPOTLIGHT (Clean light background, NO boxes)
         =======================================================================
       */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 my-12 sm:my-16">
-        <div className="bg-gradient-to-r from-emerald-50 via-slate-50 to-white border border-slate-200 shadow-sm p-6 sm:p-10">
+        <div className="bg-slate-50 border border-slate-200 p-6 sm:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-wider font-mono">
+              <div className="text-xs font-bold text-red-700 uppercase tracking-wider font-mono">
                 <span>{lang === "hi" ? "इंसुलेशन सुरक्षा मानक" : "INSULATION PROTECTION STANDARD"}</span>
-                <span>•</span>
+                <span className="mx-2">•</span>
                 <span>IEC 60947-2 ANNEX M</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
@@ -173,14 +153,14 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
               <div className="pt-2 flex flex-wrap gap-4 items-center">
                 <a
                   href="#cbct-matrix"
-                  className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
+                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
                 >
                   <span>{lang === "hi" ? "CBCT ट्रांसफॉर्मर तालिका देखें" : "View CBCT Sizing Matrix"}</span>
                   <span>→</span>
                 </a>
                 <a
                   href="#spec-drawer"
-                  className="text-xs font-semibold text-slate-700 hover:text-emerald-700 transition-colors"
+                  className="text-xs font-semibold text-slate-700 hover:text-red-600 transition-colors"
                 >
                   {lang === "hi" ? "तकनीकी डेटाशीट डाउनलोड करें" : "Download ELD Technical Datasheet"}
                 </a>
@@ -188,7 +168,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 bg-white">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={data.secondaryBannerImage}
@@ -209,10 +189,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
       <section id="oscilloscope-lab" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="px-3 py-1 rounded bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold uppercase tracking-wide">
-              {lang === "hi" ? "हार्मोनिक वेवफॉर्म विश्लेषण" : "DIGITAL SIGNAL PROCESSING SIMULATOR"}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
               {lang === "hi" ? "ट्रू RMS बनाम पारंपरिक एवरेज सेंसिंग विश्लेषण" : "True RMS Computation Under Distorted Inverter Loads"}
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2">
@@ -254,9 +231,9 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                 <button
                   key={w.id}
                   onClick={() => setSelectedWaveform(w.id as any)}
-                  className={`w-full p-4 rounded-xl text-left border transition-all cursor-pointer ${
+                  className={`w-full p-4 text-left border transition-all cursor-pointer ${
                     selectedWaveform === w.id
-                      ? "bg-sky-50 border-sky-600 shadow-sm text-slate-900"
+                      ? "bg-red-50 border-red-600 shadow-sm text-slate-900"
                       : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
                   }`}
                 >
@@ -264,7 +241,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                     <span className="text-xs font-bold text-slate-900">
                       {lang === "hi" ? w.titleHi : w.titleEn}
                     </span>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-700">
+                    <span className="text-[10px] font-semibold px-2 py-0.5 bg-slate-100 border border-slate-200 text-slate-700">
                       {w.tag}
                     </span>
                   </div>
@@ -276,16 +253,16 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
             </div>
 
             {/* Right Oscilloscope Visualization Box */}
-            <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="lg:col-span-7 bg-white p-6 border border-slate-200 shadow-sm">
               <div className="flex justify-between items-center pb-3 border-b border-slate-100 mb-4 text-xs">
-                <span className="text-sky-700 flex items-center space-x-2 font-bold uppercase tracking-wide">
+                <span className="text-red-700 flex items-center space-x-2 font-bold uppercase tracking-wide">
                   <span>DSP SAMPLING RATE: 3.2 kHz</span>
                 </span>
                 <span className="text-slate-500 font-medium">CHANNEL 1: RESIDUAL CURRENT (IΔ)</span>
               </div>
 
               {/* Graphical Waveform Display Canvas */}
-              <div className="relative h-44 w-full bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center overflow-hidden">
+              <div className="relative h-44 w-full bg-slate-50 border border-slate-200 flex items-center justify-center overflow-hidden">
                 {/* Simulated Grid Overlay */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px]" />
                 
@@ -293,37 +270,37 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                 <div className="relative z-10 text-center px-4">
                   {selectedWaveform === "clean" && (
                     <div>
-                      <div className="text-emerald-700 text-sm font-bold">PURE 50.0 Hz FUNDAMENTAL SINE WAVE</div>
+                      <div className="text-red-700 text-sm font-bold font-mono">PURE 50.0 Hz FUNDAMENTAL SINE WAVE</div>
                       <div className="text-[11px] text-slate-600 mt-1">Calculated Energy: 0.038A RMS • Zero Nuisance Tripping</div>
                     </div>
                   )}
                   {selectedWaveform === "vfd_distorted" && (
                     <div>
-                      <div className="text-amber-700 text-sm font-bold">DISTORTED PWM CARRIER ATTENUATED (&gt;400Hz)</div>
+                      <div className="text-amber-700 text-sm font-bold font-mono">DISTORTED PWM CARRIER ATTENUATED (&gt;400Hz)</div>
                       <div className="text-[11px] text-slate-600 mt-1">32-Bit Low-Pass Filter: ACTIVE • False Tripping Suppressed</div>
                     </div>
                   )}
                   {selectedWaveform === "fault_trip" && (
                     <div>
-                      <div className="text-rose-700 text-sm font-bold">GROUND FAULT TRANSIENT DETECTED</div>
-                      <div className="text-[11px] text-rose-600 mt-1">Fault Current: 1.42A Peak • Shunt Relay Tripped in 18ms</div>
+                      <div className="text-red-700 text-sm font-bold font-mono">GROUND FAULT TRANSIENT DETECTED</div>
+                      <div className="text-[11px] text-red-600 mt-1 font-semibold">Fault Current: 1.42A Peak • Shunt Relay Tripped in 18ms</div>
                     </div>
                   )}
                 </div>
               </div>
 
               <div className="mt-4 grid grid-cols-3 gap-3 text-center text-xs">
-                <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                <div className="p-2.5 bg-slate-50 border border-slate-200">
                   <div className="text-[10px] text-slate-500 font-medium uppercase">CREST FACTOR</div>
                   <div className="text-slate-900 font-bold mt-0.5">Up to 5.0</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                <div className="p-2.5 bg-slate-50 border border-slate-200">
                   <div className="text-[10px] text-slate-500 font-medium uppercase">HARMONIC CUTOFF</div>
-                  <div className="text-sky-700 font-bold mt-0.5">31st Harmonic</div>
+                  <div className="text-red-700 font-bold mt-0.5">31st Harmonic</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                <div className="p-2.5 bg-slate-50 border border-slate-200">
                   <div className="text-[10px] text-slate-500 font-medium uppercase">ISOLATION RATING</div>
-                  <div className="text-emerald-700 font-bold mt-0.5">3.5 kV Galvanic</div>
+                  <div className="text-slate-900 font-bold mt-0.5">3.5 kV Galvanic</div>
                 </div>
               </div>
             </div>
@@ -333,16 +310,13 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
 
       {/* 
         =======================================================================
-        SECTION 3: CBCT SELECTION MATRIX & SIZING GUIDE
+        SECTION 3: CBCT SELECTION MATRIX
         =======================================================================
       */}
       <section id="cbct-matrix" className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold font-mono text-emerald-600 uppercase tracking-widest">
-              {lang === "hi" ? "ट्रांसफॉर्मर चयन गाइड" : "CORE BALANCE CT SELECTION"}
-            </span>
-            <h3 className="text-2xl font-bold text-slate-900 mt-1">
+            <h3 className="text-2xl font-bold text-slate-900">
               {lang === "hi" ? "केबल आकार एवं CBCT मॉडल चयन तालिका" : "CBCT Current Transformer Sizing Matrix"}
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 mt-2">
@@ -352,7 +326,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
             </p>
           </div>
 
-          <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+          <div className="border border-slate-200 shadow-sm bg-white overflow-hidden">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-bold">
                 <tr>
@@ -364,8 +338,8 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
                 {data.cbctSelectionTable.map((cb, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="p-4 sm:p-5 font-mono font-bold text-emerald-700">{cb.cbctModel}</td>
+                  <tr key={idx} className="hover:bg-red-50/30 transition-colors">
+                    <td className="p-4 sm:p-5 font-mono font-bold text-red-700">{cb.cbctModel}</td>
                     <td className="p-4 sm:p-5 font-semibold text-slate-900">{cb.windowDia}</td>
                     <td className="p-4 sm:p-5 font-mono">{cb.cableMax}</td>
                     <td className="p-4 sm:p-5 font-mono text-slate-800 font-bold">{cb.primaryRated}</td>
@@ -379,11 +353,11 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
 
       {/* 
         =======================================================================
-        BANNER 2 (FULL-WIDTH): INDUSTRIAL SWITCHGEAR & SUBSTATION COMMISSIONING
+        BANNER 2 (FULL-WIDTH): FIELD COMMISSIONING (Clean, NO boxes on image)
         =======================================================================
       */}
-      <section className="relative w-full my-12 sm:my-16 bg-slate-100 border-y border-slate-200 overflow-hidden">
-        <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] w-full overflow-hidden">
+      <section className="relative w-full my-12 sm:my-16 bg-white border-y border-slate-200 overflow-hidden">
+        <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] w-full overflow-hidden bg-slate-100">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={data.fieldBannerImage}
@@ -391,10 +365,10 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
             className="w-full h-full object-cover"
           />
         </div>
+        {/* Caption below the image */}
         <div className="bg-white border-t border-slate-200 py-3.5 px-4 sm:px-8">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 font-mono">
             <div className="flex items-center space-x-2 font-bold text-slate-900">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
               <span>{lang === "hi" ? `${data.subCategoryTitleHi} - 100% फैक्ट्री कैलिब्रेटेड` : `${data.subCategoryTitleEn} • 100% Factory Calibrated`}</span>
             </div>
             <div className="flex items-center space-x-4 text-[11px] text-slate-500">
@@ -408,17 +382,67 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
 
       {/* 
         =======================================================================
-        SECTION 4: BESPOKE SWITCHBOARD SIZING ASSISTANT (NO REPEATED FORM)
+        SECTION 4: ELECTRICAL HARDWARE PHOTO GALLERY (Extra Real Images)
         =======================================================================
       */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-50 to-slate-100 border-b border-slate-200">
+      <section className="py-12 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-slate-900">
+              {lang === "hi" ? "फैक्ट्री परीक्षण एवं स्विचगियर स्थापना" : "Testing Laboratory & Switchboard Integration"}
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="border border-slate-200 bg-white p-2">
+              <div className="h-52 w-full overflow-hidden bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/eld_engineering_lab.jpg"
+                  alt="ELD Lab Test Bench"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3 text-xs font-bold text-slate-900">DSP Harmonic Calibration Bench</div>
+            </div>
+
+            <div className="border border-slate-200 bg-white p-2">
+              <div className="h-52 w-full overflow-hidden bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/power_distribution_eld.jpg"
+                  alt="Main Incomer Panel"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3 text-xs font-bold text-slate-900">415V Main Incomer Feeder Panel</div>
+            </div>
+
+            <div className="border border-slate-200 bg-white p-2">
+              <div className="h-52 w-full overflow-hidden bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/continuous_insulation.jpg"
+                  alt="Insulation Monitoring"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-3 text-xs font-bold text-slate-900">Continuous Insulation Resistance Unit</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        =======================================================================
+        SECTION 5: BESPOKE SWITCHBOARD SIZING ASSISTANT
+        =======================================================================
+      */}
+      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 shadow-lg shadow-slate-200/50">
+          <div className="p-8 sm:p-12 bg-slate-50 border border-slate-200 shadow-sm">
             <div className="max-w-3xl mx-auto text-center mb-10">
-              <span className="px-3 py-1 rounded bg-emerald-100 text-emerald-800 text-xs font-bold font-mono uppercase">
-                {lang === "hi" ? "इंटेलिजेंट स्विचबोर्ड कॉन्फिगरेटर" : "AUTOMATED RELAY SIZING ASSISTANT"}
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
                 {lang === "hi" ? "अपने स्विचबोर्ड हेतु तुरंत रिले एवं CBCT साइजिंग प्राप्त करें" : "Configure Earth Leakage Relay for Your Switchboard Feeder"}
               </h3>
             </div>
@@ -435,10 +459,10 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                       <button
                         key={v}
                         onClick={() => setPanelVoltage(v)}
-                        className={`p-2.5 rounded-xl text-xs font-bold border transition-all text-center ${
+                        className={`p-2.5 text-xs font-bold border transition-all text-center cursor-pointer ${
                           panelVoltage === v
-                            ? "bg-emerald-50 border-emerald-500 text-emerald-800"
-                            : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+                            ? "bg-red-50 border-red-500 text-red-800"
+                            : "bg-white border-slate-200 text-slate-600 hover:bg-slate-100"
                         }`}
                       >
                         {v.replace("_", " ")}
@@ -456,10 +480,10 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                       <button
                         key={c}
                         onClick={() => setFeederCurrent(c)}
-                        className={`p-2.5 rounded-xl text-xs font-bold border transition-all text-center ${
+                        className={`p-2.5 text-xs font-bold border transition-all text-center cursor-pointer ${
                           feederCurrent === c
-                            ? "bg-emerald-50 border-emerald-500 text-emerald-800"
-                            : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+                            ? "bg-red-50 border-red-500 text-red-800"
+                            : "bg-white border-slate-200 text-slate-600 hover:bg-slate-100"
                         }`}
                       >
                         {c}
@@ -477,10 +501,10 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                       <button
                         key={h}
                         onClick={() => setAmbientHarmonics(h)}
-                        className={`p-2.5 rounded-xl text-xs font-bold border transition-all text-center ${
+                        className={`p-2.5 text-xs font-bold border transition-all text-center cursor-pointer ${
                           ambientHarmonics === h
-                            ? "bg-emerald-50 border-emerald-500 text-emerald-800"
-                            : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+                            ? "bg-red-50 border-red-500 text-red-800"
+                            : "bg-white border-slate-200 text-slate-600 hover:bg-slate-100"
                         }`}
                       >
                         {h === "heavy_vfd" ? "VFD / Inverter Heavy" : "Standard Linear Loads"}
@@ -491,12 +515,12 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
               </div>
 
               {/* Right Computed Sizing Result Card */}
-              <div className="lg:col-span-6 bg-white text-slate-900 p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-sm">
+              <div className="lg:col-span-6 bg-white text-slate-900 p-6 sm:p-7 border border-slate-200 shadow-sm">
                 <div className="flex justify-between items-center pb-3 border-b border-slate-100">
                   <span className="text-xs font-bold text-slate-800 uppercase tracking-wide">
                     Recommended Configuration
                   </span>
-                  <span className="text-[10px] px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+                  <span className="text-[10px] px-2.5 py-0.5 bg-red-50 text-red-700 font-semibold border border-red-200">
                     IEC 60947 COMPLIANT
                   </span>
                 </div>
@@ -504,7 +528,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                 <div className="mt-4 divide-y divide-slate-100 text-xs text-slate-700">
                   <div className="flex justify-between py-2.5">
                     <span className="text-slate-500 font-medium">Matched CBCT Sensor:</span>
-                    <span className="text-emerald-700 font-bold">{recommendedCBCT}</span>
+                    <span className="text-red-700 font-bold">{recommendedCBCT}</span>
                   </div>
                   <div className="flex justify-between py-2.5">
                     <span className="text-slate-500 font-medium">Trip Sensitivity (IΔn):</span>
@@ -512,7 +536,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                   </div>
                   <div className="flex justify-between py-2.5">
                     <span className="text-slate-500 font-medium">Time-Graded Delay (Δt):</span>
-                    <span className="text-sky-700 font-bold">{recommendedDelay}</span>
+                    <span className="text-red-700 font-bold">{recommendedDelay}</span>
                   </div>
                   <div className="flex justify-between py-2.5">
                     <span className="text-slate-500 font-medium">Modbus Telemetry:</span>
@@ -523,7 +547,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
                   <a
                     href="mailto:industrial.eld@global-safety.com"
-                    className="text-xs text-slate-500 hover:text-slate-900 transition-colors font-medium"
+                    className="text-xs text-slate-500 hover:text-red-600 transition-colors font-medium"
                   >
                     industrial.eld@global-safety.com
                   </a>
@@ -532,7 +556,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                       setSchematicRequested(true);
                       setTimeout(() => setSchematicRequested(false), 3000);
                     }}
-                    className="px-4 py-2 rounded-lg bg-sky-700 hover:bg-sky-800 text-white text-xs font-semibold tracking-wide transition-all cursor-pointer shadow-sm"
+                    className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all cursor-pointer shadow-sm"
                   >
                     {schematicRequested ? "Schematic Dispatched" : "Download Feeder DWG"}
                   </button>
@@ -543,7 +567,7 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
         </div>
       </section>
 
-      {/* 5. Related Sublinks Navigation */}
+      {/* 6. Related Sublinks Navigation */}
       {data.relatedSublinks && data.relatedSublinks.length > 0 && (
         <section className="py-12 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -555,15 +579,15 @@ function EarthLeakageContent({ data }: { data: EarthLeakageSubpageProps }) {
                 <Link
                   key={i}
                   href={sub.href}
-                  className="p-4 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 transition-all flex items-center justify-between group"
+                  className="p-4 bg-slate-50 hover:bg-red-50/60 border border-slate-200 hover:border-red-300 transition-all flex items-center justify-between group"
                 >
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-emerald-700">{sub.tag}</span>
-                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-700">
+                    <span className="text-[10px] font-mono font-bold text-red-700">{sub.tag}</span>
+                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-700">
                       {lang === "hi" ? sub.titleHi : sub.titleEn}
                     </div>
                   </div>
-                  <span className="text-slate-400 group-hover:text-emerald-600 transition-transform group-hover:translate-x-1">→</span>
+                  <span className="text-slate-400 group-hover:text-red-600 transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               ))}
             </div>

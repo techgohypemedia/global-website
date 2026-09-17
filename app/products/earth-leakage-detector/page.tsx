@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import AramcoHeader from "../../components/AramcoHeader";
 import NewsletterSection from "../../components/NewsletterSection";
@@ -10,143 +10,95 @@ import { LanguageProvider, useLanguage } from "../../context/LanguageContext";
 function EarthLeakageDetectorContent() {
   const { lang } = useLanguage();
   const [activeSpecTab, setActiveSpecTab] = useState<string>("continuous-monitoring");
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
   const SPECS_NAV = [
     {
       id: "continuous-monitoring",
-      label: lang === "hi" ? "निरंतर निगरानी" : "Continuous Monitoring",
+      label: lang === "hi" ? "सतत निगरानी" : "Continuous Monitoring",
+      code: "SPEC-01",
     },
     {
       id: "true-rms",
-      label: lang === "hi" ? "ट्रू RMS सेंसिंग" : "True RMS Sensing",
+      label: lang === "hi" ? "ट्रू RMS मापन" : "True RMS Measurement",
+      code: "SPEC-02",
     },
     {
       id: "digital-display",
-      label: lang === "hi" ? "डिजिटल डिस्प्ले" : "Digital Display",
+      label: lang === "hi" ? "डिजिटल डिस्प्ले" : "Digital Display & Logs",
+      code: "SPEC-03",
     },
     {
       id: "adjustable-thresholds",
-      label: lang === "hi" ? "थ्रेसहोल्ड सेटिंग्स" : "Thresholds",
+      label: lang === "hi" ? "एडजस्टेबल थ्रेसहोल्ड" : "Adjustable Thresholds",
+      code: "SPEC-04",
     },
     {
       id: "technical-specs",
-      label: lang === "hi" ? "तकनीकी तालिका" : "Datasheet Matrix",
+      label: lang === "hi" ? "डेटाशीट मैट्रिक्स" : "Technical Matrix",
+      code: "SPEC-05",
     },
     {
       id: "wiring-schematics",
       label: lang === "hi" ? "वायरिंग गाइड" : "Wiring & CBCT",
+      code: "SPEC-06",
     },
   ];
 
-  useEffect(() => {
-    const sectionIds = SPECS_NAV.map((s) => s.id);
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 220;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSpecTab(sectionIds[i]);
-          break;
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const SPEC_DATA_TABLE = [
     {
-      param: lang === "hi" ? "लीकेज करंट सीमा" : "Leakage Current Trip Range",
-      spec: "10mA to 30A (Multi-Range Selectable)",
-      note: lang === "hi" ? "10mA, 30mA, 100mA, 300mA, 500mA, 1A, 3A, 5A, 10A, 30A" : "Configurable steps via front panel dials for sensitive or heavy feeder loads",
+      param: lang === "hi" ? "मापन प्रकार" : "Sensing & Measurement Method",
+      spec: "True RMS (Root Mean Square) Core Balance",
+      note: lang === "hi" ? "हार्मोनिक्स और इन्वर्टर स्पाइक्स से अप्रभावित" : "Harmonic-immune active 32-bit DSP filtering",
     },
     {
-      param: lang === "hi" ? "मापन तकनीक" : "Measurement Technology",
-      spec: "Microcontroller DSP-Based True RMS",
-      note: lang === "hi" ? "हार्मोनिक फिल्टरिंग एवं VFD नॉइज़ इम्यूनिटी" : "Immune to high-frequency switching noise and harmonic distortion",
+      param: lang === "hi" ? "ट्रिप करंट थ्रेसहोल्ड रेंज" : "Selectable Trip Sensitivity",
+      spec: "10mA – 30A (10 Discrete Step Settings)",
+      note: lang === "hi" ? "रोटरी चयन स्विच द्वारा सटीक अंशांकन" : "User-calibrated rotary switch with transparent lead seal",
     },
     {
-      param: lang === "hi" ? "ट्रिप विलंब समय" : "Adjustable Trip Delay",
-      spec: "Instantaneous (< 30ms) to 5.0 Seconds",
-      note: lang === "hi" ? "अपस्ट्रीम और डाउनस्ट्रीम सुरक्षा समन्वय हेतु" : "Selectable delay (Inst, 0.1s, 0.2s, 0.5s, 1.0s, 3.0s, 5.0s) for protection grading",
+      param: lang === "hi" ? "ट्रिप समय विलंब (Time Delay)" : "Adjustable Trip Delay",
+      spec: "Instantaneous (<30ms) to 5.0 Seconds",
+      note: lang === "hi" ? "मुख्य और सब-पैनलों में चयनात्मक समन्वय" : "Guarantees protective discrimination with upstream ACB/MCCB",
     },
     {
-      param: lang === "hi" ? "डिजिटल डिस्प्ले" : "Telemetry & Display Readout",
-      spec: "4-Digit High-Visibility 7-Segment LED / OLED",
-      note: lang === "hi" ? "रीयल-टाइम लीकेज करंट (mA / A) एवं फॉल्ट मेमोरी" : "Displays live operational leakage in mA/A and recalls last 10 trip records",
+      param: lang === "hi" ? "प्री-अलार्म थ्रेसहोल्ड स्तर" : "Predictive Warning Level",
+      spec: "70% of Set Fault Current (Amber LED)",
+      note: lang === "hi" ? "आसन्न फॉल्ट की प्रारंभिक चेतावनी संकेत" : "Enables predictive maintenance before breaker trip",
     },
     {
-      param: lang === "hi" ? "रिले आउटपुट" : "Output Trip Contacts",
-      spec: "2 x Form C (C/O) Potential-Free Relays",
-      note: lang === "hi" ? "6A @ 250V AC / 30V DC रेटेड (शंट ट्रिप व अलार्म हेतु)" : "Relay 1: Breaker Shunt / UV release; Relay 2: SCADA / Warning buzzer",
+      param: lang === "hi" ? "सहायक विद्युत आपूर्ति" : "Auxiliary Control Voltage",
+      spec: "110V – 240V AC/DC Universal Input",
+      note: lang === "hi" ? "व्यापक वोल्टेज उतार-चढ़ाव सहिष्णुता" : "Internal surge suppressor withstands 4kV transients",
     },
     {
-      param: lang === "hi" ? "सेंसर इनपुट (CBCT)" : "Core Balance Current Transformer",
-      spec: "Compatible with 35mm, 70mm, 120mm, 210mm, 300mm Toroids",
-      note: lang === "hi" ? "राउंड एवं रेक्टेंगुलर बसबार कोर उपलब्ध" : "Nano-crystalline high-permeability magnetic cores for micro-leakage accuracy",
+      param: lang === "hi" ? "आउटपुट रिले संपर्क" : "Relay Output Contacts",
+      spec: "2x Form C (NO/NC) Changeover Contacts",
+      note: lang === "hi" ? "6A @ 250V AC / 30V DC रेटेड संपर्क" : "Independent contacts for Breaker Trip and SCADA Alarm",
     },
     {
-      param: lang === "hi" ? "सहायक विद्युत आपूर्ति" : "Auxiliary Power Supply",
-      spec: "110V - 240V AC / DC (±20%), 50/60 Hz (Universal)",
-      note: lang === "hi" ? "कम बिजली खपत (< 3.5 VA)" : "Wide-band power supply operates stably across severe voltage fluctuations",
+      param: lang === "hi" ? "सीबीसीटी (CBCT) कोर संगतता" : "CBCT Aperture Compatibility",
+      spec: "35mm, 70mm, 120mm, 210mm & Custom Toroids",
+      note: lang === "hi" ? "नैनो-क्रिस्टलीय उच्च-पारगम्यता कोर" : "Ultra-sensitive current transformers with high linearity",
     },
     {
-      param: lang === "hi" ? "माउंटिंग एवं फॉर्म फैक्टर" : "Mounting & Form Factor",
-      spec: "Standard 35mm DIN Rail (EN 50022) / 96x96 Panel Door",
-      note: lang === "hi" ? "कॉम्पैक्ट मॉड्यूलर एनक्लोजर" : "Engineered for compact MCC and distribution switchboard integration",
-    },
-    {
-      param: lang === "hi" ? "डाइइलेक्ट्रिक स्ट्रेंथ" : "Dielectric Insulation Strength",
-      spec: "2.5 kV AC 50 Hz for 1 Minute",
-      note: lang === "hi" ? "उच्च वोल्टेज सर्ज एवं इम्पल्स सुरक्षा" : "Tested to withstand high transient surges and track flashovers",
-    },
-    {
-      param: lang === "hi" ? "अंतर्राष्ट्रीय मानक अनुपालन" : "Regulatory Compliance",
-      spec: "IEC 60947-2 Annex M, IEC 60755, IS 12640, CE Certified",
-      note: lang === "hi" ? "रेलवे एवं भारी औद्योगिक सुरक्षा मानकों के अनुरूप" : "Full compliance with global electrical safety and fire-prevention codes",
+      param: lang === "hi" ? "माउंटिंग एवं सुरक्षा श्रेणी" : "Mounting & Housing Profile",
+      spec: "35mm DIN Rail / 96x96mm Flush Panel",
+      note: lang === "hi" ? "IP54 फ्रंट सील / IEC 60947-2 अनुपालन" : "Flame-retardant UL94-V0 polycarbonate casing",
     },
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900 selection:bg-[#ff3131] selection:text-white relative font-sans">
-      {/* 1. Header with Light Theme */}
+      {/* 1. Light Header at Top */}
       <AramcoHeader theme="light" />
 
       {/* 2. Hero Section */}
-      <section className="relative w-full bg-gradient-to-b from-[#f8f9fb] via-white to-white overflow-hidden pb-14 sm:pb-20 pt-28 sm:pt-36 border-b border-gray-100">
-        {/* Subtle Decorative Ambient Accents */}
-        <div className="absolute top-10 right-10 w-96 h-96 bg-red-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#ff3131]/[0.03] rounded-full blur-[90px] pointer-events-none" />
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#ff3131_1px,transparent_1px)] [background-size:24px_24px]" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <section className="relative w-full overflow-hidden pb-14 sm:pb-20 pt-28 sm:pt-36 bg-gradient-to-b from-[#f8f9fb] via-white to-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
             {/* Left Content Column */}
             <div className="lg:col-span-7">
-              {/* Breadcrumb */}
-              <nav className="flex items-center space-x-2 text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6 font-medium">
-                <Link href="/" className="hover:text-[#ff3131] transition-colors">
-                  {lang === "hi" ? "होम" : "Home"}
-                </Link>
-                <span>/</span>
-                <span className="text-gray-400">
-                  {lang === "hi" ? "उत्पाद" : "Products"}
-                </span>
-                <span>/</span>
-                <span className="text-[#ff3131] font-semibold">
-                  {lang === "hi" ? "डिजिटल अर्थ लीकेज डिटेक्टर" : "Digital Earth Leakage Detector"}
-                </span>
-              </nav>
-
-              {/* Eyebrow Badge */}
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 mb-4 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-pulse" />
-                <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#ff3131]">
-                  {lang === "hi" ? "उन्नत विद्युत सुरक्षा एवं इंसुलेशन डायग्नोस्टिक्स" : "Advanced Electrical Insulation Diagnostics"}
-                </span>
-              </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-5xl font-light tracking-tight text-gray-950 font-sans mb-4 sm:mb-6 leading-[1.15]">
                 {lang === "hi" ? (
@@ -175,10 +127,10 @@ function EarthLeakageDetectorContent() {
               {/* Top Quick Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 mb-8">
                 {/* Stat 1 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
                       {lang === "hi" ? "संवेदनशीलता" : "Sensitivity"}
                     </span>
@@ -194,10 +146,10 @@ function EarthLeakageDetectorContent() {
                 </div>
 
                 {/* Stat 2 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
                       {lang === "hi" ? "सटीकता" : "Precision"}
                     </span>
@@ -213,10 +165,10 @@ function EarthLeakageDetectorContent() {
                 </div>
 
                 {/* Stat 3 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
                       {lang === "hi" ? "प्रतिक्रिया" : "Response"}
                     </span>
@@ -232,10 +184,10 @@ function EarthLeakageDetectorContent() {
                 </div>
 
                 {/* Stat 4 */}
-                <div className="relative p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
                   <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff3131]" />
+                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
                       {lang === "hi" ? "मानक" : "Compliance"}
                     </span>
@@ -255,18 +207,18 @@ function EarthLeakageDetectorContent() {
               <div className="flex flex-wrap items-center gap-3.5 sm:gap-4">
                 <a
                   href="#contact-engineering"
-                  className="group inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white font-semibold text-sm sm:text-base transition-all duration-200 shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/30 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  className="px-6 py-3.5 bg-[#ff3131] hover:bg-[#d62828] text-white font-semibold text-sm transition-all duration-200 shadow-md shadow-red-500/20 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>{lang === "hi" ? "कोटेशन का अनुरोध करें" : "Request Technical Quote"}</span>
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </a>
                 <a
                   href="#wiring-schematics"
-                  className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full border border-gray-300 hover:border-gray-900 bg-white hover:bg-gray-50 text-gray-800 hover:text-gray-950 font-semibold text-sm sm:text-base transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  className="px-6 py-3.5 border border-gray-300 hover:border-gray-900 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-sm transition-all duration-200 shadow-xs flex items-center space-x-2 cursor-pointer"
                 >
-                  <svg className="w-4 h-4 text-gray-500 group-hover:text-gray-900 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   <span>{lang === "hi" ? "वायरिंग स्कीमेटिक्स देखें" : "View Wiring Schematics"}</span>
@@ -274,26 +226,25 @@ function EarthLeakageDetectorContent() {
               </div>
             </div>
 
-            {/* Right Media Column */}
+            {/* Right Media Column (Sharp Rectangular Border, No Overlay Box) */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-gray-200 shadow-xl bg-white p-2">
-                <div className="relative rounded-2xl overflow-hidden">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[460px] overflow-hidden bg-slate-50 border border-slate-200">
                   <img
                     src="/images/earth_leakage_detector_hero.jpg"
                     alt="Digital Earth Leakage Detector in Action"
-                    className="w-full h-[360px] sm:h-[460px] object-cover"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-lg text-gray-900">
-                    <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block">
-                      {lang === "hi" ? "फील्ड प्रमाणित उपकरण" : "Field-Proven Instrumentation"}
-                    </span>
-                    <span className="text-sm font-medium text-gray-800">
-                      {lang === "hi"
-                        ? "24/7 सक्रिय ग्राउंड लीकेज एवं इंसुलेशन डायग्नोस्टिक्स"
-                        : "Continuous 24/7 online insulation resistance & earth leakage monitoring"}
-                    </span>
-                  </div>
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block font-mono">
+                    {lang === "hi" ? "फील्ड प्रमाणित उपकरण" : "Field-Proven Instrumentation"}
+                  </span>
+                  <span className="text-xs text-gray-700 font-medium">
+                    {lang === "hi"
+                      ? "24/7 सक्रिय ग्राउंड लीकेज एवं इंसुलेशन डायग्नोस्टिक्स"
+                      : "Continuous 24/7 online insulation resistance & earth leakage monitoring"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -311,7 +262,6 @@ function EarthLeakageDetectorContent() {
           <div className="flex items-center justify-between h-14 sm:h-16 gap-3 sm:gap-4">
             {/* Left: Product Anchor */}
             <div className="flex items-center space-x-2.5 sm:space-x-3 flex-shrink-0">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#ff3131] animate-pulse" />
               <div className="flex flex-col">
                 <span className="text-xs sm:text-sm font-bold text-gray-950 tracking-tight leading-none whitespace-nowrap">
                   {lang === "hi" ? "अर्थ लीकेज डिटेक्टर" : "Earth Leakage Detector"}
@@ -331,23 +281,26 @@ function EarthLeakageDetectorContent() {
                     key={nav.id}
                     href={`#${nav.id}`}
                     onClick={() => setActiveSpecTab(nav.id)}
-                    className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex-shrink-0 cursor-pointer ${
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-medium tracking-wide whitespace-nowrap transition-all duration-150 ${
                       isActive
-                        ? "bg-[#ff3131] text-white shadow-sm shadow-red-500/25"
-                        : "text-gray-600 hover:text-gray-950 hover:bg-gray-100/90"
+                        ? "bg-[#ff3131] text-white shadow-xs font-semibold"
+                        : "text-gray-600 hover:text-gray-950 hover:bg-gray-100"
                     }`}
                   >
-                    {nav.label}
+                    <span className="font-mono text-[10px] opacity-70 mr-1.5 hidden sm:inline">
+                      {nav.code}
+                    </span>
+                    <span>{nav.label}</span>
                   </a>
                 );
               })}
             </div>
 
-            {/* Right: Quick Action Quote CTA */}
-            <div className="flex-shrink-0 hidden lg:flex items-center">
+            {/* Right: Quick Action Button */}
+            <div className="hidden lg:flex items-center">
               <a
                 href="#contact-engineering"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-950 hover:bg-[#ff3131] text-white text-xs font-semibold tracking-wider uppercase transition-all duration-200 shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-950 hover:bg-[#ff3131] text-white text-xs font-semibold tracking-wider uppercase transition-all duration-200 shadow-xs cursor-pointer"
               >
                 <span>{lang === "hi" ? "कोटेशन लें" : "Get Quote"}</span>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -366,11 +319,6 @@ function EarthLeakageDetectorContent() {
         <section id="continuous-monitoring" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>01</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "सतत लाइव निगरानी" : "Active Diagnostics"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "निरंतर इंसुलेशन निगरानी" : "Continuous Insulation Monitoring"}
               </h2>
@@ -381,8 +329,8 @@ function EarthLeakageDetectorContent() {
               </p>
 
               <div className="space-y-3 pt-2">
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white transition-all shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -397,8 +345,8 @@ function EarthLeakageDetectorContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white transition-all shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -413,8 +361,8 @@ function EarthLeakageDetectorContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white transition-all shadow-sm">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="flex items-start space-x-3 p-3.5 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -431,19 +379,21 @@ function EarthLeakageDetectorContent() {
               </div>
             </div>
 
+            {/* Right Media (Sharp Borders, Clean Below Caption, No Dark Overlay) */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-white group">
-                <img
-                  src="/images/power_distribution_eld.jpg"
-                  alt="Continuous Insulation Monitoring"
-                  className="w-full h-[360px] sm:h-[440px] object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md text-gray-900">
-                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200">
+                  <img
+                    src="/images/power_distribution_eld.jpg"
+                    alt="Continuous Insulation Monitoring"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "निरंतर परिचालन" : "Continuous Protection"}
                   </span>
-                  <span className="text-sm text-gray-800 font-medium">
+                  <span className="text-xs text-gray-700 font-medium">
                     {lang === "hi"
                       ? "पावर डिस्ट्रीब्यूशन पैनलों में बिना किसी व्यवधान के 24/7 सुरक्षा निगरानी"
                       : "24/7 uncompromised electrical fire prevention in mission-critical power distribution centres"}
@@ -457,19 +407,21 @@ function EarthLeakageDetectorContent() {
         {/* SPEC 2: TRUE RMS CURRENT MEASUREMENT */}
         <section id="true-rms" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Media (Sharp Borders, Clean Below Caption) */}
             <div className="lg:col-span-6 order-2 lg:order-1 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-white group">
-                <img
-                  src="/images/eld_engineering_lab.jpg"
-                  alt="True RMS Current Measurement Lab"
-                  className="w-full h-[360px] sm:h-[440px] object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md text-gray-900">
-                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200">
+                  <img
+                    src="/images/eld_engineering_lab.jpg"
+                    alt="True RMS Current Measurement Lab"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "हार्मोनिक फिल्टरिंग" : "DSP Harmonic Rejection"}
                   </span>
-                  <span className="text-sm text-gray-800 font-medium">
+                  <span className="text-xs text-gray-700 font-medium">
                     {lang === "hi"
                       ? "VFD ड्राइव्स और सोलर इन्वर्टर से उत्पन्न अवांछित ट्रिपिंग का 100% समाधान"
                       : "High-order active filtering rejects high-frequency PWM switching harmonics and false line noise"}
@@ -479,11 +431,6 @@ function EarthLeakageDetectorContent() {
             </div>
 
             <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>02</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "सटीक सिग्नल प्रोसेसिंग" : "Signal Precision"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "ट्रू RMS करंट मापन तकनीक" : "True RMS Current Measurement"}
               </h2>
@@ -494,10 +441,10 @@ function EarthLeakageDetectorContent() {
               </p>
 
               <div className="space-y-3 pt-2">
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white shadow-sm transition-all">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
                   <h4 className="text-gray-900 text-sm font-semibold flex items-center justify-between">
                     <span>{lang === "hi" ? "गैर-रैखिक लोड हार्मोनिक इम्यूनिटी" : "Non-Linear Harmonic Immunity"}</span>
-                    <span className="text-xs text-[#ff3131] font-mono font-semibold bg-red-50 px-2 py-0.5 rounded border border-red-200">Up to 15th Harmonic</span>
+                    <span className="text-xs text-[#ff3131] font-mono font-semibold bg-red-50 px-2 py-0.5 border border-red-200">Up to 15th Harmonic</span>
                   </h4>
                   <p className="text-gray-600 text-xs mt-1">
                     {lang === "hi"
@@ -506,10 +453,10 @@ function EarthLeakageDetectorContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white shadow-sm transition-all">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
                   <h4 className="text-gray-900 text-sm font-semibold flex items-center justify-between">
                     <span>{lang === "hi" ? "कोर बैलेंस करंट ट्रांसफॉर्मर (CBCT) एकीकरण" : "Toroidal Core Balance CT Precision"}</span>
-                    <span className="text-xs text-[#ff3131] font-mono font-semibold bg-red-50 px-2 py-0.5 rounded border border-red-200">High-Mu Core</span>
+                    <span className="text-xs text-[#ff3131] font-mono font-semibold bg-red-50 px-2 py-0.5 border border-red-200">High-Mu Core</span>
                   </h4>
                   <p className="text-gray-600 text-xs mt-1">
                     {lang === "hi"
@@ -518,10 +465,10 @@ function EarthLeakageDetectorContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white shadow-sm transition-all">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
                   <h4 className="text-gray-900 text-sm font-semibold flex items-center justify-between">
                     <span>{lang === "hi" ? "शून्य-क्रॉसिंग सिंक्रनाइज़ेशन" : "Zero-Crossing Fast Fault Tripping"}</span>
-                    <span className="text-xs text-[#ff3131] font-mono font-semibold bg-red-50 px-2 py-0.5 rounded border border-red-200">&lt; 30ms Instantaneous</span>
+                    <span className="text-xs text-[#ff3131] font-mono font-semibold bg-red-50 px-2 py-0.5 border border-red-200">&lt; 30ms Instantaneous</span>
                   </h4>
                   <p className="text-gray-600 text-xs mt-1">
                     {lang === "hi"
@@ -538,11 +485,6 @@ function EarthLeakageDetectorContent() {
         <section id="digital-display" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>03</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "टेलीमेट्री एवं डिस्प्ले" : "Telemetry & Diagnostics"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "रीयल-टाइम डिजिटल डिस्प्ले एवं इवेंट लॉग" : "Real-Time Digital Display & Diagnostics"}
               </h2>
@@ -553,8 +495,8 @@ function EarthLeakageDetectorContent() {
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                <div className="p-4 rounded-xl bg-white border border-gray-200 hover:border-red-200 shadow-sm transition-all">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-white border border-gray-200 shadow-xs">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "लाइव करंट टेलीमेट्री" : "Live Telemetry"}
                   </div>
                   <div className="text-xl font-bold text-gray-900 font-sans">0.0mA - 30.0A</div>
@@ -565,8 +507,8 @@ function EarthLeakageDetectorContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white border border-gray-200 hover:border-red-200 shadow-sm transition-all">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-white border border-gray-200 shadow-xs">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "इवेंट फॉल्ट हिस्ट्री" : "Event Memory Log"}
                   </div>
                   <div className="text-xl font-bold text-gray-900 font-sans">Last 10 Trips</div>
@@ -577,8 +519,8 @@ function EarthLeakageDetectorContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white border border-gray-200 hover:border-red-200 shadow-sm transition-all">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-white border border-gray-200 shadow-xs">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "ट्राई-कलर स्टेटस एलईडी" : "Tri-Color Status LEDs"}
                   </div>
                   <div className="text-xl font-bold text-gray-900 font-sans">Normal / Warn / Trip</div>
@@ -589,8 +531,8 @@ function EarthLeakageDetectorContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white border border-gray-200 hover:border-red-200 shadow-sm transition-all">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1">
+                <div className="p-4 bg-white border border-gray-200 shadow-xs">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#ff3131] mb-1 font-mono">
                     {lang === "hi" ? "रिमोट टेस्ट एवं रीसेट" : "Remote Reset Terminals"}
                   </div>
                   <div className="text-xl font-bold text-gray-900 font-sans">Dry Contact Reset</div>
@@ -603,19 +545,21 @@ function EarthLeakageDetectorContent() {
               </div>
             </div>
 
+            {/* Right Media (Sharp Borders, Clean Below Caption) */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-white group">
-                <img
-                  src="/images/earth_leakage_detector_hero.jpg"
-                  alt="Real-Time Digital Display & Diagnostics"
-                  className="w-full h-[360px] sm:h-[440px] object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md text-gray-900">
-                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200">
+                  <img
+                    src="/images/continuous_insulation.jpg"
+                    alt="Real-Time Digital Display & Diagnostics"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "आसान ऑपरेशन" : "Intuitive Operation"}
                   </span>
-                  <span className="text-sm text-gray-800 font-medium">
+                  <span className="text-xs text-gray-700 font-medium">
                     {lang === "hi"
                       ? "पैनल बंद किए बिना तुरंत डायग्नोस्टिक्स और पैरामीटर सत्यापन"
                       : "Direct telemetry display enables instantaneous fault isolation without multimeters"}
@@ -629,18 +573,21 @@ function EarthLeakageDetectorContent() {
         {/* SPEC 4: ADJUSTABLE TRIP THRESHOLDS */}
         <section id="adjustable-thresholds" className="scroll-mt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Media (Sharp Borders, Clean Below Caption) */}
             <div className="lg:col-span-6 order-2 lg:order-1 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-gradient-to-b from-[#f8f9fb] to-white p-8 flex items-center justify-center">
-                <img
-                  src="/images/earth_leakage_detector_original.png"
-                  alt="Adjustable Trip Threshold Hardware"
-                  className="max-h-[380px] w-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.12)]"
-                />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md text-gray-900">
-                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block">
+              <div className="bg-white p-2 border border-gray-200 shadow-xs">
+                <div className="w-full h-[360px] sm:h-[440px] overflow-hidden bg-slate-50 border border-slate-200 flex items-center justify-center p-4">
+                  <img
+                    src="/images/earth_leakage_detector_hero.jpg"
+                    alt="Adjustable Trip Threshold Hardware"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3 bg-white border-t border-gray-100">
+                  <span className="text-xs text-[#ff3131] font-bold uppercase tracking-wider block font-mono">
                     {lang === "hi" ? "कस्टम थ्रेसहोल्ड" : "Field Programmable"}
                   </span>
-                  <span className="text-sm text-gray-800 font-medium">
+                  <span className="text-xs text-gray-700 font-medium">
                     {lang === "hi"
                       ? "रोटरी स्विच और डिजिटल डायल द्वारा आसान व सुरक्षित अंशांकन"
                       : "Multi-position rotary dials with tamper-evident sealable transparent cover"}
@@ -650,11 +597,6 @@ function EarthLeakageDetectorContent() {
             </div>
 
             <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#ff3131] text-xs font-semibold uppercase tracking-wider">
-                <span>04</span>
-                <span>•</span>
-                <span>{lang === "hi" ? "सुरक्षा समन्वय" : "Protection Coordination"}</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
                 {lang === "hi" ? "एडजस्टेबल ट्रिप थ्रेसहोल्ड एवं रिले" : "Adjustable Trip Thresholds & Relays"}
               </h2>
@@ -665,8 +607,8 @@ function EarthLeakageDetectorContent() {
               </p>
 
               <div className="space-y-3 pt-2">
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white shadow-sm transition-all">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -681,8 +623,8 @@ function EarthLeakageDetectorContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white shadow-sm transition-all">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -697,8 +639,8 @@ function EarthLeakageDetectorContent() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-[#f8f9fa] border border-gray-200 hover:border-red-200 hover:bg-white shadow-sm transition-all">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
+                <div className="p-4 bg-[#f8f9fa] border border-gray-200 shadow-xs">
+                  <div className="w-6 h-6 bg-red-100 flex items-center justify-center text-[#ff3131] font-bold text-xs mt-0.5 flex-shrink-0">
                     ✓
                   </div>
                   <div>
@@ -720,9 +662,6 @@ function EarthLeakageDetectorContent() {
         {/* 5. Comprehensive Technical Specification Matrix Table */}
         <section id="technical-specs" className="scroll-mt-36">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/20 text-[#ff3131] text-xs font-semibold uppercase tracking-wider mb-3">
-              <span>{lang === "hi" ? "इंजीनियरिंग डेटाशीट" : "Engineering Datasheet"}</span>
-            </div>
             <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
               {lang === "hi" ? "विस्तृत तकनीकी विनिर्देश तालिका" : "Technical Specification Matrix"}
             </h2>
@@ -733,7 +672,7 @@ function EarthLeakageDetectorContent() {
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-xl">
+          <div className="overflow-x-auto border border-gray-200 bg-white shadow-xs">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-gray-200 bg-[#f8f9fa]">
@@ -770,9 +709,6 @@ function EarthLeakageDetectorContent() {
         {/* 6. Wiring Schematics & Installation Guidelines */}
         <section id="wiring-schematics" className="scroll-mt-36">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#ff3131]/10 border border-[#ff3131]/30 text-[#ff3131] text-xs font-semibold uppercase tracking-wider mb-3">
-              <span>{lang === "hi" ? "स्थापना एवं एकीकरण" : "Installation Architecture"}</span>
-            </div>
             <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
               {lang === "hi" ? "वायरिंग एवं सीबीसीटी (CBCT) कनेक्शन गाइड" : "Wiring Schematics & CBCT Integration"}
             </h2>
@@ -780,14 +716,14 @@ function EarthLeakageDetectorContent() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             {/* Schematic Step-by-Step Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#f8f9fa] border border-gray-200 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="p-6 sm:p-8 bg-[#f8f9fa] border border-gray-200 shadow-xs flex flex-col justify-between space-y-6">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">
                   {lang === "hi" ? "सीबीसीटी (CBCT) कोर कनेक्शन नियम" : "Essential CBCT Installation Rules"}
                 </h3>
                 <div className="space-y-4 text-xs sm:text-sm text-gray-700 font-light">
                   <div className="flex items-start space-x-3">
-                    <span className="w-5 h-5 rounded-full bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-sm">
+                    <span className="w-5 h-5 bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-xs">
                       1
                     </span>
                     <p>
@@ -797,7 +733,7 @@ function EarthLeakageDetectorContent() {
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="w-5 h-5 rounded-full bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-sm">
+                    <span className="w-5 h-5 bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-xs">
                       2
                     </span>
                     <p>
@@ -807,7 +743,7 @@ function EarthLeakageDetectorContent() {
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="w-5 h-5 rounded-full bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-sm">
+                    <span className="w-5 h-5 bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-xs">
                       3
                     </span>
                     <p>
@@ -817,7 +753,7 @@ function EarthLeakageDetectorContent() {
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="w-5 h-5 rounded-full bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-sm">
+                    <span className="w-5 h-5 bg-[#ff3131] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 shadow-xs">
                       4
                     </span>
                     <p>
@@ -829,7 +765,7 @@ function EarthLeakageDetectorContent() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 shadow-sm">
+              <div className="p-4 bg-white border border-gray-200 text-xs text-gray-600 shadow-xs">
                 <span className="text-[#ff3131] font-semibold block mb-1">
                   {lang === "hi" ? "तकनीकी सलाह:" : "Engineering Advisory:"}
                 </span>
@@ -840,7 +776,7 @@ function EarthLeakageDetectorContent() {
             </div>
 
             {/* Terminal Diagram Representation */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-white to-[#f8f9fa] border border-gray-200 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="p-6 sm:p-8 bg-white border border-gray-200 shadow-xs flex flex-col justify-between space-y-6">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   {lang === "hi" ? "टर्मिनल ब्लॉक लेआउट" : "Terminal Block Configuration"}
@@ -850,23 +786,23 @@ function EarthLeakageDetectorContent() {
                 </p>
 
                 <div className="space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-gray-200 shadow-xs">
                     <span className="text-[#ff3131] font-bold">Terminals 1 - 2</span>
                     <span className="text-gray-700">Aux Power Supply (110-240V AC/DC)</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-gray-200 shadow-xs">
                     <span className="text-[#ff3131] font-bold">Terminals 3 - 4</span>
                     <span className="text-gray-700">CBCT Toroidal Sensor Input (S1 - S2)</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-gray-200 shadow-xs">
                     <span className="text-[#ff3131] font-bold">Terminals 5 - 6</span>
                     <span className="text-gray-700">Remote Reset / Pushbutton Input</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-gray-200 shadow-xs">
                     <span className="text-[#ff3131] font-bold">Terminals 11 - 12 - 14</span>
                     <span className="text-gray-700">Relay 1 (Trip / Breaker Shunt C/O)</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-gray-200 shadow-xs">
                     <span className="text-[#ff3131] font-bold">Terminals 21 - 22 - 24</span>
                     <span className="text-gray-700">Relay 2 (Alarm / Telemetry C/O)</span>
                   </div>
@@ -879,7 +815,7 @@ function EarthLeakageDetectorContent() {
                 </span>
                 <a
                   href="#contact-engineering"
-                  className="px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   {lang === "hi" ? "पीडीएफ डाउनलोड" : "Request PDF"}
                 </a>
@@ -890,12 +826,10 @@ function EarthLeakageDetectorContent() {
 
         {/* 7. Request a Quote / Engineering Consultation Section */}
         <section id="contact-engineering" className="scroll-mt-36">
-          <div className="rounded-3xl bg-gradient-to-b from-[#f8f9fb] to-white border border-gray-200 p-8 sm:p-12 lg:p-16 shadow-xl relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#ff3131]/5 rounded-full blur-3xl pointer-events-none" />
-
+          <div className="bg-white border border-gray-200 p-8 sm:p-12 lg:p-16 shadow-xs relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
               <div className="lg:col-span-6 space-y-4">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#ff3131]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#ff3131] font-mono">
                   {lang === "hi" ? "प्रत्यक्ष तकनीकी सहयोग" : "Direct Technical Consultation"}
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-light text-gray-950 tracking-tight font-sans">
@@ -925,8 +859,8 @@ function EarthLeakageDetectorContent() {
 
               <div className="lg:col-span-6">
                 {formSubmitted ? (
-                  <div className="p-8 rounded-2xl bg-white border border-gray-200 text-center space-y-4 shadow-xl animate-in fade-in duration-300">
-                    <div className="w-14 h-14 mx-auto rounded-full bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] text-2xl font-bold">
+                  <div className="p-8 bg-white border border-gray-200 text-center space-y-4 shadow-sm animate-in fade-in duration-300">
+                    <div className="w-14 h-14 mx-auto bg-[#ff3131]/10 flex items-center justify-center text-[#ff3131] text-2xl font-bold">
                       ✓
                     </div>
                     <h3 className="text-xl font-medium text-gray-900">
@@ -939,7 +873,7 @@ function EarthLeakageDetectorContent() {
                     </p>
                     <button
                       onClick={() => setFormSubmitted(false)}
-                      className="px-6 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+                      className="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                     >
                       {lang === "hi" ? "नया अनुरोध सबमिट करें" : "Submit Another Inquiry"}
                     </button>
@@ -950,7 +884,7 @@ function EarthLeakageDetectorContent() {
                       e.preventDefault();
                       setFormSubmitted(true);
                     }}
-                    className="p-6 sm:p-8 rounded-2xl bg-white border border-gray-200 shadow-xl space-y-4"
+                    className="p-6 sm:p-8 bg-slate-50 border border-gray-200 shadow-xs space-y-4"
                   >
                     <div>
                       <label className="block text-xs font-medium uppercase tracking-wider text-gray-700 mb-1.5">
@@ -960,7 +894,7 @@ function EarthLeakageDetectorContent() {
                         type="text"
                         required
                         placeholder={lang === "hi" ? "उदा. सुनील वर्मा" : "e.g. Michael Smith"}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                        className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                       />
                     </div>
 
@@ -973,7 +907,7 @@ function EarthLeakageDetectorContent() {
                           type="text"
                           required
                           placeholder={lang === "hi" ? "उदा. पैनल बिल्डर्स प्रा. लि." : "e.g. Switchgear Systems Ltd"}
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                         />
                       </div>
                       <div>
@@ -984,7 +918,7 @@ function EarthLeakageDetectorContent() {
                           type="tel"
                           required
                           placeholder="+91 / Country Code"
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                         />
                       </div>
                     </div>
@@ -998,14 +932,14 @@ function EarthLeakageDetectorContent() {
                           type="email"
                           required
                           placeholder="protection@org.com"
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors"
+                          className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors"
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-medium uppercase tracking-wider text-gray-700 mb-1.5">
                           {lang === "hi" ? "आवश्यक सीबीसीटी आकार" : "CBCT Aperture Size"}
                         </label>
-                        <select className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors">
+                        <select className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 text-sm focus:outline-none focus:border-[#ff3131] transition-colors">
                           <option value="35mm">35mm Inner Diameter (Up to 50 sq mm)</option>
                           <option value="70mm">70mm Inner Diameter (Up to 150 sq mm)</option>
                           <option value="120mm">120mm Inner Diameter (Up to 400 sq mm)</option>
@@ -1022,13 +956,13 @@ function EarthLeakageDetectorContent() {
                       <textarea
                         rows={3}
                         placeholder={lang === "hi" ? "मोटर कंट्रोल सेंटर (MCC), रेलवे ट्रैक सर्किट या सबस्टेशन फीडर..." : "Specify switchboard type, feeder rated current, VFD presence, or quantity needed..."}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#f8f9fa] border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:bg-white focus:border-[#ff3131] transition-colors resize-none"
+                        className="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] transition-colors resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-3 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white font-medium text-sm sm:text-base uppercase tracking-wider transition-all shadow-md shadow-[#ff3131]/20 cursor-pointer"
+                      className="w-full py-3 bg-[#ff3131] hover:bg-[#d62828] text-white font-medium text-sm sm:text-base uppercase tracking-wider transition-all shadow-md shadow-[#ff3131]/20 cursor-pointer"
                     >
                       {lang === "hi" ? "अनुरोध सबमिट करें" : "Submit Earth Leakage Quote Request"}
                     </button>

@@ -180,13 +180,13 @@ export default function AboutUsBanner() {
           <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3.5 sm:gap-6">
             <a
               href="#quote"
-              className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#ff3131] hover:bg-[#d62828] text-white font-medium text-center text-sm sm:text-base transition-all shadow-lg hover:shadow-xl cursor-pointer"
+              className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-none bg-red-600 hover:bg-[#d62828] text-white font-medium text-center text-sm sm:text-base transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               {lang === "hi" ? "कोटेशन का अनुरोध करें" : "Request a Quote"}
             </a>
             <a
               href="#contact"
-              className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-full border-2 border-gray-900 hover:border-[#ff3131] text-gray-900 hover:text-[#ff3131] font-medium text-center text-sm sm:text-base transition-all cursor-pointer"
+              className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-none border-2 border-gray-900 hover:border-red-600 text-gray-900 hover:text-red-600 font-medium text-center text-sm sm:text-base transition-all cursor-pointer"
             >
               {lang === "hi" ? "इंजीनियरिंग से संपर्क करें" : "Contact Engineering"}
             </a>
