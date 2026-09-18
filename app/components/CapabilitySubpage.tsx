@@ -35,133 +35,189 @@ function CapabilityContent({ data }: { data: CapabilitySubpageProps }) {
   const { lang } = useLanguage();
   const [activeStep, setActiveStep] = useState<number>(0);
   const [dossierDownloaded, setDossierDownloaded] = useState(false);
-  const [tourBooked, setTourBooked] = useState(false);
-  const [selectedDate, setSelectedDate] = useState("Next Tuesday, 10:30 AM");
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800 font-sans selection:bg-[#dc2626] selection:text-white">
-      {/* 1. Global Navigation */}
+    <main className="min-h-screen flex flex-col bg-white text-gray-900 selection:bg-[#ff3131] selection:text-white relative font-sans">
+      {/* 1. Global Navigation Header */}
       <AramcoHeader />
 
       {/* 
         =======================================================================
-        HERO SECTION: CORPORATE EDITORIAL & SIL-2 INTEGRITY SHOWCASE (RED & WHITE THEME)
+        HERO SECTION: MATCHING HOMEPAGE CINEMATIC FULL-BLEED HERO
         =======================================================================
       */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-24 bg-slate-50 border-b border-slate-200 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:24px_24px]" />
+      <section className="relative min-h-[560px] lg:min-h-[640px] pt-32 sm:pt-40 pb-16 sm:pb-20 overflow-hidden bg-neutral-950 flex flex-col justify-between">
+        {/* Full-bleed Background Image with smooth zoom & overlays */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={data.bannerImage}
+            alt={data.subCategoryTitleEn}
+            className="w-full h-full object-cover opacity-35 object-center scale-105"
+          />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Ambient Dark Gradients */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent pointer-events-none" />
 
+        {/* Hero Content Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full my-auto">
+          <div className="max-w-3xl">
+            {/* Category Breadcrumb Tag */}
+            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-4">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? data.badgeHi : data.badgeEn}</span>
+              <span className="text-white/40">•</span>
+              <span className="text-gray-300">{lang === "hi" ? data.subCategoryTitleHi : data.subCategoryTitleEn}</span>
+            </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7">
-              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-900 tracking-tight leading-[1.2] mb-5">
-                {lang === "hi" ? data.heroHeadlineHi : data.heroHeadlineEn}
-              </h1>
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight mb-5 font-sans">
+              {lang === "hi" ? data.heroHeadlineHi : data.heroHeadlineEn}
+            </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-8 max-w-2xl">
-                {lang === "hi" ? data.heroSubtitleHi : data.heroSubtitleEn}
-              </p>
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-8 max-w-2xl">
+              {lang === "hi" ? data.heroSubtitleHi : data.heroSubtitleEn}
+            </p>
 
-              {/* Action Toolbar */}
-              <div className="flex flex-wrap items-center gap-3.5">
-                <a
-                  href="#rams-lifecycle"
-                  className="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-red-600/20 flex items-center space-x-2"
-                >
-                  <span>{lang === "hi" ? "4-चरणीय सत्यापन पाइपलाइन" : "Explore 4-Stage RAMS Pipeline"}</span>
-                  <span className="text-xs font-mono">→</span>
-                </a>
-                <a
-                  href="#compliance-vault"
-                  className="px-5 py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
-                >
-                  <span className="text-[11px] font-mono font-bold text-red-600">SIL-2</span>
-                  <span>{lang === "hi" ? "SIL-2 अनुपालन प्रमाणपत्र" : "SIL-2 Compliance Matrix"}</span>
-                </a>
+            {/* CTA Toolbar */}
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="#rams-lifecycle"
+                className="px-7 py-3.5 bg-[#ff3131] hover:bg-[#e02626] text-white text-xs sm:text-sm font-medium tracking-wide transition-all shadow-lg hover:shadow-[#ff3131]/30 flex items-center space-x-2 group hover:-translate-y-0.5"
+              >
+                <span>{lang === "hi" ? "4-चरणीय सत्यापन पाइपलाइन" : "Explore 4-Stage RAMS Pipeline"}</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="#compliance-vault"
+                className="px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white text-white text-xs sm:text-sm font-medium tracking-wide backdrop-blur-sm transition-all flex items-center space-x-2 hover:-translate-y-0.5"
+              >
+                <span className="text-[11px] font-bold text-[#ff3131]">SIL-2</span>
+                <span>{lang === "hi" ? "SIL-2 अनुपालन प्रमाणपत्र" : "SIL-2 Compliance Matrix"}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Key Metrics Strip (matching AtAGlance on homepage) */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-black/40 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {data.stats.map((st, i) => (
+                <div key={i} className="flex flex-col border-l border-white/15 pl-4 sm:pl-6 first:border-l-0">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight font-sans">
+                    {st.value}
+                  </div>
+                  <div className="text-xs font-medium text-gray-300 uppercase tracking-wider mt-1">
+                    {lang === "hi" ? st.labelHi : st.labelEn}
+                  </div>
+                  <div className="text-xs text-gray-400 mt-0.5">
+                    {lang === "hi" ? st.subHi : st.subEn}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        =======================================================================
+        SECTION 1: ENGINEERING EXCELLENCE & PILLARS (Clean Homepage Style)
+        =======================================================================
+      */}
+      <section className="w-full bg-white text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="max-w-4xl mb-12 sm:mb-16">
+            <div className="text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-3 flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "गुणवत्ता ढांचा" : "ENGINEERING RIGOR"}</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
+              {lang === "hi" ? data.deepDiveTitleHi : data.deepDiveTitleEn}
+            </h2>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+              {lang === "hi"
+                ? "शून्य-दोष निर्माण और 100% फैक्ट्री स्ट्रेस टेस्टिंग। अंतरराष्ट्रीय रेलवे और भारी औद्योगिक मानकों के अनुसार सत्यापित।"
+                : "Zero-defect manufacturing protocols, 100% component traceability, and rigorous environmental burn-in testing across all production batches."}
+            </p>
+            <p className="text-sm sm:text-base font-medium text-[#ff3131]">
+              {lang === "hi" ? "CENELEC EN 50126 एवं SIL-2 अनुरूपता।" : "Certified to CENELEC EN 50126 RAMS Standards."}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Deep Dive Text & Feature Pillars */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-4">
+                {(lang === "hi" ? data.deepDiveParasHi : data.deepDiveParasEn).map((p, idx) => (
+                  <div key={idx} className="p-5 sm:p-6 bg-[#f8f9fa] border-l-2 border-[#ff3131] text-gray-700 text-sm sm:text-base leading-relaxed">
+                    {p}
+                  </div>
+                ))}
+              </div>
+
+              {/* 3 Pillars Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                {data.pillars.map((p, i) => (
+                  <div
+                    key={i}
+                    className="p-5 bg-[#f8f9fa] border border-gray-200/90 shadow-sm hover:shadow-xl hover:border-[#ff3131]/60 transition-all duration-300"
+                  >
+                    <span className="inline-block px-2 py-0.5 bg-red-50 text-[#ff3131] border border-red-100 text-[10px] font-semibold uppercase tracking-wider mb-3">
+                      {p.badge}
+                    </span>
+                    <h4 className="text-sm font-semibold text-[#1e293b] mb-2 font-sans">
+                      {lang === "hi" ? p.titleHi : p.titleEn}
+                    </h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      {lang === "hi" ? p.descHi : p.descEn}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Right Hero Image Card (Sharp Rectangular Border, No Curve, Bright BG) */}
+            {/* Right Side Visual Schematic Card */}
             <div className="lg:col-span-5">
-              <div className="relative overflow-hidden bg-white p-2 shadow-sm border border-slate-200">
-                <div className="relative h-72 sm:h-88 md:h-96 w-full overflow-hidden bg-slate-50">
+              <div className="bg-[#f8f9fa] border border-gray-200/90 shadow-md p-6 sm:p-7 hover:border-gray-300 transition-all">
+                <div className="flex items-center justify-between pb-3 border-b border-gray-200">
+                  <span className="text-xs font-semibold text-[#1e293b] tracking-wider uppercase font-sans">
+                    {lang === "hi" ? "मानकीकरण अवसंरचना" : "Accredited Testing Facility"}
+                  </span>
+                  <span className="text-[11px] px-2.5 py-0.5 bg-red-50 text-[#ff3131] font-medium border border-red-200">
+                    ISO 9001:2015
+                  </span>
+                </div>
+                
+                <div className="relative my-4 h-52 overflow-hidden border border-gray-200 bg-neutral-900 group">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={data.bannerImage}
-                    alt={data.subCategoryTitleEn}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    src={data.secondaryBannerImage}
+                    alt="Testing Facility"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                 </div>
-              </div>
-            </div>
-          </div>
 
-          {/* 4 Stat Metrics */}
-          <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {data.stats.map((st, i) => (
-              <div key={i} className="p-4 sm:p-5 bg-white border border-slate-200 shadow-sm hover:border-red-300 transition-all group">
-                <div className="text-2xl sm:text-3xl font-bold text-red-600 font-mono tracking-tight group-hover:scale-105 transition-transform">
-                  {st.value}
+                <div className="divide-y divide-gray-200 text-xs sm:text-sm">
+                  <div className="flex justify-between py-3">
+                    <span className="text-gray-500 font-medium">Burn-In Validation:</span>
+                    <span className="text-[#ff3131] font-semibold">100% Units 72-Hour Run</span>
+                  </div>
+                  <div className="flex justify-between py-3">
+                    <span className="text-gray-500 font-medium">Traceability Standard:</span>
+                    <span className="text-gray-900 font-medium">Component Serial Tracked</span>
+                  </div>
+                  <div className="flex justify-between py-3">
+                    <span className="text-gray-500 font-medium">Testing Standards:</span>
+                    <span className="text-gray-900 font-medium">EN 50126, IEC 60947</span>
+                  </div>
                 </div>
-                <div className="text-xs font-bold text-slate-900 mt-1">
-                  {lang === "hi" ? st.labelHi : st.labelEn}
-                </div>
-                <div className="text-[11px] text-slate-500 mt-0.5">
-                  {lang === "hi" ? st.subHi : st.subEn}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 
-        =======================================================================
-        BANNER 1: ENGINEERING EXCELLENCE SPOTLIGHT (NO OVERLAY BOX, SHARP IMAGES)
-        =======================================================================
-      */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 my-12 sm:my-16">
-        <div className="bg-white border border-slate-200 shadow-sm p-6 sm:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
-                {lang === "hi" 
-                  ? `${data.subCategoryTitleHi} - प्रमाणित गुणवत्ता मानक`
-                  : `${data.subCategoryTitleEn} Industrial Rigor`}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                {lang === "hi"
-                  ? "शून्य-दोष निर्माण और 100% फैक्ट्री स्ट्रेस टेस्टिंग। अंतरराष्ट्रीय रेलवे और भारी औद्योगिक मानकों के अनुसार सत्यापित।"
-                  : "Zero-defect manufacturing protocols, 100% component traceability, and rigorous environmental burn-in testing across all production batches."}
-              </p>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
-                <a
-                  href="#rams-lifecycle"
-                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
-                >
-                  <span>{lang === "hi" ? "RAMS पाइपलाइन देखें" : "Explore RAMS Pipeline"}</span>
-                  <span>→</span>
-                </a>
-                <a
-                  href="#compliance-vault"
-                  className="text-xs font-semibold text-slate-700 hover:text-red-600 transition-colors"
-                >
-                  {lang === "hi" ? "प्रमाणन मैट्रिक्स देखें" : "View Compliance Certificates"}
-                </a>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 shadow-sm bg-slate-50 p-1">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={data.secondaryBannerImage}
-                  alt={data.subCategoryTitleEn}
-                  className="w-full h-full object-cover"
-                />
               </div>
             </div>
           </div>
@@ -170,249 +226,130 @@ function CapabilityContent({ data }: { data: CapabilitySubpageProps }) {
 
       {/* 
         =======================================================================
-        HARDWARE LAB & QUALITY TESTING PHOTO GALLERY (SHARP BORDERS, NO CURVES)
+        SECTION 2: 4-STAGE RAMS PIPELINE (Workstation Stepper Style)
         =======================================================================
       */}
-      <section className="py-12 bg-white border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-slate-200">
-            <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                {lang === "hi" ? "प्रमाणित इंजीनियरिंग अवसंरचना" : "Accredited Hardware & Validation Equipment"}
-              </h3>
+      <section id="rams-lifecycle" className="w-full bg-[#f8f9fa] text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="max-w-4xl mb-12 sm:mb-16">
+            <div className="text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-3 flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "सत्यापन पाइपलाइन" : "RAMS SAFETY LIFECYCLE"}</span>
             </div>
-            <span className="text-xs text-slate-500 font-mono mt-2 sm:mt-0">
-              100% FACTORY BURN-IN TESTED
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border border-slate-200 bg-white p-2 shadow-xs">
-              <div className="h-52 w-full overflow-hidden bg-slate-100 border border-slate-200">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/signalling_relay_room.jpg"
-                  alt="Signalling Relay Room Testing"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-3">
-                <div className="text-[10px] font-mono font-bold text-red-600 uppercase">SIGNAL INTEGRITY</div>
-                <div className="text-xs font-bold text-slate-900 mt-0.5">Signalling & Relay Chamber</div>
-                <p className="text-[11px] text-slate-500 mt-1">Direct interconnect verification under simulated heavy railway line load.</p>
-              </div>
-            </div>
-
-            <div className="border border-slate-200 bg-white p-2 shadow-xs">
-              <div className="h-52 w-full overflow-hidden bg-slate-100 border border-slate-200">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/eld_engineering_lab.jpg"
-                  alt="ELD Engineering Lab Bench"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-3">
-                <div className="text-[10px] font-mono font-bold text-red-600 uppercase">DIAGNOSTIC RIGOR</div>
-                <div className="text-xs font-bold text-slate-900 mt-0.5">Microprocessor Calibration Bench</div>
-                <p className="text-[11px] text-slate-500 mt-1">Multi-channel signal analysis for precise earth fault threshold limits.</p>
-              </div>
-            </div>
-
-            <div className="border border-slate-200 bg-white p-2 shadow-xs">
-              <div className="h-52 w-full overflow-hidden bg-slate-100 border border-slate-200">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/fail_safe_boom.jpg"
-                  alt="Fail Safe Mechanical Mechanism"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-3">
-                <div className="text-[10px] font-mono font-bold text-red-600 uppercase">KINETIC RELIABILITY</div>
-                <div className="text-xs font-bold text-slate-900 mt-0.5">Electromechanical Counterweight Rig</div>
-                <p className="text-[11px] text-slate-500 mt-1">Continuous 5,000,000 cycle stress testing with zero maintenance downtime.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 
-        =======================================================================
-        SECTION 2: 4-STAGE RAMS LIFECYCLE (Interactive Stepper)
-        =======================================================================
-      */}
-      <section id="rams-lifecycle" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
               {lang === "hi" ? "4-चरणीय सुरक्षा जीवनचक्र सत्यापन पाइपलाइन" : "4-Stage Lifecycle Safety Verification Pipeline"}
             </h2>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+              {lang === "hi"
+                ? "डिजाइन आर्किटेक्चर से लेकर फील्ड कमीशनिंग तक, प्रत्येक चरण CENELEC EN 50126 RAMS सिद्धांतों का पालन करता है।"
+                : "From baseline schematic validation to continuous field telemetry, every product adheres to strict CENELEC RAMS principles."}
+            </p>
           </div>
 
-          {/* 4 Steps Interactive Navigation */}
+          {/* Stepper Tabs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {data.lifecycleSteps.map((step, idx) => (
+            {data.lifecycleSteps.map((st, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveStep(idx)}
-                className={`p-5 text-left border transition-all cursor-pointer ${
+                className={`p-5 text-left border transition-all cursor-pointer shadow-sm ${
                   activeStep === idx
-                    ? "bg-white border-red-500 shadow-md text-slate-900 ring-2 ring-red-400/20"
-                    : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
+                    ? "bg-white border-[#ff3131] shadow-md border-t-4 border-t-[#ff3131]"
+                    : "bg-[#f8f9fa] border-gray-200 hover:bg-white"
                 }`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className={`w-8 h-8 flex items-center justify-center text-xs font-bold font-mono ${
-                    activeStep === idx ? "bg-red-600 text-white shadow-sm" : "bg-slate-100 text-slate-700 border border-slate-200"
-                  }`}>
-                    {step.step}
-                  </span>
-                  <span className="text-[10px] font-mono text-slate-400">STAGE {idx + 1}</span>
+                <div className="text-xs font-semibold text-[#ff3131] mb-1">
+                  STAGE {st.step}
                 </div>
-                <h3 className="text-xs sm:text-sm font-bold text-slate-900 mb-1">
-                  {lang === "hi" ? step.titleHi : step.titleEn}
-                </h3>
-                <p className="text-[11px] text-slate-600 leading-normal">
-                  {lang === "hi" ? step.descHi : step.descEn}
-                </p>
+                <div className="text-sm font-semibold text-[#1e293b] font-sans">
+                  {lang === "hi" ? st.titleHi : st.titleEn}
+                </div>
               </button>
             ))}
           </div>
 
-          {/* Active Step Deep-Dive Card */}
-          <div className="p-8 bg-white text-slate-900 border border-slate-200 shadow-sm">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
-              <div>
-                <span className="text-xs font-bold text-red-700 uppercase tracking-wide font-mono">
-                  STAGE {data.lifecycleSteps[activeStep].step} VERIFICATION PROTOCOL
-                </span>
-                <h4 className="text-xl font-bold text-slate-900 mt-1">
-                  {lang === "hi" ? data.lifecycleSteps[activeStep].titleHi : data.lifecycleSteps[activeStep].titleEn}
-                </h4>
-              </div>
-              <span className="px-3 py-1 bg-red-50 border border-red-200 text-red-700 text-xs font-semibold font-mono">
-                CENELEC EN 50126
+          {/* Active Step Showcase */}
+          <div className="bg-white border border-gray-200 p-8 shadow-md">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="px-3 py-1 bg-red-50 text-[#ff3131] border border-red-200 text-xs font-semibold">
+                STAGE {data.lifecycleSteps[activeStep].step}
               </span>
+              <h3 className="text-xl font-normal text-[#1e293b] font-sans">
+                {lang === "hi" ? data.lifecycleSteps[activeStep].titleHi : data.lifecycleSteps[activeStep].titleEn}
+              </h3>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
-              <div className="p-4 bg-slate-50 border border-slate-200">
-                <div className="text-slate-500 font-medium mb-1">FAILURE RATE TARGET</div>
-                <div className="text-lg font-bold text-emerald-700 font-mono">&lt; 10⁻⁷ / hr</div>
-                <div className="text-[10px] text-slate-500 mt-1">SIL-2 Safety Requirement</div>
-              </div>
-              <div className="p-4 bg-slate-50 border border-slate-200">
-                <div className="text-slate-500 font-medium mb-1">THERMAL STRESS SCREENING</div>
-                <div className="text-lg font-bold text-red-700 font-mono">-25°C to +70°C</div>
-                <div className="text-[10px] text-slate-500 mt-1">72-Hour Burn-In Chamber</div>
-              </div>
-              <div className="p-4 bg-slate-50 border border-slate-200">
-                <div className="text-slate-500 font-medium mb-1">AUDIT CERTIFICATION</div>
-                <div className="text-lg font-bold text-slate-900">100% Traceable</div>
-                <div className="text-[10px] text-slate-500 mt-1">Stamped Factory Records</div>
-              </div>
-            </div>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed max-w-4xl">
+              {lang === "hi" ? data.lifecycleSteps[activeStep].descHi : data.lifecycleSteps[activeStep].descEn}
+            </p>
           </div>
         </div>
       </section>
 
       {/* 
         =======================================================================
-        SECTION 3: ARCHITECTURE COMPARISON MATRIX (Conventional vs GLOBAL)
+        SECTION 3: HARDWARE TESTING GALLERY (DiscoverAramco Style)
         =======================================================================
       */}
-      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl font-bold text-slate-900 mt-1">
-              {lang === "hi" ? "पारंपरिक सिस्टम बनाम ग्लोबल डिजिटल आर्किटेक्चर" : "Conventional Systems vs. GLOBAL Digital Safety Architecture"}
-            </h3>
-          </div>
-
-          <div className="overflow-hidden border border-slate-200 shadow-sm bg-white">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
-                <tr>
-                  <th className="p-4 sm:p-5">Engineering Dimension</th>
-                  <th className="p-4 sm:p-5 text-slate-500">Conventional Equipment</th>
-                  <th className="p-4 sm:p-5 text-red-800 bg-red-50/50">GLOBAL Advanced Architecture</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-600">
-                <tr className="hover:bg-slate-50/80 transition-colors">
-                  <td className="p-4 sm:p-5 font-semibold text-slate-900">Total Blackout Response</td>
-                  <td className="p-4 sm:p-5 text-slate-500">Stalls midway in unsafe state</td>
-                  <td className="p-4 sm:p-5 font-bold text-red-700 bg-red-50/30">100% Passive Gravity Safe Lock</td>
-                </tr>
-                <tr className="hover:bg-slate-50/80 transition-colors">
-                  <td className="p-4 sm:p-5 font-semibold text-slate-900">VFD & Inverter Noise</td>
-                  <td className="p-4 sm:p-5 text-slate-500">Frequent false/nuisance trips</td>
-                  <td className="p-4 sm:p-5 font-bold text-red-700 bg-red-50/30">32-Bit DSP Harmonic Filtration</td>
-                </tr>
-                <tr className="hover:bg-slate-50/80 transition-colors">
-                  <td className="p-4 sm:p-5 font-semibold text-slate-900">Remote SCADA Telemetry</td>
-                  <td className="p-4 sm:p-5 text-slate-500">Isolated black-box dial relay</td>
-                  <td className="p-4 sm:p-5 font-bold text-red-700 bg-red-50/30">Native Isolated Modbus-RTU RS-485</td>
-                </tr>
-                <tr className="hover:bg-slate-50/80 transition-colors">
-                  <td className="p-4 sm:p-5 font-semibold text-slate-900">Enclosure Integrity</td>
-                  <td className="p-4 sm:p-5 text-slate-500">1.2mm sheet metal, basic paint</td>
-                  <td className="p-4 sm:p-5 font-bold text-red-700 bg-red-50/30">2.5mm CRCA Steel IP66 / IK10</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* 
-        =======================================================================
-        BANNER 2 (FULL-WIDTH): ACCREDITED LABORATORY (NO OVERLAY BOX)
-        =======================================================================
-      */}
-      <section className="relative w-full my-12 sm:my-16 bg-slate-100 border-y border-slate-200 overflow-hidden">
-        <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] w-full overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={data.fieldBannerImage}
-            alt={lang === "hi" ? `${data.subCategoryTitleHi} फील्ड प्रमाणन` : `${data.subCategoryTitleEn} Field Accreditation`}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="bg-white border-t border-slate-200 py-3.5 px-4 sm:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 font-mono">
-            <div className="flex items-center space-x-2 font-bold text-slate-900">
-              <span>{lang === "hi" ? `${data.subCategoryTitleHi} - प्रयोगशाला सत्यापन` : `${data.subCategoryTitleEn} • Laboratory Verification`}</span>
+      <section className="w-full bg-white text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl mb-12 sm:mb-16">
+            <div className="text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-3 flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "सत्यापित अवसंरचना" : "VALIDATION INFRASTRUCTURE"}</span>
             </div>
-            <div className="flex items-center space-x-4 text-[11px] text-slate-500">
-              <span>SIL-2 FUNCTIONAL SAFETY</span>
-              <span>•</span>
-              <span>ISO 9001:2015 AUDITED FACILITY</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 
-        =======================================================================
-        SECTION 4: COMPLIANCE VAULT
-        =======================================================================
-      */}
-      <section id="compliance-vault" className="py-16 sm:py-20 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-8">
-            <h3 className="text-2xl font-bold text-slate-900 mt-1">
-              {lang === "hi" ? "प्रमाणित मानक एवं अनुपालन सूची" : "Compliance & Certification Matrix"}
-            </h3>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
+              {lang === "hi" ? "प्रमाणित इंजीनियरिंग अवसंरचना" : "Accredited Hardware & Validation Equipment"}
+            </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-            {data.complianceList.map((comp, idx) => (
-              <div key={idx} className="p-4 bg-slate-50 border border-slate-200 text-center hover:border-red-300 transition-all">
-                <span className="text-xs font-mono font-bold text-red-800">{comp}</span>
-                <div className="text-[10px] text-emerald-600 font-bold mt-1 font-mono">VERIFIED COMPLIANT</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                title: "Signalling & Relay Chamber",
+                category: "SIGNAL INTEGRITY",
+                image: "/images/signalling_relay_room.jpg",
+                desc: "Direct interconnect verification under simulated heavy railway line load."
+              },
+              {
+                title: "Microprocessor Calibration Bench",
+                category: "DIAGNOSTIC RIGOR",
+                image: "/images/eld_engineering_lab.jpg",
+                desc: "Multi-channel signal analysis for precise earth fault threshold limits."
+              },
+              {
+                title: "Electromechanical Counterweight Rig",
+                category: "KINETIC RELIABILITY",
+                image: "/images/fail_safe_boom.jpg",
+                desc: "Continuous 5,000,000 cycle stress testing with zero maintenance downtime."
+              }
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="group relative h-[380px] sm:h-[440px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between p-6 sm:p-7 text-white border border-gray-200 hover:border-[#ff3131]/60 bg-neutral-900"
+              >
+                <div className="absolute inset-0 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/20 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-400 pointer-events-none" />
+                <div className="relative z-10">
+                  <span className="inline-block text-[11px] font-semibold tracking-widest text-[#ff3131] uppercase bg-black/60 px-2.5 py-1 backdrop-blur-sm border border-white/10">
+                    {item.category}
+                  </span>
+                </div>
+                <div className="relative z-10 mt-auto">
+                  <h3 className="text-lg sm:text-xl font-medium leading-snug text-white font-sans mb-2 drop-shadow-md">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-gray-300 line-clamp-2 leading-relaxed font-light">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -421,116 +358,113 @@ function CapabilityContent({ data }: { data: CapabilitySubpageProps }) {
 
       {/* 
         =======================================================================
-        SECTION 5: BESPOKE FACTORY AUDIT & TOUR SCHEDULER
+        SECTION 4: COMPLIANCE VAULT & DIRECT ACCESS
         =======================================================================
       */}
-      <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 bg-white border border-slate-200 shadow-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
-              {/* Left Column: Instant Dossier Access */}
-              <div className="lg:col-span-7">
-                <div className="text-xs font-bold font-mono text-red-700 uppercase tracking-wider mb-2">
-                  {lang === "hi" ? "आधिकारिक प्रमाणन" : "FACTORY AUDIT & DOSSIER"}
+      <section id="compliance-vault" className="w-full bg-[#f8f9fa] text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+            <div className="lg:col-span-7 bg-white border border-gray-200 p-8 sm:p-10 shadow-md flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-semibold text-[#ff3131] uppercase tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-6 h-[2px] bg-[#ff3131]" />
+                  <span>COMPLIANCE VAULT</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
-                  {lang === "hi" ? "SIL-2 अनुपालन दस्तावेज़ प्राप्त करें" : "Download Official SIL-2 Certification Dossier"}
+                <h3 className="text-2xl sm:text-3xl font-normal text-[#1e293b] font-sans mt-2">
+                  {lang === "hi" ? "प्रमाणन एवं परीक्षण रिपोर्ट" : "Certificates & Type Test Reports"}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
                   {lang === "hi"
-                    ? "टेंडर सबमिशन के लिए क्लॉज-दर-क्लॉज अनुपालन विवरण और स्वतंत्र परीक्षण रिपोर्ट डाउनलोड करें।"
-                    : "Includes complete clause-by-clause compliance statements, failure mode hazard analyses, and third-party laboratory test certificates."}
+                    ? "SIL-2, CENELEC EN 50126 और RDSO अनुरूपता प्रमाण पत्र तुरंत डाउनलोड करें।"
+                    : "Direct access to third-party lab certificates, type test dossiers, and ISO quality management statements."}
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+                  {data.complianceList.map((c, i) => (
+                    <div key={i} className="p-3.5 bg-[#f8f9fa] border border-gray-200 text-xs font-medium text-gray-800 flex items-center gap-2">
+                      <span className="text-[#ff3131] font-bold">✓</span>
+                      <span>{c}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6">
                   <button
                     onClick={() => {
                       setDossierDownloaded(true);
                       setTimeout(() => setDossierDownloaded(false), 3500);
                     }}
-                    className="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md shadow-red-600/20 cursor-pointer flex items-center space-x-2"
+                    className="px-6 py-3 bg-[#ff3131] hover:bg-[#e02626] text-white text-xs sm:text-sm font-medium tracking-wide transition-all shadow-sm"
                   >
-                    <span>{lang === "hi" ? "SIL-2 डोजियर डाउनलोड करें (PDF)" : "Download Compliance Dossier (PDF)"}</span>
-                    <span className="font-mono">↓</span>
+                    <span>{lang === "hi" ? "पूर्ण अनुपालन डोजियर डाउनलोड करें (PDF)" : "Download Full Compliance Dossier (PDF)"}</span>
                   </button>
-                  <a
-                    href="mailto:quality@global-safety.com"
-                    className="px-5 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold tracking-wide transition-all border border-slate-200"
-                  >
-                    {lang === "hi" ? "ऑडिट टीम से संपर्क" : "Quality Audit Desk"}
-                  </a>
+                  {dossierDownloaded && (
+                    <div className="mt-3 text-xs text-emerald-700 font-medium">
+                      ✓ Dossier download initiated.
+                    </div>
+                  )}
                 </div>
-
-                {dossierDownloaded && (
-                  <div className="mt-3 p-3 bg-red-50 border border-red-200 text-red-800 text-xs font-medium flex items-center space-x-2">
-                    <span className="font-bold text-red-700 font-mono">[CONFIRMED]</span>
-                    <span>Dossier package download initiated (GL-SIL2-COMPLIANCE-2026.pdf).</span>
-                  </div>
-                )}
               </div>
+            </div>
 
-              {/* Right Column: Virtual Lab Tour Booking */}
-              <div className="lg:col-span-5 bg-white p-6 sm:p-7 border border-slate-200 shadow-sm text-slate-900">
-                <span className="text-[10px] font-bold text-red-700 uppercase tracking-widest font-mono">
-                  LIVE LAB INTERACTION
-                </span>
-                <h4 className="text-lg font-bold text-slate-900 mt-1">
-                  Schedule Virtual Factory & Testing Lab Tour
+            {/* Right Desk Card */}
+            <div className="lg:col-span-5 bg-[#1e293b] text-white p-8 sm:p-10 shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="text-[11px] font-semibold text-[#ff3131] uppercase tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-5 h-[2px] bg-[#ff3131]" />
+                  <span>QUALITY AUDIT & VISITS</span>
+                </div>
+                <h4 className="text-xl sm:text-2xl font-light text-white font-sans mt-2">
+                  {lang === "hi" ? "फैक्ट्री क्वालिटी ऑडिट शेड्यूल करें" : "Schedule Factory QA Audit"}
                 </h4>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  Join a 20-minute live video walkthrough with our senior test engineers observing real burn-in and surge testing.
+                <p className="text-xs sm:text-sm text-gray-300 mt-2 leading-relaxed font-light">
+                  {lang === "hi"
+                    ? "हमारे मुख्य विनिर्माण संयंत्र में प्रत्यक्ष गुणवत्ता और प्रक्रिया ऑडिट का समन्वय करें।"
+                    : "Arrange on-site quality assurance audits and component witnessing with our Chief Quality Officer."}
                 </p>
 
-                <div className="mt-4 space-y-3">
-                  <select
-                    value={selectedDate}
-                    onChange={(e) => setSelectedDate(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 text-slate-900 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-red-500"
+                <div className="mt-8 space-y-3">
+                  <a
+                    href="/contact/engineering-team"
+                    className="w-full py-3.5 px-4 bg-[#ff3131] hover:bg-[#e02626] text-white text-xs sm:text-sm font-medium flex items-center justify-between transition-all shadow-lg"
                   >
-                    <option>Next Tuesday, 10:30 AM</option>
-                    <option>Next Wednesday, 02:00 PM</option>
-                    <option>Next Thursday, 11:00 AM</option>
-                  </select>
-
-                  <button
-                    onClick={() => {
-                      setTourBooked(true);
-                      setTimeout(() => setTourBooked(false), 4000);
-                    }}
-                    className="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-all cursor-pointer shadow-sm shadow-red-600/20"
+                    <span>REQUEST ON-SITE AUDIT</span>
+                    <span>→</span>
+                  </a>
+                  <a
+                    href="mailto:quality@global-safety.com"
+                    className="w-full py-3.5 px-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-medium flex items-center justify-between transition-all"
                   >
-                    {tourBooked ? "Tour Reservation Confirmed" : "Confirm Lab Walkthrough"}
-                  </button>
+                    <span>EMAIL: quality@global-safety.com</span>
+                  </a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Related Sublinks Navigation */}
+      {/* Related Modules */}
       {data.relatedSublinks && data.relatedSublinks.length > 0 && (
-        <section className="py-12 bg-white border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">
-              {lang === "hi" ? "संबंधित क्षमताएं" : "Explore Related Engineering Disciplines"}
+        <section className="w-full bg-white text-gray-900 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+          <div className="max-w-7xl mx-auto">
+            <h3 className="text-xs font-semibold text-[#ff3131] uppercase tracking-widest mb-6">
+              {lang === "hi" ? "संबंधित क्षमताएं" : "Explore Related Engineering Capabilities"}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {data.relatedSublinks.map((sub, i) => (
                 <Link
                   key={i}
                   href={sub.href}
-                  className="p-4 bg-slate-50 hover:bg-red-50/60 border border-slate-200 hover:border-red-300 transition-all flex items-center justify-between group"
+                  className="p-6 bg-[#f8f9fa] hover:bg-white border border-gray-200 hover:border-[#ff3131]/60 shadow-sm hover:shadow-md transition-all flex items-center justify-between group"
                 >
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-red-700">{sub.tag}</span>
-                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-700">
+                    <span className="text-[11px] font-semibold text-[#ff3131] uppercase">{sub.tag}</span>
+                    <div className="text-sm font-semibold text-[#1e293b] group-hover:text-[#ff3131] mt-1 font-sans">
                       {lang === "hi" ? sub.titleHi : sub.titleEn}
                     </div>
                   </div>
-                  <span className="text-slate-400 group-hover:text-red-600 transition-transform group-hover:translate-x-1">→</span>
+                  <span className="text-gray-400 group-hover:text-[#ff3131] transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               ))}
             </div>
@@ -538,10 +472,10 @@ function CapabilityContent({ data }: { data: CapabilitySubpageProps }) {
         </section>
       )}
 
-      {/* Newsletter and Footer */}
+      {/* Newsletter and Official Footer */}
       <NewsletterSection />
       <Footer />
-    </div>
+    </main>
   );
 }
 

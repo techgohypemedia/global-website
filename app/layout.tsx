@@ -38,9 +38,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${rajdhani.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-black text-white">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-black text-white">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

@@ -84,163 +84,98 @@ function RailwayBarrierContent() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900 selection:bg-[#ff3131] selection:text-white relative font-sans">
-      {/* 1. Light Header at Top */}
-      <AramcoHeader theme="light" />
+    <main className="min-h-screen flex flex-col bg-white text-gray-900 selection:bg-[#ff3131] selection:text-white relative font-sans">
+      {/* 1. Global Navigation Header */}
+      <AramcoHeader />
 
-      {/* 2. Hero Section */}
-      <section className="relative w-full overflow-hidden pb-14 sm:pb-20 pt-28 sm:pt-36 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Content Column */}
-            <div className="lg:col-span-7">
+      {/* 2. Hero Section: Full-Bleed Dark Cinematic Hero */}
+      <section className="relative min-h-[580px] lg:min-h-[660px] pt-32 sm:pt-40 pb-16 sm:pb-20 overflow-hidden bg-neutral-950 flex flex-col justify-between">
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src="/images/boom_barrier_railway.jpg"
+            alt="Railway Barrier System"
+            className="w-full h-full object-cover opacity-35 object-center scale-105"
+          />
+        </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight text-gray-950 font-sans mb-4 sm:mb-6 leading-[1.15]">
-                {lang === "hi" ? (
-                  <>
-                    रेलवे बैरियर सिस्टम <br />
-                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#ff3131] via-[#d62828] to-gray-900">
-                      फेल-सेफ ऑटोमेशन इंजीनियरिंग
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    Railway Barrier System <br />
-                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#ff3131] via-[#d62828] to-gray-900">
-                      Fail-Safe Automation Engineering
-                    </span>
-                  </>
-                )}
-              </h1>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent pointer-events-none" />
 
-              <p className="text-base sm:text-lg lg:text-xl text-gray-600 font-light leading-relaxed mb-8">
-                {lang === "hi"
-                  ? "रेलवे लेवल क्रॉसिंग, हाई-ट्रैफिक ट्रांजिट कॉरिडोर और रणनीतिक बुनियादी ढांचे के लिए 100% फेल-सेफ आर्किटेक्चर, अत्यधिक टिकाऊ बीएलडीसी ड्राइव और रीयल-टाइम सिग्नलिंग एकीकरण के साथ निर्मित।"
-                  : "Precision automated boom barriers engineered for railway level crossings, high-traffic corridors, and critical facilities with default-to-safe mechanics, optical interlocks, and continuous 24/7 reliability."}
-              </p>
-
-              {/* Top Quick Stats Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 mb-8">
-                {/* Stat 1 */}
-                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
-                  <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
-                      {lang === "hi" ? "आर्किटेक्चर" : "Architecture"}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="text-lg sm:text-xl xl:text-2xl font-bold text-gray-950 tracking-tight whitespace-nowrap">
-                      100%
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-1">
-                      {lang === "hi" ? "फेल-सेफ डिफॉल्ट" : "Fail-Safe Architecture"}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Stat 2 */}
-                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
-                  <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
-                      {lang === "hi" ? "गति" : "Velocity"}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="text-lg sm:text-xl xl:text-2xl font-bold text-gray-950 tracking-tight whitespace-nowrap">
-                      1.5s – 6s
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-1">
-                      {lang === "hi" ? "परिचालन गति" : "Operating Speed"}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Stat 3 */}
-                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
-                  <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
-                      {lang === "hi" ? "दायरा" : "Coverage"}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="text-lg sm:text-xl xl:text-2xl font-bold text-gray-950 tracking-tight whitespace-nowrap">
-                      Up to 8m
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-1">
-                      {lang === "hi" ? "बूम की लंबाई" : "Max Span Length"}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Stat 4 */}
-                <div className="relative p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-xs hover:border-[#ff3131]/40 transition-all duration-200 flex flex-col justify-between overflow-hidden group">
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#ff3131] via-[#ff3131]/60 to-transparent" />
-                  <div className="flex items-center justify-between gap-1 mb-1.5">
-                    <span className="w-1.5 h-1.5 bg-[#ff3131]" />
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
-                      {lang === "hi" ? "स्थायित्व" : "Reliability"}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="text-lg sm:text-xl xl:text-2xl font-bold text-gray-950 tracking-tight whitespace-nowrap">
-                      5M+ MCBF
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-1">
-                      {lang === "hi" ? "चक्र विफलता अंतराल" : "Duty Cycles Rating"}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Top Hero CTAs */}
-              <div className="flex flex-wrap items-center gap-3.5 sm:gap-4">
-                <a
-                  href="#contact-engineering"
-                  className="px-6 py-3.5 bg-[#ff3131] hover:bg-[#d62828] text-white font-semibold text-sm transition-all duration-200 shadow-md shadow-red-500/20 flex items-center space-x-2 cursor-pointer"
-                >
-                  <span>{lang === "hi" ? "कोटेशन का अनुरोध करें" : "Request Technical Quote"}</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-                <a
-                  href="#technical-specs"
-                  className="px-6 py-3.5 border border-gray-300 hover:border-gray-900 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-sm transition-all duration-200 shadow-xs flex items-center space-x-2 cursor-pointer"
-                >
-                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <span>{lang === "hi" ? "तकनीकी विनिर्देश देखें" : "View Technical Matrix"}</span>
-                </a>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-auto">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-4">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "रेलवे सुरक्षा प्रणालियां" : "RAILWAY SAFETY SYSTEMS"}</span>
+              <span className="text-white/40">•</span>
+              <span className="text-gray-300">RDSO & EN 50126 COMPLIANT</span>
             </div>
 
-            {/* Right Media Column (Sharp Rectangular Border, No Overlay Box) */}
-            <div className="lg:col-span-5 relative">
-              <div className="bg-white p-2 border border-gray-200 shadow-xs">
-                <div className="w-full h-[360px] sm:h-[460px] overflow-hidden bg-slate-50 border border-slate-200">
-                  <img
-                    src="/images/boom_barrier_railway.jpg"
-                    alt="Railway Barrier System"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-3 bg-white border-t border-gray-100">
-                  <span className="text-xs text-[#ff3131] font-semibold uppercase tracking-wider block font-mono">
-                    {lang === "hi" ? "आरडीएसओ एवं एनईएमए मानक" : "Heavy Duty Railway Crossing Barrier"}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white font-sans mb-5 leading-tight">
+              {lang === "hi" ? (
+                <>
+                  रेलवे बैरियर सिस्टम <br />
+                  <span className="font-semibold text-[#ff3131]">
+                    फेल-सेफ ऑटोमेशन इंजीनियरिंग
                   </span>
-                  <span className="text-xs text-gray-600 font-light">
-                    {lang === "hi"
-                      ? "24/7 निरंतर भारी रेलवे और ट्रांजिट कॉरिडोर परिचालन हेतु प्रमाणित"
-                      : "Proven in round-the-clock railway level crossing operations"}
+                </>
+              ) : (
+                <>
+                  Railway Barrier System <br />
+                  <span className="font-semibold text-[#ff3131]">
+                    Fail-Safe Automation Engineering
                   </span>
-                </div>
+                </>
+              )}
+            </h1>
+
+            <p className="text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-8 max-w-2xl">
+              {lang === "hi"
+                ? "रेलवे लेवल क्रॉसिंग, हाई-ट्रैफिक ट्रांजिट कॉरिडोर और रणनीतिक बुनियादी ढांचे के लिए 100% फेल-सेफ आर्किटेक्चर, अत्यधिक टिकाऊ बीएलडीसी ड्राइव और रीयल-टाइम सिग्नलिंग एकीकरण के साथ निर्मित।"
+                : "Precision automated boom barriers engineered for railway level crossings, high-traffic corridors, and critical facilities with default-to-safe mechanics, optical interlocks, and continuous 24/7 reliability."}
+            </p>
+
+            {/* Hero CTAs */}
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="#contact-engineering"
+                className="px-7 py-3.5 bg-[#ff3131] hover:bg-[#e02626] text-white text-xs sm:text-sm font-medium tracking-wide transition-all shadow-lg hover:shadow-[#ff3131]/30 flex items-center space-x-2 group hover:-translate-y-0.5"
+              >
+                <span>{lang === "hi" ? "कोटेशन का अनुरोध करें" : "Request Technical Quote"}</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="#technical-specs"
+                className="px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white text-white text-xs sm:text-sm font-medium tracking-wide backdrop-blur-sm transition-all flex items-center space-x-2 hover:-translate-y-0.5"
+              >
+                <span>{lang === "hi" ? "तकनीकी विनिर्देश देखें" : "View Technical Matrix"}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Strip */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-black/40 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="flex flex-col border-l border-white/15 pl-4 sm:pl-6 first:border-l-0">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight font-sans">100%</div>
+                <div className="text-xs font-medium text-gray-300 uppercase tracking-wider mt-1">{lang === "hi" ? "फेल-सेफ डिफॉल्ट" : "Fail-Safe Default"}</div>
+                <div className="text-xs text-gray-400 mt-0.5">Gravity Drop / Clutch</div>
+              </div>
+              <div className="flex flex-col border-l border-white/15 pl-4 sm:pl-6">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight font-sans">1.5s – 6s</div>
+                <div className="text-xs font-medium text-gray-300 uppercase tracking-wider mt-1">{lang === "hi" ? "परिचालन गति" : "Operating Speed"}</div>
+                <div className="text-xs text-gray-400 mt-0.5">S-Curve Controlled</div>
+              </div>
+              <div className="flex flex-col border-l border-white/15 pl-4 sm:pl-6">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight font-sans">Up to 8m</div>
+                <div className="text-xs font-medium text-gray-300 uppercase tracking-wider mt-1">{lang === "hi" ? "बूम की लंबाई" : "Max Span Length"}</div>
+                <div className="text-xs text-gray-400 mt-0.5">Octagonal Aluminum</div>
+              </div>
+              <div className="flex flex-col border-l border-white/15 pl-4 sm:pl-6">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight font-sans">5M+ MCBF</div>
+                <div className="text-xs font-medium text-gray-300 uppercase tracking-wider mt-1">{lang === "hi" ? "चक्र विफलता अंतराल" : "Duty Cycles Rating"}</div>
+                <div className="text-xs text-gray-400 mt-0.5">Continuous Class S1</div>
               </div>
             </div>
           </div>
@@ -914,7 +849,7 @@ function RailwayBarrierContent() {
 
       {/* 9. Footer */}
       <Footer />
-    </div>
+    </main>
   );
 }
 

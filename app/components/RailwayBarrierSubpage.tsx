@@ -47,114 +47,144 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
   const motorRating = boomLength <= 4 ? "180W Brushless DC" : boomLength <= 6 ? "250W High-Torque BLDC" : "400W Industrial Geared BLDC";
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-800 font-sans selection:bg-[#dc2626] selection:text-white">
-      {/* 1. Global Navigation */}
+    <main className="min-h-screen flex flex-col bg-white text-gray-900 selection:bg-[#ff3131] selection:text-white relative font-sans">
+      {/* 1. Global Navigation Header */}
       <AramcoHeader />
 
       {/* 
         =======================================================================
-        HERO SECTION: CLEAN RED & WHITE TECHNICAL PRESENTATION
+        HERO SECTION: MATCHING HOMEPAGE CINEMATIC FULL-BLEED HERO
         =======================================================================
       */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7">
-              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-900 tracking-tight leading-[1.2] mb-5">
-                {lang === "hi" ? data.heroHeadlineHi : data.heroHeadlineEn}
-              </h1>
+      <section className="relative min-h-[560px] lg:min-h-[640px] pt-32 sm:pt-40 pb-16 sm:pb-20 overflow-hidden bg-neutral-950 flex flex-col justify-between">
+        {/* Full-bleed Background Image with smooth zoom & overlays */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={data.bannerImage}
+            alt={data.subCategoryTitleEn}
+            className="w-full h-full object-cover opacity-35 object-center scale-105"
+          />
+        </div>
 
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-8 max-w-2xl">
-                {lang === "hi" ? data.heroSubtitleHi : data.heroSubtitleEn}
-              </p>
+        {/* Ambient Dark Gradients matching Homepage */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent pointer-events-none" />
 
-              {/* Action Toolbar */}
-              <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href="#engineering-bench"
-                  className="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
-                >
-                  <span>{lang === "hi" ? "बूम साइज़िंग कैलकुलेटर चलाएं" : "Launch Boom Sizing Bench"}</span>
-                  <span className="text-xs font-mono">→</span>
-                </a>
-                <a
-                  href="#spec-drawer"
-                  className="px-5 py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 hover:text-red-600 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
-                >
-                  <span className="text-[11px] font-mono font-bold text-red-600">DWG</span>
-                  <span>{lang === "hi" ? "CAD एवं टेंडर स्पेक्स" : "CAD DWG & Tender Specs"}</span>
-                </a>
-              </div>
+        {/* Hero Content Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full my-auto">
+          <div className="max-w-3xl">
+            {/* Category Breadcrumb Tag */}
+            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-4">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? data.badgeHi : data.badgeEn}</span>
+              <span className="text-white/40">•</span>
+              <span className="text-gray-300">{lang === "hi" ? data.subCategoryTitleHi : data.subCategoryTitleEn}</span>
             </div>
 
-            {/* Right Hero Image (Sharp Rectangular Border, NO Curve) */}
-            <div className="lg:col-span-5">
-              <div className="relative overflow-hidden bg-white p-2 border border-slate-200 shadow-sm">
-                <div className="relative h-72 sm:h-88 md:h-96 w-full overflow-hidden bg-slate-50">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={data.bannerImage}
-                    alt={data.subCategoryTitleEn}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              </div>
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight mb-5 font-sans">
+              {lang === "hi" ? data.heroHeadlineHi : data.heroHeadlineEn}
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-8 max-w-2xl">
+              {lang === "hi" ? data.heroSubtitleHi : data.heroSubtitleEn}
+            </p>
+
+            {/* CTA Toolbar */}
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="#engineering-bench"
+                className="px-7 py-3.5 bg-[#ff3131] hover:bg-[#e02626] text-white text-xs sm:text-sm font-medium tracking-wide transition-all shadow-lg hover:shadow-[#ff3131]/30 flex items-center space-x-2 group hover:-translate-y-0.5"
+              >
+                <span>{lang === "hi" ? "बूम साइज़िंग कैलकुलेटर चलाएं" : "Launch Boom Sizing Bench"}</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="#spec-drawer"
+                className="px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white text-white text-xs sm:text-sm font-medium tracking-wide backdrop-blur-sm transition-all flex items-center space-x-2 hover:-translate-y-0.5"
+              >
+                <span className="text-[11px] font-bold text-[#ff3131]">DWG</span>
+                <span>{lang === "hi" ? "CAD एवं टेंडर स्पेक्स" : "CAD DWG & Tender Specs"}</span>
+              </a>
             </div>
           </div>
+        </div>
 
-          {/* 4 Stat Metrics (Sharp Rectangles) */}
-          <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {data.stats.map((st, i) => (
-              <div key={i} className="p-5 bg-white border border-slate-200 shadow-sm hover:border-red-300 transition-all">
-                <div className="text-2xl sm:text-3xl font-bold text-red-600 font-mono tracking-tight">
-                  {st.value}
+        {/* Key Metrics Strip (matching AtAGlance on homepage) */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-black/40 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {data.stats.map((st, i) => (
+                <div key={i} className="flex flex-col border-l border-white/15 pl-4 sm:pl-6 first:border-l-0">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight font-sans">
+                    {st.value}
+                  </div>
+                  <div className="text-xs font-medium text-gray-300 uppercase tracking-wider mt-1">
+                    {lang === "hi" ? st.labelHi : st.labelEn}
+                  </div>
+                  <div className="text-xs text-gray-400 mt-0.5">
+                    {lang === "hi" ? st.subHi : st.subEn}
+                  </div>
                 </div>
-                <div className="text-xs font-bold text-slate-900 mt-1">
-                  {lang === "hi" ? st.labelHi : st.labelEn}
-                </div>
-                <div className="text-[11px] text-slate-500 mt-0.5">
-                  {lang === "hi" ? st.subHi : st.subEn}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* 
         =======================================================================
-        SECTION 2: DEEP DIVE & MECHANICAL HIGHLIGHTS (Sharp Presentation)
+        SECTION 1: ARCHITECTURE DEEP DIVE & HIGHLIGHTS (Clean Homepage Style)
         =======================================================================
       */}
-      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+      <section className="w-full bg-white text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="max-w-4xl mb-12 sm:mb-16">
+            <div className="text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-3 flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "इंजीनियरिंग कोर" : "ENGINEERING ARCHITECTURE"}</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
               {lang === "hi" ? data.deepDiveTitleHi : data.deepDiveTitleEn}
             </h2>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+              {lang === "hi"
+                ? "कठिनतम रेलवे लेवल क्रॉसिंग और औद्योगिक वातावरण के लिए निर्मित। शून्य-घिसाव ड्राइव ज्यामिति और स्वचालित सुरक्षा इंटरलॉक।"
+                : "Engineered specifically for heavy continuous duty with zero-wear mechanical geometries and active fail-safe interlocking protocols."}
+            </p>
+            <p className="text-sm sm:text-base font-medium text-[#ff3131]">
+              {lang === "hi" ? "सत्यापित SIL-2 और RDSO विश्वसनीयता।" : "Verified SIL-2 & RDSO Operational Dependability."}
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            {/* Deep dive text */}
-            <div className="lg:col-span-7 space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
-              {(lang === "hi" ? data.deepDiveParasHi : data.deepDiveParasEn).map((p, idx) => (
-                <p key={idx} className="bg-slate-50 p-4 border border-slate-200 border-l-4 border-l-red-600">
-                  {p}
-                </p>
-              ))}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Deep Dive Text & Feature Highlights */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-4">
+                {(lang === "hi" ? data.deepDiveParasHi : data.deepDiveParasEn).map((p, idx) => (
+                  <div key={idx} className="p-5 sm:p-6 bg-[#f8f9fa] border-l-2 border-[#ff3131] text-gray-700 text-sm sm:text-base leading-relaxed">
+                    {p}
+                  </div>
+                ))}
+              </div>
 
-              {/* Highlights cards */}
+              {/* 3 Highlights Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
                 {data.highlights.map((h, i) => (
-                  <div key={i} className="p-4 bg-white border border-slate-200 shadow-sm hover:border-red-300 transition-all">
-                    <span className="inline-block px-2 py-0.5 bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold font-mono uppercase mb-2">
+                  <div
+                    key={i}
+                    className="p-5 bg-[#f8f9fa] border border-gray-200/90 shadow-sm hover:shadow-xl hover:border-[#ff3131]/60 transition-all duration-300"
+                  >
+                    <span className="inline-block px-2 py-0.5 bg-red-50 text-[#ff3131] border border-red-100 text-[10px] font-semibold uppercase tracking-wider mb-3">
                       {h.badge}
                     </span>
-                    <h4 className="text-xs font-bold text-slate-900 mb-1">
+                    <h4 className="text-sm font-semibold text-[#1e293b] mb-2 font-sans">
                       {lang === "hi" ? h.titleHi : h.titleEn}
                     </h4>
-                    <p className="text-[11px] text-slate-600 leading-normal">
+                    <p className="text-xs text-gray-600 leading-relaxed">
                       {lang === "hi" ? h.descHi : h.descEn}
                     </p>
                   </div>
@@ -162,36 +192,52 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
               </div>
             </div>
 
-            {/* Right Side Visual Schematic Card (Sharp image, clean light theme) */}
+            {/* Right Side Visual Schematic Card */}
             <div className="lg:col-span-5">
-              <div className="border border-slate-200 shadow-sm bg-white p-5 sm:p-6">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                  <span className="text-xs font-bold text-slate-800 tracking-wide uppercase">Technical Specification</span>
-                  <span className="text-[11px] px-2.5 py-0.5 bg-red-50 text-red-700 font-medium border border-red-200">Certified EN 50126</span>
+              <div className="bg-[#f8f9fa] border border-gray-200/90 shadow-md p-6 sm:p-7 hover:border-gray-300 transition-all">
+                <div className="flex items-center justify-between pb-3 border-b border-gray-200">
+                  <span className="text-xs font-semibold text-[#1e293b] tracking-wider uppercase font-sans">
+                    {lang === "hi" ? "तकनीकी विनिर्देश" : "Technical Specification"}
+                  </span>
+                  <span className="text-[11px] px-2.5 py-0.5 bg-red-50 text-[#ff3131] font-medium border border-red-200">
+                    Certified EN 50126
+                  </span>
                 </div>
                 
-                <div className="relative my-4 h-48 overflow-hidden border border-slate-200 bg-slate-50">
+                <div className="relative my-4 h-52 overflow-hidden border border-gray-200 bg-neutral-900 group">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={data.secondaryBannerImage}
                     alt="Mechanism View"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                 </div>
 
-                <div className="divide-y divide-slate-100 text-xs">
-                  <div className="flex justify-between py-2.5">
-                    <span className="text-slate-500 font-medium">Clutch Release Delay:</span>
-                    <span className="text-red-700 font-semibold">&lt; 10 ms (Fail-Safe)</span>
+                <div className="divide-y divide-gray-200 text-xs sm:text-sm">
+                  <div className="flex justify-between py-3">
+                    <span className="text-gray-500 font-medium">Clutch Release Delay:</span>
+                    <span className="text-[#ff3131] font-semibold">&lt; 10 ms (Fail-Safe)</span>
                   </div>
-                  <div className="flex justify-between py-2.5">
-                    <span className="text-slate-500 font-medium">Terminal Cushioning:</span>
-                    <span className="text-slate-900 font-semibold">Hydro-Pneumatic Active</span>
+                  <div className="flex justify-between py-3">
+                    <span className="text-gray-500 font-medium">Terminal Cushioning:</span>
+                    <span className="text-gray-900 font-medium">Hydro-Pneumatic Active</span>
                   </div>
-                  <div className="flex justify-between py-2.5">
-                    <span className="text-slate-500 font-medium">Enclosure Integrity:</span>
-                    <span className="text-slate-900 font-semibold">IP66 / IK10 Heavy Gauge</span>
+                  <div className="flex justify-between py-3">
+                    <span className="text-gray-500 font-medium">Enclosure Integrity:</span>
+                    <span className="text-gray-900 font-medium">IP66 / IK10 Heavy Gauge</span>
                   </div>
+                </div>
+
+                <div className="mt-5 pt-4 border-t border-gray-200 flex items-center justify-between">
+                  <span className="text-xs text-gray-500 font-medium">RDSO / SIL-2 Compliance</span>
+                  <a
+                    href="#spec-drawer"
+                    className="text-xs font-semibold text-[#ff3131] hover:text-[#e02626] transition-colors flex items-center gap-1"
+                  >
+                    <span>View Docs</span>
+                    <span>→</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -201,93 +247,50 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        BANNER 1: ARCHITECTURE SPOTLIGHT (Clean light background, NO overlay boxes)
+        SECTION 2: INTERACTIVE BOOM SIZING BENCH (Homepage Workstation Style)
         =======================================================================
       */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 my-12 sm:my-16">
-        <div className="bg-slate-50 border border-slate-200 p-6 sm:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <div className="text-xs font-bold text-red-700 uppercase tracking-wider font-mono">
-                <span>{lang === "hi" ? "तकनीकी मानकीकरण" : "TECHNICAL STANDARD"}</span>
-                <span className="mx-2">•</span>
-                <span>SIL-2 & RDSO READY</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
-                {lang === "hi" 
-                  ? `${data.subCategoryTitleHi} - प्रमाणित परिचालन विश्वसनीयता`
-                  : `${data.subCategoryTitleEn} Certified Engineering Core`}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                {lang === "hi"
-                  ? "कठिनतम रेलवे लेवल क्रॉसिंग और औद्योगिक वातावरण के लिए निर्मित। शून्य-घिसाव ड्राइव ज्यामिति और स्वचालित सुरक्षा इंटरलॉक।"
-                  : "Engineered specifically for heavy continuous duty. Zero-wear mechanical geometries and active fail-safe interlocking protocols."}
-              </p>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
-                <a
-                  href="#engineering-bench"
-                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm flex items-center space-x-2"
-                >
-                  <span>{lang === "hi" ? "सिस्टम कॉन्फ़िगर करें" : "Configure System"}</span>
-                  <span>→</span>
-                </a>
-                <a
-                  href="#spec-drawer"
-                  className="text-xs font-semibold text-slate-700 hover:text-red-600 transition-colors"
-                >
-                  {lang === "hi" ? "तकनीकी डेटाशीट डाउनलोड करें" : "Download Full Technical Datasheet"}
-                </a>
-              </div>
+      <section id="engineering-bench" className="w-full bg-[#f8f9fa] text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="max-w-4xl mb-12 sm:mb-16">
+            <div className="text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-3 flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "इंटरएक्टिव इंजीनियरिंग लैब" : "ENGINEERING BENCH"}</span>
             </div>
-
-            <div className="lg:col-span-5">
-              <div className="h-56 sm:h-64 w-full overflow-hidden border border-slate-200 bg-white">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={data.secondaryBannerImage}
-                  alt={data.subCategoryTitleEn}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 
-        =======================================================================
-        SECTION 3: INTERACTIVE BOOM SIZING BENCH
-        =======================================================================
-      */}
-      <section id="engineering-bench" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
               {lang === "hi" ? "बूम लंबाई एवं पवन भार कैलकुलेटर" : "Boom Span & Wind Torque Engineering Bench"}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2">
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
               {lang === "hi"
                 ? "अपनी क्रॉसिंग चौड़ाई और हवा की गति को समायोजित करें और आवश्यक टॉर्क, स्प्रिंग्स और साइकिल गति की रीयल-टाइम गणना देखें।"
                 : "Adjust span length and ambient wind velocity to calculate dynamic holding torque, counterbalance springs, and cycle timings."}
+            </p>
+            <p className="text-sm sm:text-base font-medium text-[#ff3131]">
+              {lang === "hi" ? "रीयल-टाइम भारतीय रेलवे RDSO विनिर्देश गणना।" : "Live calculation mapped to RDSO and EN 50126 specifications."}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             {/* Left Controls */}
-            <div className="lg:col-span-6 bg-white p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="lg:col-span-6 bg-white p-6 sm:p-8 border border-gray-200 shadow-md flex flex-col justify-between">
               <div>
-                <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-6 flex items-center justify-between">
-                  <span>{lang === "hi" ? "पैरामीटर इनपुट" : "Site Parameter Sliders"}</span>
-                  <span className="text-xs font-mono text-red-600">LIVE FEEDBACK</span>
-                </h3>
+                <div className="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+                  <h3 className="text-sm font-semibold text-[#1e293b] uppercase tracking-wider font-sans">
+                    {lang === "hi" ? "साइट पैरामीटर इनपुट" : "Site Parameter Sliders"}
+                  </h3>
+                  <span className="text-xs font-medium text-[#ff3131] bg-red-50 border border-red-100 px-2.5 py-0.5">
+                    LIVE SIMULATION
+                  </span>
+                </div>
 
                 {/* Boom Length Slider */}
                 <div className="mb-6">
                   <div className="flex justify-between items-center mb-2">
-                    <label className="text-xs font-semibold text-slate-700">
+                    <label className="text-xs font-semibold text-gray-700">
                       {lang === "hi" ? "बूम आर्म लंबाई (मीटर):" : "Barrier Boom Arm Span:"}
                     </label>
-                    <span className="text-sm font-bold font-mono text-red-600 bg-red-50 px-2 py-0.5 border border-red-200">
+                    <span className="text-sm font-semibold text-[#ff3131] bg-red-50 px-2.5 py-0.5 border border-red-200">
                       {boomLength.toFixed(1)} Meters
                     </span>
                   </div>
@@ -298,10 +301,10 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                     step={0.5}
                     value={boomLength}
                     onChange={(e) => setBoomLength(parseFloat(e.target.value))}
-                    className="w-full accent-[#dc2626] cursor-pointer"
+                    className="w-full accent-[#ff3131] cursor-pointer h-2 bg-gray-200 rounded-lg"
                   />
-                  <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                    <span>3.0m (Standard Single)</span>
+                  <div className="flex justify-between text-[11px] text-gray-500 mt-1.5">
+                    <span>3.0m (Single Lane)</span>
                     <span>6.0m (Dual Highway)</span>
                     <span>9.0m (Multi-Track)</span>
                   </div>
@@ -310,10 +313,10 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                 {/* Wind Velocity Slider */}
                 <div className="mb-6">
                   <div className="flex justify-between items-center mb-2">
-                    <label className="text-xs font-semibold text-slate-700">
+                    <label className="text-xs font-semibold text-gray-700">
                       {lang === "hi" ? "पवन गति (Wind Gust):" : "Design Wind Gust Velocity:"}
                     </label>
-                    <span className="text-sm font-bold font-mono text-amber-600 bg-amber-50 px-2 py-0.5 border border-amber-200">
+                    <span className="text-sm font-semibold text-amber-700 bg-amber-50 px-2.5 py-0.5 border border-amber-200">
                       {windSpeed} km/h
                     </span>
                   </div>
@@ -324,9 +327,9 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                     step={5}
                     value={windSpeed}
                     onChange={(e) => setWindSpeed(parseInt(e.target.value))}
-                    className="w-full accent-[#dc2626] cursor-pointer"
+                    className="w-full accent-[#ff3131] cursor-pointer h-2 bg-gray-200 rounded-lg"
                   />
-                  <div className="flex justify-between text-[10px] text-slate-400 mt-1">
+                  <div className="flex justify-between text-[11px] text-gray-500 mt-1.5">
                     <span>20 km/h (Calm)</span>
                     <span>70 km/h (Standard RDSO)</span>
                     <span>140 km/h (Coastal Storm)</span>
@@ -335,26 +338,26 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
                 {/* Profile Selector */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-2">
+                  <label className="block text-xs font-semibold text-gray-700 mb-2">
                     {lang === "hi" ? "बूम आर्म प्रोफाइल प्रकार:" : "Aerodynamic Boom Arm Profile:"}
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-2.5">
                     {[
-                      { id: "octagonal", label: "Octagonal Aero", sub: "Low Wind Resistance" },
-                      { id: "round", label: "Round Tubular", sub: "Standard Budget" },
-                      { id: "articulated", label: "Articulated Joint", sub: "Low Ceiling Clearance" }
+                      { id: "octagonal", label: "Octagonal Aero", sub: "Low Wind Drag" },
+                      { id: "round", label: "Round Tubular", sub: "Standard Profile" },
+                      { id: "articulated", label: "Articulated Joint", sub: "Low Ceiling Joint" }
                     ].map((prf) => (
                       <button
                         key={prf.id}
                         onClick={() => setSelectedProfile(prf.id as any)}
-                        className={`p-2.5 text-left border transition-all cursor-pointer ${
+                        className={`p-3 text-left border transition-all cursor-pointer ${
                           selectedProfile === prf.id
-                            ? "bg-red-50 border-red-500 text-red-950 font-bold shadow-sm"
-                            : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+                            ? "bg-red-50 border-[#ff3131] text-[#1e293b] font-semibold shadow-sm"
+                            : "bg-[#f8f9fa] border-gray-200 text-gray-600 hover:bg-white"
                         }`}
                       >
                         <div className="text-xs">{prf.label}</div>
-                        <div className="text-[9px] text-slate-500 font-normal mt-0.5">{prf.sub}</div>
+                        <div className="text-[10px] text-gray-500 font-normal mt-0.5">{prf.sub}</div>
                       </button>
                     ))}
                   </div>
@@ -363,49 +366,50 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
             </div>
 
             {/* Right Simulation Output */}
-            <div className="lg:col-span-6 bg-white p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="lg:col-span-6 bg-white p-6 sm:p-8 border border-gray-200 shadow-md flex flex-col justify-between">
               <div>
-                <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                <div className="flex justify-between items-center pb-4 border-b border-gray-100">
+                  <h3 className="text-sm font-semibold text-[#1e293b] uppercase tracking-wider font-sans">
                     {lang === "hi" ? "गणना परिणाम" : "Live Sizing Computations"}
                   </h3>
-                  <span className="text-[10px] px-2.5 py-0.5 bg-red-50 text-red-700 font-mono font-bold border border-red-200">
+                  <span className="text-[10px] px-2.5 py-0.5 bg-red-50 text-[#ff3131] font-semibold border border-red-200">
                     EN 50126 READY
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 my-6">
-                  <div className="p-4 bg-slate-50 border border-slate-200">
-                    <span className="text-[11px] text-slate-500 font-medium">Calculated Holding Torque</span>
-                    <div className="text-2xl font-bold font-mono text-slate-900 mt-1">{totalTorque} Nm</div>
-                    <span className="text-[10px] text-slate-400">Wind gust compensated</span>
+                  <div className="p-5 bg-[#f8f9fa] border border-gray-200">
+                    <span className="text-xs text-gray-500 font-medium">Calculated Holding Torque</span>
+                    <div className="text-3xl font-light text-[#1e293b] mt-1">{totalTorque} Nm</div>
+                    <span className="text-[11px] text-gray-500">Wind gust compensated</span>
                   </div>
-                  <div className="p-4 bg-slate-50 border border-slate-200">
-                    <span className="text-[11px] text-slate-500 font-medium">Estimated Cycle Duration</span>
-                    <div className="text-2xl font-bold font-mono text-red-600 mt-1">{cycleTime} sec</div>
-                    <span className="text-[10px] text-slate-400">0° to 90° full stroke</span>
+                  <div className="p-5 bg-[#f8f9fa] border border-gray-200">
+                    <span className="text-xs text-gray-500 font-medium">Estimated Cycle Duration</span>
+                    <div className="text-3xl font-light text-[#ff3131] mt-1">{cycleTime} sec</div>
+                    <span className="text-[11px] text-gray-500">0° to 90° full stroke</span>
                   </div>
                 </div>
 
-                <div className="space-y-2.5 text-xs text-slate-700">
-                  <div className="flex justify-between p-2.5 bg-slate-50 border border-slate-200">
-                    <span className="text-slate-500 font-medium">Matched Counterbalance Pack:</span>
-                    <span className="font-bold text-slate-900">{counterbalanceSprings}</span>
+                <div className="space-y-3 text-xs sm:text-sm text-gray-700">
+                  <div className="flex justify-between p-3.5 bg-[#f8f9fa] border border-gray-200">
+                    <span className="text-gray-500 font-medium">Matched Counterbalance Pack:</span>
+                    <span className="font-semibold text-gray-900">{counterbalanceSprings}</span>
                   </div>
-                  <div className="flex justify-between p-2.5 bg-slate-50 border border-slate-200">
-                    <span className="text-slate-500 font-medium">Recommended Motor Unit:</span>
-                    <span className="font-bold text-slate-900">{motorRating}</span>
+                  <div className="flex justify-between p-3.5 bg-[#f8f9fa] border border-gray-200">
+                    <span className="text-gray-500 font-medium">Recommended Motor Unit:</span>
+                    <span className="font-semibold text-gray-900">{motorRating}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-100 flex items-center justify-between mt-6">
-                <span className="text-[11px] text-slate-500 font-medium">Matched to Indian Railways RDSO Norms</span>
+              <div className="pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 mt-6">
+                <span className="text-xs text-gray-500 font-medium">Matched to Indian Railways RDSO Norms</span>
                 <a
                   href="#spec-drawer"
-                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold tracking-wide transition-all shadow-sm"
+                  className="px-5 py-2.5 bg-[#ff3131] hover:bg-[#e02626] text-white text-xs font-medium tracking-wide transition-all shadow-sm flex items-center gap-1.5"
                 >
-                  {lang === "hi" ? "ड्राइंग डाउनलोड करें" : "Export Mechanical DWG"}
+                  <span>{lang === "hi" ? "ड्राइंग डाउनलोड करें" : "Export Mechanical DWG"}</span>
+                  <span>↓</span>
                 </a>
               </div>
             </div>
@@ -415,119 +419,135 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        BANNER 2 (FULL-WIDTH): FIELD INSTALLATION (Clean presentation, NO boxes on image)
+        SECTION 3: HARDWARE IMAGE GALLERY (Homepage DiscoverAramco Card Grid Style)
         =======================================================================
       */}
-      <section className="relative w-full my-12 sm:my-16 bg-white border-y border-slate-200 overflow-hidden">
-        <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] w-full overflow-hidden bg-slate-100">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={data.fieldBannerImage}
-            alt={lang === "hi" ? `${data.subCategoryTitleHi} फील्ड इंस्टॉलेशन` : `${data.subCategoryTitleEn} Active Field Deployment`}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        {/* Caption below the image (NOT on top of it) */}
-        <div className="bg-white border-t border-slate-200 py-3.5 px-4 sm:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 font-mono">
-            <div className="flex items-center space-x-2 font-bold text-slate-900">
-              <span>{lang === "hi" ? `${data.subCategoryTitleHi} - सक्रिय फील्ड परिनियोजन` : `${data.subCategoryTitleEn} • Active Field Deployment`}</span>
+      <section className="w-full bg-white text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="max-w-4xl mb-12 sm:mb-16">
+            <div className="text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-3 flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "सक्रिय परिनियोजन" : "DEPLOYED HARDWARE"}</span>
             </div>
-            <div className="flex items-center space-x-4 text-[11px] text-slate-500">
-              <span>EN 50126 RAMS VERIFIED</span>
-              <span>•</span>
-              <span>-25°C TO +70°C AMBIENT RATED</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 
-        =======================================================================
-        SECTION 4: HARDWARE IMAGE GALLERY (More real hardware photos)
-        =======================================================================
-      */}
-      <section className="py-12 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-slate-900">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
               {lang === "hi" ? "विस्तृत निर्माण एवं फील्ड तस्वीरें" : "Assembly Engineering & Field Hardware"}
-            </h3>
+            </h2>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+              {lang === "hi"
+                ? "उच्च-घनत्व रेलवे कॉरिडोर और गंभीर मौसम स्थितियों में सक्रिय रूप से स्थापित सिस्टम।"
+                : "Active field deployments under high-density railway corridors, heavy dust environments, and harsh weather conditions."}
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="border border-slate-200 bg-white p-2">
-              <div className="h-52 w-full overflow-hidden bg-slate-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/boom_barrier_railway.jpg"
-                  alt="Barrier Corridor"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-3 text-xs font-bold text-slate-900">Railway Level Crossing Corridor</div>
-            </div>
+          {/* 3 Full-Image Cards matching DiscoverAramco */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                title: "Railway Level Crossing Corridor",
+                category: "HEAVY DUTY CONTINUOUS",
+                image: "/images/boom_barrier_railway.jpg",
+                desc: "Zero-failure level crossing vehicle control under 24/7 continuous operations."
+              },
+              {
+                title: "Internal Torque & BLDC Drive",
+                category: "SIL-2 RATED ACTUATION",
+                image: "/images/fail_safe_boom.jpg",
+                desc: "Precision brushless geared DC drive with instant mechanical fail-safe clutch."
+              },
+              {
+                title: "IP66 Weatherproof Tested Cabinet",
+                category: "ENVIRONMENTAL PROTECTION",
+                image: "/images/weatherproof_enclosure.jpg",
+                desc: "Marine-grade powder-coated cabinet tested against extreme monsoon and sandstorm ingress."
+              }
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="group relative h-[380px] sm:h-[440px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between p-6 sm:p-7 text-white border border-gray-200 hover:border-[#ff3131]/60 bg-neutral-900"
+              >
+                {/* Image */}
+                <div className="absolute inset-0 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                </div>
 
-            <div className="border border-slate-200 bg-white p-2">
-              <div className="h-52 w-full overflow-hidden bg-slate-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/fail_safe_boom.jpg"
-                  alt="Internal Actuator Drive"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-3 text-xs font-bold text-slate-900">Internal Torque & BLDC Drive</div>
-            </div>
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/20 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-400 pointer-events-none" />
 
-            <div className="border border-slate-200 bg-white p-2">
-              <div className="h-52 w-full overflow-hidden bg-slate-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/weatherproof_enclosure.jpg"
-                  alt="IP66 Enclosure Test"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
+                {/* Top Category Badge */}
+                <div className="relative z-10">
+                  <span className="inline-block text-[11px] font-semibold tracking-widest text-[#ff3131] uppercase bg-black/60 px-2.5 py-1 backdrop-blur-sm border border-white/10">
+                    {item.category}
+                  </span>
+                </div>
+
+                {/* Bottom Title & Description */}
+                <div className="relative z-10 mt-auto">
+                  <h3 className="text-lg sm:text-xl font-medium leading-snug text-white font-sans mb-2 drop-shadow-md">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-gray-300 line-clamp-2 leading-relaxed font-light">
+                    {item.desc}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-[#ff3131]">
+                    <span>Specification Verified</span>
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
               </div>
-              <div className="p-3 text-xs font-bold text-slate-900">IP66 Weatherproof Tested Cabinet</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* 
         =======================================================================
-        SECTION 5: SPECIFICATION MATRIX
+        SECTION 4: TECHNICAL SPECIFICATION MATRIX (Clean Homepage Style)
         =======================================================================
       */}
-      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl font-bold text-slate-900">
+      <section className="w-full bg-[#f8f9fa] text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
+          <div className="max-w-3xl mb-12 sm:mb-16">
+            <div className="text-xs font-semibold tracking-widest text-[#ff3131] uppercase mb-3 flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[#ff3131]" />
+              <span>{lang === "hi" ? "मानकीकृत विनिर्देश" : "STANDARDS COMPLIANCE"}</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight text-[#1e293b] font-sans mb-5">
               {lang === "hi" ? `${data.subCategoryTitleHi} तकनीकी डेटा` : `${data.subCategoryTitleEn} Technical Matrix`}
-            </h3>
+            </h2>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+              {lang === "hi"
+                ? "इंजीनियरिंग विनिर्देश और अंतरराष्ट्रीय सुरक्षा मानकों के अनुरूप परीक्षण किए गए पैरामीटर।"
+                : "Comprehensive parametric limits verified according to RDSO standards and international electrical safety codes."}
+            </p>
           </div>
 
-          <div className="border border-slate-200 shadow-sm bg-white overflow-hidden">
+          <div className="bg-white border border-gray-200 shadow-md overflow-hidden">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-bold">
+              <thead className="bg-[#1e293b] text-white text-xs uppercase tracking-wider font-medium">
                 <tr>
                   <th className="p-4 sm:p-5">{lang === "hi" ? "पैरामीटर" : "Engineering Parameter"}</th>
                   <th className="p-4 sm:p-5">{lang === "hi" ? "रेटेड मान" : "Rated Value / Metric"}</th>
                   <th className="p-4 sm:p-5">{lang === "hi" ? "मानक" : "Applicable Standard"}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-600">
+              <tbody className="divide-y divide-gray-100 text-gray-700">
                 {data.specsTable.map((sp, idx) => (
-                  <tr key={idx} className="hover:bg-red-50/30 transition-colors">
-                    <td className="p-4 sm:p-5 font-semibold text-slate-900">
+                  <tr key={idx} className="hover:bg-red-50/40 transition-colors">
+                    <td className="p-4 sm:p-5 font-medium text-[#1e293b]">
                       {lang === "hi" ? sp.parameterHi : sp.parameterEn}
                     </td>
-                    <td className="p-4 sm:p-5 font-mono text-red-700 font-medium">
+                    <td className="p-4 sm:p-5 font-semibold text-[#ff3131]">
                       {lang === "hi" ? sp.valueHi : sp.valueEn}
                     </td>
                     <td className="p-4 sm:p-5">
-                      <span className="px-2.5 py-1 bg-slate-100 text-slate-700 font-mono text-xs">
+                      <span className="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs border border-gray-200">
                         {sp.standard}
                       </span>
                     </td>
@@ -541,32 +561,32 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
 
       {/* 
         =======================================================================
-        SECTION 6: DIRECT SPECIFICATION REPOSITORY
+        SECTION 5: SPECIFICATION REPOSITORY & DESK (Matching FinancialReports & CaseStudies)
         =======================================================================
       */}
-      <section id="spec-drawer" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 bg-white border border-slate-200 shadow-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
-              {/* Left Column: Direct Downloads */}
-              <div className="lg:col-span-7">
-                <div className="text-xs font-bold font-mono text-red-700 uppercase tracking-wider mb-2">
-                  {lang === "hi" ? "सीधा इंजीनियरिंग एक्सेस" : "DIRECT SPECIFICATION REPOSITORY"}
+      <section id="spec-drawer" className="w-full bg-white text-gray-900 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+            {/* Left Column: Direct Downloads */}
+            <div className="lg:col-span-7 bg-[#f8f9fa] border border-gray-200 p-8 sm:p-10 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-semibold text-[#ff3131] uppercase tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-6 h-[2px] bg-[#ff3131]" />
+                  <span>{lang === "hi" ? "सीधा इंजीनियरिंग एक्सेस" : "DIRECT SPECIFICATION REPOSITORY"}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                <h3 className="text-2xl sm:text-3xl font-normal text-[#1e293b] font-sans mt-2">
                   {lang === "hi"
                     ? `${data.subCategoryTitleHi} ब्लूप्रिंट एवं दस्तावेज`
                     : `Download ${data.subCategoryTitleEn} Engineering Pack`}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
                   {lang === "hi"
                     ? "सिविल फाउंडेशन लेआउट, 2D/3D DWG ड्राइंग्स और टेंडर कंप्लायंस शीट्स तुरंत प्राप्त करें।"
                     : "Instant access to anchor bolt civil foundation layouts, 2D DWG cad blueprints, and RDSO compliance statements."}
                 </p>
 
-                {/* Download Action Chips */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                {/* Download Action Chips matching FinancialReports cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                   {[
                     { id: "pdf", label: "Datasheet (PDF)", size: "3.4 MB", ext: "PDF" },
                     { id: "dwg", label: "Civil Layout (DWG)", size: "8.1 MB", ext: "DWG" },
@@ -578,90 +598,99 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
                         setDownloadRequested(doc.id);
                         setTimeout(() => setDownloadRequested(null), 3500);
                       }}
-                      className="p-3 bg-slate-50 hover:bg-red-50/60 border border-slate-200 hover:border-red-300 text-left transition-all flex flex-col justify-between cursor-pointer group"
+                      className="p-4 bg-white hover:bg-red-50/40 border border-gray-200 hover:border-[#ff3131]/60 text-left transition-all flex flex-col justify-between cursor-pointer group shadow-sm hover:shadow-md"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono font-bold text-red-700 bg-white px-1.5 py-0.5 border border-slate-200">
+                        <span className="text-[10px] font-semibold text-[#ff3131] bg-red-50 px-2 py-0.5 border border-red-200">
                           {doc.ext}
                         </span>
-                        <span className="text-xs text-slate-400 group-hover:text-red-600">↓</span>
+                        <span className="text-xs text-gray-400 group-hover:text-[#ff3131]">↓</span>
                       </div>
-                      <div className="mt-2">
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-700">
+                      <div className="mt-3">
+                        <div className="text-xs font-semibold text-[#1e293b] group-hover:text-[#ff3131]">
                           {doc.label}
                         </div>
-                        <div className="text-[10px] text-slate-400">{doc.size}</div>
+                        <div className="text-[11px] text-gray-400 mt-0.5">{doc.size}</div>
                       </div>
                     </button>
                   ))}
                 </div>
 
                 {downloadRequested && (
-                  <div className="mt-4 p-3 bg-red-50 border border-red-200 text-red-800 text-xs font-medium flex items-center space-x-2">
-                    <span className="font-bold text-red-700 font-mono">[CONFIRMED]</span>
+                  <div className="mt-4 p-3 bg-red-50 border border-red-200 text-[#ff3131] text-xs font-medium flex items-center space-x-2">
+                    <span className="font-bold">[CONFIRMED]</span>
                     <span>{lang === "hi" ? "दस्तावेज डाउनलोड प्रारंभ हो गया है।" : "Specification package download initiated."}</span>
                   </div>
                 )}
               </div>
+            </div>
 
-              {/* Right Column: Direct Rail Hotline Card */}
-              <div className="lg:col-span-5 bg-white p-6 sm:p-7 border border-slate-200 shadow-sm text-slate-900">
-                <span className="text-[10px] font-bold text-red-700 uppercase tracking-widest font-mono">
-                  {lang === "hi" ? "सीधा तकनीकी सहायता" : "DEDICATED RAILWAYS DESK"}
-                </span>
-                <h4 className="text-lg font-bold text-slate-900 mt-1">
+            {/* Right Column: Direct Rail Hotline Card in Dark Corporate Styling */}
+            <div className="lg:col-span-5 bg-[#1e293b] text-white p-8 sm:p-10 shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="text-[11px] font-semibold text-[#ff3131] uppercase tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-5 h-[2px] bg-[#ff3131]" />
+                  <span>{lang === "hi" ? "सीधा तकनीकी सहायता" : "DEDICATED RAILWAYS DESK"}</span>
+                </div>
+                <h4 className="text-xl sm:text-2xl font-light text-white font-sans mt-2">
                   {lang === "hi" ? "रेलवे डिवीजन तकनीकी हॉटलाइन" : "Railway Systems Engineering Hotline"}
                 </h4>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-300 mt-2 leading-relaxed font-light">
                   {lang === "hi"
                     ? "इंटरफेसिंग, 24V बैकअप और ट्रैक इंटरलॉकिंग पर हमारे वरिष्ठ इंजीनियर से सीधे बात करें।"
                     : "Direct dialogue with Senior Signaling & Hardware Application Leads without sales gatekeepers."}
                 </p>
 
-                <div className="mt-5 space-y-2.5">
+                <div className="mt-8 space-y-3">
                   <a
                     href="tel:+911149887700"
-                    className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold flex items-center justify-between transition-all shadow-sm"
+                    className="w-full py-3.5 px-4 bg-[#ff3131] hover:bg-[#e02626] text-white text-xs sm:text-sm font-medium flex items-center justify-between transition-all shadow-lg hover:shadow-[#ff3131]/25"
                   >
                     <span>TEL: +91 11 4988 7700</span>
-                    <span className="text-[10px] bg-red-700 px-2 py-0.5 font-medium">NEW DELHI HQ</span>
+                    <span className="text-[10px] bg-black/20 px-2 py-0.5 font-semibold uppercase">NEW DELHI HQ</span>
                   </a>
                   <a
                     href="mailto:rail.engineering@global-safety.com"
-                    className="w-full py-3 px-4 bg-slate-50 hover:bg-red-50/50 border border-slate-200 hover:border-red-200 text-slate-800 text-xs font-semibold flex items-center justify-between transition-all"
+                    className="w-full py-3.5 px-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-medium flex items-center justify-between transition-all"
                   >
                     <span>EMAIL: rail.engineering@global-safety.com</span>
-                    <span className="text-[10px] text-slate-500 font-medium">DIRECT DESK</span>
+                    <span className="text-[10px] text-gray-300 font-semibold uppercase">DIRECT DESK</span>
                   </a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Related Sublinks Navigation */}
+      {/* 
+        =======================================================================
+        SECTION 6: RELATED MODULES (Matching DiscoverAramco Cards)
+        =======================================================================
+      */}
       {data.relatedSublinks && data.relatedSublinks.length > 0 && (
-        <section className="py-12 bg-white border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">
-              {lang === "hi" ? "संबंधित उत्पाद एवं तकनीकें" : "Explore Related Railway Barrier Modules"}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <section className="w-full bg-[#f8f9fa] text-gray-900 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between mb-8">
+              <h3 className="text-xs font-semibold text-[#ff3131] uppercase tracking-widest flex items-center gap-2">
+                <span className="w-6 h-[2px] bg-[#ff3131]" />
+                <span>{lang === "hi" ? "संबंधित उत्पाद एवं तकनीकें" : "Explore Related Railway Barrier Modules"}</span>
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {data.relatedSublinks.map((sub, i) => (
                 <Link
                   key={i}
                   href={sub.href}
-                  className="p-4 bg-slate-50 hover:bg-red-50/60 border border-slate-200 hover:border-red-300 transition-all flex items-center justify-between group"
+                  className="p-6 bg-white hover:bg-red-50/30 border border-gray-200 hover:border-[#ff3131]/60 shadow-sm hover:shadow-md transition-all flex items-center justify-between group"
                 >
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-red-700">{sub.tag}</span>
-                    <div className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-700">
+                    <span className="text-[11px] font-semibold text-[#ff3131] uppercase tracking-wider">{sub.tag}</span>
+                    <div className="text-sm font-semibold text-[#1e293b] group-hover:text-[#ff3131] mt-1 font-sans">
                       {lang === "hi" ? sub.titleHi : sub.titleEn}
                     </div>
                   </div>
-                  <span className="text-slate-400 group-hover:text-red-600 transition-transform group-hover:translate-x-1">→</span>
+                  <span className="text-gray-400 group-hover:text-[#ff3131] transition-transform group-hover:translate-x-1 text-sm font-medium">→</span>
                 </Link>
               ))}
             </div>
@@ -669,10 +698,10 @@ function RailwaySubpageContent({ data }: { data: RailwaySubpageProps }) {
         </section>
       )}
 
-      {/* Newsletter and Footer */}
+      {/* Newsletter and Official Footer */}
       <NewsletterSection />
       <Footer />
-    </div>
+    </main>
   );
 }
 
