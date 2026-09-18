@@ -152,7 +152,7 @@ test("catalog identity, imports, edits, deactivation, exports, and simultaneous 
   assert.ok(formula["QR URL"].startsWith("https://registry.example/p/"));
 
   // Independent database connections contend for the sequence.
-  const workerCode = `const {parentPort,workerData}=require('node:worker_threads'); const Database=require('better-sqlite3');const {randomUUID}=require('node:crypto');const db=new Database(workerData.file);db.pragma('busy_timeout=10000');db.pragma('foreign_keys=ON');const ids=[];for(let i=0;i<20;i++){const sku=workerData.prefix+i;ids.push(Number(db.prepare('INSERT INTO products (public_id,name,sku,sku_key,category_id,website_url) VALUES (?,?,?,?,?,?)').run(randomUUID(),sku,sku,sku,workerData.category,'https://example.com').lastInsertRowid));}db.close();parentPort.postMessage(ids);`;
+  const workerCode = `const {parentPort,workerData}=require('node:worker_threads'); const {DatabaseSync}=require('node:sqlite');const {randomUUID}=require('node:crypto');const db=new DatabaseSync(workerData.file);db.exec('PRAGMA busy_timeout=10000');db.exec('PRAGMA foreign_keys=ON');const ids=[];for(let i=0;i<20;i++){const sku=workerData.prefix+i;ids.push(Number(db.prepare('INSERT INTO products (public_id,name,sku,sku_key,category_id,website_url) VALUES (?,?,?,?,?,?)').run(randomUUID(),sku,sku,sku,workerData.category,'https://example.com').lastInsertRowid));}db.close();parentPort.postMessage(ids);`;
   const work = (prefix: string) =>
     new Promise<number[]>((resolve, reject) => {
       const worker = new Worker(workerCode, {

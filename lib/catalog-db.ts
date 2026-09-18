@@ -2,7 +2,7 @@ import { neon } from "@neondatabase/serverless";
 type NeonSql = ReturnType<typeof neon>;
 import { existsSync, readFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
-import Database from "better-sqlite3";
+import { DatabaseSync } from "node:sqlite";
 
 export const dataDir =
   process.env.CATALOG_DATA_DIR || path.join(process.cwd(), "data");
@@ -26,16 +26,16 @@ const databaseUrl = getDatabaseUrl();
 export const isPostgres = Boolean(databaseUrl);
 
 let neonSql: NeonSql | null = null;
-let sqliteDb: Database.Database | null = null;
+let sqliteDb: DatabaseSync | null = null;
 
 if (isPostgres && databaseUrl) {
   neonSql = neon(databaseUrl);
 } else {
   mkdirSync(dataDir, { recursive: true });
-  sqliteDb = new Database(path.join(dataDir, "catalog.sqlite"));
-  sqliteDb.pragma("journal_mode = WAL");
-  sqliteDb.pragma("foreign_keys = ON");
-  sqliteDb.pragma("busy_timeout = 10000");
+  sqliteDb = new DatabaseSync(path.join(dataDir, "catalog.sqlite"));
+  sqliteDb.exec("PRAGMA journal_mode = WAL;");
+  sqliteDb.exec("PRAGMA foreign_keys = ON;");
+  sqliteDb.exec("PRAGMA busy_timeout = 10000;");
 }
 
 let initialized = false;
@@ -100,7 +100,7 @@ export async function ensureDb(): Promise<void> {
       const sqliteFile = path.join(dataDir, "catalog.sqlite");
       if (existsSync(sqliteFile)) {
         try {
-          const localSqlite = new Database(sqliteFile, { readonly: true });
+          const localSqlite = new DatabaseSync(sqliteFile, { readOnly: true });
           const adminRow = localSqlite
             .prepare("SELECT id, email, password FROM admins WHERE id=1")
             .get() as { id: number; email: string; password: string } | undefined;
@@ -193,7 +193,7 @@ export async function query<T = any>(
   }
 
   const { sql, params: p } = adaptSqlForSqlite(sqlText, params);
-  return sqliteDb!.prepare(sql).all(...p) as T[];
+  return sqliteDb!.prepare(sql).all(...(p as any[])) as T[];
 }
 
 /**
@@ -210,7 +210,7 @@ export async function queryOne<T = any>(
   }
 
   const { sql, params: p } = adaptSqlForSqlite(sqlText, params);
-  return (sqliteDb!.prepare(sql).get(...p) as T) ?? undefined;
+  return (sqliteDb!.prepare(sql).get(...(p as any[])) as T) ?? undefined;
 }
 
 /**
@@ -227,8 +227,8 @@ export async function execute(
   }
 
   const { sql, params: p } = adaptSqlForSqlite(sqlText, params);
-  const info = sqliteDb!.prepare(sql).run(...p);
-  return { rowCount: info.changes };
+  const info = sqliteDb!.prepare(sql).run(...(p as any[]));
+  return { rowCount: Number(info.changes) };
 }
 
 export { sqliteDb as db };
