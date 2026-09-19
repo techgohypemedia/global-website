@@ -63,7 +63,11 @@ function hydrate(row: any): Product {
 }
 
 export async function categories(): Promise<Category[]> {
-  const rows = await query<{ id: string; name: string; count: number | string }>(
+  const rows = await query<{
+    id: string;
+    name: string;
+    count: number | string;
+  }>(
     "SELECT c.id, c.name, COUNT(p.id) AS count FROM categories c LEFT JOIN products p ON p.category_id=c.id GROUP BY c.id, c.name ORDER BY c.name",
   );
   return rows.map((r) => ({
@@ -83,11 +87,11 @@ export async function saveCategory(name: string, id?: string): Promise<void> {
   );
   if (existing) throw new Error("This category already exists.");
   if (id) {
-    const res = await execute(
-      "UPDATE categories SET name=$1, name_key=$2 WHERE id=$3",
+    const row = await queryOne<{ id: string }>(
+      "UPDATE categories SET name=$1, name_key=$2 WHERE id=$3 RETURNING id",
       [name, key(name), id],
     );
-    if (res.rowCount === 0) throw new Error("Category not found.");
+    if (!row) throw new Error("Category not found.");
   } else {
     await execute(
       "INSERT INTO categories (id, name, name_key) VALUES ($1, $2, $3)",
@@ -217,11 +221,10 @@ export async function saveProduct(
 const select =
   "SELECT p.*, c.name AS category FROM products p JOIN categories c ON c.id=p.category_id";
 
-export async function getProduct(publicId: string): Promise<Product | undefined> {
-  const row = await queryOne(
-    `${select} WHERE p.public_id=$1`,
-    [publicId],
-  );
+export async function getProduct(
+  publicId: string,
+): Promise<Product | undefined> {
+  const row = await queryOne(`${select} WHERE p.public_id=$1`, [publicId]);
   return row ? hydrate(row) : undefined;
 }
 
@@ -261,7 +264,10 @@ export async function listProducts(
 }
 
 export async function stats() {
-  const row = await queryOne<{ products: number | string; active: number | string }>(
+  const row = await queryOne<{
+    products: number | string;
+    active: number | string;
+  }>(
     "SELECT COUNT(*) AS products, COALESCE(SUM(active),0) AS active FROM products",
   );
   const cats = await categories();
@@ -451,9 +457,7 @@ export async function exportCsv(kind: string, origin: string): Promise<string> {
       { escapeFormulae: true },
     );
   }
-  const rows = await query(
-    `${select} ORDER BY p.id`,
-  );
+  const rows = await query(`${select} ORDER BY p.id`);
   const products = rows.map(hydrate);
   return Papa.unparse(
     {

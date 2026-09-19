@@ -44,5 +44,6 @@ next-env.d.ts
 /data/
 /.catalog-test-*/
 /test-results/
+/test-results-server*.log
 /playwright-report/
 /.next-catalog-test/

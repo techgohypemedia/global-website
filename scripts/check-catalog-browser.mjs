@@ -69,13 +69,11 @@ try {
     png.data[i + 2] = 231;
     png.data[i + 3] = 255;
   }
-  await page
-    .getByLabel("Product images")
-    .setInputFiles({
-      name: "product.png",
-      mimeType: "image/png",
-      buffer: PNG.sync.write(png),
-    });
+  await page.getByLabel("Product images").setInputFiles({
+    name: "product.png",
+    mimeType: "image/png",
+    buffer: PNG.sync.write(png),
+  });
   await page
     .getByRole("img", { name: "Product image 1", exact: true })
     .waitFor();
@@ -122,6 +120,9 @@ try {
     viewport: { width: 390, height: 844 },
   });
   const publicPage = await customer.newPage();
+  const publicImage = await customer.request.get(product.images[0]);
+  assert.equal(publicImage.status(), 200);
+  assert.deepEqual(await publicImage.body(), PNG.sync.write(png));
   await publicPage.goto(`/p/${product.public_id}`);
   await publicPage
     .getByRole("heading", {
@@ -160,13 +161,11 @@ try {
     .getByRole("button", { name: "Import / Export", exact: true })
     .click();
   const csv = `Product Name,SKU,Category,Website URL\nExisting,${sku},${category},https://example.com\nSmart plug,PLUG-${suffix},${category},https://example.com/plug\nDuplicate,PLUG-${suffix},${category},https://example.com/plug\nInvalid,,${category},https://example.com`;
-  await page
-    .locator("input[type=file]")
-    .setInputFiles({
-      name: "products.csv",
-      mimeType: "text/csv",
-      buffer: Buffer.from(csv),
-    });
+  await page.locator("input[type=file]").setInputFiles({
+    name: "products.csv",
+    mimeType: "text/csv",
+    buffer: Buffer.from(csv),
+  });
   await page.getByRole("button", { name: "Validate & preview" }).click();
   await page
     .getByRole("heading", { name: "Import preview", exact: true })

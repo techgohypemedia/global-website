@@ -8,7 +8,6 @@ import {
 } from "@/lib/catalog-auth";
 import {
   categories,
-  dataDir,
   deleteCategory,
   exportCsv,
   getImport,
@@ -23,8 +22,7 @@ import {
   template,
 } from "@/lib/catalog";
 import QRCode from "qrcode";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
+import { getImage, saveImage } from "@/lib/catalog-images";
 import { randomUUID } from "node:crypto";
 
 export const runtime = "nodejs";
@@ -34,6 +32,21 @@ const json = (data: unknown, status = 200) =>
   Response.json(data, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function GET(request: NextRequest, { params }: Context) {
+  try {
+    return await get(request, { params });
+  } catch (error) {
+    console.error("[catalog] GET failed", error);
+    return json(
+      {
+        error:
+          "The product registry is temporarily unavailable. Please try again.",
+      },
+      503,
+    );
+  }
+}
+
+async function get(request: NextRequest, { params }: Context) {
   const [action, id] = (await params).action;
   if (action === "session")
     return json({
@@ -41,21 +54,19 @@ export async function GET(request: NextRequest, { params }: Context) {
       configured: await configured(),
     });
   if (action === "images" && id && /^[a-f0-9-]+\.(png|jpg|webp)$/.test(id)) {
-    try {
-      return new Response(await readFile(path.join(dataDir, "images", id)), {
-        headers: {
-          "Content-Type": id.endsWith(".png")
-            ? "image/png"
-            : id.endsWith(".webp")
-              ? "image/webp"
-              : "image/jpeg",
-          "X-Content-Type-Options": "nosniff",
-          "Cache-Control": "public, max-age=86400",
-        },
-      });
-    } catch {
-      return json({ error: "Image not found." }, 404);
-    }
+    const bytes = await getImage(id);
+    if (!bytes) return json({ error: "Image not found." }, 404);
+    return new Response(new Uint8Array(bytes), {
+      headers: {
+        "Content-Type": id.endsWith(".png")
+          ? "image/png"
+          : id.endsWith(".webp")
+            ? "image/webp"
+            : "image/jpeg",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "public, max-age=86400",
+      },
+    });
   }
   if (!(await authenticated())) return json({ error: "Please sign in." }, 401);
   const q = request.nextUrl.searchParams;
@@ -174,9 +185,8 @@ export async function POST(request: NextRequest, { params }: Context) {
             : null;
       if (!ext)
         throw new Error("Only PNG, JPEG, and WebP images are supported.");
-      await mkdir(path.join(dataDir, "images"), { recursive: true });
       const filename = `${randomUUID()}.${ext}`;
-      await writeFile(path.join(dataDir, "images", filename), bytes);
+      await saveImage(filename, bytes);
       return json({ url: `/api/catalog/images/${filename}` });
     }
     if (Number(request.headers.get("content-length") || 0) > 3 * 1024 * 1024)

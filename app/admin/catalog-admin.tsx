@@ -43,7 +43,11 @@ async function api(action: string, body?: unknown) {
         }
       : { cache: "no-store" },
   );
-  const data = await response.json();
+  const data = await response.json().catch(() => {
+    throw new Error(
+      "The product registry is temporarily unavailable. Please try again.",
+    );
+  });
   if (!response.ok)
     throw new Error(data.error || "Unable to complete this request.");
   return data;
@@ -271,8 +275,21 @@ export default function CatalogAdmin() {
       <main className="registry login-shell">
         <div className="login-card">
           <Mark />
-          <h1>Opening product registry…</h1>
+          <h1>
+            {error ? "Registry unavailable" : "Opening product registry…"}
+          </h1>
           {feedback}
+          {error && (
+            <button
+              className="primary"
+              disabled={busy}
+              onClick={() =>
+                action(async () => setSession(await api("session")))
+              }
+            >
+              Try again
+            </button>
+          )}
         </div>
       </main>
     );
@@ -281,7 +298,7 @@ export default function CatalogAdmin() {
       <main className="registry login-shell">
         <div className="login-story">
           <div className="wordmark">
-            <Mark /> GLOBAL<span>REGISTRY</span>
+            <img className="registry-logo" src="/global-logo.png" alt="GLOBAL" width={160} height={36} />
           </div>
           <div>
             <span className="eyebrow">PRODUCTS, CONNECTED.</span>
@@ -447,21 +464,21 @@ export default function CatalogAdmin() {
     <div className="registry admin-shell">
       <aside className="sidebar">
         <a className="wordmark" href="/admin">
-          <Mark />
-          GLOBAL<span>REGISTRY</span>
+          <img className="registry-logo" src="/global-logo.png" alt="GLOBAL" width={160} height={36} />
         </a>
         <div className="workspace-name">
-          <span className="workspace-avatar">G</span>
+          <span className="workspace-avatar"><Icon name="Products" /></span>
           <div>
             Product management<small>Admin workspace</small>
           </div>
         </div>
-        <span className="nav-caption">WORKSPACE</span>
-        <nav>
+        <span className="nav-caption">Workspace</span>
+        <nav aria-label="Registry navigation">
           {nav.map((item) => (
             <button
               key={item}
               className={section === item ? "active" : ""}
+              aria-current={section === item ? "page" : undefined}
               onClick={() => navigate(item)}
             >
               <Icon name={item} />
@@ -475,12 +492,13 @@ export default function CatalogAdmin() {
         <div className="sidebar-bottom">
           <div className="connected">
             <span />
-            Registry connected
+            {data ? "Registry connected" : "Connecting to registry"}
           </div>
           <a href="/" target="_blank" rel="noreferrer">
             Open main website ↗
           </a>
           <button
+            disabled={busy}
             onClick={() =>
               action(async () => {
                 await api("logout", {});
@@ -608,16 +626,8 @@ export default function CatalogAdmin() {
                       {productTable(true)}
                     </section>
                     <aside className="label-panel">
-                      <span className="eyebrow">FROM RECORD TO REAL WORLD</span>
-                      <h2>
-                        Ready for
-                        <br />
-                        the next scan.
-                      </h2>
-                      <p>
-                        Every product gets a unique serial number and a QR code
-                        that stays with it.
-                      </p>
+                      <h2>Product label</h2>
+                      <p>{data.products[0] ? "Latest product" : "No products yet"}</p>
                       <div className="sample-label">
                         <div className="label-top">
                           <strong>GLOBAL</strong>
@@ -658,15 +668,12 @@ export default function CatalogAdmin() {
                           : "Create your first label"}{" "}
                         →
                       </button>
+                      {data.products[0] && (
+                        <a className="label-download" href={`/api/catalog/qr/${data.products[0].public_id}?download=1`} download>
+                          Download QR
+                        </a>
+                      )}
                     </aside>
-                  </div>
-                  <div className="workflow-strip">
-                    <strong>Simple by design.</strong>
-                    <span>01 &nbsp; Add a product</span>
-                    <span>→</span>
-                    <span>02 &nbsp; Print its QR code</span>
-                    <span>→</span>
-                    <span>03 &nbsp; Customers scan</span>
                   </div>
                 </>
               )}

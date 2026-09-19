@@ -28,16 +28,6 @@ export const isPostgres = Boolean(databaseUrl);
 let neonSql: NeonSql | null = null;
 let sqliteDb: DatabaseSync | null = null;
 
-if (isPostgres && databaseUrl) {
-  neonSql = neon(databaseUrl);
-} else {
-  mkdirSync(dataDir, { recursive: true });
-  sqliteDb = new DatabaseSync(path.join(dataDir, "catalog.sqlite"));
-  sqliteDb.exec("PRAGMA journal_mode = WAL;");
-  sqliteDb.exec("PRAGMA foreign_keys = ON;");
-  sqliteDb.exec("PRAGMA busy_timeout = 10000;");
-}
-
 let initialized = false;
 let initPromise: Promise<void> | null = null;
 
@@ -46,6 +36,17 @@ export async function ensureDb(): Promise<void> {
   if (initPromise) return initPromise;
 
   initPromise = (async () => {
+    if (databaseUrl) {
+      neonSql ??= neon(databaseUrl);
+    } else if (!sqliteDb) {
+      if (process.env.VERCEL)
+        throw new Error("Set DATABASE_URL for the deployed product registry.");
+      mkdirSync(dataDir, { recursive: true });
+      sqliteDb = new DatabaseSync(path.join(dataDir, "catalog.sqlite"));
+      sqliteDb.exec("PRAGMA journal_mode = WAL;");
+      sqliteDb.exec("PRAGMA foreign_keys = ON;");
+      sqliteDb.exec("PRAGMA busy_timeout = 10000;");
+    }
     if (isPostgres && neonSql) {
       const statements = [
         `CREATE TABLE IF NOT EXISTS categories (
@@ -103,7 +104,8 @@ export async function ensureDb(): Promise<void> {
           const localSqlite = new DatabaseSync(sqliteFile, { readOnly: true });
           const adminRow = localSqlite
             .prepare("SELECT id, email, password FROM admins WHERE id=1")
-            .get() as { id: number; email: string; password: string } | undefined;
+            .get() as
+            { id: number; email: string; password: string } | undefined;
 
           if (adminRow) {
             const neonAdmins = (await neonSql.query(
@@ -164,13 +166,28 @@ export async function ensureDb(): Promise<void> {
         CREATE TABLE IF NOT EXISTS imports (id TEXT PRIMARY KEY, kind TEXT NOT NULL, result TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')));
       `);
     }
+    await (isPostgres && neonSql
+      ? neonSql.query(
+          "CREATE TABLE IF NOT EXISTS product_images (filename TEXT PRIMARY KEY, content TEXT NOT NULL)",
+        )
+      : sqliteDb!.exec(
+          "CREATE TABLE IF NOT EXISTS product_images (filename TEXT PRIMARY KEY, content TEXT NOT NULL)",
+        ));
     initialized = true;
   })();
 
-  return initPromise;
+  try {
+    await initPromise;
+  } finally {
+    // A temporary connection failure must not poison this server instance.
+    initPromise = null;
+  }
 }
 
-function adaptSqlForSqlite(sql: string, params: unknown[]): { sql: string; params: unknown[] } {
+function adaptSqlForSqlite(
+  sql: string,
+  params: unknown[],
+): { sql: string; params: unknown[] } {
   const sqliteParams: unknown[] = [];
   let sqliteSql = sql.replace(/\$(\d+)\b/g, (_, indexStr) => {
     const idx = parseInt(indexStr, 10) - 1;
@@ -178,7 +195,10 @@ function adaptSqlForSqlite(sql: string, params: unknown[]): { sql: string; param
     return "?";
   });
   sqliteSql = sqliteSql.replace(/\bILIKE\b/gi, "LIKE");
-  sqliteSql = sqliteSql.replace(/\bNOW\(\)/gi, "(strftime('%Y-%m-%dT%H:%M:%fZ','now'))");
+  sqliteSql = sqliteSql.replace(
+    /\bNOW\(\)/gi,
+    "(strftime('%Y-%m-%dT%H:%M:%fZ','now'))",
+  );
   return { sql: sqliteSql, params: sqliteParams };
 }
 

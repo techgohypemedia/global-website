@@ -12,6 +12,7 @@ process.env.DATABASE_URL = "";
 
 test("catalog identity, imports, edits, deactivation, exports, and simultaneous allocation", async () => {
   const catalog = await import("../lib/catalog");
+  await (await import("../lib/catalog-db")).ensureDb();
   const {
     db,
     saveCategory,
@@ -37,6 +38,21 @@ test("catalog identity, imports, edits, deactivation, exports, and simultaneous 
   );
 
   const category = (await categories())[0];
+  await saveCategory("Renamed category", category.id);
+  assert.equal((await categories())[0].name, "Renamed category");
+  await saveCategory("Smart Home", category.id);
+  await assert.rejects(saveCategory("Missing", "missing-id"), /not found/);
+
+  const { saveImage, getImage } = await import("../lib/catalog-images");
+  const imageName = "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa.png";
+  const imageBytes = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  await saveImage(imageName, imageBytes);
+  assert.deepEqual(await getImage(imageName), imageBytes);
+  assert.equal(await getImage("../../.env.local"), undefined);
+  assert.equal(
+    await getImage("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb.png"),
+    undefined,
+  );
   const input = {
     name: "Smart Bulb",
     sku: " BULB-001 ",
@@ -56,7 +72,10 @@ test("catalog identity, imports, edits, deactivation, exports, and simultaneous 
   assert.equal(p.serial, "PRD-000001");
   const publicId = p.public_id;
 
-  await saveProduct({ ...input, name: "Updated bulb", sku: "bulb-001-new" }, id);
+  await saveProduct(
+    { ...input, name: "Updated bulb", sku: "bulb-001-new" },
+    id,
+  );
   p = (await getProduct(publicId))!;
   assert.equal(p.name, "Updated bulb");
   assert.equal(p.serial, "PRD-000001");

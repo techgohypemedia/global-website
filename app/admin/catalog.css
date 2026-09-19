@@ -205,6 +205,16 @@
   margin-top: 8px;
   color: #93a7c1;
 }
+.registry .registry-logo {
+  display: block;
+  width: 160px;
+  height: 36px;
+  object-fit: cover;
+  object-position: center 57%;
+  flex-shrink: 0;
+  filter: invert(1) hue-rotate(180deg) contrast(1.2);
+  mix-blend-mode: screen;
+}
 .registry .admin-shell {
   display: flex;
 }
@@ -215,32 +225,36 @@
   width: 238px;
   position: fixed;
   inset: 0 auto 0 0;
-  background: var(--navy);
-  color: #d8e3f3;
-  padding: 31px 21px;
+  background: #20252d;
+  color: #f0f2f5;
+  padding: 30px 18px 22px;
+  border-right: 1px solid #343a44;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   z-index: 10;
 }
 .registry .sidebar .wordmark {
-  padding: 0 2px 31px;
+  padding: 0 0 25px;
+  margin-left: -1px;
 }
 .registry .workspace-name {
-  border: 1px solid #ffffff18;
-  border-radius: 8px;
+  border-top: 1px solid #ffffff14;
+  border-bottom: 1px solid #ffffff14;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 10px;
-  margin-bottom: 33px;
-  font-size: 11px;
+  padding: 19px 8px;
+  margin-bottom: 26px;
+  font-size: 12px;
   font-weight: 600;
 }
 .registry .workspace-avatar {
-  background: #ffffff10;
-  border: 1px solid #ffffff17;
-  width: 31px;
-  height: 33px;
+  background: #303845;
+  color: #b9cdfb;
+  width: 34px;
+  height: 36px;
+  flex-shrink: 0;
   border-radius: 6px;
   display: grid;
   place-items: center;
@@ -248,22 +262,23 @@
 }
 .registry .workspace-name small {
   display: block;
-  color: #8095af;
-  font-size: 10px;
+  color: #9da7b5;
+  font-size: 11px;
+  margin-top: 3px;
   font-weight: 400;
 }
 .registry .nav-caption {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
-  color: #7b91af;
-  letter-spacing: 1.5px;
-  padding-left: 13px;
-  margin-bottom: 13px;
+  color: #939daa;
+  letter-spacing: 0;
+  padding-left: 12px;
+  margin-bottom: 10px;
 }
 .registry nav {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 .registry nav button {
   display: flex;
@@ -274,15 +289,18 @@
   background: none;
   border-radius: 6px;
   padding: 12px;
-  color: #9fb0c7;
+  color: #b7c0cd;
   text-align: left;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
+  min-height: 46px;
+  position: relative;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 .registry nav button.active {
-  background: #2c65db;
-  color: #fff;
-  box-shadow: 0 4px 10px #00000013;
+  background: #303e54;
+  color: #ffffff;
+  box-shadow: inset 3px 0 #78a6ff;
 }
 .registry nav button:not(.active):hover {
   background: #ffffff0b;
@@ -291,30 +309,53 @@
 .registry .nav-count {
   margin-left: auto;
   font-size: 10px;
-  padding: 0 6px;
+  padding: 2px 6px;
+  min-width: 23px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
   border-radius: 4px;
   background: #ffffff16;
 }
 .registry .sidebar-bottom {
   margin-top: auto;
   border-top: 1px solid #ffffff13;
-  padding-top: 21px;
+  padding-top: 18px;
   font-size: 11px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  color: #98adc8;
+  gap: 4px;
+  color: #b7c0cd;
 }
 .registry .sidebar-bottom button {
   background: none;
-  color: #98adc8;
+  color: #b7c0cd;
   border: 0;
   text-align: left;
-  padding: 0;
+  padding: 10px;
+  border-radius: 6px;
+  min-height: 38px;
+}
+.registry .sidebar-bottom a {
+  padding: 10px;
+  border-radius: 6px;
+  min-height: 38px;
+}
+.registry .sidebar-bottom a:hover,
+.registry .sidebar-bottom button:hover {
+  background: #ffffff0b;
+  color: #fff;
+}
+.registry .sidebar :is(button, a):focus-visible {
+  outline: 2px solid #a8c6ff;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .registry nav button { transition: none; }
 }
 .registry .connected {
   font-size: 10px;
-  color: #a2b7cd;
+  color: #aeb9c7;
+  padding: 0 10px 12px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -399,42 +440,44 @@
 .registry .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 17px;
-  margin-bottom: 27px;
+  gap: 0;
+  margin-bottom: 32px;
+  background: #ffffff;
+  border-block: 1px solid #dde2e8;
 }
 .registry .stat-card {
-  padding: 21px 23px;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 9px;
+  padding: 20px 24px;
+  border-right: 1px solid #e8ebef;
 }
+.registry .stat-card:last-child { border-right: 0; }
 .registry .stat-card > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #65758a;
-  font-size: 11px;
+  font-size: 12px;
 }
 .registry .stat-card svg {
-  color: #8f9fb5;
+  color: #647caa;
   width: 17px;
 }
 .registry .stat-card > strong {
   display: block;
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 600;
-  letter-spacing: -1px;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
   margin: 10px 0 2px;
   line-height: 1.25;
 }
 .registry .stat-card small {
   font-size: 10px;
-  color: #8994a3;
+  color: #667284;
 }
 .registry .dashboard-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 290px;
-  gap: 23px;
+  gap: 28px;
   align-items: start;
 }
 .registry .panel {
@@ -557,10 +600,8 @@
   background: #fff0f2;
 }
 .registry .label-panel {
-  background: #e9eff9;
-  border: 1px solid #dce5f3;
-  border-radius: 9px;
-  padding: 24px;
+  border-left: 1px solid #dde2e8;
+  padding: 4px 0 4px 24px;
 }
 .registry .label-panel .eyebrow {
   font-size: 8px;
@@ -568,16 +609,16 @@
   color: #6d83a7;
 }
 .registry .label-panel h2 {
-  font-size: 27px;
+  font-size: 17px;
   line-height: 1.2;
-  color: #2b4265;
-  letter-spacing: -0.8px;
+  color: #252d39;
+  letter-spacing: 0;
 }
 .registry .label-panel > p {
   font-size: 11px;
   line-height: 1.8;
   color: #7788a0;
-  margin-top: 11px;
+  margin-top: 5px;
 }
 .registry .sample-label {
   background: white;
@@ -701,6 +742,43 @@
   justify-content: space-between;
   color: var(--muted);
   font-size: 11px;
+}
+.registry .label-download {
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #d3dce8;
+  border-radius: 6px;
+  color: #31415a;
+  background: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.registry .label-download:hover { background: #edf2f8; }
+.registry .recent-panel {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.registry .recent-panel .panel-heading { padding: 4px 0 20px; }
+.registry .recent-panel h2 { font-size: 18px; letter-spacing: 0; }
+.registry .recent-panel table { background: #fff; }
+.registry .recent-panel th { color: #596777; font-size: 11px; background: #edf0f4; }
+.registry .recent-panel td { padding-block: 18px; }
+.registry .recent-panel .product-cell strong { font-size: 13px; }
+.registry .recent-panel .product-cell small { color: #6d7888; font-size: 11px; }
+.registry .recent-panel td code { font-size: 11px; white-space: nowrap; }
+.registry .recent-panel tbody tr:hover { background: #f8fafc; }
+.registry .recent-panel .status { font-size: 10px; padding: 4px 8px; }
+@media (max-width: 1000px) {
+  .registry .dashboard-grid .label-panel { border-left: 0; border-top: 1px solid #dde2e8; padding: 20px 0; }
+}
+@media (max-width: 700px) {
+  .registry .stats-grid { gap: 0; }
+  .registry .stat-card:nth-child(2) { border-right: 0; }
+  .registry .stat-card:nth-child(-n + 2) { border-bottom: 1px solid #e8ebef; }
+  .registry .dashboard-grid .label-panel { max-width: 360px; width: 100%; }
 }
 .registry .pagination > div {
   display: flex;
