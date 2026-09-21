@@ -67,9 +67,33 @@ export async function ensureDb(): Promise<void> {
           images TEXT NOT NULL DEFAULT '[]',
           manufacturing_date TEXT NOT NULL DEFAULT '',
           website_url TEXT NOT NULL,
+          zone TEXT NOT NULL DEFAULT '',
+          division TEXT NOT NULL DEFAULT '',
+          station_details TEXT NOT NULL DEFAULT '',
+          elb_type TEXT NOT NULL DEFAULT '',
+          part_name TEXT NOT NULL DEFAULT '',
+          lc_gate_no TEXT NOT NULL DEFAULT '',
+          version_no TEXT NOT NULL DEFAULT '',
+          machine_no TEXT NOT NULL DEFAULT '',
+          pedestal_no TEXT NOT NULL DEFAULT '',
+          locking_no TEXT NOT NULL DEFAULT '',
+          date_of_supply TEXT NOT NULL DEFAULT '',
+          date_of_installation TEXT NOT NULL DEFAULT '',
+          date_of_commissioning TEXT NOT NULL DEFAULT '',
+          date_of_warranty_expiry TEXT NOT NULL DEFAULT '',
+          under_warranty TEXT NOT NULL DEFAULT '',
+          comments TEXT NOT NULL DEFAULT '',
           active INTEGER NOT NULL DEFAULT 1,
           created_at TEXT NOT NULL DEFAULT (to_char(NOW() AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')),
           updated_at TEXT NOT NULL DEFAULT (to_char(NOW() AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'))
+        )`,
+        `CREATE TABLE IF NOT EXISTS registry_options (
+          id TEXT PRIMARY KEY,
+          category TEXT NOT NULL,
+          label TEXT NOT NULL,
+          value TEXT NOT NULL,
+          parent_value TEXT NOT NULL DEFAULT '',
+          sort_order INTEGER NOT NULL DEFAULT 0
         )`,
         `CREATE TABLE IF NOT EXISTS admins (
           id INTEGER PRIMARY KEY CHECK(id=1),
@@ -95,6 +119,19 @@ export async function ensureDb(): Promise<void> {
 
       for (const stmt of statements) {
         await neonSql.query(stmt);
+      }
+
+      // Safe migration for additional columns if table already existed in Postgres
+      const pgColumns = [
+        "zone", "division", "station_details", "elb_type", "part_name",
+        "lc_gate_no", "version_no", "machine_no", "pedestal_no", "locking_no",
+        "date_of_supply", "date_of_installation", "date_of_commissioning",
+        "date_of_warranty_expiry", "under_warranty", "comments"
+      ];
+      for (const col of pgColumns) {
+        try {
+          await neonSql.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS ${col} TEXT NOT NULL DEFAULT ''`);
+        } catch {}
       }
 
       // Automatically migrate data from SQLite if local sqlite exists and Neon is empty
@@ -156,15 +193,42 @@ export async function ensureDb(): Promise<void> {
           name TEXT NOT NULL, sku TEXT NOT NULL, sku_key TEXT NOT NULL UNIQUE,
           category_id TEXT NOT NULL REFERENCES categories(id), brand TEXT NOT NULL DEFAULT '', model TEXT NOT NULL DEFAULT '',
           description TEXT NOT NULL DEFAULT '', images TEXT NOT NULL DEFAULT '[]', manufacturing_date TEXT NOT NULL DEFAULT '',
-          website_url TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1,
+          website_url TEXT NOT NULL,
+          zone TEXT NOT NULL DEFAULT '', division TEXT NOT NULL DEFAULT '', station_details TEXT NOT NULL DEFAULT '',
+          elb_type TEXT NOT NULL DEFAULT '', part_name TEXT NOT NULL DEFAULT '', lc_gate_no TEXT NOT NULL DEFAULT '',
+          version_no TEXT NOT NULL DEFAULT '', machine_no TEXT NOT NULL DEFAULT '', pedestal_no TEXT NOT NULL DEFAULT '',
+          locking_no TEXT NOT NULL DEFAULT '', date_of_supply TEXT NOT NULL DEFAULT '', date_of_installation TEXT NOT NULL DEFAULT '',
+          date_of_commissioning TEXT NOT NULL DEFAULT '', date_of_warranty_expiry TEXT NOT NULL DEFAULT '',
+          under_warranty TEXT NOT NULL DEFAULT '', comments TEXT NOT NULL DEFAULT '',
+          active INTEGER NOT NULL DEFAULT 1,
           created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
           updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+        );
+        CREATE TABLE IF NOT EXISTS registry_options (
+          id TEXT PRIMARY KEY,
+          category TEXT NOT NULL,
+          label TEXT NOT NULL,
+          value TEXT NOT NULL,
+          parent_value TEXT NOT NULL DEFAULT '',
+          sort_order INTEGER NOT NULL DEFAULT 0
         );
         CREATE TABLE IF NOT EXISTS admins (id INTEGER PRIMARY KEY CHECK(id=1), email TEXT NOT NULL, password TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, expires INTEGER NOT NULL);
         CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY, attempts INTEGER NOT NULL, reset_at INTEGER NOT NULL);
         CREATE TABLE IF NOT EXISTS imports (id TEXT PRIMARY KEY, kind TEXT NOT NULL, result TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')));
       `);
+
+      const sqliteCols = [
+        "zone", "division", "station_details", "elb_type", "part_name",
+        "lc_gate_no", "version_no", "machine_no", "pedestal_no", "locking_no",
+        "date_of_supply", "date_of_installation", "date_of_commissioning",
+        "date_of_warranty_expiry", "under_warranty", "comments"
+      ];
+      for (const col of sqliteCols) {
+        try {
+          sqliteDb.exec(`ALTER TABLE products ADD COLUMN ${col} TEXT NOT NULL DEFAULT ''`);
+        } catch {}
+      }
     }
     await (isPostgres && neonSql
       ? neonSql.query(

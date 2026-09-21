@@ -9,14 +9,18 @@ import {
 import {
   categories,
   deleteCategory,
+  deleteRegistryOption,
   exportCsv,
+  exportXlsx,
   getImport,
   getImports,
   getProduct,
-  importCsv,
+  getRegistryOptions,
+  importSpreadsheet,
   listProducts,
   saveCategory,
   saveProduct,
+  saveRegistryOption,
   setProductActive,
   stats,
   template,
@@ -48,11 +52,15 @@ export async function GET(request: NextRequest, { params }: Context) {
 
 async function get(request: NextRequest, { params }: Context) {
   const [action, id] = (await params).action;
+  const q = request.nextUrl.searchParams;
+  const origin = process.env.APP_URL || request.nextUrl.origin;
+
   if (action === "session")
     return json({
       authenticated: await authenticated(),
       configured: await configured(),
     });
+
   if (action === "images" && id && /^[a-f0-9-]+\.(png|jpg|webp)$/.test(id)) {
     const bytes = await getImage(id);
     if (!bytes) return json({ error: "Image not found." }, 404);
@@ -68,51 +76,21 @@ async function get(request: NextRequest, { params }: Context) {
       },
     });
   }
-  if (!(await authenticated())) return json({ error: "Please sign in." }, 401);
-  const q = request.nextUrl.searchParams;
-  const origin = process.env.APP_URL || request.nextUrl.origin;
-  if (action === "data") {
-    const [productData, catList, statList, importList] = await Promise.all([
-      listProducts(
-        q.get("q") || "",
-        q.get("category") || "",
-        q.get("status") || "",
-        Math.max(1, Number(q.get("page")) || 1),
-      ),
-      categories(),
-      stats(),
-      getImports(),
-    ]);
-    return json({
-      ...productData,
-      categories: catList,
-      stats: statList,
-      imports: importList,
-    });
+
+  // Public product lookup (for manual QR code number lookup when damaged)
+  if (action === "lookup") {
+    const queryTerm = q.get("q") || "";
+    if (!queryTerm) return json({ error: "Query required." }, 400);
+    const product = await getProduct(queryTerm);
+    if (!product) return json({ error: "No product found with this QR code number / SKU." }, 404);
+    return json({ product });
   }
-  if (action === "import" && id) {
-    const row = await getImport(id);
-    return row
-      ? json(JSON.parse(row.result))
-      : json({ error: "Import not found." }, 404);
-  }
-  if (action === "export" || action === "template")
-    return new Response(
-      action === "export"
-        ? await exportCsv(q.get("kind") || "products", origin)
-        : template(q.get("kind") || "products"),
-      {
-        headers: {
-          "Content-Type": "text/csv; charset=utf-8",
-          "Content-Disposition": `attachment; filename="${q.get("kind") === "categories" ? "categories" : "products"}-${action}.csv"`,
-          "Cache-Control": "no-store",
-        },
-      },
-    );
+
+  // QR code image generator for public/admin display
   if (action === "qr" && id) {
     const product = await getProduct(id);
     if (!product) return json({ error: "Product not found." }, 404);
-    const url = `${origin.replace(/\/$/, "")}/p/${id}`;
+    const url = `${origin.replace(/\/$/, "")}/p/${product.public_id}`;
     const svg = q.get("format") === "svg";
     const body = svg
       ? await QRCode.toString(url, {
@@ -133,13 +111,98 @@ async function get(request: NextRequest, { params }: Context) {
           "Cache-Control": "no-store",
           ...(q.has("download")
             ? {
-                "Content-Disposition": `attachment; filename="${product.serial}.${svg ? "svg" : "png"}"`,
+                "Content-Disposition": `attachment; filename="${product.sku || product.serial}.${svg ? "svg" : "png"}"`,
               }
             : {}),
         },
       },
     );
   }
+
+  if (!(await authenticated())) return json({ error: "Please sign in." }, 401);
+
+  if (action === "data") {
+    const [productData, catList, statList, importList, optionsList] =
+      await Promise.all([
+        listProducts(
+          q.get("q") || "",
+          q.get("category") || "",
+          q.get("status") || "",
+          Math.max(1, Number(q.get("page")) || 1),
+        ),
+        categories(),
+        stats(),
+        getImports(),
+        getRegistryOptions(),
+      ]);
+    return json({
+      ...productData,
+      categories: catList,
+      stats: statList,
+      imports: importList,
+      options: optionsList,
+    });
+  }
+
+  if (action === "options") {
+    const category = q.get("category") || undefined;
+    const options = await getRegistryOptions(category);
+    return json({ options });
+  }
+
+  if (action === "import" && id) {
+    const row = await getImport(id);
+    return row
+      ? json(JSON.parse(row.result))
+      : json({ error: "Import not found." }, 404);
+  }
+
+  if (action === "export") {
+    const kind = q.get("kind") || "products";
+    const format = q.get("format") || "csv";
+    if (format === "xlsx") {
+      const buffer = await exportXlsx(kind, origin);
+      return new Response(new Uint8Array(buffer), {
+        headers: {
+          "Content-Type":
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "Content-Disposition": `attachment; filename="${kind === "categories" ? "categories" : "products"}-export.xlsx"`,
+          "Cache-Control": "no-store",
+        },
+      });
+    }
+    return new Response(await exportCsv(kind, origin), {
+      headers: {
+        "Content-Type": "text/csv; charset=utf-8",
+        "Content-Disposition": `attachment; filename="${kind === "categories" ? "categories" : "products"}-export.csv"`,
+        "Cache-Control": "no-store",
+      },
+    });
+  }
+
+  if (action === "template") {
+    const kind = q.get("kind") || "products";
+    const format = q.get("format") || "xlsx";
+    const result = template(kind, format);
+    if (format === "xlsx" && typeof result !== "string") {
+      return new Response(new Uint8Array(result), {
+        headers: {
+          "Content-Type":
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "Content-Disposition": `attachment; filename="${kind === "categories" ? "categories" : "products"}-template.xlsx"`,
+          "Cache-Control": "no-store",
+        },
+      });
+    }
+    return new Response(String(result), {
+      headers: {
+        "Content-Type": "text/csv; charset=utf-8",
+        "Content-Disposition": `attachment; filename="${kind === "categories" ? "categories" : "products"}-template.csv"`,
+        "Cache-Control": "no-store",
+      },
+    });
+  }
+
   return json({ error: "Not found." }, 404);
 }
 
@@ -189,8 +252,9 @@ export async function POST(request: NextRequest, { params }: Context) {
       await saveImage(filename, bytes);
       return json({ url: `/api/catalog/images/${filename}` });
     }
-    if (Number(request.headers.get("content-length") || 0) > 3 * 1024 * 1024)
+    if (Number(request.headers.get("content-length") || 0) > 10 * 1024 * 1024)
       throw new Error("Request is too large.");
+
     const body = await request.json();
     if (action === "product")
       return json({ id: await saveProduct(body, body.id) });
@@ -206,14 +270,26 @@ export async function POST(request: NextRequest, { params }: Context) {
       await deleteCategory(body.id);
       return json({ ok: true });
     }
-    if (action === "import")
+    if (action === "save-option") {
+      const id = await saveRegistryOption(body);
+      return json({ ok: true, id });
+    }
+    if (action === "delete-option") {
+      await deleteRegistryOption(body.id);
+      return json({ ok: true });
+    }
+    if (action === "import") {
+      const input = body.fileBase64 || body.csv || "";
+      const isBinary = Boolean(body.isBinary || body.fileBase64);
       return json(
-        await importCsv(
-          String(body.csv || ""),
-          body.kind,
+        await importSpreadsheet(
+          input,
+          body.kind || "products",
           body.commit === true,
+          isBinary,
         ),
       );
+    }
     return json({ error: "Not found." }, 404);
   } catch (e) {
     return json(
