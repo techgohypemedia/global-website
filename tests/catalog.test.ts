@@ -170,6 +170,19 @@ test("catalog identity, imports, edits, deactivation, exports, and simultaneous 
   assert.equal(formula["Product Name"], "'=SUM(1,1)");
   assert.ok(formula["QR URL"].startsWith("https://registry.example/p/"));
 
+  // Railway sheet import without explicit Category column
+  const railwayCsv =
+    "S.No,QR Code Number,Zonal Railway,Division,Station Details,Type of ELB,Part Name,LC Gate No.,Version No.,Machine No.,Pedestal No.,Locking Number,Date of Supply,Date of Installation,Date of Commissioning,Date of Warranty Expiry,Under Warranty?,Comments\n" +
+    "1,QR-RW-0001,Northern Railway,Delhi Division,NDLS,ELB,Barrier,LC-01,v1,M-01,P-01,L-01,2025-01-01,2025-01-02,2025-01-03,2028-01-01,Yes,OK";
+  const rwPreview = await importCsv(railwayCsv, "products", false);
+  assert.equal(rwPreview.total, 1);
+  assert.equal(rwPreview.invalid, 0);
+  assert.equal(rwPreview.rows[0].status, "new");
+
+  const rwCommit = await importCsv(railwayCsv, "products", true);
+  assert.equal(rwCommit.created, 1);
+  assert.equal(rwCommit.invalid, 0);
+
   // Independent database connections contend for the sequence.
   const workerCode = `const {parentPort,workerData}=require('node:worker_threads'); const {DatabaseSync}=require('node:sqlite');const {randomUUID}=require('node:crypto');const db=new DatabaseSync(workerData.file);db.exec('PRAGMA busy_timeout=10000');db.exec('PRAGMA foreign_keys=ON');const ids=[];for(let i=0;i<20;i++){const sku=workerData.prefix+i;ids.push(Number(db.prepare('INSERT INTO products (public_id,name,sku,sku_key,category_id,website_url) VALUES (?,?,?,?,?,?)').run(randomUUID(),sku,sku,sku,workerData.category,'https://example.com').lastInsertRowid));}db.close();parentPort.postMessage(ids);`;
   const work = (prefix: string) =>

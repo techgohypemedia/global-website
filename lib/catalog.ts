@@ -107,17 +107,28 @@ function hydrate(row: any): Product {
   };
 }
 
+export async function ensureRailwayCategory(): Promise<string> {
+  const name = "Railway Equipment";
+  const nameKey = key(name);
+  const existing = await queryOne<{ id: string }>(
+    "SELECT id FROM categories WHERE name_key=$1",
+    [nameKey],
+  );
+  if (existing) return existing.id;
+  const id = randomUUID();
+  await execute(
+    "INSERT INTO categories (id, name, name_key) VALUES ($1, $2, $3)",
+    [id, name, nameKey],
+  );
+  return id;
+}
+
 export async function ensureDefaultCategories(): Promise<string> {
   const existing = await queryOne<{ id: string }>(
     "SELECT id FROM categories LIMIT 1",
   );
   if (existing) return existing.id;
-  const defaultId = randomUUID();
-  await execute(
-    "INSERT INTO categories (id, name, name_key) VALUES ($1, $2, $3)",
-    [defaultId, "Railway Equipment", "railway equipment"],
-  );
-  return defaultId;
+  return ensureRailwayCategory();
 }
 
 export async function categories(): Promise<Category[]> {
@@ -306,6 +317,7 @@ export const DEFAULT_PART_NAMES = [
 ];
 
 export async function ensureDefaultOptions(): Promise<void> {
+  await ensureRailwayCategory();
   const existing = await queryOne<{ id: string }>(
     "SELECT id FROM registry_options LIMIT 1",
   );
@@ -954,12 +966,13 @@ export async function importSpreadsheet(
   );
   const sampleRowKeysLower = sampleRowKeys.map((k) => k.toLowerCase());
 
+  let isRailwaySheet = false;
   if (kind === "categories") {
     if (!sampleRowKeys.includes("Category Name")) {
       throw new Error("Required headers: Category Name.");
     }
   } else if (kind === "products") {
-    const isRailwaySheet = sampleRowKeysLower.some(
+    isRailwaySheet = sampleRowKeysLower.some(
       (k) =>
         k.includes("zonal railway") ||
         k.includes("type of elb") ||
@@ -968,7 +981,9 @@ export async function importSpreadsheet(
         k.includes("station details"),
     );
 
-    if (!isRailwaySheet) {
+    if (isRailwaySheet) {
+      await ensureRailwayCategory();
+    } else {
       const standardReq = [
         "Product Name",
         "SKU",
@@ -989,6 +1004,7 @@ export async function importSpreadsheet(
   const defaultCatId = await ensureDefaultCategories();
   const seen = new Set<string>();
   const rows: ImportRow[] = [];
+  const categoryCache = new Map<string, string>();
 
   for (let index = 0; index < rawData.length; index++) {
     const rawRow = rawData[index];
@@ -1039,16 +1055,54 @@ export async function importSpreadsheet(
           throw new Error("Category name must contain 1–120 characters.");
         if (commit) await saveCategory(catName);
       } else {
-        let categoryId = defaultCatId;
-        if (normalized.Category) {
-          const category = await queryOne<{ id: string }>(
-            "SELECT id FROM categories WHERE name_key=$1",
-            [key(normalized.Category)],
+        const rawCategory = String(rawRow["Category"] || rawRow["category"] || "").trim();
+        const isRailway =
+          isRailwaySheet ||
+          Boolean(
+            rawRow["Zonal Railway"] ||
+            rawRow["Zone"] ||
+            rawRow["Type of ELB"] ||
+            rawRow["ELB Type"] ||
+            rawRow["Station Details"] ||
+            rawRow["LC Gate No."]
           );
-          if (!category) {
-            throw new Error("Category does not exist. Import or create it first.");
+        const categoryName = normalized.Category || (isRailway ? "Railway Equipment" : "");
+        let categoryId = defaultCatId;
+
+        if (categoryName) {
+          const catKey = key(categoryName);
+          let foundId = categoryCache.get(catKey);
+
+          if (!foundId) {
+            const category = await queryOne<{ id: string }>(
+              "SELECT id FROM categories WHERE name_key=$1",
+              [catKey],
+            );
+            if (category) {
+              foundId = category.id;
+              categoryCache.set(catKey, foundId);
+            }
           }
-          categoryId = category.id;
+
+          if (!foundId) {
+            if (isRailway || !rawCategory) {
+              if (commit) {
+                const newCatId = randomUUID();
+                await execute(
+                  "INSERT INTO categories (id, name, name_key) VALUES ($1, $2, $3)",
+                  [newCatId, categoryName, catKey],
+                );
+                foundId = newCatId;
+                categoryCache.set(catKey, newCatId);
+              } else {
+                foundId = defaultCatId;
+              }
+            } else {
+              throw new Error("Category does not exist. Import or create it first.");
+            }
+          }
+
+          categoryId = foundId;
         }
 
         const inputData = await validateProduct({
