@@ -866,7 +866,14 @@ export default function CatalogAdmin() {
                               className="secondary"
                               href={`/api/catalog/qr/${p.public_id}?download=1`}
                             >
-                              Download
+                              PNG
+                            </a>
+                            <a
+                              className="secondary"
+                              href={`/api/catalog/qr/${p.public_id}?download=1&format=plt`}
+                              title="HPGL plotter file for engravers / cutters"
+                            >
+                              PLT
                             </a>
                             <button
                               className="text-button"
@@ -2005,6 +2012,13 @@ export default function CatalogAdmin() {
                     href={`/api/catalog/qr/${selected.public_id}?download=1&format=svg`}
                   >
                     SVG ↧
+                  </a>
+                  <a
+                    className="secondary"
+                    href={`/api/catalog/qr/${selected.public_id}?download=1&format=plt`}
+                    title="HPGL plotter file for engravers / cutters"
+                  >
+                    PLT ↧
                   </a>
                   <button className="secondary" onClick={() => window.print()}>
                     Print

@@ -26,6 +26,7 @@ import {
   template,
 } from "@/lib/catalog";
 import QRCode from "qrcode";
+import { qrToPlt } from "@/lib/qr-plt";
 import { getImage, saveImage } from "@/lib/catalog-images";
 import { randomUUID } from "node:crypto";
 
@@ -91,7 +92,18 @@ async function get(request: NextRequest, { params }: Context) {
     const product = await getProduct(id);
     if (!product) return json({ error: "Product not found." }, 404);
     const url = `${origin.replace(/\/$/, "")}/p/${product.public_id}`;
-    const svg = q.get("format") === "svg";
+    const format = q.get("format");
+    if (format === "plt") {
+      const sizeMm = Number(q.get("size")) || 40;
+      return new Response(qrToPlt(url, { sizeMm }), {
+        headers: {
+          "Content-Type": "application/vnd.hp-hpgl",
+          "Cache-Control": "no-store",
+          "Content-Disposition": `attachment; filename="${product.sku || product.serial}.plt"`,
+        },
+      });
+    }
+    const svg = format === "svg";
     const body = svg
       ? await QRCode.toString(url, {
           type: "svg",
