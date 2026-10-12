@@ -1,65 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import GlobalLogo from "./GlobalLogo";
 
-const REGIONS_LIST = [
-  {
-    name: "Global",
-    languages: [
-      { label: "English", code: "en" },
-      { label: "العربية", code: "ar" },
-    ],
-  },
-  {
-    name: "Americas",
-    languages: [{ label: "English", code: "en" }],
-  },
-  {
-    name: "China",
-    languages: [
-      { label: "English", code: "en" },
-      { label: "中文(中国)", code: "zh" },
-    ],
-  },
-  {
-    name: "Europe",
-    languages: [{ label: "English", code: "en" }],
-  },
-  {
-    name: "Poland",
-    languages: [
-      { label: "English", code: "en" },
-      { label: "polski", code: "pl" },
-    ],
-  },
-  {
-    name: "India",
-    languages: [{ label: "English", code: "en" }],
-  },
-  {
-    name: "Japan",
-    languages: [
-      { label: "English", code: "en" },
-      { label: "日本語", code: "ja" },
-    ],
-  },
-  {
-    name: "Korea",
-    languages: [
-      { label: "English", code: "en" },
-      { label: "한국어", code: "ko" },
-    ],
-  },
-  {
-    name: "Malaysia",
-    languages: [{ label: "English", code: "en" }],
-  },
-  {
-    name: "Singapore",
-    languages: [{ label: "English", code: "en" }],
-  },
+const NAV_ITEMS: { id: string; type: "link" | "drawer"; href?: string }[] = [
+  { id: "what-we-do", type: "drawer" },
+  { id: "capability", type: "drawer" },
+  { id: "about", type: "link", href: "/about" },
+  { id: "support", type: "drawer" },
+  { id: "contact", type: "drawer" },
 ];
 
 interface SubmenuItem {
@@ -83,11 +33,11 @@ interface DrawerCategory {
 
 const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
   "what-we-do": {
-    title: "Our Products",
+    title: "Products",
     items: [
       {
         id: "railway-barrier",
-        name: "Railway Barrier System",
+        name: "Electric Lifting Barrier (ELB)",
         href: "/products/railway-barrier",
         hasSubmenu: true,
         submenuItems: [
@@ -97,9 +47,11 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
           { name: "Weatherproof Enclosure", href: "/products/railway-barrier/weatherproof-enclosure", hasSubmenu: false },
         ],
       },
+      { id: "gi-boom", name: "Galvanised Iron (GI) Boom", href: "/products/gi-boom", hasSubmenu: false },
+      { id: "motorised-locking", name: "Motorised Locking", href: "/products/motorised-locking", hasSubmenu: false },
       {
         id: "earth-leakage",
-        name: "Digital Earth Leakage Detector",
+        name: "Earth Leakage Detector (ELD)",
         href: "/products/earth-leakage",
         hasSubmenu: true,
         submenuItems: [
@@ -119,14 +71,6 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
       { id: "diagnostics", name: "Diagnostics & System Integration", href: "/capability/diagnostics", hasSubmenu: false },
     ],
   },
-  "news-media": {
-    title: "Applications & Sectors",
-    items: [
-      { id: "level-crossings", name: "Railway Level Crossings", href: "/sectors/level-crossings", hasSubmenu: false },
-      { id: "industrial-panels", name: "Industrial Electrical Panels", href: "/sectors/industrial-panels", hasSubmenu: false },
-      { id: "signalling-infra", name: "Signalling & Access Control", href: "/sectors/signalling-infra", hasSubmenu: false },
-    ],
-  },
   contact: {
     title: "Contact",
     items: [
@@ -135,7 +79,7 @@ const DRAWER_DATA_EN: Record<string, DrawerCategory> = {
     ],
   },
   support: {
-    title: "Technical Resources",
+    title: "Downloads",
     items: [
       { id: "datasheets", name: "Product Datasheets", href: "/support/datasheets", hasSubmenu: false },
       { id: "specifications", name: "Technical Specifications", href: "/support/specifications", hasSubmenu: false },
@@ -150,7 +94,7 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
     items: [
       {
         id: "railway-barrier",
-        name: "रेलवे बैरियर सिस्टम",
+        name: "इलेक्ट्रिक लिफ्टिंग बैरियर (ELB)",
         href: "/products/railway-barrier",
         hasSubmenu: true,
         submenuItems: [
@@ -160,9 +104,11 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
           { name: "वेदरप्रूफ एनक्लोजर", href: "/products/railway-barrier/weatherproof-enclosure", hasSubmenu: false },
         ],
       },
+      { id: "gi-boom", name: "गैल्वनाइज़्ड आयरन (GI) बूम", href: "/products/gi-boom", hasSubmenu: false },
+      { id: "motorised-locking", name: "मोटराइज़्ड लॉकिंग", href: "/products/motorised-locking", hasSubmenu: false },
       {
         id: "earth-leakage",
-        name: "डिजिटल अर्थ लीकेज डिटेक्टर",
+        name: "अर्थ लीकेज डिटेक्टर (ELD)",
         href: "/products/earth-leakage",
         hasSubmenu: true,
         submenuItems: [
@@ -182,14 +128,6 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
       { id: "diagnostics", name: "डायग्नोस्टिक्स एवं एकीकरण", href: "/capability/diagnostics", hasSubmenu: false },
     ],
   },
-  "news-media": {
-    title: "अनुप्रयोग एवं क्षेत्र",
-    items: [
-      { id: "level-crossings", name: "रेलवे लेवल क्रॉसिंग", href: "/sectors/level-crossings", hasSubmenu: false },
-      { id: "industrial-panels", name: "औद्योगिक पावर पैनल", href: "/sectors/industrial-panels", hasSubmenu: false },
-      { id: "signalling-infra", name: "सिग्नलिंग एवं पहुंच नियंत्रण", href: "/sectors/signalling-infra", hasSubmenu: false },
-    ],
-  },
   contact: {
     title: "संपर्क",
     items: [
@@ -198,7 +136,7 @@ const DRAWER_DATA_HI: Record<string, DrawerCategory> = {
     ],
   },
   support: {
-    title: "तकनीकी संसाधन",
+    title: "डाउनलोड",
     items: [
       { id: "datasheets", name: "उत्पाद डेटाशीट", href: "/support/datasheets", hasSubmenu: false },
       { id: "specifications", name: "तकनीकी विनिर्देश", href: "/support/specifications", hasSubmenu: false },
@@ -213,11 +151,9 @@ interface AramcoHeaderProps {
 
 export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
   const { lang, setLang, t } = useLanguage();
-  const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDrawerId, setActiveDrawerId] = useState<string | null>(null);
   const [activeSubmenuId, setActiveSubmenuId] = useState<string | null>(null);
-  const regionDropdownRef = useRef<HTMLDivElement>(null);
   
   // Live Scroll Progress Tracker & Sticky State
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -231,29 +167,12 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
       setScrollProgress(progress);
       const scrolled = scrollY > 40;
       setIsScrolled(scrolled);
-      if (scrolled) {
-        setIsRegionOpen(false);
-      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Click Outside to close region dropdown
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        regionDropdownRef.current &&
-        !regionDropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsRegionOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const toggleDrawer = (id: string) => {
@@ -284,23 +203,23 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeDrawer();
-        setIsRegionOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const handleLanguageClick = (code: string) => {
-    if (code === "hi") {
-      setLang("hi");
-    } else {
-      setLang("en");
-    }
-    setIsRegionOpen(false);
-  };
-
   const drawerData = lang === "hi" ? DRAWER_DATA_HI : DRAWER_DATA_EN;
+  const navLabel = (id: string) =>
+    id === "what-we-do"
+      ? t.nav.whatWeDo
+      : id === "capability"
+      ? t.nav.capability
+      : id === "about"
+      ? t.nav.about
+      : id === "support"
+      ? t.nav.support
+      : t.nav.contact;
   const currentDrawer = activeDrawerId ? drawerData[activeDrawerId] : null;
   const activeMenuItem = currentDrawer?.items.find((it) => it.id === activeSubmenuId);
   const hasSecondColumn = !!(activeMenuItem && activeMenuItem.submenuItems && activeMenuItem.submenuItems.length > 0);
@@ -383,118 +302,21 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
                 </button>
               </div>
 
-              <a
-                href="#global-contacts"
-                className={`transition-colors duration-200 text-xs sm:text-[13px] font-normal ${
-                  theme === "light"
-                    ? "text-gray-600 hover:text-[#ff3131]"
-                    : "text-white/90 hover:text-[#ff3131]"
-                }`}
-              >
-                {t.globalContacts}
-              </a>
             </div>
 
-            {/* Region Selector & Accessibility */}
-            <div className="flex items-center space-x-4 sm:space-x-5 relative" ref={regionDropdownRef}>
-              <div className="relative">
-                <button
-                  onClick={() => setIsRegionOpen(!isRegionOpen)}
-                  className={`flex items-center space-x-1.5 sm:space-x-2 group transition-colors duration-200 cursor-pointer ${
-                    theme === "light" ? "text-gray-700 hover:text-gray-950" : "text-white/90 hover:text-white"
-                  }`}
-                  aria-expanded={isRegionOpen}
-                >
-                  <span className="text-xs sm:text-[13px] hidden sm:inline-block font-normal">
-                    {lang === "hi" ? "आप ग्लोबल में हैं" : "You are in Global"}
-                  </span>
-                  <span className="text-xs sm:hidden font-normal">Global</span>
-
-                  {/* Globe Icon */}
-                  <svg
-                    className={`w-4 h-4 transition-colors ${
-                      theme === "light" ? "text-gray-600 group-hover:text-[#ff3131]" : "text-white/90 group-hover:text-[#ff3131]"
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M2 12h20" />
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  </svg>
-
-                  {/* Dropdown Chevron */}
-                  <svg
-                    className={`w-3 h-3 transition-transform duration-200 ${
-                      theme === "light" ? "text-gray-500" : "text-white/80"
-                    } ${isRegionOpen ? "rotate-180" : ""}`}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                {/* Exact Region Card */}
-                {isRegionOpen && (
-                  <div
-                    className="absolute top-full mt-2 w-[310px] sm:w-[370px] max-w-[calc(100vw-24px)] bg-white text-gray-900 rounded-[22px] shadow-[0_25px_60px_rgba(0,0,0,0.35)] px-6 sm:px-7 py-6 border border-gray-100/90 z-[9999] animate-in fade-in zoom-in-95 duration-150 -right-2 sm:right-0 origin-top-right select-none"
-                  >
-                    <div className="flex flex-col space-y-3 sm:space-y-3.5">
-                      {REGIONS_LIST.map((region) => (
-                        <div
-                          key={region.name}
-                          className="flex items-center justify-between text-[13.5px] sm:text-[15px]"
-                        >
-                          <span className="text-[#374151] font-normal tracking-tight">
-                            {region.name}
-                          </span>
-
-                          <div className="flex items-center space-x-1 font-normal">
-                            {region.languages.map((item, idx) => (
-                              <React.Fragment key={item.code + item.label}>
-                                {idx > 0 && (
-                                  <span className="text-[#64748b] text-xs font-light mx-1">
-                                    |
-                                  </span>
-                                )}
-                                <button
-                                  type="button"
-                                  onClick={() => handleLanguageClick(item.code)}
-                                  className="text-[#ff3131] hover:text-[#dc2626] underline underline-offset-2 transition-colors cursor-pointer"
-                                >
-                                  {item.label}
-                                </button>
-                              </React.Fragment>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Accessibility Icon */}
-              <button
-                aria-label="Accessibility settings"
-                className={`p-1 rounded transition-colors duration-200 cursor-pointer ${
-                  theme === "light" ? "text-gray-700 hover:text-[#ff3131]" : "text-white/90 hover:text-[#ff3131]"
-                }`}
-                title="Accessibility"
-              >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-                  <circle cx="12" cy="4.5" r="2.5" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 9h16" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v11" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 20l4.5-5 4.5 5" />
-                </svg>
-              </button>
-            </div>
+            {/* Central phone number */}
+            <a
+              href="tel:+916200264002"
+              className={`inline-flex items-center space-x-2 transition-colors duration-200 ${
+                theme === "light" ? "text-gray-800 hover:text-[#ff3131]" : "text-white hover:text-[#ff3131]"
+              }`}
+              aria-label="Call GLOBAL. on 62002-64002"
+            >
+              <svg className="w-4 h-4 text-[#ff3131]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span className="font-semibold tracking-wide tabular-nums">62002-64002</span>
+            </a>
 
           </div>
         </div>
@@ -511,99 +333,37 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
 
               {/* Navigation Links */}
               <ul className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-                {/* 1. ABOUT US */}
-                <li>
-                  <a
-                    href="/about"
-                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 border-b-2 border-transparent hover:border-[#ff3131] ${
-                      theme === "light"
-                        ? "text-gray-800 hover:text-[#ff3131]"
-                        : "text-white/90 hover:text-[#ff3131]"
-                    }`}
-                  >
-                    {t.nav.about}
-                  </a>
-                </li>
-
-                {/* 2. WHAT WE DO */}
-                <li>
-                  <button
-                    onClick={() => toggleDrawer("what-we-do")}
-                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "what-we-do"
-                        ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
-                        : theme === "light"
-                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
-                        : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
-                    }`}
-                  >
-                    {t.nav.whatWeDo}
-                  </button>
-                </li>
-
-                {/* 3. CAPABILITY */}
-                <li>
-                  <button
-                    onClick={() => toggleDrawer("capability")}
-                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "capability"
-                        ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
-                        : theme === "light"
-                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
-                        : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
-                    }`}
-                  >
-                    {t.nav.capability}
-                  </button>
-                </li>
-
-                {/* 4. NEWS & MEDIA */}
-                <li>
-                  <button
-                    onClick={() => toggleDrawer("news-media")}
-                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "news-media"
-                        ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
-                        : theme === "light"
-                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
-                        : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
-                    }`}
-                  >
-                    {t.nav.newsMedia}
-                  </button>
-                </li>
-
-                {/* 5. CONTACT */}
-                <li>
-                  <button
-                    onClick={() => toggleDrawer("contact")}
-                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "contact"
-                        ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
-                        : theme === "light"
-                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
-                        : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
-                    }`}
-                  >
-                    {t.nav.contact}
-                  </button>
-                </li>
-
-                {/* 6. SUPPORT */}
-                <li>
-                  <button
-                    onClick={() => toggleDrawer("support")}
-                    className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
-                      activeDrawerId === "support"
-                        ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
-                        : theme === "light"
-                        ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
-                        : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
-                    }`}
-                  >
-                    {t.nav.support}
-                  </button>
-                </li>
+                {NAV_ITEMS.map((item) =>
+                  item.type === "link" ? (
+                    <li key={item.id}>
+                      <a
+                        href={item.href}
+                        className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 border-b-2 border-transparent hover:border-[#ff3131] ${
+                          theme === "light"
+                            ? "text-gray-800 hover:text-[#ff3131]"
+                            : "text-white/90 hover:text-[#ff3131]"
+                        }`}
+                      >
+                        {navLabel(item.id)}
+                      </a>
+                    </li>
+                  ) : (
+                    <li key={item.id}>
+                      <button
+                        onClick={() => toggleDrawer(item.id)}
+                        className={`text-xs tracking-wider font-bold uppercase transition-all duration-200 cursor-pointer py-1 ${
+                          activeDrawerId === item.id
+                            ? "text-[#ff3131] font-bold border-b-2 border-[#ff3131]"
+                            : theme === "light"
+                            ? "text-gray-800 hover:text-[#ff3131] border-b-2 border-transparent"
+                            : "text-white/90 hover:text-[#ff3131] border-b-2 border-transparent"
+                        }`}
+                      >
+                        {navLabel(item.id)}
+                      </button>
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
 
@@ -692,32 +452,27 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
               </div>
             </div>
 
-            {/* Direct About Link */}
-            <a
-              href="/about"
-              className={`block w-full text-left text-sm font-bold tracking-wider uppercase py-2.5 border-b flex items-center justify-between hover:text-[#ff3131] ${
-                theme === "light" ? "text-gray-900 border-gray-100" : "text-white/90 border-white/5"
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <span>{t.nav.about}</span>
-              <span className="text-red-500 font-bold">→</span>
-            </a>
-
-            {/* Accordion Categories */}
-            {["what-we-do", "capability", "news-media", "contact", "support"].map((id) => {
+            {/* Navigation (same order as desktop) */}
+            {NAV_ITEMS.map((item) => {
+              if (item.type === "link") {
+                return (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    className={`w-full text-left text-sm font-bold tracking-wider uppercase py-3 border-b flex items-center justify-between hover:text-[#ff3131] ${
+                      theme === "light" ? "text-gray-900 border-gray-100" : "text-white/90 border-white/5"
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span>{navLabel(item.id)}</span>
+                    <span className="text-red-500 font-bold">→</span>
+                  </a>
+                );
+              }
+              const id = item.id;
               const category = drawerData[id];
               const isExpanded = activeDrawerId === id;
-              const name =
-                id === "what-we-do"
-                  ? t.nav.whatWeDo
-                  : id === "capability"
-                  ? t.nav.capability
-                  : id === "news-media"
-                  ? t.nav.newsMedia
-                  : id === "contact"
-                  ? t.nav.contact
-                  : t.nav.support;
+              const name = navLabel(id);
 
               return (
                 <div key={id} className={`border-b ${theme === "light" ? "border-gray-100" : "border-white/5"}`}>
@@ -804,7 +559,7 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
                 <span>{lang === "hi" ? "कर्मचारी लॉगिन (Login)" : "Employee Login"}</span>
               </a>
               <a
-                href="#contact-engineering"
+                href="/contact/engineering-team"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full py-2.5 rounded-none bg-[#ff3131] hover:bg-[#d62828] text-white text-center text-xs font-bold uppercase tracking-wider transition-all shadow-md"
               >
@@ -933,7 +688,7 @@ export default function AramcoHeader({ theme = "dark" }: AramcoHeaderProps) {
           <div className={`pt-8 mt-6 pb-6 border-t text-xs ${
             theme === "light" ? "border-gray-200 text-gray-500" : "border-white/10 text-gray-400"
           }`}>
-            <p>{lang === "hi" ? "ग्लोबल • विश्वसनीय रेलवे एवं विद्युत सुरक्षा समाधान" : "GLOBAL. • Dependable Railway & Electrical Safety Systems"}</p>
+            <p>{lang === "hi" ? "ग्लोबल • रेलवे सुरक्षा के लिए इंजीनियरिंग" : "GLOBAL. • Engineering for Railway Safety"}</p>
           </div>
         </div>
 

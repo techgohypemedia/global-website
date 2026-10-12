@@ -12,7 +12,7 @@ export default function HeroSection() {
   const SLIDES = [
     {
       id: "railway-barriers",
-      tag: lang === "hi" ? "रेलवे एवं विद्युत सुरक्षा प्रणालियां" : "RAILWAY & ELECTRICAL SAFETY SYSTEMS",
+      tag: lang === "hi" ? "रेलवे सुरक्षा के लिए इंजीनियरिंग" : "ENGINEERING FOR RAILWAY SAFETY",
       title:
         lang === "hi"
           ? "महत्वपूर्ण बुनियादी ढांचे में सुरक्षा की इंजीनियरिंग"
@@ -181,7 +181,7 @@ export default function HeroSection() {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       className="relative w-full min-h-[620px] sm:min-h-[720px] lg:min-h-[820px] h-[100dvh] sm:h-[94vh] flex flex-col justify-between overflow-hidden bg-black select-none group/hero"
-      aria-label="GLOBAL Railway & Electrical Safety Systems"
+      aria-label="GLOBAL. Engineering for Railway Safety"
     >
       {/* 
         =======================================================================

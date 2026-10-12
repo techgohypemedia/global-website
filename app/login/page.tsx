@@ -13,6 +13,7 @@ function LoginContent() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showForgotModal, setShowForgotModal] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,9 +23,16 @@ function LoginContent() {
     }
 
     setIsLoading(true);
+    setError(null);
 
+    // The employee portal is not connected yet, so every attempt is rejected.
     setTimeout(() => {
       setIsLoading(false);
+      setError(
+        lang === "hi"
+          ? "गलत पासवर्ड। कृपया अपनी कर्मचारी आईडी और पासवर्ड जांचकर पुनः प्रयास करें।"
+          : "Wrong Password. Please check your Employee ID and password and try again.",
+      );
     }, 600);
   };
 
@@ -113,7 +121,10 @@ function LoginContent() {
                     type="text"
                     id="employee-id-input"
                     value={employeeId}
-                    onChange={(e) => setEmployeeId(e.target.value)}
+                    onChange={(e) => {
+                      setEmployeeId(e.target.value);
+                      setError(null);
+                    }}
                     placeholder="e.g. EMP-ENG-4028"
                     className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-none text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] focus:ring-1 focus:ring-[#ff3131] transition-all duration-150"
                     required
@@ -147,7 +158,10 @@ function LoginContent() {
                     type={showPassword ? "text" : "password"}
                     id="employee-password-input"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setError(null);
+                    }}
                     placeholder="••••••••••••"
                     className="w-full pl-10 pr-11 py-3 bg-white border border-gray-300 rounded-none text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#ff3131] focus:ring-1 focus:ring-[#ff3131] transition-all duration-150"
                     required
@@ -186,6 +200,20 @@ function LoginContent() {
                   {lang === "hi" ? "इस डिवाइस पर याद रखें" : "Remember this device for 30 days"}
                 </label>
               </div>
+
+              {/* Wrong password message */}
+              {error && (
+                <div
+                  role="alert"
+                  id="employee-login-error"
+                  className="flex items-start space-x-2.5 p-3.5 bg-red-50 border border-red-200 rounded-none text-red-700 text-xs font-semibold animate-in fade-in duration-150"
+                >
+                  <svg className="w-4 h-4 mt-px shrink-0 text-[#ff3131]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                  </svg>
+                  <span>{error}</span>
+                </div>
+              )}
 
               {/* Submit Button */}
               <button
@@ -228,15 +256,25 @@ function LoginContent() {
             </h3>
             <p className="text-xs text-gray-600 leading-relaxed mb-4">
               {lang === "hi"
-                ? "सुरक्षा प्रोटोकॉल के अनुसार, कर्मचारी क्रेडेंशियल केवल आंतरिक सुरक्षा डेस्क या सिस्टम एडमिनिस्ट्रेटर द्वारा रीसेट किए जा सकते हैं।"
-                : "For infrastructure safety, employee credentials can only be reset through your internal systems administrator or authorized IT security officer."}
+                ? "IT सुरक्षा के लिए, कर्मचारी क्रेडेंशियल केवल HR विभाग के माध्यम से ही रीसेट किए जा सकते हैं। कृपया HR विभाग के ईमेल पर संपर्क करें या केंद्रीय फोन नंबर पर कॉल करें।"
+                : "For IT safety, employee credentials can only be reset through the HR Department. Kindly contact the HR Department Email or reach out to the central phone number."}
             </p>
             <div className="p-3.5 bg-gray-50 rounded-none border border-gray-200 text-xs text-gray-600 mb-5">
               <p className="font-semibold text-gray-900 mb-1">
-                {lang === "hi" ? "आंतरिक सहायता डेस्क:" : "Internal Help Desk:"}
+                {lang === "hi" ? "HR विभाग:" : "HR Department:"}
               </p>
-              <p>it-support@globalsystems.com</p>
-              <p>Ext: +91 (0) 11-4098-SAFE</p>
+              <p>
+                {lang === "hi" ? "ईमेल" : "Email"} :{" "}
+                <a href="mailto:hr@indiaglobalgroup.com" className="text-[#ff3131] hover:underline font-medium">
+                  hr@indiaglobalgroup.com
+                </a>
+              </p>
+              <p>
+                {lang === "hi" ? "फोन" : "Phone"} :{" "}
+                <a href="tel:+916200264002" className="text-[#ff3131] hover:underline font-medium">
+                  62002-64002
+                </a>
+              </p>
             </div>
             <button
               type="button"
@@ -251,7 +289,7 @@ function LoginContent() {
 
       {/* Bottom Footer */}
       <footer className="relative z-10 w-full py-4 border-t border-gray-200 bg-gray-50 text-center text-xs text-gray-500">
-        <p>© 2026 GLOBAL. Railway & Electrical Safety Systems. All rights reserved.</p>
+        <p>© 2026 GLOBAL. Engineering for Railway Safety. All rights reserved.</p>
       </footer>
 
     </div>

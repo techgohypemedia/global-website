@@ -20,7 +20,6 @@ export interface TranslationSchema {
     about: string;
     whatWeDo: string;
     capability: string;
-    newsMedia: string;
     contact: string;
     support: string;
   };
@@ -175,14 +174,13 @@ export const translations: Record<Language, TranslationSchema> = {
     searchPlaceholder: "Search railway barriers, earth leakage detectors, technical specifications...",
     nav: {
       about: "ABOUT US",
-      whatWeDo: "WHAT WE DO",
-      capability: "CAPABILITY",
-      newsMedia: "NEWS & MEDIA",
+      whatWeDo: "PRODUCTS",
+      capability: "CAPABILITIES",
       contact: "CONTACT",
-      support: "SUPPORT",
+      support: "DOWNLOADS",
     },
     hero: {
-      tag: "RAILWAY & ELECTRICAL SAFETY SYSTEMS",
+      tag: "ENGINEERING FOR RAILWAY SAFETY",
       title: "Engineering Safety Into Critical Infrastructure",
       ctaText: "Explore Our Products",
       elementsTitle: "Digital Earth Leakage Detector: Detect electrical leakage before it becomes a bigger problem",
@@ -321,7 +319,7 @@ export const translations: Record<Language, TranslationSchema> = {
       quickLinks: "OUR PRODUCTS",
       siteInfo: "APPLICATIONS & ENGINEERING",
       otherWebsites: "SUPPORT & RESOURCES",
-      copyright: "© 2026 GLOBAL. Railway & Electrical Safety Systems. All rights reserved.",
+      copyright: "© 2026 GLOBAL. Engineering for Railway Safety. All rights reserved.",
       tagline: "Engineering practical solutions for safer railway crossings, electrical monitoring and critical infrastructure.",
     },
   },
@@ -340,14 +338,13 @@ export const translations: Record<Language, TranslationSchema> = {
     searchPlaceholder: "रेलवे बैरियर, अर्थ लीकेज डिटेक्टर, तकनीकी विवरण खोजें...",
     nav: {
       about: "परिचय",
-      whatWeDo: "हम क्या करते हैं",
+      whatWeDo: "उत्पाद",
       capability: "क्षमताएं",
-      newsMedia: "समाचार एवं मीडिया",
       contact: "संपर्क",
-      support: "सहायता",
+      support: "डाउनलोड",
     },
     hero: {
-      tag: "रेलवे एवं विद्युत सुरक्षा प्रणालियां",
+      tag: "रेलवे सुरक्षा के लिए इंजीनियरिंग",
       title: "महत्वपूर्ण बुनियादी ढांचे में सुरक्षा की इंजीनियरिंग",
       ctaText: "हमारे उत्पाद देखें",
       elementsTitle: "डिजिटल अर्थ लीकेज डिटेक्टर: समस्या बढ़ने से पहले लीकेज का पता लगाएं",
@@ -486,7 +483,7 @@ export const translations: Record<Language, TranslationSchema> = {
       quickLinks: "हमारे उत्पाद",
       siteInfo: "अनुप्रयोग एवं इंजीनियरिंग",
       otherWebsites: "सहायता एवं संसाधन",
-      copyright: "© 2026 GLOBAL. रेलवे एवं विद्युत सुरक्षा प्रणालियां। सर्वाधिकार सुरक्षित।",
+      copyright: "© 2026 GLOBAL. रेलवे सुरक्षा के लिए इंजीनियरिंग। सर्वाधिकार सुरक्षित।",
       tagline: "सुरक्षित रेलवे क्रॉसिंग, विद्युत निगरानी और महत्वपूर्ण बुनियादी ढांचे के लिए व्यावहारिक समाधान।",
     },
   },

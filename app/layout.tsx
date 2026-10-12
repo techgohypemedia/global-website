@@ -26,7 +26,7 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: "GLOBAL. | Railway & Electrical Safety Systems",
+  title: "GLOBAL. | Engineering for Railway Safety",
   description: "Specialised infrastructure safety solutions: Railway Barrier Systems and Digital Earth Leakage Detectors.",
 };
 

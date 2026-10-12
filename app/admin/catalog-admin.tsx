@@ -1219,6 +1219,19 @@ export default function CatalogAdmin() {
                         <span>↧</span>
                       </a>
 
+                      <a
+                        download="Newsletter-Subscribers.csv"
+                        className="export-option"
+                        href="/api/newsletter?format=csv"
+                      >
+                        <Icon name="Import / Export" />
+                        <span>
+                          <strong>Newsletter subscribers (.csv)</strong>
+                          <small>Emails collected by the website subscribe form</small>
+                        </span>
+                        <span>↧</span>
+                      </a>
+
                       <h3>Recent imports</h3>
                       {data.imports.length ? (
                         data.imports.map((i) => (

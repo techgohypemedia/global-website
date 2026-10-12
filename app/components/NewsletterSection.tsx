@@ -7,15 +7,50 @@ export default function NewsletterSection() {
   const { lang } = useLanguage();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
+    if (!email.trim() || isSending) return;
+    setIsSending(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), lang }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        duplicate?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.ok) {
+        throw new Error(
+          data.error ||
+            (lang === "hi"
+              ? "सदस्यता सहेजी नहीं जा सकी। कृपया पुनः प्रयास करें।"
+              : "We could not save your subscription. Please try again."),
+        );
+      }
+      setSuccessMessage(
+        data.duplicate
+          ? lang === "hi"
+            ? "यह ईमेल पहले से सब्सक्राइब है। आपको हमारे तकनीकी अपडेट मिलते रहेंगे।"
+            : "This email is already subscribed. You will keep receiving our technical updates."
+          : lang === "hi"
+          ? "सदस्यता लेने के लिए धन्यवाद! हम जल्द ही अपडेट भेजेंगे।"
+          : "Thank you for subscribing! We'll keep you updated with our latest releases.",
+      );
       setIsSubmitted(true);
       setEmail("");
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 4000);
+      setTimeout(() => setIsSubmitted(false), 6000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Subscription failed.");
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -60,11 +95,7 @@ export default function NewsletterSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span>
-                  {lang === "hi"
-                    ? "सदस्यता लेने के लिए धन्यवाद! हम जल्द ही अपडेट भेजेंगे।"
-                    : "Thank you for subscribing! We'll keep you updated with our latest releases."}
-                </span>
+                <span>{successMessage}</span>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
@@ -80,7 +111,10 @@ export default function NewsletterSection() {
                     type="email"
                     required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setError(null);
+                    }}
                     placeholder="name@email.com"
                     className="w-full pl-11 pr-4 py-3.5 sm:py-4 rounded-xl bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#ff3131] focus:ring-4 focus:ring-[#ff3131]/10 transition-all text-sm sm:text-base shadow-sm"
                   />
@@ -89,9 +123,18 @@ export default function NewsletterSection() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="px-8 py-3.5 sm:py-4 rounded-xl bg-[#ff3131] hover:bg-[#d62828] text-white font-semibold text-sm sm:text-base transition-all duration-300 shadow-[0_4px_14px_rgba(255,49,49,0.35)] hover:shadow-[0_6px_20px_rgba(255,49,49,0.45)] flex items-center justify-center space-x-2 shrink-0 cursor-pointer group"
+                  disabled={isSending}
+                  className="px-8 py-3.5 sm:py-4 rounded-xl bg-[#ff3131] hover:bg-[#d62828] text-white font-semibold text-sm sm:text-base transition-all duration-300 shadow-[0_4px_14px_rgba(255,49,49,0.35)] hover:shadow-[0_6px_20px_rgba(255,49,49,0.45)] flex items-center justify-center space-x-2 shrink-0 cursor-pointer group disabled:opacity-70 disabled:cursor-wait"
                 >
-                  <span>{lang === "hi" ? "अभी सब्सक्राइब करें" : "Subscribe Now"}</span>
+                  <span>
+                    {isSending
+                      ? lang === "hi"
+                        ? "सहेजा जा रहा है..."
+                        : "Subscribing..."
+                      : lang === "hi"
+                      ? "अभी सब्सक्राइब करें"
+                      : "Subscribe Now"}
+                  </span>
                   <svg
                     className="w-4 h-4 ml-1 transform group-hover:translate-x-1.5 transition-transform duration-200"
                     fill="none"
@@ -104,6 +147,12 @@ export default function NewsletterSection() {
                 </button>
 
               </form>
+            )}
+
+            {error && (
+              <p role="alert" className="mt-3 text-sm font-medium text-red-600">
+                {error}
+              </p>
             )}
 
             {/* Feature Checklist Below Form */}

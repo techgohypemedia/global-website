@@ -5,17 +5,17 @@ import { useLanguage } from "../context/LanguageContext";
 import GlobalLogo from "./GlobalLogo";
 
 const PRODUCTS_LINKS_EN = [
-  { name: "Railway Barrier System", href: "#railway-barrier-system" },
-  { name: "Digital Earth Leakage Detector", href: "#earth-leakage-detector" },
-  { name: "Fail-Safe Signaling Mechanism", href: "#signaling" },
-  { name: "Industrial Electrical Panels", href: "#industrial-panels" },
+  { name: "Electric Lifting Barrier (ELB)", href: "/products/railway-barrier" },
+  { name: "Galvanised Iron (GI) Boom", href: "/products/gi-boom" },
+  { name: "Motorised Locking", href: "/products/motorised-locking" },
+  { name: "Earth Leakage Detector (ELD)", href: "/products/earth-leakage" },
 ];
 
 const COMPANY_LINKS_EN = [
   { name: "About Us", href: "/about" },
-  { name: "Careers", href: "#careers" },
-  { name: "Contact Us", href: "#contact-engineering" },
-  { name: "Request a Quote", href: "#contact-engineering" },
+  { name: "Careers", href: "/careers" },
+  { name: "Contact Us", href: "/contact" },
+  { name: "Request a Quote", href: "/contact/quote-req" },
 ];
 
 const LEGAL_SUPPORT_LINKS_EN = [
@@ -26,17 +26,17 @@ const LEGAL_SUPPORT_LINKS_EN = [
 ];
 
 const PRODUCTS_LINKS_HI = [
-  { name: "रेलवे बैरियर सिस्टम", href: "#railway-barrier-system" },
-  { name: "डिजिटल अर्थ लीकेज डिटेक्टर", href: "#earth-leakage-detector" },
-  { name: "सिग्नलिंग इंटरफेस", href: "#signaling" },
-  { name: "औद्योगिक विद्युत पैनल", href: "#industrial-panels" },
+  { name: "इलेक्ट्रिक लिफ्टिंग बैरियर (ELB)", href: "/products/railway-barrier" },
+  { name: "गैल्वनाइज़्ड आयरन (GI) बूम", href: "/products/gi-boom" },
+  { name: "मोटराइज़्ड लॉकिंग", href: "/products/motorised-locking" },
+  { name: "अर्थ लीकेज डिटेक्टर (ELD)", href: "/products/earth-leakage" },
 ];
 
 const COMPANY_LINKS_HI = [
   { name: "हमारे बारे में", href: "/about" },
-  { name: "करियर", href: "#careers" },
-  { name: "संपर्क करें", href: "#contact-engineering" },
-  { name: "कोटेशन प्राप्त करें", href: "#contact-engineering" },
+  { name: "करियर", href: "/careers" },
+  { name: "संपर्क करें", href: "/contact" },
+  { name: "कोटेशन प्राप्त करें", href: "/contact/quote-req" },
 ];
 
 const LEGAL_SUPPORT_LINKS_HI = [
@@ -67,11 +67,9 @@ export default function Footer() {
         {/* Brand Summary Banner */}
         <div className="mb-12 pb-10 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <div className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight font-sans">
-              GLOBAL
-            </div>
-            <div className="text-xs sm:text-sm font-semibold text-[#ff3131] tracking-wider uppercase mt-0.5">
-              {lang === "hi" ? "रेलवे एवं विद्युत सुरक्षा प्रणालियां" : "Railway & Electrical Safety Systems"}
+            <GlobalLogo theme="light" size="lg" />
+            <div className="text-xs sm:text-sm font-semibold text-[#ff3131] tracking-wider uppercase mt-2">
+              {lang === "hi" ? "रेलवे सुरक्षा के लिए इंजीनियरिंग" : "Engineering for Railway Safety"}
             </div>
             <p className="text-xs sm:text-sm text-gray-600 font-light max-w-2xl mt-2 leading-relaxed">
               {lang === "hi"
@@ -82,13 +80,13 @@ export default function Footer() {
 
           <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2.5 sm:gap-3">
             <a
-              href="#contact-engineering"
+              href="/contact/quote-req"
               className="px-5 py-2.5 rounded-none bg-red-600 hover:bg-[#d62828] text-white text-center text-xs sm:text-sm font-medium transition-all shadow-md"
             >
               {lang === "hi" ? "कोटेशन प्राप्त करें" : "Request a Quote"}
             </a>
             <a
-              href="#contact-engineering"
+              href="/support"
               className="px-5 py-2.5 rounded-none border border-gray-300 hover:border-gray-900 text-gray-800 text-center text-xs sm:text-sm font-medium transition-all"
             >
               {lang === "hi" ? "तकनीकी सहायता" : "Technical Support"}
@@ -168,7 +166,7 @@ export default function Footer() {
           <div className="order-1 sm:order-2">
             <button
               onClick={scrollToTop}
-              className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#ff3131] flex items-center justify-center text-gray-800 hover:text-[#ff3131] hover:bg-[#ff3131]/5 transition-all shadow-sm cursor-pointer group"
+              className="w-10 h-10 rounded-full bg-[#ff3131] hover:bg-[#d62828] border border-[#ff3131] flex items-center justify-center text-white transition-all shadow-md shadow-red-500/30 cursor-pointer group"
               aria-label="Scroll to top"
               title="Back to top"
             >

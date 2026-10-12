@@ -9,8 +9,8 @@ export const SUBPAGES_DATA: Record<string, SubpageConfig> = {
     categoryEn: "Our Products",
     categoryHi: "हमारे उत्पाद",
     categoryHref: "/products/railway-barrier",
-    titleEn: "Railway Barrier System",
-    titleHi: "रेलवे बैरियर सिस्टम",
+    titleEn: "Electric Lifting Barrier (ELB)",
+    titleHi: "इलेक्ट्रिक लिफ्टिंग बैरियर (ELB)",
     subtitleEn: "Heavy-duty electromechanical barrier automation engineered for railway level crossings, perimeter security corridors, and mission-critical vehicular access control.",
     subtitleHi: "रेलवे लेवल क्रॉसिंग, परिधि सुरक्षा गलियारों और महत्वपूर्ण वाहन पहुंच नियंत्रण के लिए इंजीनियर की गई अत्यधिक मजबूत इलेक्ट्रोमैकेनिकल बैरियर ऑटोमेशन प्रणाली।",
     bannerImage: "/images/boom_barrier_railway.jpg",
@@ -408,8 +408,8 @@ export const SUBPAGES_DATA: Record<string, SubpageConfig> = {
     categoryEn: "Our Products",
     categoryHi: "हमारे उत्पाद",
     categoryHref: "/products/earth-leakage",
-    titleEn: "Digital Earth Leakage Detector",
-    titleHi: "डिजिटल अर्थ लीकेज डिटेक्टर",
+    titleEn: "Earth Leakage Detector (ELD)",
+    titleHi: "अर्थ लीकेज डिटेक्टर (ELD)",
     subtitleEn: "High-precision microprocessor-based True RMS residual current monitoring and insulation diagnostic instruments for industrial switchboards and railway signalling power supplies.",
     subtitleHi: "औद्योगिक स्विचबोर्ड और रेलवे सिग्नलिंग पावर सप्लाई के लिए उच्च-सटीक माइक्रोप्रोसेसर आधारित ट्रू RMS अर्थ लीकेज और इंसुलेशन डायग्नोस्टिक उपकरण।",
     bannerImage: "/images/earth_leakage_detector_hero.jpg",
@@ -1747,6 +1747,343 @@ export const SUBPAGES_DATA: Record<string, SubpageConfig> = {
     relatedLinks: [
       { titleEn: "Talk to Engineering", titleHi: "इंजीनियरिंग से बात करें", href: "/contact/engineering-team", tagEn: "CONSULT", tagHi: "परामर्श" },
       { titleEn: "Product Datasheets", titleHi: "डेटाशीट डाउनलोड", href: "/support/datasheets", tagEn: "DOWNLOADS", tagHi: "डाउनलोड" }
+    ]
+  },
+  "gi-boom": {
+    slug: "gi-boom",
+    categoryEn: "Products",
+    categoryHi: "उत्पाद",
+    categoryHref: "/products/gi-boom",
+    titleEn: "Galvanised Iron (GI) Boom",
+    titleHi: "गैल्वनाइज़्ड आयरन (GI) बूम",
+    subtitleEn: "Hot-dip galvanised tubular boom assemblies for Electric Lifting Barriers, engineered for long-span level crossings, high wind loads and decades of corrosion-free service.",
+    subtitleHi: "इलेक्ट्रिक लिफ्टिंग बैरियर के लिए हॉट-डिप गैल्वनाइज़्ड ट्यूबलर बूम असेंबली, जो लंबे लेवल क्रॉसिंग, तेज़ हवा के भार और दशकों तक जंग-मुक्त सेवा के लिए इंजीनियर की गई है।",
+    bannerImage: "/images/fail_safe_boom.jpg",
+    heroBadgeEn: "PRODUCT DOMAIN 03 • BOOM HARDWARE",
+    heroBadgeHi: "उत्पाद डोमेन 03 • बूम हार्डवेयर",
+    stats: [
+      { value: "4m – 12m", labelEn: "Boom Span Range", labelHi: "बूम स्पैन रेंज" },
+      { value: "≥ 85 µm", labelEn: "Hot-Dip Zinc Coating", labelHi: "हॉट-डिप ज़िंक कोटिंग" },
+      { value: "150 km/h", labelEn: "Rated Wind Load", labelHi: "रेटेड विंड लोड" },
+      { value: "25 yrs", labelEn: "Design Service Life", labelHi: "डिज़ाइन सेवा अवधि" },
+    ],
+    overviewTitleEn: "Boom Arms Built for Indian Railway Level Crossings",
+    overviewTitleHi: "भारतीय रेलवे लेवल क्रॉसिंग के लिए निर्मित बूम आर्म",
+    overviewTextEn: [
+      "The GLOBAL GI Boom is the standard boom arm supplied with our Electric Lifting Barrier (ELB) machines. Each boom is fabricated from seamless mild-steel tube, hot-dip galvanised to IS 4759 / IS 2629 and finished with retro-reflective red and white bands for day and night visibility.",
+      "Booms are supplied as single-piece or jointed sections with precision-drilled counterweight flanges, so that the ELB gearbox sees a balanced load across the full 0° – 90° travel. This keeps motor current low, extends gearbox life and guarantees gravity descent during power failure.",
+      "Every boom is proof-loaded before dispatch and ships with mounting bolts, boom-tip reflectors, fringe-skirt brackets and a traceable batch certificate for RDSO documentation."
+    ],
+    overviewTextHi: [
+      "ग्लोबल GI बूम हमारी इलेक्ट्रिक लिफ्टिंग बैरियर (ELB) मशीनों के साथ आपूर्ति किया जाने वाला मानक बूम आर्म है। प्रत्येक बूम सीमलेस माइल्ड-स्टील ट्यूब से निर्मित है, IS 4759 / IS 2629 के अनुसार हॉट-डिप गैल्वनाइज़्ड है और दिन-रात दृश्यता के लिए रेट्रो-रिफ्लेक्टिव लाल-सफेद पट्टियों से सुसज्जित है।",
+      "बूम सिंगल-पीस या जोड़ वाले खंडों में उपलब्ध हैं, जिनमें सटीक ड्रिल किए गए काउंटरवेट फ्लैंज होते हैं ताकि ELB गियरबॉक्स पर 0° – 90° की पूरी यात्रा में संतुलित भार रहे। इससे मोटर करंट कम रहता है, गियरबॉक्स की आयु बढ़ती है और बिजली जाने पर ग्रेविटी डिसेंट सुनिश्चित होता है।",
+      "प्रत्येक बूम को डिस्पैच से पहले प्रूफ-लोड किया जाता है और माउंटिंग बोल्ट, बूम-टिप रिफ्लेक्टर, फ्रिंज-स्कर्ट ब्रैकेट तथा RDSO दस्तावेज़ीकरण हेतु बैच प्रमाणपत्र के साथ भेजा जाता है।"
+    ],
+    complianceStandards: ["IS 4759 (Hot-Dip Galvanising)", "IS 1239 / IS 3589 Tube", "RDSO Specification Compatible", "IS 875 Wind Load"],
+    features: [
+      {
+        badgeEn: "CORROSION",
+        badgeHi: "जंग सुरक्षा",
+        titleEn: "Hot-Dip Galvanised Inside & Out",
+        titleHi: "अंदर-बाहर हॉट-डिप गैल्वनाइज़्ड",
+        descEn: "Full immersion galvanising coats the tube bore as well as the surface, preventing hidden internal rusting in coastal and high-humidity zones.",
+        descHi: "पूर्ण इमर्शन गैल्वनाइज़िंग ट्यूब के भीतरी भाग को भी कोट करती है, जिससे तटीय और अधिक नमी वाले क्षेत्रों में छिपी जंग नहीं लगती।"
+      },
+      {
+        badgeEn: "VISIBILITY",
+        badgeHi: "दृश्यता",
+        titleEn: "Retro-Reflective Safety Bands",
+        titleHi: "रेट्रो-रिफ्लेक्टिव सुरक्षा पट्टियां",
+        descEn: "Class-B reflective red/white sheeting with optional LED boom lights keeps the barrier visible to road users at night and in fog.",
+        descHi: "क्लास-B रिफ्लेक्टिव लाल/सफेद शीटिंग और वैकल्पिक LED बूम लाइट रात और कोहरे में बैरियर को सड़क उपयोगकर्ताओं के लिए दृश्यमान रखती है।"
+      },
+      {
+        badgeEn: "BALANCE",
+        badgeHi: "संतुलन",
+        titleEn: "Factory-Matched Counterweights",
+        titleHi: "फैक्ट्री-मैच्ड काउंटरवेट",
+        descEn: "Cast counterweights are matched to each boom length so the ELB holds position at any angle and descends under gravity on power loss.",
+        descHi: "कास्ट काउंटरवेट प्रत्येक बूम लंबाई से मेल खाते हैं ताकि ELB किसी भी कोण पर स्थिर रहे और बिजली जाने पर ग्रेविटी से नीचे आए।"
+      },
+      {
+        badgeEn: "FIELD FIT",
+        badgeHi: "फील्ड फिटिंग",
+        titleEn: "Jointed Sections for Easy Transport",
+        titleHi: "आसान परिवहन हेतु जोड़ वाले खंड",
+        descEn: "Long spans ship as two bolted sections with alignment sleeves, allowing installation at remote gates without heavy lifting equipment.",
+        descHi: "लंबे स्पैन दो बोल्टेड खंडों में अलाइनमेंट स्लीव के साथ भेजे जाते हैं, जिससे दूरस्थ गेटों पर भारी उपकरण के बिना इंस्टॉलेशन संभव है।"
+      },
+      {
+        badgeEn: "ACCESSORIES",
+        badgeHi: "सहायक उपकरण",
+        titleEn: "Fringe Skirt & Tip Support Options",
+        titleHi: "फ्रिंज स्कर्ट एवं टिप सपोर्ट विकल्प",
+        descEn: "Hanging skirt curtains deter pedestrians and two-wheelers from ducking under the boom; a tip rest post supports spans above 8 m.",
+        descHi: "लटकती स्कर्ट पैदल यात्रियों और दोपहिया वाहनों को बूम के नीचे से निकलने से रोकती है; 8 मीटर से लंबे स्पैन के लिए टिप रेस्ट पोस्ट उपलब्ध है।"
+      },
+      {
+        badgeEn: "TRACEABILITY",
+        badgeHi: "ट्रेसेबिलिटी",
+        titleEn: "Batch-Stamped & QR Registered",
+        titleHi: "बैच-स्टैम्प्ड एवं QR पंजीकृत",
+        descEn: "Each boom carries a stamped batch number and can be registered in the GLOBAL QR equipment registry alongside its ELB machine.",
+        descHi: "प्रत्येक बूम पर बैच नंबर अंकित होता है और इसे ELB मशीन के साथ ग्लोबल QR उपकरण रजिस्ट्री में पंजीकृत किया जा सकता है।"
+      }
+    ],
+    specs: [
+      { labelEn: "Tube Material", labelHi: "ट्यूब सामग्री", valueEn: "ERW Mild Steel, IS 1239 / IS 3589", valueHi: "ERW माइल्ड स्टील, IS 1239 / IS 3589" },
+      { labelEn: "Galvanising", labelHi: "गैल्वनाइज़िंग", valueEn: "Hot-dip, ≥ 85 µm (610 g/m²)", valueHi: "हॉट-डिप, ≥ 85 µm (610 g/m²)" },
+      { labelEn: "Boom Length", labelHi: "बूम लंबाई", valueEn: "4 m to 12 m (single or jointed)", valueHi: "4 m से 12 m (सिंगल या जोड़ वाला)" },
+      { labelEn: "Tube Diameter", labelHi: "ट्यूब व्यास", valueEn: "76 mm / 89 mm / 114 mm OD, tapered options", valueHi: "76 mm / 89 mm / 114 mm OD, टेपर्ड विकल्प" },
+      { labelEn: "Reflective Sheeting", labelHi: "रिफ्लेक्टिव शीटिंग", valueEn: "Class-B red/white, 300 mm alternating bands", valueHi: "क्लास-B लाल/सफेद, 300 mm बारी-बारी पट्टियां" },
+      { labelEn: "Wind Load Rating", labelHi: "विंड लोड रेटिंग", valueEn: "150 km/h in lowered position (IS 875)", valueHi: "नीचे की स्थिति में 150 km/h (IS 875)" },
+      { labelEn: "Compatible Machines", labelHi: "संगत मशीनें", valueEn: "GLOBAL ELB – all variants", valueHi: "ग्लोबल ELB – सभी वेरिएंट" }
+    ],
+    applications: [
+      {
+        tagEn: "LEVEL CROSSINGS",
+        tagHi: "लेवल क्रॉसिंग",
+        titleEn: "Manned & Interlocked LC Gates",
+        titleHi: "मैन्ड एवं इंटरलॉक्ड LC गेट",
+        descEn: "Standard boom for single and double-lane road crossings on Indian Railways zones.",
+        descHi: "भारतीय रेलवे ज़ोन में सिंगल और डबल-लेन सड़क क्रॉसिंग के लिए मानक बूम।"
+      },
+      {
+        tagEn: "WIDE ROADS",
+        tagHi: "चौड़ी सड़कें",
+        titleEn: "Four-Lane Highway Crossings",
+        titleHi: "चार-लेन हाईवे क्रॉसिंग",
+        descEn: "Jointed 10 – 12 m spans with tip rests for wide carriageways and divided roads.",
+        descHi: "चौड़े कैरिजवे और विभाजित सड़कों के लिए टिप रेस्ट सहित 10 – 12 मीटर जोड़ वाले स्पैन।"
+      },
+      {
+        tagEn: "REPLACEMENT",
+        tagHi: "प्रतिस्थापन",
+        titleEn: "Spare Booms for Existing Gates",
+        titleHi: "मौजूदा गेटों के लिए स्पेयर बूम",
+        descEn: "Drop-in replacement booms for damaged or corroded arms on installed ELB machines.",
+        descHi: "स्थापित ELB मशीनों पर क्षतिग्रस्त या जंग लगे आर्म के लिए सीधे बदले जाने वाले बूम।"
+      }
+    ],
+    relatedLinks: [
+      { titleEn: "Electric Lifting Barrier (ELB)", titleHi: "इलेक्ट्रिक लिफ्टिंग बैरियर (ELB)", href: "/products/railway-barrier", tagEn: "MACHINE", tagHi: "मशीन" },
+      { titleEn: "Motorised Locking", titleHi: "मोटराइज़्ड लॉकिंग", href: "/products/motorised-locking", tagEn: "LOCKING", tagHi: "लॉकिंग" },
+      { titleEn: "Request a Quote", titleHi: "कोटेशन प्राप्त करें", href: "/contact/quote-req", tagEn: "QUOTATION", tagHi: "कोटेशन" }
+    ]
+  },
+
+  "motorised-locking": {
+    slug: "motorised-locking",
+    categoryEn: "Products",
+    categoryHi: "उत्पाद",
+    categoryHref: "/products/motorised-locking",
+    titleEn: "Motorised Locking",
+    titleHi: "मोटराइज़्ड लॉकिंग",
+    subtitleEn: "Electrically driven boom-locking units that positively lock the Electric Lifting Barrier in the closed position and prove the locked state back to the station interlocking.",
+    subtitleHi: "इलेक्ट्रिक रूप से संचालित बूम-लॉकिंग इकाइयां जो इलेक्ट्रिक लिफ्टिंग बैरियर को बंद स्थिति में मजबूती से लॉक करती हैं और लॉक की स्थिति को स्टेशन इंटरलॉकिंग तक प्रमाणित करती हैं।",
+    bannerImage: "/images/power_backup.jpg",
+    heroBadgeEn: "PRODUCT DOMAIN 04 • INTERLOCKING SAFETY",
+    heroBadgeHi: "उत्पाद डोमेन 04 • इंटरलॉकिंग सुरक्षा",
+    stats: [
+      { value: "< 3s", labelEn: "Lock / Unlock Time", labelHi: "लॉक / अनलॉक समय" },
+      { value: "2 Ch", labelEn: "Proving Contacts", labelHi: "प्रूविंग कॉन्टैक्ट" },
+      { value: "IP65", labelEn: "Sealed Drive Housing", labelHi: "सील्ड ड्राइव हाउसिंग" },
+      { value: "Manual", labelEn: "Key Release Override", labelHi: "की रिलीज़ ओवरराइड" },
+    ],
+    overviewTitleEn: "Positive Locking, Proven to the Interlocking",
+    overviewTitleHi: "सकारात्मक लॉकिंग, इंटरलॉकिंग तक प्रमाणित",
+    overviewTextEn: [
+      "GLOBAL Motorised Locking is fitted at the boom pedestal or tip post of an Electric Lifting Barrier. Once the boom reaches the horizontal position, a geared DC actuator drives a hardened locking bolt into the boom bracket so the gate cannot be lifted by hand, wind or vehicle impact.",
+      "Dual proving contacts confirm the bolt is fully home and feed the gate-closed-and-locked indication to the station master's panel, the electronic interlocking or the relay interlocking, satisfying the locking requirement for interlocked level crossings.",
+      "The unit is supplied with a manual key release so that the gate keeper can unlock the boom during power failure or maintenance, and it shares the ELB's 24 V DC supply and battery backup."
+    ],
+    overviewTextHi: [
+      "ग्लोबल मोटराइज़्ड लॉकिंग इलेक्ट्रिक लिफ्टिंग बैरियर के बूम पेडस्टल या टिप पोस्ट पर लगाई जाती है। जैसे ही बूम क्षैतिज स्थिति में पहुंचता है, एक गियर्ड DC एक्चुएटर कठोर लॉकिंग बोल्ट को बूम ब्रैकेट में धकेलता है ताकि गेट को हाथ, हवा या वाहन के टकराने से उठाया न जा सके।",
+      "दोहरे प्रूविंग कॉन्टैक्ट पुष्टि करते हैं कि बोल्ट पूरी तरह अपनी जगह पर है और गेट-बंद-एवं-लॉक्ड संकेत स्टेशन मास्टर पैनल, इलेक्ट्रॉनिक इंटरलॉकिंग या रिले इंटरलॉकिंग तक पहुंचाते हैं, जिससे इंटरलॉक्ड लेवल क्रॉसिंग की लॉकिंग आवश्यकता पूरी होती है।",
+      "इकाई के साथ मैनुअल की रिलीज़ दी जाती है ताकि गेटकीपर बिजली जाने या रखरखाव के दौरान बूम को अनलॉक कर सके, और यह ELB की 24 V DC आपूर्ति और बैटरी बैकअप साझा करती है।"
+    ],
+    complianceStandards: ["RDSO Interlocked LC Gate Requirements", "EN 50126 (RAMS)", "IP65 Sealed", "Fail-Safe Proving Circuit"],
+    features: [
+      {
+        badgeEn: "DRIVE",
+        badgeHi: "ड्राइव",
+        titleEn: "Geared 24 V DC Actuator",
+        titleHi: "गियर्ड 24 V DC एक्चुएटर",
+        descEn: "Self-locking worm gear holds the bolt without continuous power, so the lock stays engaged even if supply is lost.",
+        descHi: "सेल्फ-लॉकिंग वर्म गियर बिना निरंतर बिजली के बोल्ट को पकड़े रखता है, जिससे आपूर्ति कटने पर भी लॉक लगा रहता है।"
+      },
+      {
+        badgeEn: "PROVING",
+        badgeHi: "प्रूविंग",
+        titleEn: "Dual-Channel Lock Proving",
+        titleHi: "ड्यूल-चैनल लॉक प्रूविंग",
+        descEn: "Two independent limit contacts prove the locked and unlocked positions to the interlocking for fail-safe signalling.",
+        descHi: "दो स्वतंत्र लिमिट कॉन्टैक्ट लॉक्ड और अनलॉक्ड स्थितियों को फेल-सेफ सिग्नलिंग हेतु इंटरलॉकिंग को प्रमाणित करते हैं।"
+      },
+      {
+        badgeEn: "SEQUENCING",
+        badgeHi: "अनुक्रमण",
+        titleEn: "Interlocked with Boom Travel",
+        titleHi: "बूम गति के साथ इंटरलॉक्ड",
+        descEn: "Locks only after the boom-down limit is proved and releases before the ELB is allowed to raise, preventing mechanical clash.",
+        descHi: "बूम-डाउन लिमिट प्रमाणित होने के बाद ही लॉक होता है और ELB उठने से पहले रिलीज़ होता है, जिससे यांत्रिक टकराव नहीं होता।"
+      },
+      {
+        badgeEn: "OVERRIDE",
+        badgeHi: "ओवरराइड",
+        titleEn: "Manual Key Release",
+        titleHi: "मैनुअल की रिलीज़",
+        descEn: "A captive key allows authorised staff to withdraw the bolt during outages; key removal is only possible with the lock re-engaged.",
+        descHi: "कैप्टिव की से अधिकृत कर्मी बिजली कटौती के दौरान बोल्ट हटा सकते हैं; की केवल लॉक पुनः लगने पर ही निकाली जा सकती है।"
+      },
+      {
+        badgeEn: "HARDWARE",
+        badgeHi: "हार्डवेयर",
+        titleEn: "Hardened Bolt & Galvanised Housing",
+        titleHi: "कठोर बोल्ट एवं गैल्वनाइज़्ड हाउसिंग",
+        descEn: "Case-hardened 25 mm locking bolt in a hot-dip galvanised housing resists tampering and corrosion.",
+        descHi: "हॉट-डिप गैल्वनाइज़्ड हाउसिंग में केस-हार्डन्ड 25 mm लॉकिंग बोल्ट छेड़छाड़ और जंग का प्रतिरोध करता है।"
+      },
+      {
+        badgeEn: "DIAGNOSTICS",
+        badgeHi: "डायग्नोस्टिक्स",
+        titleEn: "Cycle Count & Fault Reporting",
+        titleHi: "साइकिल काउंट एवं फॉल्ट रिपोर्टिंग",
+        descEn: "Lock cycles, motor current and bolt-jam faults are logged by the ELB controller and available over RS-485.",
+        descHi: "लॉक साइकिल, मोटर करंट और बोल्ट-जाम फॉल्ट ELB कंट्रोलर द्वारा लॉग किए जाते हैं और RS-485 पर उपलब्ध हैं।"
+      }
+    ],
+    specs: [
+      { labelEn: "Supply", labelHi: "आपूर्ति", valueEn: "24 V DC from ELB controller (battery backed)", valueHi: "ELB कंट्रोलर से 24 V DC (बैटरी बैकअप सहित)" },
+      { labelEn: "Actuator", labelHi: "एक्चुएटर", valueEn: "Geared DC motor, self-locking worm drive", valueHi: "गियर्ड DC मोटर, सेल्फ-लॉकिंग वर्म ड्राइव" },
+      { labelEn: "Locking Bolt", labelHi: "लॉकिंग बोल्ट", valueEn: "25 mm case-hardened steel, 40 mm throw", valueHi: "25 mm केस-हार्डन्ड स्टील, 40 mm थ्रो" },
+      { labelEn: "Proving Contacts", labelHi: "प्रूविंग कॉन्टैक्ट", valueEn: "2 × independent, 24 V / 110 V relay compatible", valueHi: "2 × स्वतंत्र, 24 V / 110 V रिले संगत" },
+      { labelEn: "Lock / Unlock Time", labelHi: "लॉक / अनलॉक समय", valueEn: "≤ 3 seconds", valueHi: "≤ 3 सेकंड" },
+      { labelEn: "Ingress Protection", labelHi: "सुरक्षा श्रेणी", valueEn: "IP65", valueHi: "IP65" },
+      { labelEn: "Operating Temperature", labelHi: "कार्यकारी तापमान", valueEn: "-10°C to +65°C", valueHi: "-10°C से +65°C" }
+    ],
+    applications: [
+      {
+        tagEn: "INTERLOCKED GATES",
+        tagHi: "इंटरलॉक्ड गेट",
+        titleEn: "Interlocked Level Crossings",
+        titleHi: "इंटरलॉक्ड लेवल क्रॉसिंग",
+        descEn: "Provides the gate-locked proving required before signals can be cleared for train movement.",
+        descHi: "ट्रेन संचालन हेतु सिग्नल क्लियर करने से पहले आवश्यक गेट-लॉक्ड प्रूविंग प्रदान करता है।"
+      },
+      {
+        tagEn: "UPGRADES",
+        tagHi: "अपग्रेड",
+        titleEn: "Retrofit to Existing ELB Gates",
+        titleHi: "मौजूदा ELB गेटों पर रेट्रोफिट",
+        descEn: "Bolt-on kits convert non-interlocked ELB installations to interlocked operation.",
+        descHi: "बोल्ट-ऑन किट गैर-इंटरलॉक्ड ELB इंस्टॉलेशन को इंटरलॉक्ड संचालन में बदलते हैं।"
+      },
+      {
+        tagEn: "SECURE SITES",
+        tagHi: "सुरक्षित स्थल",
+        titleEn: "Depots, Sidings & Industrial Gates",
+        titleHi: "डिपो, साइडिंग एवं औद्योगिक गेट",
+        descEn: "Prevents unauthorised lifting of barriers at yard entrances and private sidings.",
+        descHi: "यार्ड प्रवेश द्वारों और निजी साइडिंग पर बैरियर को अनधिकृत रूप से उठाने से रोकता है।"
+      }
+    ],
+    relatedLinks: [
+      { titleEn: "Electric Lifting Barrier (ELB)", titleHi: "इलेक्ट्रिक लिफ्टिंग बैरियर (ELB)", href: "/products/railway-barrier", tagEn: "MACHINE", tagHi: "मशीन" },
+      { titleEn: "Galvanised Iron (GI) Boom", titleHi: "गैल्वनाइज़्ड आयरन (GI) बूम", href: "/products/gi-boom", tagEn: "BOOM", tagHi: "बूम" },
+      { titleEn: "Talk to Engineering", titleHi: "इंजीनियरिंग से बात करें", href: "/contact/engineering-team", tagEn: "CONSULT", tagHi: "परामर्श" }
+    ]
+  },
+
+  careers: {
+    slug: "careers",
+    categoryEn: "Company",
+    categoryHi: "कंपनी",
+    categoryHref: "/careers",
+    titleEn: "Careers at GLOBAL",
+    titleHi: "ग्लोबल में करियर",
+    subtitleEn: "Join a team engineering safety into India's railway network. We hire engineers, technicians and field specialists who take pride in equipment that must never fail.",
+    subtitleHi: "भारत के रेलवे नेटवर्क में सुरक्षा की इंजीनियरिंग करने वाली टीम से जुड़ें। हम ऐसे इंजीनियर, तकनीशियन और फील्ड विशेषज्ञ नियुक्त करते हैं जो कभी विफल न होने वाले उपकरणों पर गर्व करते हैं।",
+    bannerImage: "/images/eld_engineering_lab.jpg",
+    heroBadgeEn: "ENGINEERING FOR RAILWAY SAFETY • CAREERS",
+    heroBadgeHi: "रेलवे सुरक्षा के लिए इंजीनियरिंग • करियर",
+    stats: [
+      { value: "Pan-India", labelEn: "Field Deployments", labelHi: "फील्ड तैनाती" },
+      { value: "Design → Site", labelEn: "End-to-End Ownership", labelHi: "शुरू से अंत तक स्वामित्व" },
+      { value: "Mentored", labelEn: "Graduate Engineer Programme", labelHi: "ग्रेजुएट इंजीनियर कार्यक्रम" },
+      { value: "Open", labelEn: "Rolling Applications", labelHi: "निरंतर आवेदन" },
+    ],
+    overviewTitleEn: "Work That Keeps Trains and Road Users Safe",
+    overviewTitleHi: "ऐसा काम जो ट्रेनों और सड़क उपयोगकर्ताओं को सुरक्षित रखता है",
+    overviewTextEn: [
+      "GLOBAL designs and manufactures Electric Lifting Barriers, GI Booms, Motorised Locking and Earth Leakage Detectors for Indian Railways and industrial customers. Our people work across design, manufacturing, testing, installation and after-sales support.",
+      "We look for practical engineers who are comfortable both at the workbench and at a level-crossing site, and who understand that railway safety equipment has to perform for decades in heat, dust and monsoon.",
+      "To apply, email your CV and the role you are interested in to the HR Department. Shortlisted candidates are contacted within two weeks."
+    ],
+    overviewTextHi: [
+      "ग्लोबल भारतीय रेलवे और औद्योगिक ग्राहकों के लिए इलेक्ट्रिक लिफ्टिंग बैरियर, GI बूम, मोटराइज़्ड लॉकिंग और अर्थ लीकेज डिटेक्टर का डिज़ाइन और निर्माण करता है। हमारी टीम डिज़ाइन, निर्माण, परीक्षण, इंस्टॉलेशन और बिक्री-पश्चात सहायता में कार्य करती है।",
+      "हम ऐसे व्यावहारिक इंजीनियर चाहते हैं जो वर्कबेंच और लेवल-क्रॉसिंग साइट दोनों पर सहज हों, और जो समझते हों कि रेलवे सुरक्षा उपकरणों को गर्मी, धूल और मानसून में दशकों तक काम करना होता है।",
+      "आवेदन के लिए अपना CV और इच्छित भूमिका HR विभाग को ईमेल करें। शॉर्टलिस्ट किए गए उम्मीदवारों से दो सप्ताह के भीतर संपर्क किया जाता है।"
+    ],
+    features: [
+      {
+        badgeEn: "ENGINEERING",
+        badgeHi: "इंजीनियरिंग",
+        titleEn: "Electrical & Electronics Engineers",
+        titleHi: "इलेक्ट्रिकल एवं इलेक्ट्रॉनिक्स इंजीनियर",
+        descEn: "Controller firmware, relay interlocking interfaces, ELD sensing circuits and SCADA telemetry.",
+        descHi: "कंट्रोलर फर्मवेयर, रिले इंटरलॉकिंग इंटरफेस, ELD सेंसिंग सर्किट और SCADA टेलीमेट्री।"
+      },
+      {
+        badgeEn: "MECHANICAL",
+        badgeHi: "मैकेनिकल",
+        titleEn: "Mechanical Design & Production",
+        titleHi: "मैकेनिकल डिज़ाइन एवं उत्पादन",
+        descEn: "Gearbox and boom design, fabrication, galvanising quality and proof-load testing.",
+        descHi: "गियरबॉक्स और बूम डिज़ाइन, फैब्रिकेशन, गैल्वनाइज़िंग गुणवत्ता और प्रूफ-लोड परीक्षण।"
+      },
+      {
+        badgeEn: "FIELD",
+        badgeHi: "फील्ड",
+        titleEn: "Installation & Commissioning Technicians",
+        titleHi: "इंस्टॉलेशन एवं कमीशनिंग तकनीशियन",
+        descEn: "Site installation of ELB gates, wiring to station interlocking and commissioning with railway officials.",
+        descHi: "ELB गेटों की साइट इंस्टॉलेशन, स्टेशन इंटरलॉकिंग से वायरिंग और रेलवे अधिकारियों के साथ कमीशनिंग।"
+      },
+      {
+        badgeEn: "QUALITY",
+        badgeHi: "गुणवत्ता",
+        titleEn: "Quality & Documentation",
+        titleHi: "गुणवत्ता एवं दस्तावेज़ीकरण",
+        descEn: "RDSO documentation, inspection records, QR equipment registry and warranty tracking.",
+        descHi: "RDSO दस्तावेज़ीकरण, निरीक्षण रिकॉर्ड, QR उपकरण रजिस्ट्री और वारंटी ट्रैकिंग।"
+      },
+      {
+        badgeEn: "SERVICE",
+        badgeHi: "सेवा",
+        titleEn: "After-Sales & Service Engineers",
+        titleHi: "बिक्री-पश्चात एवं सर्विस इंजीनियर",
+        descEn: "Zonal support for installed gates, spares supply and preventive maintenance programmes.",
+        descHi: "स्थापित गेटों के लिए ज़ोनल सहायता, स्पेयर आपूर्ति और निवारक रखरखाव कार्यक्रम।"
+      },
+      {
+        badgeEn: "GRADUATES",
+        badgeHi: "स्नातक",
+        titleEn: "Graduate Engineer Trainees",
+        titleHi: "ग्रेजुएट इंजीनियर ट्रेनी",
+        descEn: "A mentored rotation through design, production and site work for fresh engineering graduates.",
+        descHi: "नए इंजीनियरिंग स्नातकों के लिए डिज़ाइन, उत्पादन और साइट कार्य में मार्गदर्शित रोटेशन।"
+      }
+    ],
+    specs: [
+      { labelEn: "How to Apply", labelHi: "आवेदन कैसे करें", valueEn: "Email CV to hr@indiaglobalgroup.com", valueHi: "CV ईमेल करें: hr@indiaglobalgroup.com" },
+      { labelEn: "Phone", labelHi: "फोन", valueEn: "62002-64002", valueHi: "62002-64002" },
+      { labelEn: "Subject Line", labelHi: "विषय पंक्ति", valueEn: "Application – <Role> – <Your Name>", valueHi: "Application – <भूमिका> – <आपका नाम>" },
+      { labelEn: "Response Time", labelHi: "प्रतिक्रिया समय", valueEn: "Shortlisted candidates contacted within 2 weeks", valueHi: "शॉर्टलिस्ट उम्मीदवारों से 2 सप्ताह में संपर्क" }
+    ],
+    relatedLinks: [
+      { titleEn: "About Us", titleHi: "हमारे बारे में", href: "/about", tagEn: "COMPANY", tagHi: "कंपनी" },
+      { titleEn: "Contact Us", titleHi: "संपर्क करें", href: "/contact", tagEn: "CONTACT", tagHi: "संपर्क" }
     ]
   }
 };
